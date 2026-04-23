@@ -1,0 +1,9 @@
+{
+  "record_id": "scope-1",
+  "platform": "F5 BIG-IP",
+  "tmos_version": "fixture",
+  "module": "LTM",
+  "topology": "standalone",
+  "credential_scope": "read-only fixture",
+  "controls": ["demo.banner.approved"]
+}

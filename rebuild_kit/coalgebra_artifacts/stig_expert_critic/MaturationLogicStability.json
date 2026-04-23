@@ -1,0 +1,21 @@
+{
+  "record_kind": "MaturationLogicStability",
+  "subject": "stig_expert_critic_p0a",
+  "logic_version": "p0a-demo",
+  "stable_rules": [
+    "pullback_replay_required",
+    "non_vacuous_falsifier_required",
+    "promotion_requires_survivor_threshold_and_human_signoff",
+    "governance_requires_machine_policy_and_human_signoff",
+    "witness_adequacy_rejects_hidden_failure",
+    "synthesis_requires_witness_survival",
+    "optimization_requires_visibility_preservation",
+    "contradiction_detection_required_on_claim_witness_evidence_mismatch",
+    "break_fix_revalidation_required",
+    "remediation_must_be_advisory_only"
+  ],
+  "cross_domain_test_status": "passed",
+  "cross_domain_test_name": "tests/audit.rs::d4_stable_maturation_logic_on_second_domain",
+  "second_domain_subject": "ntp_drift_critic_demo",
+  "production_gap": "Cross-domain test is run against one additional synthetic domain (NTP drift). Production requires at least three distinct domains with real adapters."
+}

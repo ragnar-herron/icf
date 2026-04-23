@@ -1,0 +1,9 @@
+{
+  "record_kind": "IdentityAudit",
+  "subject": "stig_expert_critic_p0a",
+  "stable_identity": "STIG Expert Critic for F5 BIG-IP demo scope",
+  "identity_preserved": true,
+  "scope_binding": "ScopeRecord.json",
+  "revision_log": "RevisionIdentityLog.json",
+  "production_gap": "No signed identity audit across production revisions."
+}

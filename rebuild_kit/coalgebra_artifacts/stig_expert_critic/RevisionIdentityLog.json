@@ -1,0 +1,14 @@
+{
+  "record_kind": "RevisionIdentityLog",
+  "subject": "stig_expert_critic_p0a",
+  "stable_task_identity": "F5 BIG-IP STIG evidence-to-witness critic",
+  "revisions": [
+    {
+      "revision_id": "p0a-demo",
+      "change_kind": "bootstrap",
+      "identity_preserved": true,
+      "notes": "Introduces one FieldEquality witness and one break/fix trace."
+    }
+  ],
+  "production_gap": "No multi-revision identity history yet."
+}

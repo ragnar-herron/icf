@@ -1,0 +1,14 @@
+auth remote-role {
+    description none
+    role-info {
+        stig_remote_admin {
+            attribute memberOf=CN=BIG-IP_Admins
+            console disabled
+            deny disabled
+            description none
+            line-order 1
+            role admin
+            user-partition all
+        }
+    }
+}

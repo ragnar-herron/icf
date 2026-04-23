@@ -1,0 +1,9 @@
+{
+  "record_kind": "FalsifierYieldMetric",
+  "subject": "stig_expert_critic_p0a",
+  "window": "demo",
+  "falsifiers_produced": 1,
+  "non_vacuous_falsifiers": 1,
+  "yield_nonzero": true,
+  "production_gap": "No sustained multi-window falsifier yield series yet."
+}

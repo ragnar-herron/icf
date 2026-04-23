@@ -1,0 +1,5472 @@
+{
+  "build_metadata": {
+    "authoritative_catalog_path": "src/authoritative_assertion_contracts.json",
+    "authoritative_metadata_path": "src/authoritative_contract_metadata.json",
+    "derived_metadata_path": "src/stig_data.py",
+    "preferred_source_priority": [
+      "f5_stig_disa_specs",
+      "f5_stigs",
+      "f5_ndm_apm2",
+      "f5_ndm_apm"
+    ],
+    "provenance_summary": {
+      "verified": 67
+    }
+  },
+  "contracts": [
+    {
+      "vuln_id": "V-266064",
+      "assertion_id": "C-266064r1024595_chk_assertion",
+      "title": "Limit concurrent management sessions",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_httpd_max_clients"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_httpd_max_clients <= 10 OR sys_httpd_max_clients == org_defined_value",
+        "open": "sys_httpd_max_clients > 10 AND sys_httpd_max_clients != org_defined_value"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys httpd max-clients"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/httpd"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/sys/httpd",
+        "payload": {
+          "maxClients": 10
+        },
+        "tmsh_equivalent": "tmsh modify sys httpd max-clients 10; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266064r1024595_rule",
+            "check_id": "C-266064r1024595_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266064",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266064",
+            "rule_id": "SV-266064r1024595_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266064"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266065",
+      "assertion_id": "C-266065r1024596_chk_assertion",
+      "title": "Terminate shared/group account credentials when members leave the group",
+      "severity": "medium",
+      "evidence_required": [
+        "auth_user_shared_accounts"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_user_shared_accounts == 0",
+        "open": "auth_user_shared_accounts > 0"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth user"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/user"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/auth/user",
+        "note": "Evaluate shared/group accounts from user list. Remediation requires manual user deletion.",
+        "tmsh_equivalent": "tmsh delete auth user <shared_account>; tmsh save sys config",
+        "selector": {
+          "description_contains_any": [
+            "shared",
+            "group",
+            "generic",
+            "service"
+          ]
+        }
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266065r1024596_rule",
+            "check_id": "C-266065r1024596_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266065",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266065",
+            "rule_id": "SV-266065r1024596_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266065"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266066",
+      "assertion_id": "C-266066r1051115_chk_assertion",
+      "title": "Configure only one local account of last resort for emergency access",
+      "severity": "medium",
+      "evidence_required": [
+        "auth_user_local_account_count"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_user_local_account_count == 1",
+        "open": "auth_user_local_account_count != 1"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth user"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/user"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/auth/user",
+        "note": "Count local accounts; only one account of last resort should remain. Remediation requires manual user deletion.",
+        "tmsh_equivalent": "tmsh delete auth user <extra_account>; tmsh save sys config",
+        "selector": {}
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266066r1024597_rule",
+            "check_id": "C-266066r1051115_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266066",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266066",
+            "rule_id": "SV-266066r1051115_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266066"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266067",
+      "assertion_id": "C-266067r1024598_chk_assertion",
+      "title": "The F5 BIG-IP appliance must be configured to assign appropriate user roles or access levels to authenticated users.",
+      "severity": "high",
+      "evidence_required": [
+        "auth_remote_role_assignment_appropriate",
+        "auth_user_partition_access_appropriate"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_remote_role_assignment_appropriate == true AND auth_user_partition_access_appropriate == true",
+        "open": "auth_remote_role_assignment_appropriate != true OR auth_user_partition_access_appropriate != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth remote-role",
+        "tmsh list auth user"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/remote-role",
+        "/mgmt/tm/auth/remote-role/role-info",
+        "/mgmt/tm/auth/user"
+      ],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Manual review required. The canonical STIG requires appropriate remote-role and local partition-access assignments, but the appropriate role/access level is organization-defined and cannot be auto-derived from the STIG text alone.",
+        "commands": []
+      },
+      "organization_policy": {
+        "no_remote_roles_permitted": true,
+        "local_policy_required_properties": [
+          "role",
+          "partitionAccess"
+        ],
+        "lawful_rows": [
+          {
+            "carrier_object": "remote role group",
+            "lawful_property": "role",
+            "admissible_constraint": "must be assigned an organization-defined appropriate role",
+            "expected_value": null,
+            "lawful_source": "/mgmt/tm/auth/remote-role/role-info"
+          },
+          {
+            "carrier_object": "local user",
+            "lawful_property": "partitionAccess",
+            "admissible_constraint": "must be assigned organization-defined appropriate partition access",
+            "expected_value": null,
+            "lawful_source": "/mgmt/tm/auth/user"
+          }
+        ]
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266067r1024598_rule",
+            "check_id": "C-266067r1024598_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266067",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266067",
+            "rule_id": "SV-266067r1024598_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266067"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266068",
+      "assertion_id": "C-266068r1029557_chk_assertion",
+      "title": "Audit execution of privileged functions including account changes",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_daemon_log_tmm_os_log_level",
+        "sys_daemon_log_tmm_ssl_log_level",
+        "sys_daemon_log_mcpd_audit",
+        "sys_daemon_log_mcpd_log_level",
+        "sys_db_log_ssl_level"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_daemon_log_tmm_os_log_level == 'informational' AND sys_daemon_log_tmm_ssl_log_level == 'informational' AND sys_daemon_log_mcpd_audit == 'enabled' AND sys_daemon_log_mcpd_log_level == 'notice' AND sys_db_log_ssl_level == 'informational'",
+        "open": "sys_daemon_log_tmm_os_log_level != 'informational' OR sys_daemon_log_tmm_ssl_log_level != 'informational' OR sys_daemon_log_mcpd_audit != 'enabled' OR sys_daemon_log_mcpd_log_level != 'notice' OR sys_db_log_ssl_level != 'informational'"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys daemon-log-settings tmm os-log-level",
+        "tmsh list sys daemon-log-settings tmm ssl-log-level",
+        "tmsh list sys daemon-log-settings mcpd audit",
+        "tmsh list sys daemon-log-settings mcpd log-level",
+        "tmsh list sys db log.ssl.level value"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/daemon-log-settings/tmm",
+        "/mgmt/tm/sys/daemon-log-settings/mcpd"
+      ],
+      "remediation": {
+        "method": "MULTI_PATCH",
+        "steps": [
+          {
+            "endpoint": "/mgmt/tm/sys/daemon-log-settings/tmm",
+            "payload": {
+              "osLogLevel": "informational",
+              "sslLogLevel": "informational"
+            }
+          },
+          {
+            "endpoint": "/mgmt/tm/sys/daemon-log-settings/mcpd",
+            "payload": {
+              "audit": "enabled",
+              "logLevel": "notice"
+            }
+          }
+        ],
+        "tmsh_equivalent": "tmsh modify sys daemon-log-settings tmm os-log-level informational; tmsh modify sys daemon-log-settings tmm ssl-log-level informational; tmsh modify sys daemon-log-settings mcpd audit enabled; tmsh modify sys daemon-log-settings mcpd log-level notice; tmsh modify sys db log.ssl.level value informational; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266068r1024599_rule",
+            "check_id": "C-266068r1029557_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266068",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266068",
+            "rule_id": "SV-266068r1029557_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266068"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266069",
+      "assertion_id": "C-266069r1024600_chk_assertion",
+      "title": "Enforce limit of 3 consecutive invalid logon attempts with 15-minute lockout",
+      "severity": "medium",
+      "evidence_required": [
+        "auth_password_policy_max_login_failures",
+        "auth_password_policy_lockout_duration"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_password_policy_max_login_failures <= 3 AND auth_password_policy_max_login_failures >= 1 AND auth_password_policy_lockout_duration >= 900",
+        "open": "auth_password_policy_max_login_failures > 3 OR auth_password_policy_max_login_failures == 0 OR auth_password_policy_lockout_duration < 900"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth password-policy max-login-failures",
+        "tmsh list auth password-policy lockout-duration"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/password-policy"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/auth/password-policy",
+        "payload": {
+          "maxLoginFailures": 3,
+          "lockoutDuration": 900
+        },
+        "tmsh_equivalent": "tmsh modify auth password-policy max-login-failures 3; tmsh modify auth password-policy lockout-duration 900; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266069r1024600_rule",
+            "check_id": "C-266069r1024600_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266069",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266069",
+            "rule_id": "SV-266069r1024600_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266069"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266070",
+      "assertion_id": "C-266070r1024881_chk_assertion",
+      "title": "Display Standard Mandatory DoD Notice and Consent Banner on TMOS User Interface",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_sshd_banner",
+        "sys_httpd_gui_security_banner_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_sshd_banner == 'enabled' AND sys_httpd_gui_security_banner_configured == true",
+        "open": "sys_sshd_banner != 'enabled' OR sys_httpd_gui_security_banner_configured != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys sshd banner",
+        "tmsh list sys sshd banner-text",
+        "tmsh list sys global-settings gui-security-banner",
+        "tmsh list sys global-settings gui-security-banner-text"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/sshd",
+        "/mgmt/tm/sys/global-settings"
+      ],
+      "remediation": {
+        "method": "MULTI_PATCH",
+        "steps": [
+          {
+            "endpoint": "/mgmt/tm/sys/sshd",
+            "payload": {
+              "banner": "enabled",
+              "bannerText": "You are accessing a U.S. Government (USG) Information System (IS)..."
+            }
+          },
+          {
+            "endpoint": "/mgmt/tm/sys/global-settings",
+            "payload": {
+              "guiSecurityBanner": "enabled",
+              "guiSecurityBannerText": "You are accessing a U.S. Government (USG) Information System (IS)..."
+            }
+          }
+        ],
+        "tmsh_equivalent": "tmsh modify sys sshd banner enabled; tmsh modify sys global-settings gui-security-banner enabled; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266070r1024881_rule",
+            "check_id": "C-266070r1024881_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266070",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266070",
+            "rule_id": "SV-266070r1024881_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266070"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266074",
+      "assertion_id": "C-266074r1024605_chk_assertion",
+      "title": "Manage local audit storage capacity per organization-defined requirements",
+      "severity": "low",
+      "evidence_required": [
+        "audit_log_storage_managed"
+      ],
+      "criteria": {
+        "not_a_finding": "audit_log_storage_managed == true",
+        "open": "audit_log_storage_managed != true"
+      },
+      "validation_method": "manual",
+      "tmsh_commands": [
+        "tmsh list auth password-policy"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/log-config/destination"
+      ],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Configure log rotation frequency, age-based removal, archive copies, and alertd message conditions per organization requirements. Automated configuration depends on organization-defined storage thresholds.",
+        "commands": []
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266074r1024605_rule",
+            "check_id": "C-266074r1024605_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266074",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266074",
+            "rule_id": "SV-266074r1024605_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266074"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266075",
+      "assertion_id": "C-266075r1024607_chk_assertion",
+      "title": "Generate audit records and send to redundant central syslog servers",
+      "severity": "high",
+      "evidence_required": [
+        "sys_syslog_remote_server_count"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_syslog_remote_server_count >= 2",
+        "open": "sys_syslog_remote_server_count < 2"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys syslog remote-servers"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/syslog"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/sys/syslog",
+        "payload": {
+          "remoteServers": [
+            {
+              "name": "stig_syslog1",
+              "host": "<ip1>"
+            },
+            {
+              "name": "stig_syslog2",
+              "host": "<ip2>"
+            }
+          ]
+        },
+        "tmsh_equivalent": "tmsh modify sys syslog remote-servers add { stig_syslog1 { host <ip1> remote-port 514 } stig_syslog2 { host <ip2> remote-port 514 } }; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266075r1024607_rule",
+            "check_id": "C-266075r1024607_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266075",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266075",
+            "rule_id": "SV-266075r1024607_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266075"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266076",
+      "assertion_id": "C-266076r1024608_chk_assertion",
+      "title": "Configure redundant authoritative NTP time sources",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_ntp_server_count"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_ntp_server_count >= 2",
+        "open": "sys_ntp_server_count < 2"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys ntp servers"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/ntp"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/sys/ntp",
+        "payload": {
+          "servers": [
+            "<ntp_server1>",
+            "<ntp_server2>"
+          ]
+        },
+        "tmsh_equivalent": "tmsh modify sys ntp servers add { <ntp_server1> <ntp_server2> }; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266076r1024608_rule",
+            "check_id": "C-266076r1024608_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266076"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266077",
+      "assertion_id": "C-266077r1024609_chk_assertion",
+      "title": "Use UTC timestamps for consistent forensic analysis",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_ntp_timezone"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_ntp_timezone == 'UTC'",
+        "open": "sys_ntp_timezone != 'UTC'"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys ntp timezone"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/ntp"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/sys/ntp",
+        "payload": {
+          "timezone": "UTC"
+        },
+        "tmsh_equivalent": "tmsh modify sys ntp timezone UTC; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266077r1024609_rule",
+            "check_id": "C-266077r1024609_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266077"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266078",
+      "assertion_id": "C-266078r1024610_chk_assertion",
+      "title": "Verify software image signatures before installation",
+      "severity": "medium",
+      "evidence_required": [
+        "software_signature_verification_enabled"
+      ],
+      "criteria": {
+        "not_a_finding": "software_signature_verification_enabled == true",
+        "open": "software_signature_verification_enabled != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list /sys db liveinstall.checksig value"
+      ],
+      "rest_endpoints": [],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Enable software image signature verification before installing BIG-IP updates.",
+        "tmsh_equivalent": "tmsh modify /sys db liveinstall.checksig value \"enable\"",
+        "commands": [
+          "modify /sys db liveinstall.checksig value \"enable\""
+        ]
+      },
+      "runtime_family": "ndm",
+      "organization_policy": {
+        "lawful_rows": [
+          {
+            "carrier_object": "software image signature verification setting",
+            "lawful_property": "value",
+            "admissible_constraint": "must equal organization-defined software signature verification value",
+            "expected_value": "enable",
+            "lawful_source": "tmsh list /sys db liveinstall.checksig value"
+          }
+        ],
+        "required_value": "enable"
+      },
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266078r1024610_rule",
+            "check_id": "C-266078r1024610_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266078"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266079",
+      "assertion_id": "C-266079r1024884_chk_assertion",
+      "title": "Configure redundant authentication servers for availability and security",
+      "severity": "high",
+      "evidence_required": [
+        "auth_source_type",
+        "auth_server_count"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_source_type == 'tacacs' AND auth_server_count >= 2",
+        "open": "auth_source_type != 'tacacs' OR auth_server_count < 2"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list auth tacacs system-auth all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/source",
+        "/mgmt/tm/auth/tacacs",
+        "/mgmt/tm/auth/radius-server",
+        "/mgmt/tm/auth/ldap"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/auth/source",
+        "payload": {
+          "type": "tacacs"
+        },
+        "note": "Configure at least two TACACS+ authentication servers. The PATCH sets auth source type; servers must be configured separately.",
+        "tmsh_equivalent": "tmsh modify auth source type tacacs"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266079r1024884_rule",
+            "check_id": "C-266079r1024884_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266079"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266080",
+      "assertion_id": "C-266080r1024886_chk_assertion",
+      "title": "Run a supported BIG-IP TMOS software version with current security patches",
+      "severity": "high",
+      "evidence_required": [
+        "sys_version_supported"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_version_supported == true",
+        "open": "sys_version_supported != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh show sys version"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/version"
+      ],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Upgrade to a supported BIG-IP TMOS version with current security patches. Automated upgrade is not supported.",
+        "commands": []
+      },
+      "organization_policy": {
+        "supported_versions": [
+          "17.5.1.3"
+        ]
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266080r1024886_rule",
+            "check_id": "C-266080r1024886_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266080"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266083",
+      "assertion_id": "C-266083r1024615_chk_assertion",
+      "title": "Use certificates from an approved DoD certificate authority",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_file_ssl_cert_issuer_dod_approved"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_file_ssl_cert_issuer_dod_approved == true",
+        "open": "sys_file_ssl_cert_issuer_dod_approved != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys file ssl-cert"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/file/ssl-cert"
+      ],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Obtain and install certificates from a DoD-approved PKI Certificate Authority. Automated certificate procurement is not supported.",
+        "commands": []
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266083r1024615_rule",
+            "check_id": "C-266083r1024615_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266083"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266084",
+      "assertion_id": "C-266084r1024616_chk_assertion",
+      "title": "Prohibit unnecessary and nonsecure functions, ports, protocols, and services",
+      "severity": "high",
+      "evidence_required": [
+        "virtual_server_services_restricted"
+      ],
+      "criteria": {
+        "not_a_finding": "virtual_server_services_restricted == true",
+        "open": "virtual_server_services_restricted != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list ltm virtual"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "VIRTUAL_SERVER_DISABLE_DISALLOWED_PORTS",
+        "endpoint": "/mgmt/tm/ltm/virtual",
+        "note": "Disable enabled virtual servers that expose prohibited or restricted listener ports until they can be reconfigured to approved services only."
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266084r1024616_rule",
+            "check_id": "C-266084r1024616_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266084"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate enabled LTM virtual servers only. Treat the control as policy-clean when no enabled virtual servers exist. A finding exists when any enabled listener exposes a prohibited or restricted destination port from the organization service policy.",
+        "disallowed_destination_ports": [
+          0,
+          20,
+          21,
+          23,
+          25,
+          53,
+          69,
+          80,
+          110,
+          139,
+          143,
+          161,
+          162,
+          445,
+          512,
+          513,
+          514,
+          3389
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266085",
+      "assertion_id": "C-266085r1024888_chk_assertion",
+      "title": "Use multifactor authentication (PKI-based) for management logins",
+      "severity": "high",
+      "evidence_required": [
+        "auth_mfa_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_mfa_configured == 'tacacs'",
+        "open": "auth_mfa_configured != 'tacacs'"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth source"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/source"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/auth/source",
+        "payload": {
+          "type": "tacacs"
+        },
+        "note": "Configure PKI-based multifactor authentication for all management access.",
+        "tmsh_equivalent": "tmsh modify auth source type tacacs"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266085r1024888_rule",
+            "check_id": "C-266085r1024888_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266085"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266086",
+      "assertion_id": "C-266086r1024925_chk_assertion",
+      "title": "Authenticate NTP sources using cryptographically-based authentication",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_ntp_authentication_enabled"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_ntp_authentication_enabled == true",
+        "open": "sys_ntp_authentication_enabled != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys ntp include"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/ntp"
+      ],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Configure cryptographic NTP authentication with shared keys on all NTP servers and clients.",
+        "tmsh_equivalent": "echo '1 M <key> #MD5 Key' > /etc/ntp/keys; tmsh edit sys ntp all-properties; tmsh save sys config",
+        "commands": [
+          "modify sys ntp include \"authenticate yes\\nkeys /etc/ntp/keys\\ntrustedkey 1\""
+        ]
+      },
+      "runtime_family": "ndm",
+      "organization_policy": {
+        "lawful_rows": [
+          {
+            "carrier_object": "NTP configuration include block",
+            "lawful_property": "include",
+            "admissible_constraint": "must contain organization-defined NTP authentication directives",
+            "expected_value": [
+              "authenticate yes",
+              "keys /etc/ntp/keys",
+              "trustedkey 1"
+            ],
+            "lawful_source": "tmsh list sys ntp include"
+          }
+        ],
+        "required_include_substrings": [
+          "authenticate yes",
+          "keys /etc/ntp/keys",
+          "trustedkey 1"
+        ]
+      },
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266086r1024925_rule",
+            "check_id": "C-266086r1024925_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266086",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266086",
+            "rule_id": "SV-266086r1024925_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266086"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266087",
+      "assertion_id": "C-266087r1024891_chk_assertion",
+      "title": "Enforce minimum 15-character password length",
+      "severity": "medium",
+      "evidence_required": [
+        "auth_password_policy_min_length"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_password_policy_min_length >= 15",
+        "open": "auth_password_policy_min_length < 15"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth password-policy min-length"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/password-policy"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/auth/password-policy",
+        "payload": {
+          "minimumLength": 15,
+          "policyEnforcement": "enabled"
+        },
+        "tmsh_equivalent": "tmsh modify auth password-policy min-length 15 policy-enforcement enabled; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266087r1024891_rule",
+            "check_id": "C-266087r1024891_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266087"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266088",
+      "assertion_id": "C-266088r1024894_chk_assertion",
+      "title": "Require at least one uppercase character in passwords",
+      "severity": "medium",
+      "evidence_required": [
+        "auth_password_policy_required_uppercase"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_password_policy_required_uppercase >= 1",
+        "open": "auth_password_policy_required_uppercase < 1"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth password-policy required-uppercase"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/password-policy"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/auth/password-policy",
+        "payload": {
+          "requiredUppercase": 1
+        },
+        "tmsh_equivalent": "tmsh modify auth password-policy required-uppercase 1; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266088r1024894_rule",
+            "check_id": "C-266088r1024894_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266088"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266089",
+      "assertion_id": "C-266089r1024622_chk_assertion",
+      "title": "Require at least one lowercase character in passwords",
+      "severity": "medium",
+      "evidence_required": [
+        "auth_password_policy_required_lowercase"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_password_policy_required_lowercase >= 1",
+        "open": "auth_password_policy_required_lowercase < 1"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth password-policy required-lowercase"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/password-policy"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/auth/password-policy",
+        "payload": {
+          "requiredLowercase": 1
+        },
+        "tmsh_equivalent": "tmsh modify auth password-policy required-lowercase 1; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266089r1024622_rule",
+            "check_id": "C-266089r1024622_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266089"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266090",
+      "assertion_id": "C-266090r1024623_chk_assertion",
+      "title": "Require at least one numeric character in passwords",
+      "severity": "medium",
+      "evidence_required": [
+        "auth_password_policy_required_numeric"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_password_policy_required_numeric >= 1",
+        "open": "auth_password_policy_required_numeric < 1"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth password-policy required-numeric"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/password-policy"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/auth/password-policy",
+        "payload": {
+          "requiredNumeric": 1
+        },
+        "tmsh_equivalent": "tmsh modify auth password-policy required-numeric 1; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266090r1024623_rule",
+            "check_id": "C-266090r1024623_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266090"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266091",
+      "assertion_id": "C-266091r1024624_chk_assertion",
+      "title": "Require at least one special character in passwords",
+      "severity": "medium",
+      "evidence_required": [
+        "auth_password_policy_required_special"
+      ],
+      "criteria": {
+        "not_a_finding": "auth_password_policy_required_special >= 1",
+        "open": "auth_password_policy_required_special < 1"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list auth password-policy required-special"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/password-policy"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/auth/password-policy",
+        "payload": {
+          "requiredSpecial": 1
+        },
+        "tmsh_equivalent": "tmsh modify auth password-policy required-special 1; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266091r1024624_rule",
+            "check_id": "C-266091r1024624_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266091"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266092",
+      "assertion_id": "C-266092r1024896_chk_assertion",
+      "title": "Enforce password change differences (at least 8 characters different)",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_db_password_difok"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_db_password_difok >= 8",
+        "open": "sys_db_password_difok < 8"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys db password.difok"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/db/password.difok"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/sys/db/password.difok",
+        "payload": {
+          "value": "8"
+        },
+        "tmsh_equivalent": "tmsh modify sys db password.difok value 8; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266092r1024896_rule",
+            "check_id": "C-266092r1024896_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266092"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266093",
+      "assertion_id": "C-266093r1024899_chk_assertion",
+      "title": "Limit cached authenticator lifetime (OCSP max age)",
+      "severity": "medium",
+      "evidence_required": [
+        "ocsp_max_clock_skew_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "ocsp_max_clock_skew_configured == true",
+        "open": "ocsp_max_clock_skew_configured != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list apm aaa ocsp all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/aaa/ocsp"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/apm/aaa/ocsp",
+        "payload": {
+          "statusAge": 86400
+        },
+        "note": "Configure the OCSP Response Max Age to organization-defined value.",
+        "selector": {}
+      },
+      "runtime_family": "ndm",
+      "organization_policy": {
+        "lawful_rows": [
+          {
+            "carrier_object": "OCSP responder configuration",
+            "lawful_property": "statusAge",
+            "admissible_constraint": "must equal organization-defined OCSP max age",
+            "expected_value": 86400,
+            "lawful_source": "/mgmt/tm/apm/aaa/ocsp"
+          }
+        ],
+        "ocsp_max_age": 86400
+      },
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266093r1024899_rule",
+            "check_id": "C-266093r1024899_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266093"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266094",
+      "assertion_id": "C-266094r1024902_chk_assertion",
+      "title": "Use DoD-approved OCSP responders or CRLs for PKI certificate validation",
+      "severity": "high",
+      "evidence_required": [
+        "ocsp_responder_dod_approved"
+      ],
+      "criteria": {
+        "not_a_finding": "ocsp_responder_dod_approved == true",
+        "open": "ocsp_responder_dod_approved != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list apm aaa ocsp all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/aaa/ocsp"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/apm/aaa/ocsp",
+        "note": "Configure the OCSP Responder to point to a DoD-approved URL. Requires organization-specific URL.",
+        "selector": {}
+      },
+      "runtime_family": "ndm",
+      "organization_policy": {
+        "approved_responder_identities": [
+          "/Common/stig_ocsp_validator"
+        ]
+      },
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266094r1024902_rule",
+            "check_id": "C-266094r1024902_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266094"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266095",
+      "assertion_id": "C-266095r1024904_chk_assertion",
+      "title": "Automatically terminate idle administrative sessions within 300 seconds",
+      "severity": "high",
+      "evidence_required": [
+        "sys_httpd_auth_pam_idle_timeout",
+        "sys_httpd_auth_pam_dashboard_timeout",
+        "sys_global_settings_console_inactivity_timeout",
+        "cli_global_settings_idle_timeout",
+        "sys_sshd_inactivity_timeout"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_httpd_auth_pam_idle_timeout > 0 AND sys_httpd_auth_pam_idle_timeout <= 300 AND sys_httpd_auth_pam_dashboard_timeout == true AND sys_global_settings_console_inactivity_timeout > 0 AND sys_global_settings_console_inactivity_timeout <= 300 AND cli_global_settings_idle_timeout > 0 AND cli_global_settings_idle_timeout <= 5 AND sys_sshd_inactivity_timeout > 0 AND sys_sshd_inactivity_timeout <= 300",
+        "open": "sys_httpd_auth_pam_idle_timeout == 0 OR sys_httpd_auth_pam_idle_timeout > 300 OR sys_httpd_auth_pam_dashboard_timeout != true OR sys_global_settings_console_inactivity_timeout == 0 OR sys_global_settings_console_inactivity_timeout > 300 OR cli_global_settings_idle_timeout == 0 OR cli_global_settings_idle_timeout > 5 OR sys_sshd_inactivity_timeout == 0 OR sys_sshd_inactivity_timeout > 300"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys httpd auth-pam-idle-timeout",
+        "tmsh list sys httpd auth-pam-dashboard-timeout",
+        "tmsh list sys global-settings console-inactivity-timeout",
+        "tmsh list cli global-settings idle-timeout",
+        "tmsh list sys sshd inactivity-timeout"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/httpd",
+        "/mgmt/tm/sys/global-settings",
+        "/mgmt/tm/sys/sshd"
+      ],
+      "remediation": {
+        "method": "MULTI_PATCH",
+        "steps": [
+          {
+            "endpoint": "/mgmt/tm/sys/httpd",
+            "payload": {
+              "authPamIdleTimeout": 300,
+              "authPamDashboardTimeout": "on"
+            }
+          },
+          {
+            "endpoint": "/mgmt/tm/sys/global-settings",
+            "payload": {
+              "consoleInactivityTimeout": 300
+            }
+          },
+          {
+            "endpoint": "/mgmt/tm/sys/sshd",
+            "payload": {
+              "inactivityTimeout": 300
+            }
+          }
+        ],
+        "note": "Set cli global-settings idle-timeout 5 via tmsh and persist configuration after REST changes.",
+        "tmsh_equivalent": "tmsh modify sys httpd auth-pam-idle-timeout 300 auth-pam-dashboard-timeout on; tmsh modify sys global-settings console-inactivity-timeout 300; tmsh modify cli global-settings idle-timeout 5; tmsh modify sys sshd inactivity-timeout 300; tmsh save sys config"
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266095r1024904_rule",
+            "check_id": "C-266095r1024904_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "external_reference",
+            "title": "STIG Viewer - F5 BIG-IP TMOS NDM V-266095",
+            "url": "https://www.stigviewer.com/stigs/f5_bigip_tmos_ndm/2025-06-12/finding/V-266095",
+            "rule_id": "SV-266095r1024904_rule",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/authoritative_assertion_contracts.json",
+            "maintainer_note": "Authoritative override replaces prior incorrect local mapping to sys snmp sys-location."
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266096",
+      "assertion_id": "C-266096r1024630_chk_assertion",
+      "title": "Perform regular configuration backups for recoverability",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_config_backup_scheduled"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_config_backup_scheduled == true",
+        "open": "sys_config_backup_scheduled != true"
+      },
+      "validation_method": "manual",
+      "tmsh_commands": [
+        "tmsh list sys ucs"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/auth/user"
+      ],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Perform weekly or organization-defined UCS configuration backups and store them on a separate system. Automated backup scheduling is external to BIG-IP.",
+        "commands": []
+      },
+      "runtime_family": "ndm",
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266096r1024630_rule",
+            "check_id": "C-266096r1024630_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "889248c5-9b52-4ddf-84eb-fe1a94ffb101",
+            "source_title": "f5_big-ip_tmos_ndm.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266096"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266137",
+      "assertion_id": "C-70061r1023657_chk_assertion",
+      "title": "The F5 BIG-IP appliance providing user access control intermediary services must limit the number of concurrent sessions to one or an organization-defined number for each access profile.",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_profile_access_max_concurrent_users"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_profile_access_max_concurrent_users >= 1 AND apm_profile_access_max_concurrent_users <= org_defined_session_limit",
+        "open": "apm_profile_access_max_concurrent_users == 0 OR apm_profile_access_max_concurrent_users > org_defined_session_limit"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm profile access"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "payload": {
+          "maxConcurrentUsers": 1
+        },
+        "tmsh_equivalent": "tmsh modify apm profile access <name> max-concurrent-users <limit>"
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        2
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266137r1024833_rule",
+            "check_id": "C-70061r1023657_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266137"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266138",
+      "assertion_id": "C-70062r1023660_chk_assertion",
+      "title": "Monitor remote access traffic with application security policies",
+      "severity": "medium",
+      "evidence_required": [
+        "asm_policies_active",
+        "virtual_server_security_policy"
+      ],
+      "criteria": {
+        "not_a_finding": "asm_policies_active == true AND virtual_server_security_policy != 'none'",
+        "open": "asm_policies_active != true OR virtual_server_security_policy == 'none'"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm policy access-policy"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/asm/policies",
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/ltm/virtual",
+        "note": "Attach an Application Security Policy to remote-access virtual servers. Selection of the correct ASM policy requires organizational context.",
+        "selector": {}
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        2
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266138r1024835_rule",
+            "check_id": "C-70062r1023660_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266138"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266139",
+      "assertion_id": "C-70063r1023663_chk_assertion",
+      "title": "The F5 BIG-IP appliance providing intermediary services for remote access must use FIPS-validated cryptographic algorithms, including TLS 1.2 at a minimum.",
+      "severity": "high",
+      "evidence_required": [
+        "ltm_attached_client_ssl_profile_count",
+        "ltm_profile_client_ssl_protocol_compliant_count"
+      ],
+      "criteria": {
+        "not_a_finding": "ltm_attached_client_ssl_profile_count == 0 OR ltm_profile_client_ssl_protocol_compliant_count == ltm_attached_client_ssl_profile_count",
+        "open": "ltm_attached_client_ssl_profile_count > 0 AND ltm_profile_client_ssl_protocol_compliant_count != ltm_attached_client_ssl_profile_count"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list ltm profile client-ssl all-properties",
+        "tmsh list ltm virtual all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/profile/client-ssl",
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/ltm/profile/client-ssl",
+        "payload": {
+          "options": [
+            "no-sslv2",
+            "no-sslv3",
+            "no-tlsv1",
+            "no-tlsv1.1"
+          ]
+        },
+        "tmsh_equivalent": "tmsh modify ltm profile client-ssl <name> options { no-sslv2 no-sslv3 no-tlsv1 no-tlsv1.1 } ciphers \"ECDHE+AES-GCM:DHE+AES-GCM:ECDHE+AES:DHE+AES\""
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        3
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266139r1024837_rule",
+            "check_id": "C-70063r1023663_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266139"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate only client-ssl profiles attached to active virtual servers. If none are attached, treat the control as not applicable/policy-clean rather than forcing /Common/clientssl.",
+        "client_ssl_requirements": {
+          "protocol_compliance": {
+            "required_option_markers": [
+              "no-tlsv1",
+              "no-tlsv1.1"
+            ],
+            "acceptable_option_markers": [
+              "no-ssl"
+            ],
+            "acceptable_cipher_markers": [
+              "!sslv3"
+            ],
+            "acceptable_cipher_prefixes": [
+              "fips"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "vuln_id": "V-266140",
+      "assertion_id": "C-70064r1023666_chk_assertion",
+      "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent code injection attacks from being launched against data storage objects, including, at a minimum, databases, database records, queries, and fields.",
+      "severity": "medium",
+      "evidence_required": [
+        "asm_policy_blocking_mode",
+        "asm_required_signature_sets_enforced"
+      ],
+      "criteria": {
+        "not_a_finding": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+        "open": "asm_policy_blocking_mode != 'blocking' OR asm_required_signature_sets_enforced != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm policy access-policy"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/asm/policies"
+      ],
+      "remediation": {
+        "method": "COMPOSITE",
+        "steps": [
+          {
+            "method": "PATCH_COLLECTION",
+            "endpoint": "/mgmt/tm/asm/policies",
+            "payload": {
+              "enforcementMode": "blocking"
+            }
+          },
+          {
+            "method": "ASM_POLICY_SIGNATURE_SET_PATCH",
+            "endpoint": "/mgmt/tm/asm/policies",
+            "payload": {
+              "block": true,
+              "alarm": true,
+              "learn": true
+            }
+          }
+        ],
+        "note": "Set the Application Security Policy enforcement mode to Blocking and enforce the XPath Injection and LDAP Injection attack signatures before applying the policy."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        3
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266140r1024838_rule",
+            "check_id": "C-70064r1023666_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266140"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate selected ASM policies by current enforcement mode and required signature-set enforcement for the named injection protections.",
+        "required_signature_sets": [
+          "XPath Injection",
+          [
+            "LDAP Injection",
+            "OS Command Injection"
+          ]
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266141",
+      "assertion_id": "C-70065r1023669_chk_assertion",
+      "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent code injection attacks launched against application objects including, at a minimum, application URLs and application code.",
+      "severity": "medium",
+      "evidence_required": [
+        "asm_policy_blocking_mode",
+        "asm_required_signature_sets_enforced"
+      ],
+      "criteria": {
+        "not_a_finding": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+        "open": "asm_policy_blocking_mode != 'blocking' OR asm_required_signature_sets_enforced != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/asm/policies"
+      ],
+      "remediation": {
+        "method": "COMPOSITE",
+        "steps": [
+          {
+            "method": "PATCH_COLLECTION",
+            "endpoint": "/mgmt/tm/asm/policies",
+            "payload": {
+              "enforcementMode": "blocking"
+            }
+          },
+          {
+            "method": "ASM_POLICY_SIGNATURE_SET_PATCH",
+            "endpoint": "/mgmt/tm/asm/policies",
+            "payload": {
+              "block": true,
+              "alarm": true,
+              "learn": true
+            }
+          }
+        ],
+        "note": "Set the Application Security Policy enforcement mode to Blocking and enforce the Buffer Overflow and Server Side Code Injection attack signatures before applying the policy."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        4
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266141r1024839_rule",
+            "check_id": "C-70065r1023669_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266141"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate selected ASM policies by current enforcement mode and required signature-set enforcement for the named code-injection protections.",
+        "required_signature_sets": [
+          [
+            "Buffer Overflow",
+            "Command Execution"
+          ],
+          "Server Side Code Injection"
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266142",
+      "assertion_id": "C-70066r1023672_chk_assertion",
+      "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent SQL injection attacks launched against data storage objects, including, at a minimum, databases, database records, and database fields.",
+      "severity": "medium",
+      "evidence_required": [
+        "asm_policy_blocking_mode",
+        "asm_required_signature_sets_enforced"
+      ],
+      "criteria": {
+        "not_a_finding": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+        "open": "asm_policy_blocking_mode != 'blocking' OR asm_required_signature_sets_enforced != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/asm/policies"
+      ],
+      "remediation": {
+        "method": "COMPOSITE",
+        "steps": [
+          {
+            "method": "PATCH_COLLECTION",
+            "endpoint": "/mgmt/tm/asm/policies",
+            "payload": {
+              "enforcementMode": "blocking"
+            }
+          },
+          {
+            "method": "ASM_POLICY_SIGNATURE_SET_PATCH",
+            "endpoint": "/mgmt/tm/asm/policies",
+            "payload": {
+              "block": true,
+              "alarm": true,
+              "learn": true
+            }
+          }
+        ],
+        "note": "Set the Application Security Policy enforcement mode to Blocking and enforce all SQL-Injection attack signatures before applying the policy."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        4
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266142r1024368_rule",
+            "check_id": "C-70066r1023672_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266142"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate selected ASM policies by current enforcement mode and required signature-set enforcement for SQL injection protections.",
+        "required_signature_sets": [
+          "SQL Injection"
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266143",
+      "assertion_id": "C-70067r1023675_chk_assertion",
+      "title": "Enforce identity-, role-, or attribute-based authorization policies in APM access policy",
+      "severity": "high",
+      "evidence_required": [
+        "apm_access_policy_authorization_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_access_policy_authorization_configured == true",
+        "open": "apm_access_policy_authorization_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list ltm virtual",
+        "tmsh list security firewall policy"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/ltm/virtual",
+        "note": "Configure source address restrictions on virtual servers or use AFM firewall policies.",
+        "tmsh_equivalent": "tmsh modify ltm virtual <name> source <allowed_network/mask>",
+        "selector": {
+          "source_equals": "0.0.0.0/0"
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        5
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266143r1024370_rule",
+            "check_id": "C-70067r1023675_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266143"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266144",
+      "assertion_id": "C-70068r1023678_chk_assertion",
+      "title": "Implement traffic inspection and information flow controls via firewall policies",
+      "severity": "high",
+      "evidence_required": [
+        "security_firewall_policy_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "security_firewall_policy_configured == true",
+        "open": "security_firewall_policy_configured != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list security firewall policy all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/security/firewall/policy"
+      ],
+      "remediation": {
+        "method": "FIREWALL_POLICY_RULE_PATCH",
+        "endpoint": "/mgmt/tm/security/firewall/policy",
+        "payload": {
+          "action": "accept"
+        },
+        "note": "Configure enforced AFM Network Firewall policies and active rules so approved information flows are inspected.",
+        "selector": {},
+        "rule_selector": {}
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        5
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266144r1024371_rule",
+            "check_id": "C-70068r1023678_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266144"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266145",
+      "assertion_id": "C-70069r1023681_chk_assertion",
+      "title": "Display Standard Mandatory DoD Notice and Consent Banner in APM access policy",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_access_policy_banner_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_access_policy_banner_configured == true",
+        "open": "apm_access_policy_banner_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/policy/access-policy",
+        "/mgmt/tm/apm/profile/access",
+        "/mgmt/tm/apm/policy/agent/message-box"
+      ],
+      "remediation": {
+        "method": "APM_POLICY_ITEM_ENSURE",
+        "note": "Insert a Message Box item that references the selected access profile customization group so the DoD notice and consent banner is displayed before access is granted."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        6
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266145r1024372_rule",
+            "check_id": "C-70069r1023681_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266145"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate APM access profiles with an assigned access policy. Consider the banner configured when the policy graph contains a message-box agent with a referenced customization group.",
+        "ignored_profile_names": [
+          "/Common/kerberos_auth_config_default"
+        ],
+        "required_policy_items": [
+          {
+            "caption_aliases": [
+              "DoD Notice and Consent Banner",
+              "Message Box"
+            ],
+            "item_type_aliases": [
+              "action"
+            ],
+            "agent_collection": "message-box",
+            "agent_type": "message-box",
+            "agent_type_aliases": [
+              "message-box"
+            ],
+            "agent_payload_from_profile_fields": {
+              "customizationGroup": "customizationGroup"
+            },
+            "agent_payload_nonempty_keys": [
+              "customizationGroup"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266146",
+      "assertion_id": "C-70070r1023684_chk_assertion",
+      "title": "Generate event log records forwarded to centralized events log (Access System Logs)",
+      "severity": "medium",
+      "evidence_required": [
+        "access_system_logs_enabled",
+        "access_log_settings_level"
+      ],
+      "criteria": {
+        "not_a_finding": "access_system_logs_enabled == true AND access_log_settings_level == 'notice'",
+        "open": "access_system_logs_enabled != true OR access_log_settings_level != 'notice'"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list apm profile access all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access",
+        "/mgmt/tm/apm/log-setting"
+      ],
+      "remediation": {
+        "method": "COMPOSITE",
+        "steps": [
+          {
+            "method": "APM_PROFILE_LOG_SETTINGS_ENSURE",
+            "endpoint": "/mgmt/tm/apm/profile/access",
+            "selector": {
+              "field": "scope",
+              "equals": "profile"
+            },
+            "log_setting": "/Common/default-log-setting"
+          },
+          {
+            "method": "APM_LOG_SETTING_ENSURE",
+            "endpoint": "/mgmt/tm/apm/log-setting",
+            "selector": {
+              "field": "fullPath",
+              "equals": "/Common/default-log-setting"
+            },
+            "desired_level": "notice"
+          }
+        ],
+        "note": "Enable Access System Logs in the default-log-setting, set the log items to Notice, and ensure the default-log-setting is selected on the APM Access Profile Logs tab."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        1
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266146r1024841_rule",
+            "check_id": "C-70070r1023684_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266146"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate APM access profiles with scope profile. Access System Logs are compliant when each selected profile references a log setting and the referenced access log entries are enabled at notice level."
+      }
+    },
+    {
+      "vuln_id": "V-266147",
+      "assertion_id": "C-70071r1023687_chk_assertion",
+      "title": "The F5 BIG-IP appliance that provides intermediary services for SMTP must inspect inbound and outbound SMTP and Extended SMTP communications traffic for protocol compliance and protocol anomalies.",
+      "severity": "medium",
+      "evidence_required": [
+        "ltm_attached_smtp_profile_count",
+        "smtp_protocol_security_enabled_count"
+      ],
+      "criteria": {
+        "not_a_finding": "ltm_attached_smtp_profile_count == 0 OR smtp_protocol_security_enabled_count == ltm_attached_smtp_profile_count",
+        "open": "ltm_attached_smtp_profile_count > 0 AND smtp_protocol_security_enabled_count != ltm_attached_smtp_profile_count"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list ltm profile smtp all-properties",
+        "tmsh list ltm virtual all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/profile/smtp",
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/ltm/profile/smtp",
+        "payload": {
+          "security": "enabled"
+        },
+        "note": "Enable protocol security on SMTP profiles that are attached to active virtual servers.",
+        "selector": {}
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        6
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266147r1024374_rule",
+            "check_id": "C-70071r1023687_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266147"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate SMTP profiles attached to active virtual servers. If none are attached, treat the control as policy-clean."
+      }
+    },
+    {
+      "vuln_id": "V-266148",
+      "assertion_id": "C-70072r1023690_chk_assertion",
+      "title": "The F5 BIG-IP appliance that provides intermediary services for FTP must inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies.",
+      "severity": "medium",
+      "evidence_required": [
+        "ltm_attached_ftp_profile_count",
+        "ftp_protocol_security_enabled_count"
+      ],
+      "criteria": {
+        "not_a_finding": "ltm_attached_ftp_profile_count == 0 OR ftp_protocol_security_enabled_count == ltm_attached_ftp_profile_count",
+        "open": "ltm_attached_ftp_profile_count > 0 AND ftp_protocol_security_enabled_count != ltm_attached_ftp_profile_count"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list ltm profile ftp all-properties",
+        "tmsh list ltm virtual all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/profile/ftp",
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/ltm/profile/ftp",
+        "payload": {
+          "security": "enabled"
+        },
+        "note": "Enable protocol security on FTP profiles that are attached to active virtual servers.",
+        "selector": {}
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        7
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266148r1024375_rule",
+            "check_id": "C-70072r1023690_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266148"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate FTP profiles attached to active virtual servers. If none are attached, treat the control as policy-clean."
+      }
+    },
+    {
+      "vuln_id": "V-266149",
+      "assertion_id": "C-70073r1024842_chk_assertion",
+      "title": "The F5 BIG-IP appliance that provides intermediary services for HTTP must inspect inbound and outbound HTTP traffic for protocol compliance and protocol anomalies.",
+      "severity": "medium",
+      "evidence_required": [
+        "asm_http_protocol_compliance_enabled"
+      ],
+      "criteria": {
+        "not_a_finding": "asm_http_protocol_compliance_enabled == true",
+        "open": "asm_http_protocol_compliance_enabled != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/asm/policies"
+      ],
+      "remediation": {
+        "method": "ASM_POLICY_BLOCKING_VIOLATION_PATCH",
+        "endpoint": "/mgmt/tm/asm/policies",
+        "payload": {
+          "alarm": true,
+          "block": true
+        },
+        "note": "Enable alarm/block enforcement for the HTTP protocol compliance failed ASM blocking violation on each scoped policy.",
+        "selector": {},
+        "violation_selector": {
+          "field": "description",
+          "equals": "HTTP protocol compliance failed"
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        7
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266149r1024844_rule",
+            "check_id": "C-70073r1024842_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266149"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate scoped ASM policies present on the device. The control is satisfied when the HTTP protocol compliance failed violation is alarmed or blocked on each scoped policy."
+      }
+    },
+    {
+      "vuln_id": "V-266150",
+      "assertion_id": "C-70074r1023696_chk_assertion",
+      "title": "The F5 BIG-IP appliance must be configured to prohibit or restrict the use of unnecessary or prohibited functions, ports, protocols, and/or services, including those defined in the PPSM CAL and vulnerability assessments.",
+      "severity": "high",
+      "evidence_required": [
+        "virtual_server_services_restricted"
+      ],
+      "criteria": {
+        "not_a_finding": "virtual_server_services_restricted == true",
+        "open": "virtual_server_services_restricted != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list ltm virtual"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "VIRTUAL_SERVER_DISABLE_DISALLOWED_PORTS",
+        "endpoint": "/mgmt/tm/ltm/virtual",
+        "note": "Disable enabled virtual servers that expose prohibited or restricted listener ports until they can be reconfigured to approved services only."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        8
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266150r1024377_rule",
+            "check_id": "C-70074r1023696_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266150"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate enabled LTM virtual servers only. Treat the control as policy-clean when no enabled virtual servers exist. A finding exists when any enabled listener exposes a prohibited or restricted destination port from the organization service policy.",
+        "disallowed_destination_ports": [
+          0,
+          20,
+          21,
+          23,
+          25,
+          53,
+          69,
+          80,
+          110,
+          139,
+          143,
+          161,
+          162,
+          445,
+          512,
+          513,
+          514,
+          3389
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266151",
+      "assertion_id": "C-70075r1023699_chk_assertion",
+      "title": "Require reauthentication when privilege level changes or session conditions change",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_policy_reauthentication_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_policy_reauthentication_configured == true",
+        "open": "apm_policy_reauthentication_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/virtual?$expandSubcollections=true"
+      ],
+      "remediation": {
+        "method": "APM_PER_REQUEST_SUBROUTINE_ENSURE",
+        "note": "Update each attached per-request access policy to use a gated subroutine so step-up authentication can rerun when access conditions change."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        8
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266151r1024378_rule",
+            "check_id": "C-70075r1023699_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266151"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate active virtual servers with an attached APM per-request access policy. If no active per-request access policies are attached, treat the control as policy-clean. Each attached per-request access policy must define subroutine properties with a gating criteria that is not blank and not the once-per-session defaults.",
+        "required_subroutine_property": {
+          "gating-criteria": "perflow.custom",
+          "max-subsession-lifetime": 900,
+          "subroutine-timeout": 120,
+          "inactivity-timeout": 300
+        },
+        "disallowed_gating_criteria": [
+          "",
+          "perflow.session.id",
+          "perflow.username"
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266152",
+      "assertion_id": "C-70076r1023702_chk_assertion",
+      "title": "Use redundant authentication servers and multifactor authentication in APM access policy",
+      "severity": "high",
+      "evidence_required": [
+        "apm_policy_mfa_and_redundant_auth_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_policy_mfa_and_redundant_auth_configured == true",
+        "open": "apm_policy_mfa_and_redundant_auth_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm policy access-policy",
+        "tmsh list apm profile access"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/policy/access-policy",
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "COMPOSITE",
+        "steps": [
+          {
+            "method": "APM_POLICY_ITEM_ENSURE",
+            "required_policy_items": [
+              {
+                "caption_aliases": [
+                  "RADIUS Auth",
+                  "RADIUS Authentication"
+                ],
+                "item_type_aliases": [
+                  "action"
+                ],
+                "agent_collection": "aaa-radius",
+                "agent_type": "aaa-radius",
+                "agent_type_aliases": [
+                  "aaa-radius"
+                ],
+                "agent_payload": {
+                  "server": "/Common/default-radius"
+                },
+                "agent_payload_nonempty_keys": [
+                  "server"
+                ]
+              }
+            ]
+          },
+          {
+            "method": "APM_POLICY_ITEM_ENSURE",
+            "required_policy_items": [
+              {
+                "caption_aliases": [
+                  "RSA AA Auth",
+                  "RSA Adaptive Authentication"
+                ],
+                "item_type_aliases": [
+                  "action"
+                ],
+                "agent_collection": "aaa-rsa-aa",
+                "agent_type": "aaa-rsa-aa",
+                "agent_type_aliases": [
+                  "aaa-rsa-aa"
+                ]
+              }
+            ]
+          }
+        ],
+        "note": "Insert a server-backed primary AAA item and a distinct MFA-capable AAA item into each selected APM access policy."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        9
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266152r1024845_rule",
+            "check_id": "C-70076r1023702_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266152"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate APM access profiles with an assigned access policy. Each selected policy must include a server-backed primary AAA authentication item and a distinct MFA-capable AAA authentication item.",
+        "ignored_profile_names": [
+          "/Common/kerberos_auth_config_default"
+        ],
+        "required_policy_item_groups": [
+          [
+            {
+              "caption_aliases": [
+                "RADIUS Auth",
+                "RADIUS Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-radius",
+              "agent_type": "aaa-radius",
+              "agent_type_aliases": [
+                "aaa-radius"
+              ],
+              "agent_payload_nonempty_keys": [
+                "server"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "LDAP Auth",
+                "LDAP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-ldap",
+              "agent_type": "aaa-ldap",
+              "agent_type_aliases": [
+                "aaa-ldap"
+              ],
+              "agent_payload_nonempty_keys": [
+                "server"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "AD Auth",
+                "Active Directory Auth",
+                "Active Directory Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-active-directory",
+              "agent_type": "aaa-active-directory",
+              "agent_type_aliases": [
+                "aaa-active-directory"
+              ],
+              "agent_payload_nonempty_keys": [
+                "server"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "TACACS+ Auth",
+                "TACACS+ Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-tacacsplus",
+              "agent_type": "aaa-tacacsplus",
+              "agent_type_aliases": [
+                "aaa-tacacsplus"
+              ]
+            }
+          ],
+          [
+            {
+              "caption_aliases": [
+                "RSA AA Auth",
+                "RSA Adaptive Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-rsa-aa",
+              "agent_type": "aaa-rsa-aa",
+              "agent_type_aliases": [
+                "aaa-rsa-aa"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "SecurID Auth",
+                "SecurID Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-securid",
+              "agent_type": "aaa-securid",
+              "agent_type_aliases": [
+                "aaa-securid"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "F5 MFA User Verification"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-f5-mfa-user-verification",
+              "agent_type": "aaa-f5-mfa-user-verification",
+              "agent_type_aliases": [
+                "aaa-f5-mfa-user-verification"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "Okta MFA"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "okta-mfa",
+              "agent_type": "okta-mfa",
+              "agent_type_aliases": [
+                "okta-mfa"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "Kerberos Auth",
+                "Kerberos Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-kerberos",
+              "agent_type": "aaa-kerberos",
+              "agent_type_aliases": [
+                "aaa-kerberos"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "TACACS+ Auth",
+                "TACACS+ Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-tacacsplus",
+              "agent_type": "aaa-tacacsplus",
+              "agent_type_aliases": [
+                "aaa-tacacsplus"
+              ]
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266153",
+      "assertion_id": "C-70077r1023705_chk_assertion",
+      "title": "Validate machine certificate revocation status in APM access policy",
+      "severity": "high",
+      "evidence_required": [
+        "apm_machine_cert_revocation_validation_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_machine_cert_revocation_validation_configured == true",
+        "open": "apm_machine_cert_revocation_validation_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm policy access-policy",
+        "tmsh list apm profile access"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access",
+        "/mgmt/tm/apm/policy/access-policy"
+      ],
+      "remediation": {
+        "method": "COMPOSITE",
+        "steps": [
+          {
+            "method": "APM_POLICY_ITEM_ENSURE",
+            "required_policy_items": [
+              {
+                "caption_aliases": [
+                  "Machine Cert Auth"
+                ],
+                "item_type_aliases": [
+                  "action"
+                ],
+                "agent_collection": "endpoint-check-machine-cert",
+                "agent_type": "endpoint-check-machine-cert",
+                "agent_type_aliases": [
+                  "endpoint-check-machine-cert"
+                ],
+                "agent_payload": {
+                  "storeLocation": "machine"
+                }
+              }
+            ]
+          },
+          {
+            "method": "APM_POLICY_ITEM_ENSURE",
+            "required_policy_items": [
+              {
+                "caption_aliases": [
+                  "OCSP Auth",
+                  "OCSP Authentication"
+                ],
+                "item_type_aliases": [
+                  "action"
+                ],
+                "agent_collection": "aaa-ocsp",
+                "agent_type": "aaa-ocsp",
+                "agent_type_aliases": [
+                  "aaa-ocsp"
+                ],
+                "agent_payload": {
+                  "certificateType": "machine",
+                  "ocspResponder": "/Common/default-ocsp"
+                }
+              }
+            ]
+          }
+        ],
+        "note": "Insert Machine Cert Auth plus OCSP validation into each selected APM access policy."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        9
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266153r1024380_rule",
+            "check_id": "C-70077r1023705_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266153"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate APM access profiles with an assigned access policy. Each selected policy must include Machine Cert Auth and a machine-certificate revocation validation step using OCSP or CRLDP.",
+        "ignored_profile_names": [
+          "/Common/kerberos_auth_config_default"
+        ],
+        "required_policy_item_groups": [
+          [
+            {
+              "caption_aliases": [
+                "Machine Cert Auth"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_type_aliases": [
+                "endpoint-check-machine-cert"
+              ]
+            }
+          ],
+          [
+            {
+              "caption_aliases": [
+                "OCSP Auth",
+                "OCSP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_type_aliases": [
+                "aaa-ocsp"
+              ]
+            },
+            {
+              "caption_aliases": [
+                "CRLDP Auth",
+                "CRLDP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_type_aliases": [
+                "aaa-crldp"
+              ]
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266154",
+      "assertion_id": "C-70078r1023708_chk_assertion",
+      "title": "Maintain local revocation cache for PKI-based user authentication",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_revocation_cache_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_revocation_cache_configured == true",
+        "open": "apm_revocation_cache_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access",
+        "/mgmt/tm/apm/policy/access-policy",
+        "/mgmt/tm/apm/policy/agent/aaa-ocsp",
+        "/mgmt/tm/apm/aaa/ocsp"
+      ],
+      "remediation": {
+        "method": "APM_POLICY_ITEM_ENSURE",
+        "note": "Insert OCSP validation backed by a cached OCSP responder configuration so revocation data remains available when live checks are temporarily unreachable."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        10
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266154r1024381_rule",
+            "check_id": "C-70078r1023708_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266154"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate APM access profiles with an assigned access policy. Each selected policy must include revocation validation backed by a locally cached OCSP or CRLDP configuration for PKI-based user authentication.",
+        "ignored_profile_names": [
+          "/Common/kerberos_auth_config_default"
+        ],
+        "required_policy_item_groups": [
+          [
+            {
+              "caption_aliases": [
+                "OCSP Auth",
+                "OCSP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_type_aliases": [
+                "aaa-ocsp"
+              ],
+              "agent_reference_matches": [
+                {
+                  "agent_field": "ocspResponder",
+                  "collection_endpoint": "/mgmt/tm/apm/aaa/ocsp",
+                  "exact_match": {
+                    "verify": "true",
+                    "verifyCert": "true",
+                    "verifySig": "true",
+                    "explicitOcsp": "true"
+                  },
+                  "minimum_match": {
+                    "statusAge": 1,
+                    "validityPeriod": 1
+                  }
+                }
+              ]
+            },
+            {
+              "caption_aliases": [
+                "CRLDP Auth",
+                "CRLDP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_type_aliases": [
+                "aaa-crldp"
+              ],
+              "agent_reference_matches": [
+                {
+                  "agent_field": "server",
+                  "collection_endpoint": "/mgmt/tm/apm/aaa/crldp",
+                  "exact_match": {
+                    "allowNullcrl": "false",
+                    "verifySig": "true"
+                  },
+                  "minimum_match": {
+                    "cacheExpire": 1
+                  }
+                }
+              ]
+            }
+          ]
+        ],
+        "required_policy_items": [
+          {
+            "caption_aliases": [
+              "OCSP Auth",
+              "OCSP Authentication"
+            ],
+            "item_type_aliases": [
+              "action"
+            ],
+            "agent_collection": "aaa-ocsp",
+            "agent_type": "aaa-ocsp",
+            "agent_type_aliases": [
+              "aaa-ocsp"
+            ],
+            "agent_payload": {
+              "certificateType": "user",
+              "ocspResponder": "/Common/default-ocsp"
+            },
+            "supporting_objects": [
+              {
+                "endpoint": "/mgmt/tm/apm/aaa/ocsp",
+                "object_path": "/Common/default-ocsp",
+                "payload": {
+                  "statusAge": 3600,
+                  "validityPeriod": 300,
+                  "verify": "true",
+                  "verifyCert": "true",
+                  "verifySig": "true",
+                  "explicitOcsp": "true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266155",
+      "assertion_id": "C-70079r1023711_chk_assertion",
+      "title": "The F5 BIG-IP appliance must terminate all network connections associated with a communications session at the end of the session or after 15 minutes of inactivity.",
+      "severity": "high",
+      "evidence_required": [
+        "apm_profile_access_inactivity_timeout"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_profile_access_inactivity_timeout <= 900 AND apm_profile_access_inactivity_timeout > 0",
+        "open": "apm_profile_access_inactivity_timeout > 900 OR apm_profile_access_inactivity_timeout == 0"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm profile access"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "payload": {
+          "inactivityTimeout": 900
+        },
+        "tmsh_equivalent": "tmsh modify apm profile access <name> inactivity-timeout 900"
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        10
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266155r1024382_rule",
+            "check_id": "C-70079r1023711_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266155"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266156",
+      "assertion_id": "C-70080r1024846_chk_assertion",
+      "title": "The F5 BIG-IP appliance providing content filtering must employ rate-based attack prevention behavior analysis.",
+      "severity": "medium",
+      "evidence_required": [
+        "dos_custom_profile_count",
+        "dos_profiles_network_mitigate_count"
+      ],
+      "criteria": {
+        "not_a_finding": "dos_custom_profile_count == 0 OR dos_profiles_network_mitigate_count == dos_custom_profile_count",
+        "open": "dos_custom_profile_count > 0 AND dos_profiles_network_mitigate_count != dos_custom_profile_count"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list security dos profile all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/security/dos/profile"
+      ],
+      "remediation": {
+        "method": "DOS_PROFILE_ENSURE",
+        "endpoint": "/mgmt/tm/security/dos/profile",
+        "note": "Ensure each non-default custom DoS profile has a managed network DoS subprofile with dynamic signatures enabled and at least one network attack vector set to mitigate.",
+        "selector": {
+          "field": "fullPath",
+          "not_equals": "/Common/dos"
+        },
+        "dos_network": {
+          "name": "stig_auto_net",
+          "dynamic_signatures": {
+            "detection": "enabled",
+            "mitigation": "medium"
+          },
+          "network_attack_vector": {
+            "name": "udp-flood",
+            "tmsh_clause": "state mitigate threshold-mode fully-automatic enforce enabled auto-threshold enabled"
+          }
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        11
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266156r1024848_rule",
+            "check_id": "C-70080r1024846_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266156"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "ignored_profile_names": [
+          "/Common/dos"
+        ],
+        "evaluation_scope": "Evaluate custom DoS profiles and ignore the default /Common/dos baseline profile."
+      }
+    },
+    {
+      "vuln_id": "V-266157",
+      "assertion_id": "C-70081r1023717_chk_assertion",
+      "title": "The F5 BIG-IP appliance providing content filtering must protect against or limit the effects of known and unknown types of denial-of-service (DoS) attacks by employing pattern recognition pre-processors.",
+      "severity": "medium",
+      "evidence_required": [
+        "dos_custom_profile_count",
+        "dos_profiles_dynamic_signatures_count"
+      ],
+      "criteria": {
+        "not_a_finding": "dos_custom_profile_count == 0 OR dos_profiles_dynamic_signatures_count == dos_custom_profile_count",
+        "open": "dos_custom_profile_count > 0 AND dos_profiles_dynamic_signatures_count != dos_custom_profile_count"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list security dos profile all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/security/dos/profile"
+      ],
+      "remediation": {
+        "method": "DOS_PROFILE_ENSURE",
+        "endpoint": "/mgmt/tm/security/dos/profile",
+        "note": "Ensure each non-default custom DoS profile has managed network and protocol-dns subprofiles with dynamic signatures detection enabled.",
+        "selector": {
+          "field": "fullPath",
+          "not_equals": "/Common/dos"
+        },
+        "dos_network": {
+          "name": "stig_auto_net",
+          "dynamic_signatures": {
+            "detection": "enabled",
+            "mitigation": "medium"
+          }
+        },
+        "protocol_dns": {
+          "name": "stig_auto_dns",
+          "dynamic_signatures": {
+            "detection": "enabled",
+            "mitigation": "medium"
+          }
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        11
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266157r1024386_rule",
+            "check_id": "C-70081r1023717_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266157"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "ignored_profile_names": [
+          "/Common/dos"
+        ],
+        "evaluation_scope": "Evaluate custom DoS profiles and ignore the default /Common/dos baseline profile."
+      }
+    },
+    {
+      "vuln_id": "V-266158",
+      "assertion_id": "C-70082r1023720_chk_assertion",
+      "title": "The F5 BIG-IP appliance must check the validity of all data inputs except those specifically identified by the organization.",
+      "severity": "medium",
+      "evidence_required": [
+        "asm_policy_count",
+        "asm_parameter_validation_policy_count"
+      ],
+      "criteria": {
+        "not_a_finding": "asm_policy_count > 0 AND asm_parameter_validation_policy_count == asm_policy_count",
+        "open": "asm_policy_count == 0 OR asm_parameter_validation_policy_count != asm_policy_count"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/asm/policies"
+      ],
+      "remediation": {
+        "method": "ASM_POLICY_PARAMETER_PATCH",
+        "endpoint": "/mgmt/tm/asm/policies",
+        "payload": {
+          "checkMetachars": true,
+          "metacharsOnParameterValueCheck": true
+        },
+        "note": "Enable metachar validation on the wildcard parameter for each ASM security policy so parameter names and values are validated.",
+        "selector": {
+          "field": "type",
+          "equals": "security"
+        },
+        "parameter_selector": {
+          "field": "name",
+          "equals": "*"
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        12
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266158r1024387_rule",
+            "check_id": "C-70082r1023720_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266158"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate ASM security policies present on the device. Parameter validation is satisfied when each scoped policy's wildcard parameter validates metacharacters in both parameter names and values."
+      }
+    },
+    {
+      "vuln_id": "V-266159",
+      "assertion_id": "C-70083r1023723_chk_assertion",
+      "title": "Enable automatic security signature updates with real-time installation",
+      "severity": "medium",
+      "evidence_required": [
+        "auto_update_check_enabled",
+        "live_update_realtime"
+      ],
+      "criteria": {
+        "not_a_finding": "auto_update_check_enabled == true AND live_update_realtime == true",
+        "open": "auto_update_check_enabled != true OR live_update_realtime != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/software/update",
+        "/mgmt/tm/live-update"
+      ],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Set Automatic Update Check to Enabled. Configure Real-Time installation of automatically downloaded updates under Live Update.",
+        "commands": [
+          "modify sys software update auto-check enabled",
+          "modify sys software update auto-phonehome enabled"
+        ]
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        12
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266159r1024388_rule",
+            "check_id": "C-70083r1023723_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266159"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266160",
+      "assertion_id": "C-70084r1023726_chk_assertion",
+      "title": "The F5 BIG-IP appliance providing content filtering must detect use of network services that have not been authorized or approved by the information system security manager (ISSM) and information system security officer (ISSO), at a minimum.",
+      "severity": "medium",
+      "evidence_required": [
+        "firewall_classification_policy_configured",
+        "global_network_classification_logging_enabled"
+      ],
+      "criteria": {
+        "not_a_finding": "firewall_classification_policy_configured == true AND global_network_classification_logging_enabled == true",
+        "open": "firewall_classification_policy_configured != true OR global_network_classification_logging_enabled != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list security firewall policy",
+        "tmsh list security log profile global-network"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/security/firewall/policy"
+      ],
+      "remediation": {
+        "method": "COMPOSITE",
+        "steps": [
+          {
+            "method": "FIREWALL_POLICY_RULE_PATCH",
+            "endpoint": "/mgmt/tm/security/firewall/policy",
+            "selector": {},
+            "rule_selector": {},
+            "payload": {
+              "classificationPolicy": "/Common/stig_classification_policy"
+            }
+          },
+          {
+            "method": "TMSH_MUTATE",
+            "commands": [
+              "modify security log profile global-network { classification enabled }"
+            ]
+          }
+        ],
+        "note": "Attach a classification policy to scoped firewall rules and enable Classification logging with a log publisher on the global-network logging profile."
+      },
+      "runtime_family": "alg",
+      "organization_policy": {
+        "lawful_rows": [
+          {
+            "carrier_object": "global-network logging profile",
+            "lawful_property": "classification",
+            "admissible_constraint": "must equal organization-defined classification logging state",
+            "expected_value": "enabled",
+            "lawful_source": "tmsh list security log profile global-network"
+          },
+          {
+            "carrier_object": "global-network logging profile",
+            "lawful_property": "publisher",
+            "admissible_constraint": "must be configured with a log publisher",
+            "expected_value": null,
+            "lawful_source": "tmsh list security log profile global-network"
+          }
+        ],
+        "classification_required_value": "enabled"
+      },
+      "source_citations": [
+        13
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266160r1024389_rule",
+            "check_id": "C-70084r1023726_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266160"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266161",
+      "assertion_id": "C-70085r1023729_chk_assertion",
+      "title": "Log unauthorized services via global-network logging profile with Classification enabled",
+      "severity": "medium",
+      "evidence_required": [
+        "global_network_classification_logging_enabled"
+      ],
+      "criteria": {
+        "not_a_finding": "global_network_classification_logging_enabled == true",
+        "open": "global_network_classification_logging_enabled != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list security log profile global-network"
+      ],
+      "rest_endpoints": [],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Enable Classification logging and set a log publisher on the global-network logging profile.",
+        "commands": [
+          "modify security log profile global-network { classification enabled }"
+        ]
+      },
+      "runtime_family": "alg",
+      "organization_policy": {
+        "lawful_rows": [
+          {
+            "carrier_object": "global-network logging profile",
+            "lawful_property": "classification",
+            "admissible_constraint": "must equal organization-defined classification logging state",
+            "expected_value": "enabled",
+            "lawful_source": "tmsh list security log profile global-network"
+          },
+          {
+            "carrier_object": "global-network logging profile",
+            "lawful_property": "publisher",
+            "admissible_constraint": "must be configured with a log publisher",
+            "expected_value": null,
+            "lawful_source": "tmsh list security log profile global-network"
+          }
+        ],
+        "classification_required_value": "enabled"
+      },
+      "source_citations": [
+        13
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266161r1024391_rule",
+            "check_id": "C-70085r1023729_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266161"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266162",
+      "assertion_id": "C-70086r1023732_chk_assertion",
+      "title": "Enable HTTP Only flag on APM access profile session cookies",
+      "severity": "low",
+      "evidence_required": [
+        "apm_profile_cookie_http_only"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_profile_cookie_http_only == true",
+        "open": "apm_profile_cookie_http_only != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "payload": {
+          "httponlyCookie": "true"
+        },
+        "note": "Enable the HTTP Only flag in the Access Profile SSO/Auth Domains cookie options.",
+        "selector": {
+          "field": "scope",
+          "equals": "profile"
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        14
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266162r1024392_rule",
+            "check_id": "C-70086r1023732_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266162"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266163",
+      "assertion_id": "C-70087r1023735_chk_assertion",
+      "title": "Enable Secure flag on APM access profile session cookies",
+      "severity": "low",
+      "evidence_required": [
+        "apm_profile_cookie_secure"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_profile_cookie_secure == true",
+        "open": "apm_profile_cookie_secure != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "payload": {
+          "secureCookie": "true"
+        },
+        "note": "Enable the Secure flag in the Access Profile SSO/Auth Domains cookie options.",
+        "selector": {
+          "field": "scope",
+          "equals": "profile"
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        14
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266163r1024393_rule",
+            "check_id": "C-70087r1023735_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266163"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266164",
+      "assertion_id": "C-70088r1024394_chk_assertion",
+      "title": "Disable persistent cookies in APM access profile Cookie Options",
+      "severity": "low",
+      "evidence_required": [
+        "apm_profile_cookie_persistent"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_profile_cookie_persistent == false",
+        "open": "apm_profile_cookie_persistent == true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm profile access"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "payload": {
+          "persistentCookie": "false"
+        },
+        "note": "Disable persistent cookies on each APM access profile.",
+        "selector": {
+          "field": "scope",
+          "equals": "profile"
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        14
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266164r1024395_rule",
+            "check_id": "C-70088r1024394_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266164"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266165",
+      "assertion_id": "C-70089r1023741_chk_assertion",
+      "title": "Validate user certificate revocation status in APM access policy",
+      "severity": "high",
+      "evidence_required": [
+        "apm_user_cert_revocation_validation_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_user_cert_revocation_validation_configured == true",
+        "open": "apm_user_cert_revocation_validation_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm policy access-policy",
+        "tmsh list apm profile access"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access",
+        "/mgmt/tm/apm/policy/access-policy"
+      ],
+      "remediation": {
+        "method": "COMPOSITE",
+        "steps": [
+          {
+            "method": "APM_POLICY_ITEM_ENSURE",
+            "required_policy_items": [
+              {
+                "caption_aliases": [
+                  "Client Cert Inspection"
+                ],
+                "item_type_aliases": [
+                  "action"
+                ]
+              }
+            ]
+          },
+          {
+            "method": "APM_POLICY_ITEM_ENSURE",
+            "required_policy_items": [
+              {
+                "caption_aliases": [
+                  "OCSP Auth",
+                  "OCSP Authentication"
+                ],
+                "item_type_aliases": [
+                  "action"
+                ],
+                "agent_collection": "aaa-ocsp",
+                "agent_type": "aaa-ocsp",
+                "agent_type_aliases": [
+                  "aaa-ocsp"
+                ],
+                "agent_payload": {
+                  "certificateType": "user",
+                  "ocspResponder": "/Common/default-ocsp"
+                }
+              }
+            ]
+          }
+        ],
+        "note": "Insert Client Cert Inspection plus OCSP validation into each selected APM access policy."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        15
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266165r1024396_rule",
+            "check_id": "C-70089r1023741_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266165"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate APM access profiles with an assigned access policy. Each selected policy must include Client Cert Inspection and a user-certificate revocation validation step using OCSP or CRLDP.",
+        "ignored_profile_names": [
+          "/Common/kerberos_auth_config_default"
+        ],
+        "required_policy_item_groups": [
+          [
+            {
+              "caption_aliases": [
+                "Client Cert Inspection"
+              ],
+              "item_type_aliases": [
+                "action"
+              ]
+            }
+          ],
+          [
+            {
+              "caption_aliases": [
+                "OCSP Auth",
+                "OCSP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_type_aliases": [
+                "aaa-ocsp"
+              ],
+              "agent_payload_match": {
+                "certificateType": "user"
+              }
+            },
+            {
+              "caption_aliases": [
+                "CRLDP Auth",
+                "CRLDP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_type_aliases": [
+                "aaa-crldp"
+              ]
+            }
+          ]
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266166",
+      "assertion_id": "C-70090r1024849_chk_assertion",
+      "title": "Disable On-Demand Cert Auth; use Client Cert Inspection instead",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_on_demand_cert_auth_absent",
+        "apm_client_cert_inspection_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_on_demand_cert_auth_absent == true AND apm_client_cert_inspection_configured == true",
+        "open": "apm_on_demand_cert_auth_absent != true OR apm_client_cert_inspection_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access",
+        "/mgmt/tm/apm/policy/access-policy"
+      ],
+      "remediation": {
+        "method": "APM_POLICY_ITEM_ENSURE",
+        "note": "Replace On-Demand Cert Auth with Client Cert Inspection in each selected APM access policy."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        15
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266166r1024851_rule",
+            "check_id": "C-70090r1024849_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266166"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate APM access profiles with an assigned access policy. Each selected policy must include Client Cert Inspection and must not include On-Demand Cert Auth.",
+        "ignored_profile_names": [
+          "/Common/kerberos_auth_config_default"
+        ],
+        "required_policy_items": [
+          {
+            "caption_aliases": [
+              "Client Cert Inspection"
+            ],
+            "item_type_aliases": [
+              "action"
+            ]
+          }
+        ],
+        "forbidden_policy_items": [
+          {
+            "caption_aliases": [
+              "On-Demand Cert Auth",
+              "On-Demand Certificate Authentication"
+            ],
+            "item_type_aliases": [
+              "action"
+            ],
+            "agent_type_aliases": [
+              "aaa-client-cert",
+              "on-demand-cert-auth"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266167",
+      "assertion_id": "C-70091r1023747_chk_assertion",
+      "title": "Enforce consistent IP address per session to prevent session hijacking",
+      "severity": "medium",
+      "evidence_required": [
+        "sys_httpd_auth_pam_validate_ip"
+      ],
+      "criteria": {
+        "not_a_finding": "sys_httpd_auth_pam_validate_ip == true",
+        "open": "sys_httpd_auth_pam_validate_ip != true"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list sys httpd auth-pam-validate-ip"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/sys/httpd"
+      ],
+      "remediation": {
+        "method": "TMSH_MUTATE",
+        "note": "Enable the BIG-IP System Preferences control that requires a consistent inbound IP for the entire management web session.",
+        "tmsh_equivalent": "tmsh modify sys httpd auth-pam-validate-ip on",
+        "commands": [
+          "modify sys httpd auth-pam-validate-ip on"
+        ]
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        15
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266167r1024399_rule",
+            "check_id": "C-70091r1023747_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266167"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266168",
+      "assertion_id": "C-70092r1023750_chk_assertion",
+      "title": "Restrict session to single client IP in APM access profile",
+      "severity": "low",
+      "evidence_required": [
+        "apm_restrict_single_client_ip"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_restrict_single_client_ip == true",
+        "open": "apm_restrict_single_client_ip != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list ltm policy",
+        "tmsh list security firewall rule-list"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "payload": {
+          "restrictToSingleClientIp": "true"
+        },
+        "note": "Restrict each APM session to a single client IP address.",
+        "selector": {
+          "field": "scope",
+          "equals": "profile"
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        16
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266168r1024400_rule",
+            "check_id": "C-70092r1023750_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266168"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266169",
+      "assertion_id": "C-70093r1023753_chk_assertion",
+      "title": "The F5 BIG-IP appliance must be configured to set a Maximum Session Timeout value of eight hours or less.",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_profile_access_max_session_timeout"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_profile_access_max_session_timeout <= 28800 AND apm_profile_access_max_session_timeout > 0",
+        "open": "apm_profile_access_max_session_timeout > 28800 OR apm_profile_access_max_session_timeout == 0"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm profile access"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "payload": {
+          "maxSessionTimeout": 28800
+        },
+        "tmsh_equivalent": "tmsh modify apm profile access <name> max-session-timeout 28800"
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        16
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266169r1024401_rule",
+            "check_id": "C-70093r1023753_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266169"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266170",
+      "assertion_id": "C-70094r1023756_chk_assertion",
+      "title": "The F5 BIG-IP appliance must be configured to use cryptographic algorithms approved by NSA to protect NSS for remote access to a classified network.",
+      "severity": "high",
+      "evidence_required": [
+        "ltm_attached_client_ssl_profile_count",
+        "ltm_profile_client_ssl_strong_cipher_count"
+      ],
+      "criteria": {
+        "not_a_finding": "ltm_attached_client_ssl_profile_count == 0 OR ltm_profile_client_ssl_strong_cipher_count == ltm_attached_client_ssl_profile_count",
+        "open": "ltm_attached_client_ssl_profile_count > 0 AND ltm_profile_client_ssl_strong_cipher_count != ltm_attached_client_ssl_profile_count"
+      },
+      "validation_method": "tmsh",
+      "tmsh_commands": [
+        "tmsh list ltm profile client-ssl all-properties",
+        "tmsh list ltm virtual all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/profile/client-ssl",
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/ltm/profile/client-ssl",
+        "payload": {
+          "ciphers": "ECDHE+AES256-GCM-SHA384:ECDHE+AES128-GCM-SHA256"
+        },
+        "tmsh_equivalent": "tmsh modify ltm profile client-ssl <name> ciphers \"ECDHE+AES256-GCM-SHA384:ECDHE+AES128-GCM-SHA256\""
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        16
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266170r1024402_rule",
+            "check_id": "C-70094r1023756_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266170"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate only client-ssl profiles attached to active virtual servers. If none are attached, treat the control as policy-clean. Accept FIPS:!SSLv3:!TLSv1:!TLSv1_1 on TMOS 17.5.1.3 as compliant strong-cipher evidence.",
+        "client_ssl_requirements": {
+          "strong_cipher": {
+            "required_cipher_markers_any": [
+              "ecdhe+aes256-gcm-sha384",
+              "ecdhe+aes128-gcm-sha256"
+            ],
+            "required_cipher_prefixes_any": [
+              "fips"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "vuln_id": "V-266171",
+      "assertion_id": "C-70095r1023759_chk_assertion",
+      "title": "Authenticate endpoint devices via APM per-session policy",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_endpoint_device_auth_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_endpoint_device_auth_configured == true",
+        "open": "apm_endpoint_device_auth_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access",
+        "/mgmt/tm/apm/policy/access-policy"
+      ],
+      "remediation": {
+        "method": "APM_POLICY_ITEM_ENSURE",
+        "note": "Insert Machine Cert Auth into each selected APM access policy to authenticate endpoint devices."
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        17
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266171r1024403_rule",
+            "check_id": "C-70095r1023759_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266171"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate APM access profiles with an assigned access policy. Each selected policy must include Machine Cert Auth to authenticate endpoint devices before access is allowed.",
+        "ignored_profile_names": [
+          "/Common/kerberos_auth_config_default"
+        ],
+        "required_policy_items": [
+          {
+            "caption_aliases": [
+              "Machine Cert Auth"
+            ],
+            "item_type_aliases": [
+              "action"
+            ],
+            "agent_collection": "endpoint-check-machine-cert",
+            "agent_type": "endpoint-check-machine-cert",
+            "agent_type_aliases": [
+              "endpoint-check-machine-cert"
+            ],
+            "agent_payload": {
+              "storeLocation": "machine"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266172",
+      "assertion_id": "C-70096r1023762_chk_assertion",
+      "title": "Disable split tunneling to prevent backdoor network access",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_network_access_split_tunneling_disabled"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_network_access_split_tunneling_disabled == true",
+        "open": "apm_network_access_split_tunneling_disabled != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm resource network-access all-properties"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/resource/network-access"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/apm/resource/network-access",
+        "payload": {
+          "splitTunneling": "false",
+          "addressSpaceLocalSubnetsExcluded": "false",
+          "addressSpaceLocDnsServersExcluded": "false",
+          "addressSpaceExcludeSubnet": "",
+          "addressSpaceExcludeDnsName": "",
+          "ipv6AddressSpaceExcludeSubnet": ""
+        },
+        "note": "Disable split tunneling and clear tunnel bypass settings for every APM Network Access resource.",
+        "selector": {
+          "field": "type",
+          "equals": "network-access"
+        }
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        17
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266172r1024404_rule",
+            "check_id": "C-70096r1023762_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266172"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      },
+      "organization_policy": {
+        "evaluation_scope": "Evaluate all configured APM Network Access resources. Treat the control as policy-clean when none exist. Each resource must have split tunneling disabled with no local subnet, local DNS, IPv4 exclude, or IPv6 exclude bypass configured.",
+        "required_false_fields": [
+          "splitTunneling",
+          "addressSpaceLocalSubnetsExcluded",
+          "addressSpaceLocDnsServersExcluded"
+        ],
+        "required_empty_fields": [
+          "addressSpaceExcludeSubnet",
+          "addressSpaceExcludeDnsName",
+          "ipv6AddressSpaceExcludeSubnet"
+        ]
+      }
+    },
+    {
+      "vuln_id": "V-266173",
+      "assertion_id": "C-70097r1024852_chk_assertion",
+      "title": "Route traffic to IDPS via Protocol Inspection Profile on virtual servers",
+      "severity": "medium",
+      "evidence_required": [
+        "virtual_server_protocol_inspection_enabled"
+      ],
+      "criteria": {
+        "not_a_finding": "virtual_server_protocol_inspection_enabled == true",
+        "open": "virtual_server_protocol_inspection_enabled != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list ltm virtual"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/ltm/virtual",
+        "payload": {
+          "protocolInspectionProfile": "/Common/protocol_inspection"
+        },
+        "note": "Enable Protocol Inspection Profile on virtual servers.",
+        "selector": {}
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        17
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266173r1024854_rule",
+            "check_id": "C-70097r1024852_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266173"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266174",
+      "assertion_id": "C-70098r1023768_chk_assertion",
+      "title": "Use Always-On VPN or machine tunnel to prevent unsecured access",
+      "severity": "medium",
+      "evidence_required": [
+        "apm_always_on_vpn_configured"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_always_on_vpn_configured == true",
+        "open": "apm_always_on_vpn_configured != true"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access",
+        "/mgmt/tm/ltm/virtual"
+      ],
+      "remediation": {
+        "method": "PATCH_COLLECTION",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "note": "Enable Always-On VPN or machine tunnel in APM connectivity profile. Requires organizational policy for VPN mode.",
+        "selector": {}
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        18
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266174r1024406_rule",
+            "check_id": "C-70098r1023768_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266174"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    },
+    {
+      "vuln_id": "V-266175",
+      "assertion_id": "C-70099r1023771_chk_assertion",
+      "title": "Limit concurrent sessions per IP to 10 or organization-defined number",
+      "severity": "low",
+      "evidence_required": [
+        "apm_profile_access_max_sessions_per_client_ip"
+      ],
+      "criteria": {
+        "not_a_finding": "apm_profile_access_max_sessions_per_client_ip <= 10 AND apm_profile_access_max_sessions_per_client_ip >= 1",
+        "open": "apm_profile_access_max_sessions_per_client_ip > 10 OR apm_profile_access_max_sessions_per_client_ip == 0"
+      },
+      "validation_method": "rest",
+      "tmsh_commands": [
+        "tmsh list apm profile access"
+      ],
+      "rest_endpoints": [
+        "/mgmt/tm/apm/profile/access"
+      ],
+      "remediation": {
+        "method": "PATCH",
+        "endpoint": "/mgmt/tm/apm/profile/access",
+        "payload": {
+          "maxSessionsPerClientIp": 10
+        },
+        "tmsh_equivalent": "tmsh modify apm profile access <name> max-sessions-per-client-ip 10"
+      },
+      "runtime_family": "alg",
+      "source_citations": [
+        18
+      ],
+      "provenance": {
+        "review_status": "verified",
+        "source_type": "authoritative_catalog",
+        "sources": [
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stigs",
+            "rule_id": "SV-266175r1024855_rule",
+            "check_id": "C-70099r1023771_chk",
+            "checked_on": "2026-03-24"
+          },
+          {
+            "kind": "preferred_source",
+            "source_name": "f5_stig_disa_specs",
+            "notebook_id": "d16e59a2-e7f8-40c2-b5cc-f31951a88031",
+            "notebook_title": "f5_stig_disa_specs",
+            "source_id": "edb0289a-6a00-4901-b195-f73e654538b8",
+            "source_title": "f5_big-ip_tmos_alg.json.txt",
+            "checked_on": "2026-03-25"
+          },
+          {
+            "kind": "local_catalog",
+            "path": "src/stig_data.py",
+            "vuln_id": "V-266175"
+          }
+        ],
+        "preferred_source_priority": [
+          "f5_stig_disa_specs",
+          "f5_stigs",
+          "f5_ndm_apm2",
+          "f5_ndm_apm"
+        ],
+        "selected_preferred_source": "f5_stig_disa_specs"
+      }
+    }
+  ]
+}

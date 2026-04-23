@@ -1,0 +1,1 @@
+{"record_kind":"BreakFixTrialRecord","trial_id":"trial-1","control_id":"demo.banner.approved","baseline_evidence_id":"evidence-baseline","break_evidence_id":"evidence-break","post_fix_evidence_id":"evidence-post-fix","break_value":"DENIED","detected":true,"fix_value":"APPROVED","revalidated":true,"ledger":"ledgers/demo/break_fix.jsonl"}

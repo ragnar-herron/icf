@@ -1,0 +1,2 @@
+{"record_kind":"DemotionReopeningTrace","record_id":"reopen-demo-1","subject":"demo.banner.approved","prior_status":"PROMOTED_DEMO_RULE","event":"seeded_break_detected","new_status":"REOPENED_UNDER_CRITICISM","demotion_allowed":true}
+{"record_kind":"DemotionReopeningTrace","record_id":"reopen-demo-2","subject":"demo.banner.approved","prior_status":"REOPENED_UNDER_CRITICISM","event":"post_fix_revalidated","new_status":"REFUSED_FOR_PRODUCTION_PROMOTION","demotion_allowed":true}

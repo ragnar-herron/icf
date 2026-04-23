@@ -1,0 +1,17 @@
+{
+  "record_kind": "StateLineage",
+  "subject": "stig_expert_critic_p0a",
+  "states": [
+    {
+      "state_id": "state-0",
+      "contains": ["scope-1", "demo.banner.approved"]
+    },
+    {
+      "state_id": "state-1",
+      "extends": "state-0",
+      "contains": ["falsifier-1", "break-fix-trial-1"],
+      "overwrites_prior_state": false
+    }
+  ],
+  "production_gap": "No longitudinal state growth beyond demo state-1."
+}

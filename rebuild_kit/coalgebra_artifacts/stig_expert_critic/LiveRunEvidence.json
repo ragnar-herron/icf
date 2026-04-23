@@ -1,0 +1,87 @@
+{
+  "record_kind": "LiveRunEvidence",
+  "subject": "stig_expert_critic_p0a",
+  "run_kind": "break_fix",
+  "run_started_at": "2026-04-21T21:33:36Z",
+  "run_finished_at": "2026-04-21T21:33:44Z",
+  "device": {
+    "platform": "F5 BIG-IP",
+    "tmos_version": "17.5.1.3",
+    "hostname": "bigip1",
+    "host": "132.145.154.175",
+    "credential_scope": "admin over iControl REST (live)"
+  },
+  "target_field": "guiSecurityBannerText",
+  "target_endpoint": "/mgmt/tm/sys/global-settings",
+  "witness": {
+    "witness_id": "live.f5.gui_security_banner_text",
+    "family": "FieldEquality",
+    "expected_literal_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "expected_literal_bytes": 1298,
+    "calibration_note": "Witness expected_literal is calibrated to the device's observed baseline bytes, not to any STIG compliance text. The purpose of this witness is to demonstrate that the kernel correctly detects drift and validates restoration on real hardware. See stig_probe below for the separate STIG-compliance probe."
+  },
+  "evidence_blobs": {
+    "baseline": {
+      "blob_path": "blobstore/live/sha256/89/f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+      "blob_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+      "bytes": 1298
+    },
+    "break": {
+      "blob_path": "blobstore/live/sha256/53/8790156b55d8484623fcc5c9b76fa54865d04f6e4cb20f6b255f1449b19486",
+      "blob_sha256": "538790156b55d8484623fcc5c9b76fa54865d04f6e4cb20f6b255f1449b19486",
+      "bytes": 235,
+      "content_summary": "ICF-LIVE-REGRESSION-BREAK sentinel; PATCHed via iControl REST and observed back from the device"
+    },
+    "post_fix": {
+      "blob_path": "blobstore/live/sha256/89/f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+      "blob_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+      "bytes": 1298
+    }
+  },
+  "invariants": {
+    "post_fix_equals_baseline_bitwise": true,
+    "break_differs_from_baseline": true,
+    "no_non_banner_drift_in_global_settings": true,
+    "preflight_snapshot_recorded": "live_state/preflight.json"
+  },
+  "ledger": {
+    "path": "ledgers/live/break_fix.jsonl",
+    "record_count": 13,
+    "record_order": [
+      "ScopeRecord",
+      "WitnessRecord",
+      "ClaimRecord",
+      "EvidenceRecord(baseline)",
+      "FalsifierRecord",
+      "PullbackRecord(baseline)",
+      "EvidenceRecord(break)",
+      "BreakFixTrialRecord",
+      "RemediationAdviceRecord",
+      "EvidenceRecord(post_fix)",
+      "PullbackRecord(post_fix)",
+      "PromotionDecisionRecord",
+      "BatchRecord"
+    ],
+    "offline_verifier": "icf ledger verify ledgers/live/break_fix.jsonl",
+    "promotion_decision": "REFUSED (survived_trials=1, required_trials=3, human_signoff_present=false)"
+  },
+  "stig_probe": {
+    "witness_id": "stig.f5.gui_security_banner_text.dod_notice_and_consent",
+    "expected_literal_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "observed_baseline_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "matches": true,
+    "note": "This probe is informational. Device baseline banner matches the canonical DoD Notice and Consent Banner; the live break/fix regression still calibrates its drift witness to the observed baseline bytes and then proves byte-identical restoration."
+  },
+  "regression_test": {
+    "path": "tests/live_replay.rs",
+    "description": "Hermetic replay that rebuilds the live ledger from the committed manifest + blobs and asserts it is byte-identical to `ledgers/live/break_fix.jsonl`. Fails if any captured blob, hash, or ledger record is modified after the fact.",
+    "network_required": false
+  },
+  "production_gaps_live": [
+    "TLS: iControl REST uses a self-signed certificate; the client disables verification. Production must pin the device TLS fingerprint or use a managed PKI.",
+    "Credentials: admin basic auth over HTTPS. Production must use token-based auth with rotation, scoped read/write accounts, and MFA where supported.",
+    "Coverage: one control (guiSecurityBannerText) exercised. Production must exercise at least one witness per V-ID in scope, with independent evidence per device and per topology.",
+    "Idempotency: this run restored baseline bytes. Production break/fix must also verify configuration-sync state on clustered devices and run the full save-config to persist.",
+    "Safety: the sentinel banner was applied in the clear. Production should gate live break injection behind change-management approval and a timeboxed automatic rollback."
+  ]
+}

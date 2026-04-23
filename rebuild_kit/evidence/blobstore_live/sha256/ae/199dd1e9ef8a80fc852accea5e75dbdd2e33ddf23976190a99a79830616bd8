@@ -1,0 +1,7 @@
+cli global-settings {
+    audit enabled
+    description none
+    idle-timeout 5
+    scf-backup-number 2
+    service name
+}

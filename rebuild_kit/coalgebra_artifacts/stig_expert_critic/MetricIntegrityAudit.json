@@ -1,0 +1,22 @@
+{
+  "record_kind": "MetricIntegrityAudit",
+  "subject": "stig_expert_critic_p0a",
+  "metrics": [
+    "FalsifierYieldMetric.json",
+    "SurvivorRetentionMetrics.json",
+    "ErrorTrendMetrics.json",
+    "fixtures/maturity/revision_0/metrics.json",
+    "fixtures/maturity/revision_1/metrics.json",
+    "coalgebra/stig_expert_critic/MaturationLogicStability.json",
+    "coalgebra/stig_expert_critic/ScopeCoverageMatrix.json",
+    "coalgebra/stig_expert_critic/PullbackBaseline.json",
+    "coalgebra/stig_expert_critic/WHRReport.md"
+  ],
+  "all_metrics_have_windows": true,
+  "no_metric_corruption_detected": true,
+  "signed": true,
+  "signature_manifest": "coalgebra/stig_expert_critic/MetricSignature.json",
+  "external_anchor": "ledgers/demo/metric_checkpoint.jsonl",
+  "integrity_test": "tests/metric_integrity.rs::d6_metrics_match_signed_digest_and_checkpoint",
+  "production_gap": "Demo envelope uses SHA-256 content commit + in-repo CheckpointRecord. Production MUST upgrade to Ed25519 signatures by the trust root and cross-post the checkpoint to an external append-only notary."
+}

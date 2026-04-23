@@ -1,0 +1,14 @@
+{
+  "title": "STIG Expert Critic State",
+  "type": "object",
+  "required": ["state_id", "witness_registry", "validator_registry", "survivor_rules", "open_criticisms", "scope_axes", "trust_state"],
+  "properties": {
+    "state_id": {"type": "string"},
+    "witness_registry": {"type": "array", "items": {"type": "string"}},
+    "validator_registry": {"type": "array", "items": {"type": "string"}},
+    "survivor_rules": {"type": "array", "items": {"type": "string"}},
+    "open_criticisms": {"type": "array", "items": {"type": "string"}},
+    "scope_axes": {"type": "object"},
+    "trust_state": {"type": "string"}
+  }
+}

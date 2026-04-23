@@ -1,0 +1,12 @@
+sys db liveinstall.checksig {
+    default-value "disable"
+    scf-config "false"
+    value "enable"
+    value-range "disable enable"
+}
+sys db password.difok {
+    default-value "8"
+    scf-config "false"
+    value "8"
+    value-range "integer min:0 max:255"
+}

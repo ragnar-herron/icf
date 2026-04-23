@@ -1,0 +1,19 @@
+{
+  "record_kind": "ConstitutiveChangeLog",
+  "subject": "stig_expert_critic_p0a",
+  "changes": [
+    {
+      "change_id": "p0a-bootstrap",
+      "constitutive": true,
+      "declared": true,
+      "description": "Introduced the minimal FieldEquality pullback, non-vacuous falsifier, committed ledger batch, and offline verifier."
+    },
+    {
+      "change_id": "maturity-demo-artifacts",
+      "constitutive": false,
+      "declared": true,
+      "description": "Added demo maturity evidence artifacts without changing the P0a judgment semantics."
+    }
+  ],
+  "production_gap": "No signed change-control workflow yet."
+}

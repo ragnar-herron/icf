@@ -1,0 +1,48 @@
+{
+  "record_kind": "LiveBreakFixManifest",
+  "started_at": "2026-04-21T21:33:36Z",
+  "finished_at": "2026-04-21T21:33:44Z",
+  "scope": {
+    "platform": "F5 BIG-IP",
+    "tmos_version": "17.5.1.3",
+    "module": "SYSTEM",
+    "topology": "standalone",
+    "credential_scope": "admin over iControl REST (live)",
+    "host": "132.145.154.175",
+    "hostname": "bigip1"
+  },
+  "witness": {
+    "witness_id": "live.f5.gui_security_banner_text",
+    "observable_field": "guiSecurityBannerText",
+    "expected_literal_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "expected_literal_bytes": 1298
+  },
+  "baseline_evidence": {
+    "blob_path": "blobstore/live/sha256/89/f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "blob_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "observed_value_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e"
+  },
+  "break_evidence": {
+    "blob_path": "blobstore/live/sha256/53/8790156b55d8484623fcc5c9b76fa54865d04f6e4cb20f6b255f1449b19486",
+    "blob_sha256": "538790156b55d8484623fcc5c9b76fa54865d04f6e4cb20f6b255f1449b19486",
+    "observed_value_sha256": "538790156b55d8484623fcc5c9b76fa54865d04f6e4cb20f6b255f1449b19486"
+  },
+  "post_fix_evidence": {
+    "blob_path": "blobstore/live/sha256/89/f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "blob_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "observed_value_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e"
+  },
+  "counterexample": {
+    "family": "observational",
+    "counterexample_field": "guiSecurityBannerText",
+    "counterexample_value_sha256": "538790156b55d8484623fcc5c9b76fa54865d04f6e4cb20f6b255f1449b19486"
+  },
+  "stig_probe": {
+    "witness_id": "stig.f5.gui_security_banner_text.dod_notice_and_consent",
+    "expected_literal_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "observed_baseline_sha256": "89f65c08830eb33b159ed8c86b4d1624c05245b33cb02fd30837fe3cef9cd98e",
+    "matches": true,
+    "note": "The DoD Notice and Consent Banner is long (~1100 bytes). If matches=false, the device's current banner would fail a real STIG banner witness; this is a property of the device, not a failure of the live break/fix regression."
+  },
+  "preflight_snapshot": "live_state/preflight.json"
+}

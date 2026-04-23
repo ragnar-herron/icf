@@ -1,0 +1,14 @@
+{
+  "record_kind": "WitnessRevisionHistory",
+  "subject": "demo.banner.approved",
+  "revisions": [
+    {
+      "revision_id": "witness-v1",
+      "observable_field": "banner_text",
+      "criticism_id": "coarse-witness-demo",
+      "improvement": "FieldEquality witness preserves explicit observable field and expected literal.",
+      "survived_hidden_failure_probe": true
+    }
+  ],
+  "production_gap": "No multi-revision witness improvement history from real STIG criticism yet."
+}

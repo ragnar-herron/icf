@@ -1,0 +1,9 @@
+{
+  "record_kind": "RemediationAdviceRecord",
+  "record_id": "remediation-1",
+  "advice_id": "restore-banner-approved",
+  "control_id": "demo.banner.approved",
+  "advisory_only": true,
+  "success_requires_post_fix_evidence": true,
+  "post_fix_evidence_id": "evidence-post-fix"
+}

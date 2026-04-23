@@ -1,0 +1,94 @@
+{
+  "record_kind": "LiveExternalEvidencePackages",
+  "subject": "stig_expert_critic_p0a",
+  "packages": [
+    {
+      "package_id": "vendor_support_bigip_17_5_1_3",
+      "controls": [
+        "V-266080"
+      ],
+      "disposition": "pass",
+      "rationale": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+      "sources": [
+        {
+          "kind": "official-url",
+          "url": "https://techdocs.f5.com/kb/en-us/products/big-ip_ltm/releasenotes/related/relnote-supplement-bigip-17-5-1-5.html"
+        },
+        {
+          "kind": "official-url",
+          "url": "https://techdocs.f5.com/kb/en-us/products/big-ip_ltm/releasenotes/related/relnote-supplement-bigip-17-5-1-3.html"
+        }
+      ]
+    },
+    {
+      "package_id": "audit_storage_policy_gap",
+      "controls": [
+        "V-266074"
+      ],
+      "disposition": "blocked-external",
+      "rationale": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+      "sources": [
+        {
+          "kind": "repo-note",
+          "detail": "Requires SSP-defined retention / storage threshold evidence."
+        }
+      ]
+    },
+    {
+      "package_id": "apm_banner_policy_graph_gap",
+      "controls": [
+        "V-266145"
+      ],
+      "disposition": "blocked-external",
+      "rationale": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+      "sources": [
+        {
+          "kind": "repo-note",
+          "detail": "Needs export of the VPE policy graph or equivalent message-box template body."
+        }
+      ]
+    },
+    {
+      "package_id": "service_authorization_gap",
+      "controls": [
+        "V-266160"
+      ],
+      "disposition": "blocked-external",
+      "rationale": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+      "sources": [
+        {
+          "kind": "repo-note",
+          "detail": "Needs approved-service inventory / authorization package from the owning organization."
+        }
+      ]
+    },
+    {
+      "package_id": "pki_revocation_gap",
+      "controls": [
+        "V-266154"
+      ],
+      "disposition": "blocked-external",
+      "rationale": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+      "sources": [
+        {
+          "kind": "repo-note",
+          "detail": "Needs VPE branch export or explicit OCSP/CRLDP object evidence with deny-on-failure behavior."
+        }
+      ]
+    },
+    {
+      "package_id": "backup_topology_gap",
+      "controls": [
+        "V-266096"
+      ],
+      "disposition": "blocked-external",
+      "rationale": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+      "sources": [
+        {
+          "kind": "repo-note",
+          "detail": "Needs backup target, schedule, and retention proof from the external backup system."
+        }
+      ]
+    }
+  ]
+}

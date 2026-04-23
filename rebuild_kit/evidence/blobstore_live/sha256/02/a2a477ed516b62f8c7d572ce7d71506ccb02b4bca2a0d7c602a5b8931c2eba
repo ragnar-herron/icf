@@ -1,0 +1,31 @@
+sys daemon-log-settings clusterd {
+    log-level notice
+}
+sys daemon-log-settings csyncd {
+    log-level notice
+}
+sys daemon-log-settings icr-eventd {
+    log-level notice
+}
+sys daemon-log-settings icrd {
+    audit modifications
+}
+sys daemon-log-settings lind {
+    log-level notice
+}
+sys daemon-log-settings mcpd {
+    audit enabled
+    log-level notice
+}
+sys daemon-log-settings tmm {
+    arp-log-level warning
+    http-compression-log-level error
+    http-log-level error
+    ip-log-level warning
+    irule-log-level informational
+    layer4-log-level notice
+    net-log-level warning
+    os-log-level informational
+    pva-log-level informational
+    ssl-log-level informational
+}

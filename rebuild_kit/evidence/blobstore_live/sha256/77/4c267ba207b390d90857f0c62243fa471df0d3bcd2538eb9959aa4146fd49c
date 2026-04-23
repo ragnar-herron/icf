@@ -1,0 +1,9 @@
+auth password-policy {
+    lockout-duration 900
+    max-login-failures 3
+    minimum-length 15
+    required-lowercase 1
+    required-numeric 1
+    required-special 1
+    required-uppercase 1
+}

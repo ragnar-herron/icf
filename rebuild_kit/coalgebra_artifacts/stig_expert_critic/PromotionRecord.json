@@ -1,0 +1,12 @@
+{
+  "record_kind": "PromotionRecord",
+  "promotion_id": "promotion-demo-refused",
+  "subject": "stig_expert_critic",
+  "status": "REFUSED",
+  "decision": "REFUSED",
+  "reason": "P0a has one demo break/fix trial, but policy requires two survived trials and human co-signature",
+  "survived_trials": 1,
+  "required_trials": 2,
+  "machine_policy_checked": true,
+  "human_signoff_present": false
+}

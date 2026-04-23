@@ -1,0 +1,20 @@
+{
+  "revision_id": "revision_1",
+  "criticism_ids": [
+    "criticism-field-equality-hidden-denial",
+    "criticism-witness-direct-alignment-bypass"
+  ],
+  "falsifier_yield": 2,
+  "false_pass_rate": 0.01,
+  "false_fail_rate": 0.02,
+  "survivors_evaluated": 2,
+  "survivors_retained": 2,
+  "witness_revision_id": "witness-v2",
+  "witness_revision_cites_criticism": true,
+  "truth_regression_detected": false,
+  "waste_score": 8,
+  "synthesis_safe": true,
+  "synthesis_improvement_score": 2,
+  "hidden_failure_miss_rate": 0.03,
+  "contradiction_resolution_steps": 2
+}
