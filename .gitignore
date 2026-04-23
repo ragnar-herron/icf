@@ -1,2 +1,4 @@
 /target/
 /ledgers/demo/*.jsonl
+__pycache__/
+*.pyc
