@@ -1,0 +1,7 @@
+[web_app] 127.0.0.1 - "POST /api/login HTTP/1.1" 200 -
+[web_app] 127.0.0.1 - "POST /api/tmsh-query HTTP/1.1" 200 -
+[web_app] 127.0.0.1 - "POST /api/stig/save/V-266064 HTTP/1.1" 200 -
+[web_app] 127.0.0.1 - "GET /api/stig/read/V-266064 HTTP/1.1" 200 -
+[web_app] 127.0.0.1 - "POST /api/validate HTTP/1.1" 200 -
+[web_app] 127.0.0.1 - "GET /api/hydrate/V-266070?host=132.145.154.175 HTTP/1.1" 200 -
+[web_app] 127.0.0.1 - "POST /api/logout HTTP/1.1" 200 -

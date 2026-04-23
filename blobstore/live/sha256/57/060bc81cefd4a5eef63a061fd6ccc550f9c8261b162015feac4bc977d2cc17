@@ -1,0 +1,14 @@
+auth tacacs system-auth {
+    accounting send-to-first-server
+    app-service none
+    authentication use-all-servers
+    debug disabled
+    description none
+    encryption enabled
+    partition Common
+    protocol ppp
+    secret $M$xm$EMWepKQqUq7cqekOl5vpWA==
+    servers { 1.2.3.4 2.4.6.8 }
+    service IP
+    timeout 10
+}

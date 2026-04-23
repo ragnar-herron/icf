@@ -1,0 +1,38 @@
+cm device bigip1 {
+    active-modules { "APM, Base, VE GBB (500 CCU)|JEPWSHA-GNKPZZD|Anti-Virus Checks|Base Endpoint Security Checks|Firewall Checks|Network Access|Secure Virtual Keyboard|APM, Web Application|Machine Certificate Checks|Protected Workspace|Remote Desktop|App Tunnel" "Best w/AWF, VE-1G|VJTTMYQ-UGWGOQZ|Intrusion Prevention System, VE-1G|SSL Orchestrator, VE (25MB/200MB/1G)|FIPS 140, BIG-IP VE-1G to 10G|Rate Shaping|DNSSEC|Routing Bundle, VE|DNS-GTM, Base, 1Gbps|SSL, VE|Max Compression, VE|Crypto Offload, VE|SDN Services, VE|Advanced Web Application Firewall, VE|AFM, VE|Exclusive Version, v12.1.X - 18.X|DNS Rate Limit, 1000 QPS|GTM Rate, 1000|PSM, VE|VE, Carrier Grade NAT (AFM ONLY)" }
+    alternate-ip none
+    app-service none
+    base-mac 02:00:17:10:a7:fc
+    build 0.0.19
+    cert dtdi.crt
+    chassis-id 181deb60-dba7-e648-14aa1b28c2a6
+    chassis-type individual
+    comment none
+    configsync-ip none
+    contact none
+    description none
+    edition "Point Release 3"
+    failover-state active
+    ha-capacity 0
+    hostname bigip1
+    inactive-modules none
+    key dtdi.key
+    location none
+    management-ip 10.0.0.208
+    marketing-name "BIG-IP Virtual Edition"
+    mgmt-unicast-mode both
+    mirror-ip any6
+    mirror-secondary-ip any6
+    multicast-interface none
+    multicast-ip any6
+    multicast-port any
+    optional-modules { "Advanced Protocols, VE" "App Mode (TMSH Only, No Root/Bash)" "Best, 1 Gbps -3 Gbps Upgrade" "BIG-IP VE, Multicast Routing" "BIG-IP VE, Privileged User Access, 100 Endpoints" "BIG-IP VE, Privileged User Access, 1000 Endpoints" "BIG-IP VE, Privileged User Access, 250 Endpoints" "BIG-IP VE, Privileged User Access, 50 Endpoints" "BIG-IP VE, Privileged User Access, 500 Endpoints" "CGN, ADD-VE, 1G" "Concurrent Users and Access Sessions, VE" "DNS and GTM (1K QPS), VE" "DNS and GTM (250 QPS), VE" "External Interface and Network HSM, VE" "IP Intelligence, 3Yr, VE-1G/VE-3G/VE-5G" "IPS, 3Yr, VE-1G / VE-3G / VE-5G" "PEM, ADD-VE, 1G" "Secure Web Gateway, VE-25M-1G, 500 Sessions, 1Yr" "Secure Web Gateway, VE-25M-1G, 500 Sessions, 3Yr" "SM2 ADD-ON, VE (25MBPS TO 10GBPS)" "Threat Campaigns, 1Yr, HIGH PERFORMANCE VE-3G" "Threat Campaigns, 3Yr, HIGH PERFORMANCE VE-3G" "Threat Campaigns, 3Yr, VE-1G" "URL Filtering, VE-25M-1G, 500 Sessions, 1Yr" "URL Filtering, VE-25M-1G, 500 Sessions, 3Yr" "VE SSL Compression Offload, Medium" "VPN Users" }
+    partition Common
+    platform-id Z100
+    product BIG-IP
+    self-device true
+    time-limited-modules { "IP Intelligence, 1Yr, VE-1G/VE-3G/VE-5G|ADXFJTB-SSSLUND|20260330|20260515|SUBSCRIPTION" "IPS, 1Yr, VE-1G / VE-3G / VE-5G|OKXNDRC-KELNOWI|20260330|20260515|SUBSCRIPTION" "Threat Campaigns, 1Yr, VE-1G|IHZLPBV-EKMRNBG|20260330|20260515|SUBSCRIPTION" }
+    time-zone UTC
+    unicast-address none
+    version 17.5.1.3
+}

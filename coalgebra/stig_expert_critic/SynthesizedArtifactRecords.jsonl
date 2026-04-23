@@ -1,0 +1,3 @@
+{"record_kind":"SynthesizedArtifactRecord","artifact_id":"synth-validator-1","kind":"validator","status":"PROPOSED","criticism_required":true}
+{"record_kind":"WitnessAdequacyRecord","record_id":"witness-adequacy-1","witness_id":"demo.banner.approved.synthetic","status":"REJECTED","criticism":"witness hides seeded failure"}
+{"record_kind":"SynthesizedArtifactRecord","artifact_id":"synth-validator-1","kind":"validator","status":"REJECTED","promotion_allowed":false,"criticism_record":"witness-adequacy-1"}

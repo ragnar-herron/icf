@@ -1,0 +1,14 @@
+{
+  "allow": [
+    "ALL"
+  ],
+  "banner": "enabled",
+  "bannerText": "You are accessing a U.S. Government (USG) Information System (IS)...",
+  "fipsCipherVersion": 2,
+  "inactivityTimeout": 300,
+  "kind": "tm:sys:sshd:sshdstate",
+  "logLevel": "info",
+  "login": "enabled",
+  "port": 22,
+  "selfLink": "https://localhost/mgmt/tm/sys/sshd?ver=17.5.1.3"
+}

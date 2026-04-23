@@ -1,0 +1,16 @@
+{
+  "title": "STIG Expert Critic Observations",
+  "record_kinds": [
+    "ScopeRecord",
+    "WitnessRecord",
+    "ClaimRecord",
+    "EvidenceRecord",
+    "FalsifierRecord",
+    "PullbackRecord",
+    "BatchRecord",
+    "CriticismRecord",
+    "PromotionRecord",
+    "DemotionRecord",
+    "ContradictionRecord"
+  ]
+}

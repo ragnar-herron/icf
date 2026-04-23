@@ -1,0 +1,19 @@
+{
+  "record_kind": "LocalAuthorizedVirtualServicesPolicy",
+  "export_policy": "local_only_raw_values_must_not_leave_target_environment",
+  "description": "Target-side PPSM/SSP authorization input for DISA virtual-server ports/protocols/services controls such as V-266084 and V-266150.",
+  "authorized_services": [
+    {
+      "name": "example_https_virtual",
+      "destination": "/Common/192.0.2.10:443",
+      "port": "443",
+      "ip_protocol": "tcp",
+      "authorization_ref": "SSP-or-PPSM-ticket-id"
+    }
+  ],
+  "prohibited_ports": [
+    "23",
+    "69",
+    "161"
+  ]
+}

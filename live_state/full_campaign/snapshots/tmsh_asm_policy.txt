@@ -1,0 +1,15 @@
+asm policy stig_baseline_policy {
+    active
+    app-service none
+    blocking-mode enabled
+    description "STIG baseline ASM policy for compliance"
+    encoding utf-8
+    parent-policy none
+    partition Common
+    policy-builder enabled
+    policy-template POLICY_TEMPLATE_FUNDAMENTAL
+    policy-type security
+    virtual-servers {
+        stig_test_vs
+    }
+}

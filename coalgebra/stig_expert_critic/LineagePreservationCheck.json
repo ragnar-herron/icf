@@ -1,0 +1,8 @@
+{
+  "record_kind": "LineagePreservationCheck",
+  "subject": "stig_expert_critic_p0a",
+  "lineage_graph": "SurvivorLineage.json",
+  "all_survivors_traceable_to_origin": true,
+  "checked_edges": 3,
+  "production_gap": "Demo lineage is hand-authored and not yet generated from production ledger history."
+}

@@ -1,0 +1,40 @@
+{
+  "record_kind": "MetricSignature",
+  "subject": "stig_expert_critic_p0a",
+  "signer_id": "demo-attestor",
+  "signature_algorithm": "sha256-commit",
+  "signature_algorithm_note": "Demo-grade content commitment. Production must replace this with an Ed25519 signature by the trust root; the key rotation policy is specified in docs/BUILD_SPEC.md \u00a76 KeySetRecord.",
+  "digest_of_digests": "c97d958670f982973451cc9fcd83700d31fa1f8d19a39884627a88274f887c26",
+  "files": [
+    {
+      "path": "fixtures/maturity/revision_0/metrics.json",
+      "sha256": "a27608740a88f2e4011d3ff60c8e80265f06d8d7800541a3c3de17f40fa6ea90",
+      "bytes": 509
+    },
+    {
+      "path": "fixtures/maturity/revision_1/metrics.json",
+      "sha256": "3560b98f2d1236e67c69cca6694be2b2e05aaf5d109dc8707fc0f8e95d3742df",
+      "bytes": 565
+    },
+    {
+      "path": "coalgebra/stig_expert_critic/MaturationLogicStability.json",
+      "sha256": "dc6e8895c280331faa39cf2e770ce5dc1e176ab470242f5e5c2a9e8c78f41396",
+      "bytes": 989
+    },
+    {
+      "path": "coalgebra/stig_expert_critic/ScopeCoverageMatrix.json",
+      "sha256": "0f985e7aef5034f53692dfeb5d6a36256289d54018c38eddfeaa52c437e99e0f",
+      "bytes": 28899
+    },
+    {
+      "path": "coalgebra/stig_expert_critic/PullbackBaseline.json",
+      "sha256": "4f21bbcba3144b3dd2a4e1b7944ac8e78565f9fd535244f49760e62a827e25e4",
+      "bytes": 2110
+    },
+    {
+      "path": "coalgebra/stig_expert_critic/WHRReport.md",
+      "sha256": "02a1e46e701485f89ab6a4b854864ec0989d441fe08750a455e3c2025a765372",
+      "bytes": 411
+    }
+  ]
+}

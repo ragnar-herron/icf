@@ -1,0 +1,23 @@
+{
+  "record_kind": "SurvivorLineage",
+  "subject": "stig_expert_critic_p0a",
+  "status": "demo-only",
+  "lineage_edges": [
+    {
+      "from": "falsifier-1",
+      "to": "pullback-baseline",
+      "relation": "non_vacuous_falsifier_required_for_pass"
+    },
+    {
+      "from": "evidence-break",
+      "to": "break-fix-trial-1",
+      "relation": "preserved_failure_detected"
+    },
+    {
+      "from": "break-fix-trial-1",
+      "to": "promotion-decision-1",
+      "relation": "survivor_input_refused_for_insufficient_lineage"
+    }
+  ],
+  "production_gap": "No production survivor lineage across real STIG runs yet."
+}

@@ -1,0 +1,356 @@
+{
+  "record_kind": "LiveCampaignManifest",
+  "host": "132.145.154.175",
+  "hostname": "bigip1",
+  "tmos_version": "17.5.1.3",
+  "control_count": 67,
+  "summary": {
+    "blocked-external": 6,
+    "fail": 2,
+    "not-applicable": 5,
+    "pass": 54
+  },
+  "snapshots": [
+    {
+      "name": "sys_provision",
+      "path": "live_state/full_campaign/snapshots/sys_provision.json",
+      "blob_path": "blobstore/live/sha256/77/eabeac45baac4b293543defca4c949c5aa40356a2f8982d79b12296f2e783a",
+      "blob_sha256": "77eabeac45baac4b293543defca4c949c5aa40356a2f8982d79b12296f2e783a",
+      "bytes": 4639,
+      "source": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      }
+    },
+    {
+      "name": "sys_global_settings",
+      "path": "live_state/full_campaign/snapshots/sys_global_settings.json",
+      "blob_path": "blobstore/live/sha256/b7/abcd8a3ff3d5818c0c3d08e032655977fc8348dad0e28da766ab27739b63f7",
+      "blob_sha256": "b7abcd8a3ff3d5818c0c3d08e032655977fc8348dad0e28da766ab27739b63f7",
+      "bytes": 2806,
+      "source": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/global-settings"
+      }
+    },
+    {
+      "name": "sys_sshd",
+      "path": "live_state/full_campaign/snapshots/sys_sshd.json",
+      "blob_path": "blobstore/live/sha256/f5/5dd9182a31d455fe68e70af1e05fc11017f3341657c9384c8ce27f4558c23f",
+      "blob_sha256": "f55dd9182a31d455fe68e70af1e05fc11017f3341657c9384c8ce27f4558c23f",
+      "bytes": 1584,
+      "source": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/sshd"
+      }
+    },
+    {
+      "name": "tmsh_sys_global_settings",
+      "path": "live_state/full_campaign/snapshots/tmsh_sys_global_settings.txt",
+      "blob_path": "blobstore/live/sha256/d6/67ef5cfd769b4871400e81005200c0b34f8e54021ad39657fb616937b00c49",
+      "blob_sha256": "d667ef5cfd769b4871400e81005200c0b34f8e54021ad39657fb616937b00c49",
+      "bytes": 2780,
+      "source": {
+        "kind": "tmsh",
+        "command": "list sys global-settings all-properties"
+      }
+    },
+    {
+      "name": "tmsh_sys_httpd",
+      "path": "live_state/full_campaign/snapshots/tmsh_sys_httpd.txt",
+      "blob_path": "blobstore/live/sha256/8b/1bbce5e5513e1019dd412463147e08fe874372c4ade08f15a869ed30978c1a",
+      "blob_sha256": "8b1bbce5e5513e1019dd412463147e08fe874372c4ade08f15a869ed30978c1a",
+      "bytes": 1347,
+      "source": {
+        "kind": "tmsh",
+        "command": "list sys httpd all-properties"
+      }
+    },
+    {
+      "name": "tmsh_cli_global_settings",
+      "path": "live_state/full_campaign/snapshots/tmsh_cli_global_settings.txt",
+      "blob_path": "blobstore/live/sha256/ae/199dd1e9ef8a80fc852accea5e75dbdd2e33ddf23976190a99a79830616bd8",
+      "blob_sha256": "ae199dd1e9ef8a80fc852accea5e75dbdd2e33ddf23976190a99a79830616bd8",
+      "bytes": 123,
+      "source": {
+        "kind": "tmsh",
+        "command": "list cli global-settings all-properties"
+      }
+    },
+    {
+      "name": "tmsh_sys_ntp",
+      "path": "live_state/full_campaign/snapshots/tmsh_sys_ntp.txt",
+      "blob_path": "blobstore/live/sha256/b1/42901a7eec2b550226aa27138daa192938ef754e0f47c304b6824aa59250df",
+      "blob_sha256": "b142901a7eec2b550226aa27138daa192938ef754e0f47c304b6824aa59250df",
+      "bytes": 106,
+      "source": {
+        "kind": "tmsh",
+        "command": "list sys ntp"
+      }
+    },
+    {
+      "name": "tmsh_auth_password_policy",
+      "path": "live_state/full_campaign/snapshots/tmsh_auth_password_policy.txt",
+      "blob_path": "blobstore/live/sha256/83/1a26dbe55fcc8b94f38dad895cebdf9b404a1d3eca17c21b76851202543180",
+      "blob_sha256": "831a26dbe55fcc8b94f38dad895cebdf9b404a1d3eca17c21b76851202543180",
+      "bytes": 334,
+      "source": {
+        "kind": "tmsh",
+        "command": "list auth password-policy all-properties"
+      }
+    },
+    {
+      "name": "tmsh_auth_user",
+      "path": "live_state/full_campaign/snapshots/tmsh_auth_user.txt",
+      "blob_path": "blobstore/live/sha256/7e/84b8b5a29477ec0015dff49d0f607d816c61c7c43b2df7781147cc61d82360",
+      "blob_sha256": "7e84b8b5a29477ec0015dff49d0f607d816c61c7c43b2df7781147cc61d82360",
+      "bytes": 659,
+      "source": {
+        "kind": "tmsh",
+        "command": "list auth user"
+      }
+    },
+    {
+      "name": "tmsh_auth_source",
+      "path": "live_state/full_campaign/snapshots/tmsh_auth_source.txt",
+      "blob_path": "blobstore/live/sha256/b1/48eaa410ae5563d13ddab6c4d9702a95ecb6a7bf91546c37e49a5e66620b32",
+      "blob_sha256": "b148eaa410ae5563d13ddab6c4d9702a95ecb6a7bf91546c37e49a5e66620b32",
+      "bytes": 71,
+      "source": {
+        "kind": "tmsh",
+        "command": "list auth source all-properties"
+      }
+    },
+    {
+      "name": "tmsh_auth_remote_role",
+      "path": "live_state/full_campaign/snapshots/tmsh_auth_remote_role.txt",
+      "blob_path": "blobstore/live/sha256/3a/6a0d2a986a4a05b1bc88d0901a0d850c5905cecbf621b9a407c55aa8f02fb3",
+      "blob_sha256": "3a6a0d2a986a4a05b1bc88d0901a0d850c5905cecbf621b9a407c55aa8f02fb3",
+      "bytes": 313,
+      "source": {
+        "kind": "tmsh",
+        "command": "list auth remote-role all-properties"
+      }
+    },
+    {
+      "name": "tmsh_auth_tacacs_system_auth",
+      "path": "live_state/full_campaign/snapshots/tmsh_auth_tacacs_system_auth.txt",
+      "blob_path": "blobstore/live/sha256/57/060bc81cefd4a5eef63a061fd6ccc550f9c8261b162015feac4bc977d2cc17",
+      "blob_sha256": "57060bc81cefd4a5eef63a061fd6ccc550f9c8261b162015feac4bc977d2cc17",
+      "bytes": 325,
+      "source": {
+        "kind": "tmsh",
+        "command": "list auth tacacs system-auth all-properties"
+      }
+    },
+    {
+      "name": "tmsh_sys_daemon_log_settings",
+      "path": "live_state/full_campaign/snapshots/tmsh_sys_daemon_log_settings.txt",
+      "blob_path": "blobstore/live/sha256/02/a2a477ed516b62f8c7d572ce7d71506ccb02b4bca2a0d7c602a5b8931c2eba",
+      "blob_sha256": "02a2a477ed516b62f8c7d572ce7d71506ccb02b4bca2a0d7c602a5b8931c2eba",
+      "bytes": 685,
+      "source": {
+        "kind": "tmsh",
+        "command": "list sys daemon-log-settings all-properties"
+      }
+    },
+    {
+      "name": "tmsh_sys_db_security",
+      "path": "live_state/full_campaign/snapshots/tmsh_sys_db_security.txt",
+      "blob_path": "blobstore/live/sha256/f5/815c6e3541d57644387528e34d1ec2b4c07e5fe9f3b019b9e286486444e5f2",
+      "blob_sha256": "f5815c6e3541d57644387528e34d1ec2b4c07e5fe9f3b019b9e286486444e5f2",
+      "bytes": 260,
+      "source": {
+        "kind": "tmsh",
+        "command": "list sys db liveinstall.checksig password.difok all-properties"
+      }
+    },
+    {
+      "name": "tmsh_cm_device",
+      "path": "live_state/full_campaign/snapshots/tmsh_cm_device.txt",
+      "blob_path": "blobstore/live/sha256/4c/26fb5d81d2df6bdc25ea9ec127f1921f322c526fa20bb84c42cb6a6e5c9306",
+      "blob_sha256": "4c26fb5d81d2df6bdc25ea9ec127f1921f322c526fa20bb84c42cb6a6e5c9306",
+      "bytes": 2833,
+      "source": {
+        "kind": "tmsh",
+        "command": "list cm device all-properties"
+      }
+    },
+    {
+      "name": "bash_device_certificate_summary",
+      "path": "live_state/full_campaign/snapshots/bash_device_certificate_summary.txt",
+      "blob_path": "blobstore/live/sha256/75/f7cb756077af638fbb2aae01efe70921f5ce88e1625663313c99eadaf139b0",
+      "blob_sha256": "75f7cb756077af638fbb2aae01efe70921f5ce88e1625663313c99eadaf139b0",
+      "bytes": 1812,
+      "source": {
+        "kind": "bash",
+        "command": "openssl x509 -in /config/httpd/conf/ssl.crt/server.crt -issuer -subject -enddate -serial"
+      }
+    },
+    {
+      "name": "bash_log_storage_capacity",
+      "path": "live_state/full_campaign/snapshots/bash_log_storage_capacity.txt",
+      "blob_path": "blobstore/live/sha256/c4/56864fc7cf95137d24159aa1ec76e96f66c081b3e1231b5ce01fb201b8caa3",
+      "blob_sha256": "c456864fc7cf95137d24159aa1ec76e96f66c081b3e1231b5ce01fb201b8caa3",
+      "bytes": 199,
+      "source": {
+        "kind": "bash",
+        "command": "df -h /var/log /shared || df -h"
+      }
+    },
+    {
+      "name": "tmsh_sys_syslog",
+      "path": "live_state/full_campaign/snapshots/tmsh_sys_syslog.txt",
+      "blob_path": "blobstore/live/sha256/76/dafda6245e70ebdaa6ff9dccb244806a94a270f2e643fd52de456d4ce20bfa",
+      "blob_sha256": "76dafda6245e70ebdaa6ff9dccb244806a94a270f2e643fd52de456d4ce20bfa",
+      "bytes": 825,
+      "source": {
+        "kind": "tmsh",
+        "command": "list sys syslog all-properties"
+      }
+    },
+    {
+      "name": "tmsh_sys_snmp",
+      "path": "live_state/full_campaign/snapshots/tmsh_sys_snmp.txt",
+      "blob_path": "blobstore/live/sha256/a0/8ae36a8a216237c8f242cf8f97f8a878eb731f4b7d926aea13a46a08ae5fc5",
+      "blob_sha256": "a08ae36a8a216237c8f242cf8f97f8a878eb731f4b7d926aea13a46a08ae5fc5",
+      "bytes": 1904,
+      "source": {
+        "kind": "tmsh",
+        "command": "list sys snmp all-properties"
+      }
+    },
+    {
+      "name": "tmsh_sys_ucs",
+      "path": "live_state/full_campaign/snapshots/tmsh_sys_ucs.txt",
+      "blob_path": "blobstore/live/sha256/11/eaf7d7c55d4feb4a02e04bb7737e579427ade6a42c9ad6b634b279574f2f8f",
+      "blob_sha256": "11eaf7d7c55d4feb4a02e04bb7737e579427ade6a42c9ad6b634b279574f2f8f",
+      "bytes": 823,
+      "source": {
+        "kind": "tmsh",
+        "command": "list sys ucs"
+      }
+    },
+    {
+      "name": "tmsh_apm_profile_access",
+      "path": "live_state/full_campaign/snapshots/tmsh_apm_profile_access.txt",
+      "blob_path": "blobstore/live/sha256/fb/ce69c889c04c187c3260ce8481b23c295ea8b023b6977831a80e2b7e4a105c",
+      "blob_sha256": "fbce69c889c04c187c3260ce8481b23c295ea8b023b6977831a80e2b7e4a105c",
+      "bytes": 4743,
+      "source": {
+        "kind": "tmsh",
+        "command": "list apm profile access all-properties"
+      }
+    },
+    {
+      "name": "tmsh_apm_policy_access_policy",
+      "path": "live_state/full_campaign/snapshots/tmsh_apm_policy_access_policy.txt",
+      "blob_path": "blobstore/live/sha256/65/5e6d9da7eac748f516f135e98ccc50f62f9c84610522cc3d365ac4353dc337",
+      "blob_sha256": "655e6d9da7eac748f516f135e98ccc50f62f9c84610522cc3d365ac4353dc337",
+      "bytes": 1788,
+      "source": {
+        "kind": "tmsh",
+        "command": "list apm policy access-policy all-properties"
+      }
+    },
+    {
+      "name": "tmsh_apm_policy_agent_message_box",
+      "path": "live_state/full_campaign/snapshots/tmsh_apm_policy_agent_message_box.txt",
+      "blob_path": "blobstore/live/sha256/a9/48a7da6136bf0b4af4bb808a5a7bde9a8a8c10642b32cc191783a9423cc912",
+      "blob_sha256": "a948a7da6136bf0b4af4bb808a5a7bde9a8a8c10642b32cc191783a9423cc912",
+      "bytes": 306,
+      "source": {
+        "kind": "tmsh",
+        "command": "list apm policy agent message-box all-properties"
+      }
+    },
+    {
+      "name": "tmsh_apm_profile_connectivity",
+      "path": "live_state/full_campaign/snapshots/tmsh_apm_profile_connectivity.txt",
+      "blob_path": "blobstore/live/sha256/4a/4bc36c0b7893a9e154a465838854127609289a45d9d118354776eb2efaa0fd",
+      "blob_sha256": "4a4bc36c0b7893a9e154a465838854127609289a45d9d118354776eb2efaa0fd",
+      "bytes": 7720,
+      "source": {
+        "kind": "tmsh",
+        "command": "list apm profile connectivity all-properties"
+      }
+    },
+    {
+      "name": "tmsh_apm_log_setting",
+      "path": "live_state/full_campaign/snapshots/tmsh_apm_log_setting.txt",
+      "blob_path": "blobstore/live/sha256/0b/f6b6fc4b86188be41d6b8ad4ab6ea0c43ad884556aa310e4bac0e1fd2ea652",
+      "blob_sha256": "0bf6b6fc4b86188be41d6b8ad4ab6ea0c43ad884556aa310e4bac0e1fd2ea652",
+      "bytes": 2506,
+      "source": {
+        "kind": "tmsh",
+        "command": "list apm log-setting all-properties"
+      }
+    },
+    {
+      "name": "apm_resource_network_access",
+      "path": "live_state/full_campaign/snapshots/apm_resource_network_access.json",
+      "blob_path": "blobstore/live/sha256/1f/57180e34344bd073307fe24ad55a5385ba6c767e854732a9983a259a0ad0f6",
+      "blob_sha256": "1f57180e34344bd073307fe24ad55a5385ba6c767e854732a9983a259a0ad0f6",
+      "bytes": 2616,
+      "source": {
+        "kind": "rest",
+        "path": "/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource"
+      }
+    },
+    {
+      "name": "tmsh_security_firewall_policy",
+      "path": "live_state/full_campaign/snapshots/tmsh_security_firewall_policy.txt",
+      "blob_path": "blobstore/live/sha256/cc/0c31a8db4518bbe4a1f3047096ee1760c60d123ec35956cdb908784f06fa5b",
+      "blob_sha256": "cc0c31a8db4518bbe4a1f3047096ee1760c60d123ec35956cdb908784f06fa5b",
+      "bytes": 161,
+      "source": {
+        "kind": "tmsh",
+        "command": "list security firewall policy all-properties"
+      }
+    },
+    {
+      "name": "tmsh_asm_policy",
+      "path": "live_state/full_campaign/snapshots/tmsh_asm_policy.txt",
+      "blob_path": "blobstore/live/sha256/5e/8f51c0545484586b05065326ff4d6f4e5fd3d5de872ad25e58468bd5735ff6",
+      "blob_sha256": "5e8f51c0545484586b05065326ff4d6f4e5fd3d5de872ad25e58468bd5735ff6",
+      "bytes": 364,
+      "source": {
+        "kind": "tmsh",
+        "command": "list asm policy all-properties"
+      }
+    },
+    {
+      "name": "tmsh_ltm_virtual",
+      "path": "live_state/full_campaign/snapshots/tmsh_ltm_virtual.txt",
+      "blob_path": "blobstore/live/sha256/01/77adfc1775d67d3d0cf870f4d0b392912568dcbcf64b852593af3d09d2a047",
+      "blob_sha256": "0177adfc1775d67d3d0cf870f4d0b392912568dcbcf64b852593af3d09d2a047",
+      "bytes": 4219,
+      "source": {
+        "kind": "tmsh",
+        "command": "list ltm virtual all-properties"
+      }
+    },
+    {
+      "name": "tmsh_ltm_profile_client_ssl",
+      "path": "live_state/full_campaign/snapshots/tmsh_ltm_profile_client_ssl.txt",
+      "blob_path": "blobstore/live/sha256/68/967cd4fd2d6f719a5b6b5553200767aa16ce60335d19d5430bd11f1fb0cf02",
+      "blob_sha256": "68967cd4fd2d6f719a5b6b5553200767aa16ce60335d19d5430bd11f1fb0cf02",
+      "bytes": 19640,
+      "source": {
+        "kind": "tmsh",
+        "command": "list ltm profile client-ssl all-properties"
+      }
+    },
+    {
+      "name": "external_evidence_packages",
+      "path": "live_state/full_campaign/snapshots/external_evidence_packages.json",
+      "blob_path": "blobstore/live/sha256/dd/09e8e0c91f7d55085d29c4e1292be57edda237fa56eedc964f0a7b81280e9b",
+      "blob_sha256": "dd09e8e0c91f7d55085d29c4e1292be57edda237fa56eedc964f0a7b81280e9b",
+      "bytes": 3609,
+      "source": {
+        "kind": "repo-json",
+        "path": "coalgebra/stig_expert_critic/ExternalEvidencePackages.json"
+      }
+    }
+  ]
+}

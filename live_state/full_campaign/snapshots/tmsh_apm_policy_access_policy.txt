@@ -1,0 +1,69 @@
+apm policy access-policy kerberos_auth_config_default {
+    app-service none
+    caption none
+    default-ending kerberos_auth_config_default_end_deny
+    items {
+        kerberos_auth_config_default_act_kerberos_auth {
+            priority 0
+        }
+        kerberos_auth_config_default_end_allow {
+            priority 0
+        }
+        kerberos_auth_config_default_end_deny {
+            priority 0
+        }
+        kerberos_auth_config_default_ent {
+            priority 0
+        }
+    }
+    macros none
+    max-macro-loop-count 1
+    oneshot-macro false
+    partition Common
+    per-req-policy-properties none
+    start-item kerberos_auth_config_default_ent
+    subroutine-properties none
+    type access-policy
+}
+apm policy access-policy stig_access_policy {
+    app-service none
+    caption none
+    default-ending stig_access_policy_end_deny
+    items {
+        stig_access_policy_act_client_cert_inspection {
+            priority 0
+        }
+        stig_access_policy_act_kerberos_auth {
+            priority 0
+        }
+        stig_access_policy_act_machinecert_auth {
+            priority 0
+        }
+        stig_access_policy_act_message_box {
+            priority 0
+        }
+        stig_access_policy_act_ocsp_auth {
+            priority 0
+        }
+        stig_access_policy_act_tacacsplus_auth {
+            priority 0
+        }
+        stig_access_policy_end_allow {
+            priority 0
+        }
+        stig_access_policy_end_deny {
+            priority 0
+        }
+        stig_access_policy_ent {
+            priority 0
+        }
+    }
+    macros none
+    max-macro-loop-count 1
+    oneshot-macro false
+    partition Common
+    per-req-policy-properties none
+    start-item stig_access_policy_ent
+    subroutine-properties none
+    type access-policy
+}

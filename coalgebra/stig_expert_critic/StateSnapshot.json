@@ -1,0 +1,15 @@
+{
+  "state_id": "state-1",
+  "witness_registry": ["demo.banner.approved"],
+  "validator_registry": ["direct-field-equality"],
+  "survivor_rules": ["P0a requires a non-vacuous falsifier on pass"],
+  "open_criticisms": [],
+  "scope_axes": {
+    "platform": "F5 BIG-IP",
+    "tmos_version": "fixture",
+    "module": "LTM",
+    "topology": "standalone",
+    "credential_scope": "read-only fixture"
+  },
+  "trust_state": "demo"
+}

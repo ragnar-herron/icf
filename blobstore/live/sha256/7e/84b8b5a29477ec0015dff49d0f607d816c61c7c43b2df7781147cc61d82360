@@ -1,0 +1,24 @@
+auth user admin {
+    description "Admin User"
+    encrypted-password $6$.RzZ5zWD$uloQrK7.e/jbcVUWCS71b5gkS4h1aRGjM.O6YikZJUJ0qvMbM8RtfAJ4uCggY/Qr0Yz9OaVe/9J9gJuzk4UBQ.
+    partition Common
+    partition-access {
+        all-partitions {
+            role admin
+        }
+    }
+    session-limit -1
+    shell bash
+}
+auth user stig_operator {
+    description "STIG compliance test operator"
+    encrypted-password $6$j280Wwnm$2Pfs7hD3cPPlHWruIHyT0B7W8zGdZNvrhPgrm40uxaKvJUn2.inpJNDbvZF6zQNEtCgIrNni8uuV7py3repSh/
+    partition Common
+    partition-access {
+        all-partitions {
+            role auditor
+        }
+    }
+    session-limit -1
+    shell tmsh
+}

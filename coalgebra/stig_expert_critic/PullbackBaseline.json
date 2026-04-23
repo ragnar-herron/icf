@@ -1,0 +1,58 @@
+{
+  "record_kind": "PullbackBaseline",
+  "subject": "stig_expert_critic_p0a",
+  "baseline_revision": "p0a",
+  "purpose": "Design-diff audit baseline for D1. Every pullback listed here must remain present in MATURITY_GATE_ITEMS with at least one non-empty evidence artifact. tests/audit.rs::d1_core_pullbacks_preserved re-verifies this file on every run.",
+  "pullbacks": [
+    {
+      "id": "P1",
+      "name": "Declaration-Reality",
+      "required_evidence_keywords": ["PullbackRecord", "c18_direct_alignment_bypass_is_rejected"]
+    },
+    {
+      "id": "P2",
+      "name": "Claim-Evidence",
+      "required_evidence_keywords": ["ClaimRecord", "EvidenceRecord", "blobstore/demo"]
+    },
+    {
+      "id": "P3",
+      "name": "Witness-Reality",
+      "required_evidence_keywords": ["WitnessTestSuite.md", "c9_witness_testability_rejects_bad_witness_and_survives_good_one"]
+    },
+    {
+      "id": "P4",
+      "name": "Plan-Execution",
+      "required_evidence_keywords": ["BreakFixTrialRecords.jsonl", "ledgers/demo/break_fix.jsonl"]
+    },
+    {
+      "id": "P5",
+      "name": "Synthesis-Behavior",
+      "required_evidence_keywords": ["SynthesizedArtifactRecords.jsonl", "c11_synthesized_artifact_is_rejected_after_failed_witness_attack"]
+    },
+    {
+      "id": "P6",
+      "name": "Failure-Survivor",
+      "required_evidence_keywords": ["SurvivorLineage.json"]
+    },
+    {
+      "id": "P7",
+      "name": "Level-Level",
+      "required_evidence_keywords": ["ContradictionRecords.jsonl", "c19_contradiction_detection_records_claim_witness_evidence_mismatch"]
+    },
+    {
+      "id": "P8",
+      "name": "Revision-Identity",
+      "required_evidence_keywords": ["RevisionIdentityLog.json", "IdentityAudit.json"]
+    },
+    {
+      "id": "P9",
+      "name": "Criticism-Memory",
+      "required_evidence_keywords": ["CriticismLedger.jsonl", "c16_ledger_rejects_removed_or_overwritten_failure_records"]
+    },
+    {
+      "id": "P10",
+      "name": "Optimization-Truth",
+      "required_evidence_keywords": ["WHRReport.md", "c17_optimization_guardrail_rejects_visibility_or_falsifier_loss"]
+    }
+  ]
+}

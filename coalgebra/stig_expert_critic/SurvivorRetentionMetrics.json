@@ -1,0 +1,10 @@
+{
+  "record_kind": "SurvivorRetentionMetrics",
+  "subject": "stig_expert_critic_p0a",
+  "window": "demo",
+  "survivors_evaluated": 1,
+  "survivors_retained": 1,
+  "retention_rate": 1.0,
+  "promotion_status": "REFUSED_FOR_INSUFFICIENT_PRODUCTION_LINEAGE",
+  "production_gap": "No retention series across time and expanded scope yet."
+}

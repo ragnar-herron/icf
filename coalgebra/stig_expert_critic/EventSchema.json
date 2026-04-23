@@ -1,0 +1,18 @@
+{
+  "title": "STIG Expert Critic Events",
+  "event_kinds": [
+    "RunPullback",
+    "NewEvidence",
+    "BreakInjection",
+    "FixApplication",
+    "SynthesisProposal",
+    "ScopeChange",
+    "TrustRootChange"
+  ],
+  "p0a_event": {
+    "kind": "RunPullback",
+    "claim_id": "claim-1",
+    "evidence_id": "evidence-1",
+    "witness_id": "demo.banner.approved"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "revision_id": "revision_0",
+  "criticism_ids": ["criticism-field-equality-hidden-denial"],
+  "falsifier_yield": 1,
+  "false_pass_rate": 0.02,
+  "false_fail_rate": 0.03,
+  "survivors_evaluated": 1,
+  "survivors_retained": 1,
+  "witness_revision_id": "witness-v1",
+  "witness_revision_cites_criticism": true,
+  "truth_regression_detected": false,
+  "waste_score": 10,
+  "synthesis_safe": true,
+  "synthesis_improvement_score": 1,
+  "hidden_failure_miss_rate": 0.05,
+  "contradiction_resolution_steps": 3
+}

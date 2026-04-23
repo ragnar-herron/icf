@@ -1,0 +1,6 @@
+security firewall policy stig_compliance_policy {
+    app-service none
+    description "STIG-required AFM firewall policy"
+    partition Common
+    rules none
+}

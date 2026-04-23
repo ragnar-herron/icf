@@ -1,0 +1,19 @@
+{
+  "record_kind": "ErrorTrendMetrics",
+  "subject": "stig_expert_critic_p0a",
+  "windows": [
+    {
+      "window_id": "demo-baseline",
+      "false_pass_rate": 0.0,
+      "false_fail_rate": 0.0
+    },
+    {
+      "window_id": "demo-current",
+      "false_pass_rate": 0.0,
+      "false_fail_rate": 0.0
+    }
+  ],
+  "false_pass_non_increasing": true,
+  "false_fail_non_increasing": true,
+  "production_gap": "Demo has two synthetic windows only; production needs longitudinal STIG lab metrics."
+}

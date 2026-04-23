@@ -1,0 +1,729 @@
+{
+  "record_kind": "ScopeCoverageMatrix",
+  "subject": "stig_expert_critic_p0a",
+  "source_csv": "docs/stig_list.csv",
+  "source_json": "docs/disa_stigs.json",
+  "selected_vuln_count": 67,
+  "resolved_from_source_count": 67,
+  "scope_axes": {
+    "platform": [
+      "F5 BIG-IP"
+    ],
+    "module": [
+      "AFM",
+      "APM",
+      "DNS",
+      "LTM",
+      "PLATFORM"
+    ],
+    "topology": [
+      "standalone"
+    ],
+    "credential_scope": [
+      "read-only fixture"
+    ]
+  },
+  "axis_histogram": {
+    "automation_class": {
+      "AUTOMATED_CANDIDATE": 66,
+      "MANUAL_REVIEW": 1
+    },
+    "surface": {
+      "gui": 43,
+      "tmsh": 23,
+      "unspecified": 1
+    },
+    "module": {
+      "AFM": 2,
+      "APM": 10,
+      "DNS": 3,
+      "LTM": 1,
+      "PLATFORM": 51
+    },
+    "severity": {
+      "high": 17,
+      "low": 6,
+      "medium": 44
+    }
+  },
+  "demo_control": {
+    "control_id": "demo.banner.approved",
+    "witness_id": "demo.banner.approved",
+    "scope_record": "ScopeRecord.json",
+    "status": "covered"
+  },
+  "controls": [
+    {
+      "vuln_id": "V-266137",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing user access control intermediary services must limit the number of concurrent sessions to one or an organization-defined number for each access profile.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266138",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing intermediary services for remote access communications traffic must ensure inbound and outbound traffic is monitored for compliance with remote access security policies.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266139",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing intermediary services for remote access must use FIPS-validated cryptographic algorithms, including TLS 1.2 at a minimum.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266140",
+      "rule_id": "",
+      "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent code injection attacks from being launched against data storage objects, including, at a minimum, databases, database records, queries, and fields.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266141",
+      "rule_id": "",
+      "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent code injection attacks launched against application objects including, at a minimum, application URLs and application code.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266142",
+      "rule_id": "",
+      "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent SQL injection attacks launched against data storage objects, including, at a minimum, databases, database records, and database fields.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266143",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing user access control intermediary services must enforce approved authorizations for logical access to information and system resources by employing identity-based, role-based, and/or attribute-based security policies.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266144",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing user access control intermediary services must implement attribute- and content-based inspection of the source, destination, headers, and/or content of the communications traffic.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266145",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing user access control intermediary services must display the Standard Mandatory DOD-approved Notice and Consent Banner before granting access to the network.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266146",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must generate event log records that can be forwarded to the centralized events log.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266147",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance that provides intermediary services for SMTP must inspect inbound and outbound SMTP and Extended SMTP communications traffic for protocol compliance and protocol anomalies.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266148",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance that intermediary services for FTP must inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266149",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance that provides intermediary services for HTTP must inspect inbound and outbound HTTP traffic for protocol compliance and protocol anomalies.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266150",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to prohibit or restrict the use of unnecessary or prohibited functions, ports, protocols, and/or services, including those defined in the PPSM CAL and vulnerability assessments.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266151",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing user authentication intermediary services must require users to reauthenticate when the user's role or information authorizations is changed.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266152",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing user authentication intermediary services must uniquely identify and authenticate users using redundant authentication servers and multifactor authentication (MFA).",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266153",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must configure certification path validation to ensure revoked machine credentials are prohibited from establishing an allowed session.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266154",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing user authentication intermediary services using PKI-based user authentication must implement a local cache of revocation data to support path discovery and validation in case of the inability to access revocation information via the network.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266155",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must terminate all network connections associated with a communications session at the end of the session or after 15 minutes of inactivity.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266156",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing content filtering must employ rate-based attack prevention behavior analysis.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "DNS",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266157",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing content filtering must protect against or limit the effects of known and unknown types of denial-of-service (DoS) attacks by employing pattern recognition pre-processors.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "DNS",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266158",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must check the validity of all data inputs except those specifically identified by the organization.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266159",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing content filtering must automatically update malicious code protection mechanisms.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266160",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing content filtering must detect use of network services that have not been authorized or approved by the information system security manager (ISSM) and information system security officer (ISSO), at a minimum.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "AFM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266161",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing content filtering must generate a log record when unauthorized network services are detected.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "AFM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266162",
+      "rule_id": "",
+      "title": "When the Access Profile Type is LTM+APM and it is not using any connectivity resources (such as Network Access, Portal Access, etc.) in the VPE, the F5 BIG-IP appliance must be configured to enable the HTTP Only flag.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "LTM",
+      "severity": "low"
+    },
+    {
+      "vuln_id": "V-266163",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to enable the secure cookie flag.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "low"
+    },
+    {
+      "vuln_id": "V-266164",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to disable the persistent cookie flag.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "low"
+    },
+    {
+      "vuln_id": "V-266165",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must configure certificate path validation to ensure revoked user credentials are prohibited from establishing an allowed session.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266166",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must not use the On-demand Cert Auth VPE agent as part of the APM Policy Profiles.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266167",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to restrict a consistent inbound IP for the entire management session.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266168",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to limit authenticated client sessions to initial session source IP.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "low"
+    },
+    {
+      "vuln_id": "V-266169",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to set a Maximum Session Timeout value of eight hours or less.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266170",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to use cryptographic algorithms approved by NSA to protect NSS for remote access to a classified network.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266171",
+      "rule_id": "",
+      "title": "The F5 BIG-IP must be configured to identify and authenticate all endpoint devices or peers before establishing a connection.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266172",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing remote access intermediary services must disable split-tunneling for remote clients' VPNs.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266173",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance providing remote access intermediary services must be configured to route sessions to an IDPS for inspection.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266174",
+      "rule_id": "",
+      "title": "The VPN Gateway must use Always On VPN connections for remote computing.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "DNS",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266175",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to set the \"Max In Progress Sessions per Client IP\" value to 10 or an organizational-defined number.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "APM",
+      "severity": "low"
+    },
+    {
+      "vuln_id": "V-266064",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to limit the number of concurrent sessions to the Configuration Utility to 10 or an organization-defined number.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266065",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must terminate shared/group account credentials when members leave the group.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266066",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266067",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to assign appropriate user roles or access levels to authenticated users.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266068",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266069",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to enforce the limit of three consecutive invalid logon attempts, after which time it must block any login attempt for at least 15 minutes.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266070",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to display the Standard Mandatory DOD Notice and Consent Banner upon access to the TMOS User Interface.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266074",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must manage local audit storage capacity in accordance with organization-defined audit record storage requirements.",
+      "status": "covered_as_candidate",
+      "automation_class": "MANUAL_REVIEW",
+      "surface": "unspecified",
+      "module": "PLATFORM",
+      "severity": "low"
+    },
+    {
+      "vuln_id": "V-266075",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must generate audit records and send records to redundant central syslog servers that are separate from the appliance.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266076",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to synchronize internal information system clocks using redundant authoritative time sources.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266077",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must record time stamps for audit records that can be mapped to Coordinated Universal Time (UTC).",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266078",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to prevent the installation of patches, service packs, or application components without verification the software component has been digitally signed using a certificate that is recognized and approved by the organization.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266079",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to use at least two authentication servers to authenticate administrative users.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266080",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be running an operating system release that is currently supported by the vendor.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266083",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must obtain its public key certificates from an appropriate certificate policy through an approved service provider.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266084",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to prohibit the use of all unnecessary and/or nonsecure functions, ports, protocols, and/or services.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266085",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to use multifactor authentication (MFA) for interactive logins.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266086",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must authenticate Network Time Protocol (NTP) sources using authentication that is cryptographically based.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266087",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must enforce a minimum 15-character password length.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266088",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must enforce password complexity by requiring that at least one uppercase character be used.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266089",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must enforce password complexity by requiring that at least one lowercase character be used.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266090",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must enforce password complexity by requiring that at least one numeric character be used.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266091",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must enforce password complexity by requiring that at least one special character be used.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266092",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must require that when a password is changed, the characters are changed in at least eight of the positions within the password.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266093",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must prohibit the use of cached authenticators after eight hours or less.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "medium"
+    },
+    {
+      "vuln_id": "V-266094",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must be configured to use DOD approved OCSP responders or CRLs to validate certificates used for PKI-based authentication.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "gui",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266095",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must set the idle time before automatic logout to five minutes of inactivity except to fulfill documented and validated mission requirements.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "high"
+    },
+    {
+      "vuln_id": "V-266096",
+      "rule_id": "",
+      "title": "The F5 BIG-IP appliance must conduct backups of the configuration at a weekly or organization-defined frequency and store on a separate device.",
+      "status": "covered_as_candidate",
+      "automation_class": "AUTOMATED_CANDIDATE",
+      "surface": "tmsh",
+      "module": "PLATFORM",
+      "severity": "medium"
+    }
+  ],
+  "hidden_regressions_detected": false,
+  "notes": "Classification is heuristic and explicitly subordinate to criticism. 'AUTOMATED_CANDIDATE' means a surface was detected in the check/fix text; every such candidate must still survive witness-authoring, break/fix, and promotion before it is declared production-ready."
+}

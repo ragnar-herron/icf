@@ -1,0 +1,13 @@
+{
+  "witness_id": "demo.banner.approved",
+  "family": "FieldEquality",
+  "claim_interpretation": {
+    "expected_value_path": "claim.expected_value"
+  },
+  "evidence_interpretation": {
+    "observed_value_path": "evidence.observed_value"
+  },
+  "observable_field": "banner_text",
+  "expected_literal": "APPROVED",
+  "no_direct_alignment": true
+}

@@ -1,0 +1,8 @@
+{
+  "evidence_id": "evidence-1",
+  "raw_blob_ref": "blobstore/demo/sha256/f1/995216dcfbca4efddfa35f22f1deceaa1d31ee7a829f9d6d72ed78a1aa258a",
+  "sha256": "f1995216dcfbca4efddfa35f22f1deceaa1d31ee7a829f9d6d72ed78a1aa258a",
+  "raw_value": "APPROVED",
+  "linked_records": ["EvidenceRecord", "PullbackRecord", "FalsifierRecord"],
+  "summary_only_decision": false
+}

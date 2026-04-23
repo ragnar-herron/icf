@@ -1,0 +1,589 @@
+{
+  "record_kind": "LiveControlOutcomeMatrix",
+  "subject": "stig_expert_critic_p0a",
+  "host": "132.145.154.175",
+  "hostname": "bigip1",
+  "tmos_version": "17.5.1.3",
+  "source_catalog": "coalgebra/stig_expert_critic/ControlCatalog.json",
+  "disposition_summary": {
+    "blocked-external": 6,
+    "fail": 2,
+    "not-applicable": 5,
+    "pass": 54
+  },
+  "snapshots_manifest": "live_state/full_campaign/manifest.json",
+  "outcomes": [
+    {
+      "vuln_id": "V-266137",
+      "disposition": "pass",
+      "rationale": "APM access profiles must limit max-concurrent-users to 1 or the organization-defined value.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266138",
+      "disposition": "pass",
+      "rationale": "ASM controls were approximated by requiring an active blocking policy attached to the STIG test virtual.",
+      "evidence": [
+        "tmsh_asm_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266139",
+      "disposition": "not-applicable",
+      "rationale": "If the BIG-IP appliance does not provide intermediary services for remote access (e.g., web content filter, TLS, and webmail), TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this is not applicable.",
+      "evidence": [
+        "sys_provision"
+      ]
+    },
+    {
+      "vuln_id": "V-266140",
+      "disposition": "pass",
+      "rationale": "ASM controls were approximated by requiring an active blocking policy attached to the STIG test virtual.",
+      "evidence": [
+        "tmsh_asm_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266141",
+      "disposition": "pass",
+      "rationale": "ASM controls were approximated by requiring an active blocking policy attached to the STIG test virtual.",
+      "evidence": [
+        "tmsh_asm_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266142",
+      "disposition": "pass",
+      "rationale": "ASM controls were approximated by requiring an active blocking policy attached to the STIG test virtual.",
+      "evidence": [
+        "tmsh_asm_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266143",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266144",
+      "disposition": "pass",
+      "rationale": "AFM controls were approximated by requiring an enforced firewall policy on the STIG test virtual.",
+      "evidence": [
+        "tmsh_security_firewall_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266145",
+      "disposition": "blocked-external",
+      "rationale": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+      "evidence": [
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_policy_agent_message_box",
+        "external_evidence_packages"
+      ]
+    },
+    {
+      "vuln_id": "V-266146",
+      "disposition": "pass",
+      "rationale": "APM default-log-setting must be enabled at notice, attached to access profiles, and syslog must define remote servers.",
+      "evidence": [
+        "tmsh_apm_log_setting",
+        "tmsh_apm_profile_access",
+        "tmsh_sys_syslog"
+      ]
+    },
+    {
+      "vuln_id": "V-266147",
+      "disposition": "pass",
+      "rationale": "TLS/SSL intermediary controls were approximated from client SSL profiles and the STIG test virtual attachment set.",
+      "evidence": [
+        "tmsh_ltm_profile_client_ssl",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266148",
+      "disposition": "pass",
+      "rationale": "TLS/SSL intermediary controls were approximated from client SSL profiles and the STIG test virtual attachment set.",
+      "evidence": [
+        "tmsh_ltm_profile_client_ssl",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266149",
+      "disposition": "pass",
+      "rationale": "ASM controls were approximated by requiring an active blocking policy attached to the STIG test virtual.",
+      "evidence": [
+        "tmsh_asm_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266150",
+      "disposition": "pass",
+      "rationale": "Enabled LTM virtual-server listener ports were compared against the assertion contract's disallowed destination port policy.",
+      "evidence": [
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266151",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266152",
+      "disposition": "pass",
+      "rationale": "APM user-auth policy was evaluated from the access policy graph plus redundant TACACS system-auth servers.",
+      "evidence": [
+        "tmsh_apm_policy_access_policy",
+        "tmsh_auth_tacacs_system_auth"
+      ]
+    },
+    {
+      "vuln_id": "V-266153",
+      "disposition": "not-applicable",
+      "rationale": "If the BIG-IP appliance does not provide intermediary services for TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this is not applicable.",
+      "evidence": [
+        "sys_provision"
+      ]
+    },
+    {
+      "vuln_id": "V-266154",
+      "disposition": "blocked-external",
+      "rationale": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+      "evidence": [
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_profile_access",
+        "external_evidence_packages"
+      ]
+    },
+    {
+      "vuln_id": "V-266155",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266156",
+      "disposition": "pass",
+      "rationale": "AFM controls were approximated by requiring an enforced firewall policy on the STIG test virtual.",
+      "evidence": [
+        "tmsh_security_firewall_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266157",
+      "disposition": "pass",
+      "rationale": "AFM controls were approximated by requiring an enforced firewall policy on the STIG test virtual.",
+      "evidence": [
+        "tmsh_security_firewall_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266158",
+      "disposition": "pass",
+      "rationale": "ASM controls were approximated by requiring an active blocking policy attached to the STIG test virtual.",
+      "evidence": [
+        "tmsh_asm_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266159",
+      "disposition": "pass",
+      "rationale": "AFM controls were approximated by requiring an enforced firewall policy on the STIG test virtual.",
+      "evidence": [
+        "tmsh_security_firewall_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266160",
+      "disposition": "blocked-external",
+      "rationale": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+      "evidence": [
+        "tmsh_security_firewall_policy",
+        "external_evidence_packages"
+      ]
+    },
+    {
+      "vuln_id": "V-266161",
+      "disposition": "pass",
+      "rationale": "AFM controls were approximated by requiring an enforced firewall policy on the STIG test virtual.",
+      "evidence": [
+        "tmsh_security_firewall_policy",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266162",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266163",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266164",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266165",
+      "disposition": "not-applicable",
+      "rationale": "If the BIG-IP appliance does not provide intermediary services for TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this is not applicable.",
+      "evidence": [
+        "sys_provision"
+      ]
+    },
+    {
+      "vuln_id": "V-266166",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266167",
+      "disposition": "pass",
+      "rationale": "Management-session source-IP pinning was evaluated from sys httpd auth-pam-validate-ip.",
+      "evidence": [
+        "tmsh_sys_httpd"
+      ]
+    },
+    {
+      "vuln_id": "V-266168",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266169",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266170",
+      "disposition": "pass",
+      "rationale": "TLS/SSL intermediary controls were approximated from client SSL profiles and the STIG test virtual attachment set.",
+      "evidence": [
+        "tmsh_ltm_profile_client_ssl",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266171",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266172",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266173",
+      "disposition": "pass",
+      "rationale": "TLS/SSL intermediary controls were approximated from client SSL profiles and the STIG test virtual attachment set.",
+      "evidence": [
+        "tmsh_ltm_profile_client_ssl",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266174",
+      "disposition": "fail",
+      "rationale": "Always-on VPN posture was evaluated from the network-access resource and connectivity profile.",
+      "evidence": [
+        "apm_resource_network_access",
+        "tmsh_apm_profile_connectivity"
+      ]
+    },
+    {
+      "vuln_id": "V-266175",
+      "disposition": "pass",
+      "rationale": "APM access-profile baseline was evaluated from tmsh.",
+      "evidence": [
+        "tmsh_apm_profile_access"
+      ]
+    },
+    {
+      "vuln_id": "V-266064",
+      "disposition": "pass",
+      "rationale": "Configuration Utility concurrency was evaluated from sys httpd; detected max-clients=10.",
+      "evidence": [
+        "tmsh_sys_httpd"
+      ]
+    },
+    {
+      "vuln_id": "V-266065",
+      "disposition": "pass",
+      "rationale": "Local user inventory was evaluated for shared/group-style credentials; only named local users are present.",
+      "evidence": [
+        "tmsh_auth_user"
+      ]
+    },
+    {
+      "vuln_id": "V-266066",
+      "disposition": "pass",
+      "rationale": "Account-of-last-resort was evaluated from auth source and local users; detected local_admins=1, fallback=enabled.",
+      "evidence": [
+        "tmsh_auth_source",
+        "tmsh_auth_user"
+      ]
+    },
+    {
+      "vuln_id": "V-266067",
+      "disposition": "pass",
+      "rationale": "Role assignment was evaluated from local users and remote-role mappings; least-privilege requires no extra local admin users beyond the account of last resort.",
+      "evidence": [
+        "tmsh_auth_user",
+        "tmsh_auth_remote_role"
+      ]
+    },
+    {
+      "vuln_id": "V-266068",
+      "disposition": "pass",
+      "rationale": "Privileged-function auditing was evaluated from daemon-log-settings and CLI audit state.",
+      "evidence": [
+        "tmsh_sys_daemon_log_settings",
+        "tmsh_cli_global_settings"
+      ]
+    },
+    {
+      "vuln_id": "V-266069",
+      "disposition": "pass",
+      "rationale": "Password policy requires max-login-failures=3 and lockout-duration=900.",
+      "evidence": [
+        "tmsh_auth_password_policy"
+      ]
+    },
+    {
+      "vuln_id": "V-266070",
+      "disposition": "pass",
+      "rationale": "TMOS UI banner must exactly equal the canonical DoD Notice and Consent banner.",
+      "evidence": [
+        "sys_global_settings"
+      ]
+    },
+    {
+      "vuln_id": "V-266074",
+      "disposition": "blocked-external",
+      "rationale": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+      "evidence": [
+        "bash_log_storage_capacity",
+        "tmsh_sys_syslog",
+        "external_evidence_packages"
+      ]
+    },
+    {
+      "vuln_id": "V-266075",
+      "disposition": "pass",
+      "rationale": "Syslog evaluated from tmsh; detected 2 remote server entries.",
+      "evidence": [
+        "tmsh_sys_syslog"
+      ]
+    },
+    {
+      "vuln_id": "V-266076",
+      "disposition": "pass",
+      "rationale": "NTP must define servers and include authenticate.",
+      "evidence": [
+        "tmsh_sys_ntp"
+      ]
+    },
+    {
+      "vuln_id": "V-266077",
+      "disposition": "pass",
+      "rationale": "NTP must define servers and include authenticate.",
+      "evidence": [
+        "tmsh_sys_ntp"
+      ]
+    },
+    {
+      "vuln_id": "V-266078",
+      "disposition": "pass",
+      "rationale": "Software-image signature verification was evaluated from sys db liveinstall.checksig.",
+      "evidence": [
+        "tmsh_sys_db_security"
+      ]
+    },
+    {
+      "vuln_id": "V-266079",
+      "disposition": "pass",
+      "rationale": "Administrative authentication topology was evaluated from auth source and TACACS system-auth; detected type=tacacs, servers=2.",
+      "evidence": [
+        "tmsh_auth_source",
+        "tmsh_auth_tacacs_system_auth"
+      ]
+    },
+    {
+      "vuln_id": "V-266080",
+      "disposition": "pass",
+      "rationale": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+      "evidence": [
+        "tmsh_cm_device",
+        "external_evidence_packages"
+      ]
+    },
+    {
+      "vuln_id": "V-266083",
+      "disposition": "fail",
+      "rationale": "Device certificate issuer was evaluated from the installed TMUI certificate; placeholder/self-signed local certificates are a finding.",
+      "evidence": [
+        "bash_device_certificate_summary"
+      ]
+    },
+    {
+      "vuln_id": "V-266084",
+      "disposition": "pass",
+      "rationale": "TLS/SSL intermediary controls were approximated from client SSL profiles and the STIG test virtual attachment set.",
+      "evidence": [
+        "tmsh_ltm_profile_client_ssl",
+        "tmsh_ltm_virtual"
+      ]
+    },
+    {
+      "vuln_id": "V-266085",
+      "disposition": "pass",
+      "rationale": "Interactive management authentication source was evaluated from auth source; detected type=tacacs.",
+      "evidence": [
+        "tmsh_auth_source"
+      ]
+    },
+    {
+      "vuln_id": "V-266086",
+      "disposition": "pass",
+      "rationale": "NTP must define servers and include authenticate.",
+      "evidence": [
+        "tmsh_sys_ntp"
+      ]
+    },
+    {
+      "vuln_id": "V-266087",
+      "disposition": "pass",
+      "rationale": "Password policy evaluated from tmsh.",
+      "evidence": [
+        "tmsh_auth_password_policy"
+      ]
+    },
+    {
+      "vuln_id": "V-266088",
+      "disposition": "pass",
+      "rationale": "Password policy requires secure enforcement and at least one uppercase character.",
+      "evidence": [
+        "tmsh_auth_password_policy"
+      ]
+    },
+    {
+      "vuln_id": "V-266089",
+      "disposition": "pass",
+      "rationale": "Password policy requires secure enforcement and at least one lowercase character.",
+      "evidence": [
+        "tmsh_auth_password_policy"
+      ]
+    },
+    {
+      "vuln_id": "V-266090",
+      "disposition": "pass",
+      "rationale": "Password policy requires secure enforcement and at least one numeric character.",
+      "evidence": [
+        "tmsh_auth_password_policy"
+      ]
+    },
+    {
+      "vuln_id": "V-266091",
+      "disposition": "pass",
+      "rationale": "Password policy requires secure enforcement and at least one special character.",
+      "evidence": [
+        "tmsh_auth_password_policy"
+      ]
+    },
+    {
+      "vuln_id": "V-266092",
+      "disposition": "pass",
+      "rationale": "Password reuse distance was evaluated from sys db password.difok.",
+      "evidence": [
+        "tmsh_sys_db_security"
+      ]
+    },
+    {
+      "vuln_id": "V-266093",
+      "disposition": "not-applicable",
+      "rationale": "Control applies only when device-management authentication uses ClientCert LDAP with cached OCSP settings.",
+      "evidence": [
+        "tmsh_auth_source"
+      ]
+    },
+    {
+      "vuln_id": "V-266094",
+      "disposition": "not-applicable",
+      "rationale": "Control applies only when device-management authentication uses ClientCert LDAP / PKI-based auth.",
+      "evidence": [
+        "tmsh_auth_source"
+      ]
+    },
+    {
+      "vuln_id": "V-266095",
+      "disposition": "pass",
+      "rationale": "Idle logout was evaluated across HTTPD/TMUI, CLI, console, and SSH timeout sources.",
+      "evidence": [
+        "tmsh_sys_httpd",
+        "tmsh_cli_global_settings",
+        "tmsh_sys_global_settings",
+        "sys_sshd"
+      ]
+    },
+    {
+      "vuln_id": "V-266096",
+      "disposition": "blocked-external",
+      "rationale": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+      "evidence": [
+        "tmsh_sys_ucs",
+        "external_evidence_packages"
+      ]
+    }
+  ]
+}

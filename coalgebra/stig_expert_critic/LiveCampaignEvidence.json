@@ -1,0 +1,84 @@
+{
+  "record_kind": "LiveCampaignEvidence",
+  "subject": "stig_expert_critic_p0a",
+  "host": "132.145.154.175",
+  "hostname": "bigip1",
+  "tmos_version": "17.5.1.3",
+  "control_count": 67,
+  "disposition_summary": {
+    "blocked-external": 6,
+    "fail": 2,
+    "not-applicable": 5,
+    "pass": 54
+  },
+  "artifacts": {
+    "control_catalog": "coalgebra/stig_expert_critic/ControlCatalog.json",
+    "outcome_matrix": "coalgebra/stig_expert_critic/LiveControlOutcomeMatrix.json",
+    "snapshots_manifest": "live_state/full_campaign/manifest.json",
+    "external_evidence_packages": "coalgebra/stig_expert_critic/ExternalEvidencePackages.json",
+    "campaign_ledger": "ledgers/live/full_campaign.jsonl"
+  },
+  "snapshots": {
+    "count": 31,
+    "blob_paths": [
+      "blobstore/live/sha256/77/eabeac45baac4b293543defca4c949c5aa40356a2f8982d79b12296f2e783a",
+      "blobstore/live/sha256/b7/abcd8a3ff3d5818c0c3d08e032655977fc8348dad0e28da766ab27739b63f7",
+      "blobstore/live/sha256/f5/5dd9182a31d455fe68e70af1e05fc11017f3341657c9384c8ce27f4558c23f",
+      "blobstore/live/sha256/d6/67ef5cfd769b4871400e81005200c0b34f8e54021ad39657fb616937b00c49",
+      "blobstore/live/sha256/8b/1bbce5e5513e1019dd412463147e08fe874372c4ade08f15a869ed30978c1a",
+      "blobstore/live/sha256/ae/199dd1e9ef8a80fc852accea5e75dbdd2e33ddf23976190a99a79830616bd8",
+      "blobstore/live/sha256/b1/42901a7eec2b550226aa27138daa192938ef754e0f47c304b6824aa59250df",
+      "blobstore/live/sha256/83/1a26dbe55fcc8b94f38dad895cebdf9b404a1d3eca17c21b76851202543180",
+      "blobstore/live/sha256/7e/84b8b5a29477ec0015dff49d0f607d816c61c7c43b2df7781147cc61d82360",
+      "blobstore/live/sha256/b1/48eaa410ae5563d13ddab6c4d9702a95ecb6a7bf91546c37e49a5e66620b32",
+      "blobstore/live/sha256/3a/6a0d2a986a4a05b1bc88d0901a0d850c5905cecbf621b9a407c55aa8f02fb3",
+      "blobstore/live/sha256/57/060bc81cefd4a5eef63a061fd6ccc550f9c8261b162015feac4bc977d2cc17",
+      "blobstore/live/sha256/02/a2a477ed516b62f8c7d572ce7d71506ccb02b4bca2a0d7c602a5b8931c2eba",
+      "blobstore/live/sha256/f5/815c6e3541d57644387528e34d1ec2b4c07e5fe9f3b019b9e286486444e5f2",
+      "blobstore/live/sha256/4c/26fb5d81d2df6bdc25ea9ec127f1921f322c526fa20bb84c42cb6a6e5c9306",
+      "blobstore/live/sha256/75/f7cb756077af638fbb2aae01efe70921f5ce88e1625663313c99eadaf139b0",
+      "blobstore/live/sha256/c4/56864fc7cf95137d24159aa1ec76e96f66c081b3e1231b5ce01fb201b8caa3",
+      "blobstore/live/sha256/76/dafda6245e70ebdaa6ff9dccb244806a94a270f2e643fd52de456d4ce20bfa",
+      "blobstore/live/sha256/a0/8ae36a8a216237c8f242cf8f97f8a878eb731f4b7d926aea13a46a08ae5fc5",
+      "blobstore/live/sha256/11/eaf7d7c55d4feb4a02e04bb7737e579427ade6a42c9ad6b634b279574f2f8f",
+      "blobstore/live/sha256/fb/ce69c889c04c187c3260ce8481b23c295ea8b023b6977831a80e2b7e4a105c",
+      "blobstore/live/sha256/65/5e6d9da7eac748f516f135e98ccc50f62f9c84610522cc3d365ac4353dc337",
+      "blobstore/live/sha256/a9/48a7da6136bf0b4af4bb808a5a7bde9a8a8c10642b32cc191783a9423cc912",
+      "blobstore/live/sha256/4a/4bc36c0b7893a9e154a465838854127609289a45d9d118354776eb2efaa0fd",
+      "blobstore/live/sha256/0b/f6b6fc4b86188be41d6b8ad4ab6ea0c43ad884556aa310e4bac0e1fd2ea652",
+      "blobstore/live/sha256/1f/57180e34344bd073307fe24ad55a5385ba6c767e854732a9983a259a0ad0f6",
+      "blobstore/live/sha256/cc/0c31a8db4518bbe4a1f3047096ee1760c60d123ec35956cdb908784f06fa5b",
+      "blobstore/live/sha256/5e/8f51c0545484586b05065326ff4d6f4e5fd3d5de872ad25e58468bd5735ff6",
+      "blobstore/live/sha256/01/77adfc1775d67d3d0cf870f4d0b392912568dcbcf64b852593af3d09d2a047",
+      "blobstore/live/sha256/68/967cd4fd2d6f719a5b6b5553200767aa16ce60335d19d5430bd11f1fb0cf02",
+      "blobstore/live/sha256/dd/09e8e0c91f7d55085d29c4e1292be57edda237fa56eedc964f0a7b81280e9b"
+    ]
+  },
+  "notable_remediations": [
+    {
+      "vuln_id": "V-266070",
+      "action": "Applied the canonical DoD Notice and Consent Banner to TMOS UI login banner via /mgmt/tm/sys/global-settings."
+    },
+    {
+      "vuln_id": "V-266066/V-266067",
+      "action": "Reduced the local `stig_operator` account from `admin` to `auditor`, leaving one local admin account of last resort and aligning local role assignment more closely with least privilege."
+    }
+  ],
+  "remaining_failures": [
+    "V-266174",
+    "V-266083"
+  ],
+  "remaining_blocked_external": [
+    "V-266145",
+    "V-266150",
+    "V-266154",
+    "V-266160",
+    "V-266074",
+    "V-266096"
+  ],
+  "production_gaps_live": [
+    "Some controls remain blocked on external identity, PKI, organizational policy, or storage topology inputs that cannot be inferred from the appliance alone.",
+    "The campaign ledger records final per-control dispositions and evidence blobs, and the remaining local failures are now narrowed to one actual platform certificate issue and one remote-access always-on VPN issue.",
+    "Repo-side external evidence packages are now part of the replayed artifact set, but several blocked rows still require owner-supplied SSP, PKI, backup-topology, or service-authorization evidence."
+  ]
+}

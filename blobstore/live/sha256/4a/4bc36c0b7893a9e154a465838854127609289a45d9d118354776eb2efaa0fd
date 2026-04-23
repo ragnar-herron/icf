@@ -1,0 +1,232 @@
+apm profile connectivity connectivity {
+    adaptive-compression enabled
+    app-service none
+    citrix-client-bundle default-citrix-client-bundle
+    client-policy {
+        connectivity_clientPolicy {
+            android-ec {
+                device-lock-complexity medium
+                device-lock-method numeric
+                enable-mobilesafe false
+                enforce-device-lock true
+                enforce-logon-mode false
+                logon-mode native
+                max-inactivity-time 5
+                min-passcode-length 4
+                mobilesafe-server none
+                require-device-auth false
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            android-ep {
+                device-lock-method numeric
+                enable-mobilesafe false
+                enforce-device-lock true
+                enforce-logon-mode false
+                logon-mode native
+                max-inactivity-time 5
+                min-passcode-length 4
+                mobilesafe-server none
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            app-service none
+            location-specific false
+            servers none
+            chromeos-ec {
+                enforce-logon-mode false
+                logon-mode native
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            ec {
+                component-update yes
+                location-dns none
+                reuse-winlogon-creds false
+                reuse-winlogon-session false
+                run-logoff-script false
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+                save-servers-on-exit true
+                warn-before-script-launch true
+            }
+            ios-ec {
+                enable-mobilesafe false
+                enforce-logon-mode false
+                logon-mode native
+                mobilesafe-server none
+                require-device-auth false
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+                vod-disconnect-timeout 2
+            }
+            ios-ep {
+                enable-mobilesafe false
+                enforce-logon-mode false
+                enforce-pin-lock true
+                logon-mode native
+                max-grace-period 2
+                mobilesafe-server none
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            macos-ec {
+                component-update yes
+                enforce-logon-mode false
+                location-dns none
+                logon-mode native
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            oauth {
+                client-id none
+                client-secret none
+                done-uri none
+                provider-name none
+                scopes none
+            }
+        }
+    }
+    compress-buffer-size 4096
+    compress-cpu-saver true
+    compress-cpu-saver-high 90
+    compress-cpu-saver-low 75
+    compress-gzip-level 6
+    compress-gzip-memlevel 8192
+    compress-gzip-window-size 16384
+    compress-ingress false
+    compress-preferred-method zlib
+    compression enabled
+    compression-codecs { deflate lzo bzip2 }
+    customization-group none
+    defaults-from none
+    deflate-compression-level 1
+    description none
+    fec-name none
+    location-specific false
+    partition Common
+    tunnel-name none
+}
+apm profile connectivity stig_connectivity {
+    adaptive-compression enabled
+    app-service none
+    citrix-client-bundle default-citrix-client-bundle
+    client-policy {
+        stig_connectivity {
+            android-ec {
+                device-lock-complexity medium
+                device-lock-method numeric
+                enable-mobilesafe false
+                enforce-device-lock true
+                enforce-logon-mode false
+                logon-mode native
+                max-inactivity-time 5
+                min-passcode-length 4
+                mobilesafe-server none
+                require-device-auth false
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            android-ep {
+                device-lock-method numeric
+                enable-mobilesafe false
+                enforce-device-lock true
+                enforce-logon-mode false
+                logon-mode native
+                max-inactivity-time 5
+                min-passcode-length 4
+                mobilesafe-server none
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            app-service none
+            location-specific false
+            servers none
+            chromeos-ec {
+                enforce-logon-mode false
+                logon-mode native
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            ec {
+                component-update yes
+                location-dns none
+                reuse-winlogon-creds false
+                reuse-winlogon-session false
+                run-logoff-script false
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+                save-servers-on-exit true
+                warn-before-script-launch true
+            }
+            ios-ec {
+                enable-mobilesafe false
+                enforce-logon-mode false
+                logon-mode native
+                mobilesafe-server none
+                require-device-auth false
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+                vod-disconnect-timeout 2
+            }
+            ios-ep {
+                enable-mobilesafe false
+                enforce-logon-mode false
+                enforce-pin-lock true
+                logon-mode native
+                max-grace-period 2
+                mobilesafe-server none
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            macos-ec {
+                component-update yes
+                enforce-logon-mode false
+                location-dns none
+                logon-mode native
+                save-password false
+                save-password-method disk
+                save-password-timeout 240
+            }
+            oauth {
+                client-id none
+                client-secret none
+                done-uri none
+                provider-name none
+                scopes none
+            }
+        }
+    }
+    compress-buffer-size 4096
+    compress-cpu-saver true
+    compress-cpu-saver-high 90
+    compress-cpu-saver-low 75
+    compress-gzip-level 6
+    compress-gzip-memlevel 8192
+    compress-gzip-window-size 16384
+    compress-ingress false
+    compress-preferred-method zlib
+    compression enabled
+    compression-codecs { deflate lzo bzip2 }
+    customization-group stig_connectivity_secure_access_client_customization
+    defaults-from connectivity
+    deflate-compression-level 1
+    description none
+    fec-name none
+    location-specific false
+    partition Common
+    tunnel-name stig_connectivity
+}

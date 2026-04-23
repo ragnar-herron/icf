@@ -1,0 +1,92 @@
+apm log-setting default-log-setting {
+    access {
+        general-log {
+            app-service none
+            enabled true
+            publisher sys-db-access-publisher
+            type access
+            log-level {
+                access-control notice
+                access-per-request notice
+                adfs-proxy notice
+                api-protection notice
+                apm-acl notice
+                eca notice
+                endpoint-management-system notice
+                ftp notice
+                htconnector notice
+                imap notice
+                oauth notice
+                paa notice
+                pop3 notice
+                smtps notice
+                ssl-orchestrator notice
+                sso notice
+                swg notice
+                vdi notice
+                webssh notice
+            }
+        }
+    }
+    app-service none
+    description "Default log setting for all APM messages."
+    partition Common
+    url-filters {
+        urlf {
+            app-service none
+            enabled true
+            publisher local-db-publisher
+            filter {
+                log-allowed-url false
+                log-blocked-url true
+                log-confimed-url true
+            }
+        }
+    }
+}
+apm log-setting default-sslo-log-setting {
+    access {
+        general-log {
+            app-service none
+            enabled true
+            publisher sys-sslo-publisher
+            type ssl-orchestrator
+            log-level {
+                access-control err
+                access-per-request err
+                adfs-proxy notice
+                api-protection notice
+                apm-acl notice
+                eca notice
+                endpoint-management-system notice
+                ftp err
+                htconnector notice
+                imap err
+                oauth notice
+                paa notice
+                pop3 err
+                smtps err
+                ssl-orchestrator err
+                sso err
+                swg err
+                vdi notice
+                webssh notice
+            }
+        }
+    }
+    app-service none
+    description "Default log setting for all SSLO messages."
+    partition Common
+    url-filters {
+        urlf {
+            app-service none
+            enabled true
+            publisher sys-sslo-publisher
+            filter {
+                log-allowed-url false
+                log-blocked-url true
+                log-confimed-url true
+            }
+        }
+    }
+}
