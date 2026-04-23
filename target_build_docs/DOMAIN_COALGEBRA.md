@@ -1,3 +1,15 @@
+---
+INVARIANT — BUILD ORDER LAW (INVIOLABLE)
+
+Projection coalgebra may not exist unless Adapter coalgebra is promoted.
+
+SYSTEM-LEVEL KILL SWITCH:
+If adapter families are not promoted, then:
+  - Export must not resolve controls
+  - UI must not present validation capability
+  - Any code attempting evaluation outside kernel = FAIL
+---
+
 # ICF Domain Coalgebra — Complete Specification
 
 Version: `1.0.0`

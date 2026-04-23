@@ -1,3 +1,25 @@
+---
+INVARIANT — BUILD ORDER LAW (INVIOLABLE)
+
+Projection coalgebra may not exist unless Adapter coalgebra is promoted.
+
+SYSTEM-LEVEL KILL SWITCH:
+If adapter families are not promoted, then:
+  - Export must not resolve controls
+  - UI must not present validation capability
+  - Any code attempting evaluation outside kernel = FAIL
+
+Do not design, implement, test, or scaffold Layer 3 (export/projection)
+until Layer 2 (adapter promotion pipeline) has achieved 9/9 legitimacy
+for the target adapter families. This is the invariant the previous build
+violated. It produced 89 files of export code that had no promoted truth
+to render, resulting in "4/9 legitimacy" and projected_unresolved across
+most controls. That entire body of work was waste.
+
+If you are reading this and Layer 2 is not complete: STOP. Go back to
+Phase 5 in the build order below. Do not proceed to Phase 6.
+---
+
 # ICF Rebuild Instructions
 
 Version: `1.0.0`
