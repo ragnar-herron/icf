@@ -1,3 +1,8 @@
+STATUS: SUPERSEDED BY docs/canonical/CANONICAL_ARCHITECTURE.md
+DO NOT USE AS BUILD AUTHORITY
+
+---
+
 Below is a **handoff-grade rebuild package** you can give to a software agent so it can rebuild the STIG web app from the HTML you supplied **without drifting into vibe code**.
 
 This is based on the structure already present in the page: host/session bar, gate badge, sidebar with STIG controls, contract/validate/adjudication/remediate/local-repair/tmsh/rest/merge tabs, pinned V-ID behavior, evidence/provenance panels, proof chain, advisory-only remediation, and verify→merge→save workflow. 

@@ -1,0 +1,406 @@
+{
+  "ok": true,
+  "vuln_id": "V-266152",
+  "source_stig": {
+    "vuln_id": "V-266152",
+    "ruleID": "SV-266152r1024845_rule",
+    "checkid": "C-70076r1023702_chk",
+    "fixid": "F-69979r1023703_fix",
+    "title": "The F5 BIG-IP appliance providing user authentication intermediary services must uniquely identify and authenticate users using redundant authentication servers and multifactor authentication (MFA).",
+    "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click \"Edit\" for the Access Profile being used.\n5. Verify the Access Profile uses an authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication.\n\nIf the BIG-IP appliance is not configured to use a separate authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click \"Edit\" for the Access Profile being used.\n5. Configure the Access Profile to use a separate authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication.\n\nNote: To create an authentication object in the VPE, it must first be created in APM under Access >> Authentication. Once it has been created, add it to the Access Policy VPE by clicking the \"+\", selecting the \"Authentication\" tab, and select the appropriate type of authentication.",
+    "description": "To ensure accountability and prevent unauthenticated access, organizational users must be identified and authenticated to prevent potential misuse and compromise of the system.\n\nOrganizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and any processes acting on behalf of users) must be uniquely identified and authenticated for all accesses except the following.\n\n1. Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication.\n2. Accesses that occur through authorized use of group authenticators without individual authentication. Organizations may require unique identification of individuals in group accounts (e.g., shared privilege accounts) or for detailed accountability of individual activity.\n\nThis requirement applies to ALGs that provide user proxy services, including identification and authentication. This service must use the site's directory service (e.g., Active Directory). Directory services must not be installed onto the gateway.\n\nSatisfies: SRG-NET-000138-ALG-000063, SRG-NET-000138-ALG-000088, SRG-NET-000339-ALG-000090, SRG-NET-000340-ALG-000091, SRG-NET-000140-ALG-000094, SRG-NET-000166-ALG-000101, SRG-NET-000169-ALG-000102",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "01b37f3ce3106d5aac62631d281369a0fe6101d16285ca1013bafb210ef3578f"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_apm_policy_access_policy": {
+      "source": "tmsh_apm_policy_access_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm policy access-policy all-properties"
+      },
+      "blob_sha256": "655e6d9da7eac748",
+      "bytes": 1788
+    },
+    "tmsh_auth_tacacs_system_auth": {
+      "source": "tmsh_auth_tacacs_system_auth",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth tacacs system-auth all-properties"
+      },
+      "blob_sha256": "57060bc81cefd4a5",
+      "bytes": 325
+    },
+    "tmsh_apm_profile_access": {
+      "source": "tmsh_apm_profile_access",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm profile access all-properties"
+      },
+      "blob_sha256": "fbce69c889c04c18",
+      "bytes": 4743
+    },
+    "tmsh_apm_log_setting": {
+      "source": "tmsh_apm_log_setting",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm log-setting all-properties"
+      },
+      "blob_sha256": "0bf6b6fc4b86188b",
+      "bytes": 2506
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266152:apm_policy_auth_server_agent:1",
+      "carrier_coordinate": "tmsh:list apm policy access-policy all-properties",
+      "measurable": "apm_policy.auth_server_agent",
+      "lawful_property": "tacacsplus_auth OR kerberos_auth",
+      "required": "tacacsplus_auth OR kerberos_auth",
+      "observed": "present",
+      "comparison_expression": "observed(present) satisfies required(tacacsplus_auth OR kerberos_auth)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_policy_access_policy",
+      "source_stig": {
+        "vuln_id": "V-266152",
+        "ruleID": "SV-266152r1024845_rule",
+        "checkid": "C-70076r1023702_chk",
+        "fixid": "F-69979r1023703_fix",
+        "title": "The F5 BIG-IP appliance providing user authentication intermediary services must uniquely identify and authenticate users using redundant authentication servers and multifactor authentication (MFA).",
+        "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click \"Edit\" for the Access Profile being used.\n5. Verify the Access Profile uses an authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication.\n\nIf the BIG-IP appliance is not configured to use a separate authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click \"Edit\" for the Access Profile being used.\n5. Configure the Access Profile to use a separate authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication.\n\nNote: To create an authentication object in the VPE, it must first be created in APM under Access >> Authentication. Once it has been created, add it to the Access Policy VPE by clicking the \"+\", selecting the \"Authentication\" tab, and select the appropriate type of authentication.",
+        "description": "To ensure accountability and prevent unauthenticated access, organizational users must be identified and authenticated to prevent potential misuse and compromise of the system.\n\nOrganizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and any processes acting on behalf of users) must be uniquely identified and authenticated for all accesses except the following.\n\n1. Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication.\n2. Accesses that occur through authorized use of group authenticators without individual authentication. Organizations may require unique identification of individuals in group accounts (e.g., shared privilege accounts) or for detailed accountability of individual activity.\n\nThis requirement applies to ALGs that provide user proxy services, including identification and authentication. This service must use the site's directory service (e.g., Active Directory). Directory services must not be installed onto the gateway.\n\nSatisfies: SRG-NET-000138-ALG-000063, SRG-NET-000138-ALG-000088, SRG-NET-000339-ALG-000090, SRG-NET-000340-ALG-000091, SRG-NET-000140-ALG-000094, SRG-NET-000166-ALG-000101, SRG-NET-000169-ALG-000102",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "01b37f3ce3106d5aac62631d281369a0fe6101d16285ca1013bafb210ef3578f"
+      },
+      "vuln_id": "V-266152"
+    },
+    {
+      "pullback_id": "V-266152:apm_policy_mfa_agent:2",
+      "carrier_coordinate": "tmsh:list apm policy access-policy all-properties",
+      "measurable": "apm_policy.mfa_agent",
+      "lawful_property": "machinecert_auth OR client_cert",
+      "required": "machinecert_auth OR client_cert",
+      "observed": "present",
+      "comparison_expression": "observed(present) satisfies required(machinecert_auth OR client_cert)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_policy_access_policy",
+      "source_stig": {
+        "vuln_id": "V-266152",
+        "ruleID": "SV-266152r1024845_rule",
+        "checkid": "C-70076r1023702_chk",
+        "fixid": "F-69979r1023703_fix",
+        "title": "The F5 BIG-IP appliance providing user authentication intermediary services must uniquely identify and authenticate users using redundant authentication servers and multifactor authentication (MFA).",
+        "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click \"Edit\" for the Access Profile being used.\n5. Verify the Access Profile uses an authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication.\n\nIf the BIG-IP appliance is not configured to use a separate authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click \"Edit\" for the Access Profile being used.\n5. Configure the Access Profile to use a separate authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication.\n\nNote: To create an authentication object in the VPE, it must first be created in APM under Access >> Authentication. Once it has been created, add it to the Access Policy VPE by clicking the \"+\", selecting the \"Authentication\" tab, and select the appropriate type of authentication.",
+        "description": "To ensure accountability and prevent unauthenticated access, organizational users must be identified and authenticated to prevent potential misuse and compromise of the system.\n\nOrganizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and any processes acting on behalf of users) must be uniquely identified and authenticated for all accesses except the following.\n\n1. Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication.\n2. Accesses that occur through authorized use of group authenticators without individual authentication. Organizations may require unique identification of individuals in group accounts (e.g., shared privilege accounts) or for detailed accountability of individual activity.\n\nThis requirement applies to ALGs that provide user proxy services, including identification and authentication. This service must use the site's directory service (e.g., Active Directory). Directory services must not be installed onto the gateway.\n\nSatisfies: SRG-NET-000138-ALG-000063, SRG-NET-000138-ALG-000088, SRG-NET-000339-ALG-000090, SRG-NET-000340-ALG-000091, SRG-NET-000140-ALG-000094, SRG-NET-000166-ALG-000101, SRG-NET-000169-ALG-000102",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "01b37f3ce3106d5aac62631d281369a0fe6101d16285ca1013bafb210ef3578f"
+      },
+      "vuln_id": "V-266152"
+    },
+    {
+      "pullback_id": "V-266152:auth_tacacs_server_count:3",
+      "carrier_coordinate": "tmsh:list auth tacacs system-auth all-properties",
+      "measurable": "auth_tacacs.server_count",
+      "lawful_property": ">= 2",
+      "required": ">= 2",
+      "observed": "2",
+      "comparison_expression": "observed(2) satisfies required(>= 2)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_tacacs_system_auth",
+      "source_stig": {
+        "vuln_id": "V-266152",
+        "ruleID": "SV-266152r1024845_rule",
+        "checkid": "C-70076r1023702_chk",
+        "fixid": "F-69979r1023703_fix",
+        "title": "The F5 BIG-IP appliance providing user authentication intermediary services must uniquely identify and authenticate users using redundant authentication servers and multifactor authentication (MFA).",
+        "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click \"Edit\" for the Access Profile being used.\n5. Verify the Access Profile uses an authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication.\n\nIf the BIG-IP appliance is not configured to use a separate authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click \"Edit\" for the Access Profile being used.\n5. Configure the Access Profile to use a separate authentication server (e.g., LDAP, RADIUS, TACACS+) to perform user authentication.\n\nNote: To create an authentication object in the VPE, it must first be created in APM under Access >> Authentication. Once it has been created, add it to the Access Policy VPE by clicking the \"+\", selecting the \"Authentication\" tab, and select the appropriate type of authentication.",
+        "description": "To ensure accountability and prevent unauthenticated access, organizational users must be identified and authenticated to prevent potential misuse and compromise of the system.\n\nOrganizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and any processes acting on behalf of users) must be uniquely identified and authenticated for all accesses except the following.\n\n1. Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication.\n2. Accesses that occur through authorized use of group authenticators without individual authentication. Organizations may require unique identification of individuals in group accounts (e.g., shared privilege accounts) or for detailed accountability of individual activity.\n\nThis requirement applies to ALGs that provide user proxy services, including identification and authentication. This service must use the site's directory service (e.g., Active Directory). Directory services must not be installed onto the gateway.\n\nSatisfies: SRG-NET-000138-ALG-000063, SRG-NET-000138-ALG-000088, SRG-NET-000339-ALG-000090, SRG-NET-000340-ALG-000091, SRG-NET-000140-ALG-000094, SRG-NET-000166-ALG-000101, SRG-NET-000169-ALG-000102",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "01b37f3ce3106d5aac62631d281369a0fe6101d16285ca1013bafb210ef3578f"
+      },
+      "vuln_id": "V-266152"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266152)",
+      "source_a_count": 3,
+      "source_b": "STIG-required predicates (V-266152)",
+      "source_b_count": 3,
+      "codomain": "shared measurables (V-266152)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 3,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266152:apm_policy_auth_server_agent:1",
+          "shared_key": "apm_policy.auth_server_agent",
+          "left_id": "observed[apm_policy.auth_server_agent] = present",
+          "right_id": "required[apm_policy.auth_server_agent] tacacsplus_auth OR kerberos_auth",
+          "observed_value": "present",
+          "required_value": "tacacsplus_auth OR kerberos_auth",
+          "comparison_expression": "observed(present) satisfies required(tacacsplus_auth OR kerberos_auth)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm policy access-policy all-properties"
+        },
+        {
+          "pullback_id": "V-266152:apm_policy_mfa_agent:2",
+          "shared_key": "apm_policy.mfa_agent",
+          "left_id": "observed[apm_policy.mfa_agent] = present",
+          "right_id": "required[apm_policy.mfa_agent] machinecert_auth OR client_cert",
+          "observed_value": "present",
+          "required_value": "machinecert_auth OR client_cert",
+          "comparison_expression": "observed(present) satisfies required(machinecert_auth OR client_cert)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm policy access-policy all-properties"
+        },
+        {
+          "pullback_id": "V-266152:auth_tacacs_server_count:3",
+          "shared_key": "auth_tacacs.server_count",
+          "left_id": "observed[auth_tacacs.server_count] = 2",
+          "right_id": "required[auth_tacacs.server_count] >= 2",
+          "observed_value": "2",
+          "required_value": ">= 2",
+          "comparison_expression": "observed(2) satisfies required(>= 2)",
+          "cardinality": "ok",
+          "source": "tmsh:list auth tacacs system-auth all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266152:apm_policy_auth_server_agent:1",
+      "shared_key": "apm_policy.auth_server_agent",
+      "left_id": "observed[apm_policy.auth_server_agent] = present",
+      "right_id": "required[apm_policy.auth_server_agent] tacacsplus_auth OR kerberos_auth",
+      "observed_value": "present",
+      "required_value": "tacacsplus_auth OR kerberos_auth",
+      "source": "tmsh:list apm policy access-policy all-properties",
+      "comparison_expression": "observed(present) satisfies required(tacacsplus_auth OR kerberos_auth)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266152:apm_policy_mfa_agent:2",
+      "shared_key": "apm_policy.mfa_agent",
+      "left_id": "observed[apm_policy.mfa_agent] = present",
+      "right_id": "required[apm_policy.mfa_agent] machinecert_auth OR client_cert",
+      "observed_value": "present",
+      "required_value": "machinecert_auth OR client_cert",
+      "source": "tmsh:list apm policy access-policy all-properties",
+      "comparison_expression": "observed(present) satisfies required(machinecert_auth OR client_cert)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266152:auth_tacacs_server_count:3",
+      "shared_key": "auth_tacacs.server_count",
+      "left_id": "observed[auth_tacacs.server_count] = 2",
+      "right_id": "required[auth_tacacs.server_count] >= 2",
+      "observed_value": "2",
+      "required_value": ">= 2",
+      "source": "tmsh:list auth tacacs system-auth all-properties",
+      "comparison_expression": "observed(2) satisfies required(>= 2)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266152",
+      "requirement": "The F5 BIG-IP appliance providing user authentication intermediary services must uniquely identify and authenticate users using redundant authentication servers and multifactor authentication (MFA).",
+      "status": "NOT_A_FINDING",
+      "why": "APM user-auth policy: access policy graph must have an auth agent + MFA agent AND TACACS system-auth must have >= 2 servers.",
+      "tmsh_remediation_command": "[Manual] Review APM access profile / policy and apply DoD-approved controls.",
+      "rest_remediation_command": "[Manual] PATCH APM objects via Policy Editor or iControl-REST.",
+      "evidence_keys": [
+        "tmsh_apm_profile_access",
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_log_setting"
+      ],
+      "comparison_summary": {
+        "total": 3,
+        "pass": 3,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266152 - apm_access evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266152",
+        "detail": "Collected 2 source snapshot(s) producing 3 measurement(s).",
+        "endpoints": [
+          "tmsh:list apm policy access-policy all-properties",
+          "tmsh:list auth tacacs system-auth all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266152",
+        "source_a": "observed appliance evidence (V-266152)",
+        "source_a_count": 3,
+        "source_b": "STIG-required predicates (V-266152)",
+        "source_b_count": 3,
+        "codomain": "shared measurables (V-266152)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 3,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266152:apm_policy_auth_server_agent:1",
+            "shared_key": "apm_policy.auth_server_agent",
+            "left_id": "observed[apm_policy.auth_server_agent] = present",
+            "right_id": "required[apm_policy.auth_server_agent] tacacsplus_auth OR kerberos_auth",
+            "observed_value": "present",
+            "required_value": "tacacsplus_auth OR kerberos_auth",
+            "comparison_expression": "observed(present) satisfies required(tacacsplus_auth OR kerberos_auth)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm policy access-policy all-properties"
+          },
+          {
+            "pullback_id": "V-266152:apm_policy_mfa_agent:2",
+            "shared_key": "apm_policy.mfa_agent",
+            "left_id": "observed[apm_policy.mfa_agent] = present",
+            "right_id": "required[apm_policy.mfa_agent] machinecert_auth OR client_cert",
+            "observed_value": "present",
+            "required_value": "machinecert_auth OR client_cert",
+            "comparison_expression": "observed(present) satisfies required(machinecert_auth OR client_cert)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm policy access-policy all-properties"
+          },
+          {
+            "pullback_id": "V-266152:auth_tacacs_server_count:3",
+            "shared_key": "auth_tacacs.server_count",
+            "left_id": "observed[auth_tacacs.server_count] = 2",
+            "right_id": "required[auth_tacacs.server_count] >= 2",
+            "observed_value": "2",
+            "required_value": ">= 2",
+            "comparison_expression": "observed(2) satisfies required(>= 2)",
+            "cardinality": "ok",
+            "source": "tmsh:list auth tacacs system-auth all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_policy.auth_server_agent @ tmsh:list apm policy access-policy all-properties",
+        "pullback_id": "V-266152:apm_policy_auth_server_agent:1",
+        "required": "tacacsplus_auth OR kerberos_auth",
+        "observed": "present",
+        "source": "tmsh:list apm policy access-policy all-properties",
+        "comparison_expression": "observed(present) satisfies required(tacacsplus_auth OR kerberos_auth)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_policy.mfa_agent @ tmsh:list apm policy access-policy all-properties",
+        "pullback_id": "V-266152:apm_policy_mfa_agent:2",
+        "required": "machinecert_auth OR client_cert",
+        "observed": "present",
+        "source": "tmsh:list apm policy access-policy all-properties",
+        "comparison_expression": "observed(present) satisfies required(machinecert_auth OR client_cert)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_tacacs.server_count @ tmsh:list auth tacacs system-auth all-properties",
+        "pullback_id": "V-266152:auth_tacacs_server_count:3",
+        "required": ">= 2",
+        "observed": "2",
+        "source": "tmsh:list auth tacacs system-auth all-properties",
+        "comparison_expression": "observed(2) satisfies required(>= 2)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 3,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 3
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "APM user-auth policy: access policy graph must have an auth agent + MFA agent AND TACACS system-auth must have >= 2 servers.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "APM user-auth policy: access policy graph must have an auth agent + MFA agent AND TACACS system-auth must have >= 2 servers.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266152"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266152/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266152/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

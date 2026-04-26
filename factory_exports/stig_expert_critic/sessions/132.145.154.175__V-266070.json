@@ -1,0 +1,151 @@
+{
+  "ok": true,
+  "vuln_id": "V-266070",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:24.426169Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "sys_sshd_banner": "enabled",
+    "sys_httpd_gui_security_banner_configured": true,
+    "guiSecurityBannerText": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
+  },
+  "evidence": {
+    "sys_sshd": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/sshd"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:sshd:sshdstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/sshd?ver=17.5.1.3\",\n  \"allow\": [\n    \"ALL\"\n  ],\n  \"banner\": \"enabled\",\n  \"bannerText\": \"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not privat",
+      "blob_sha256": "",
+      "bytes": 1583
+    },
+    "sys_global_settings": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/global-settings"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:global-settings:global-settingsstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/global-settings?ver=17.5.1.3\",\n  \"awsApiMaxConcurrency\": 1,\n  \"consoleInactivityTimeout\": 300,\n  \"customAddr\": \"none\",\n  \"failsafeAction\": \"go-offline-restart-tm\",\n  \"fileBlacklistPathPrefix\": \"{/shared/3dns/} {/shared/bin/} {/shared/core/} {/appdata/core/} {/shared/datasync/} {/shared/em/} {/shared/GeoIP/} {/shared/images/} {/shared/lib/} {/shared/lib64/} {/shared/log/} {/shared/lost+found/} {/shared/mgmt/} {/shared/nfb/} {/shared/ssh/} {/shared/statsd/} {/shared/tmstat/} {/shared/vadc/} {/config/aaa/} {/config/big3d/} {/config/bigip/} {/config/filestore/} {/config/gtm/} {/config/httpd/} {/config/ntp.conf} {/config/rndc.key} {/config/ssh/} {/config/ssl/}\",\n  \"fileBlacklistReadOnlyPathPr",
+      "blob_sha256": "",
+      "bytes": 2805
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "sys_sshd_banner:e0d3ef35",
+      "measurable": "sys_sshd_banner",
+      "required": "== 'enabled'",
+      "observed": "enabled",
+      "evidence_source": "rest:/mgmt/tm/sys/sshd",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "sys_httpd_gui_security_banner_configured:db8bba14",
+      "measurable": "sys_httpd_gui_security_banner_configured",
+      "required": "== true",
+      "observed": true,
+      "evidence_source": "rest:/mgmt/tm/sys/global-settings",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "guiSecurityBannerText:74a48adc",
+      "measurable": "guiSecurityBannerText",
+      "required": "== canonical_dod_banner_text",
+      "observed": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.",
+      "evidence_source": "rest:/mgmt/tm/sys/global-settings",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266070",
+      "status": "NOT_A_FINDING",
+      "requirement": "SSH and TMUI security banner configuration were evaluated from live appliance settings.",
+      "why": "SSH and TMUI security banner configuration were evaluated from live appliance settings.",
+      "tmsh_remediation_command": "tmsh modify sys sshd banner enabled; tmsh modify sys global-settings gui-security-banner enabled; tmsh save sys config",
+      "rest_remediation_command": ""
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 3,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "sys_sshd_banner == 'enabled' AND sys_httpd_gui_security_banner_configured == true AND guiSecurityBannerText == canonical_dod_banner_text",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "sys_sshd_banner:e0d3ef35",
+            "measurable": "sys_sshd_banner",
+            "required": "== 'enabled'",
+            "observed": "enabled",
+            "evidence_source": "rest:/mgmt/tm/sys/sshd",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "sys_httpd_gui_security_banner_configured:db8bba14",
+            "measurable": "sys_httpd_gui_security_banner_configured",
+            "required": "== true",
+            "observed": true,
+            "evidence_source": "rest:/mgmt/tm/sys/global-settings",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "guiSecurityBannerText:74a48adc",
+            "measurable": "guiSecurityBannerText",
+            "required": "== canonical_dod_banner_text",
+            "observed": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.",
+            "evidence_source": "rest:/mgmt/tm/sys/global-settings",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266070",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

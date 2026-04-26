@@ -1,0 +1,550 @@
+{
+  "ok": true,
+  "vuln_id": "V-266095",
+  "source_stig": {
+    "vuln_id": "V-266095",
+    "ruleID": "SV-266095r1024904_rule",
+    "checkid": "C-70019r1024903_chk",
+    "fixid": "F-69922r1023535_fix",
+    "title": "The F5 BIG-IP appliance must set the idle time before automatic logout to five minutes of inactivity except to fulfill documented and validated mission requirements.",
+    "checktext": "If a documented and validated reason for not implementing the five-minute idle timeout exists, this is not a finding.\n\nFrom the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings, verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\n\ntmsh list sys httpd auth-pam-idle-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list sys httpd auth-pam-dashboard-timeout\nNote: This must return a value of \"on\".\n\ntmsh list sys global-settings console-inactivity-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list cli global-settings idle-timeout\nNote: This must return a value of 5.\n\nSSHD:\ntmsh list sys sshd inactivity-timeout\nNote: This must return a value of 300 or less.\n\nIf the BIG-IP appliance is not configured to terminate inactive sessions after five minutes of inactivity, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n4. Click \"Update\".\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n6. Click \"Update\".\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\ntmsh modify sys httpd auth-pam-idle-timeout 300\n\ntmsh modify sys httpd auth-pam-dashboard-timeout on\n\ntmsh modify sys global-settings console-inactivity-timeout 300\n\ntmsh modify cli global-settings idle-timeout 5\n\nSSHD:\ntmsh modify sys sshd inactivity-timeout 300\n\ntmsh save sys config",
+    "description": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. \n\nTerminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level, or deallocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.\n\nSatisfies: SRG-APP-000190-NDM-000267, SRG-APP-000003-NDM-000202",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "4df1e340eae909e65cc79c406f79b0d015c49a8ed300d21266256beaa29458f5"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_sys_httpd": {
+      "source": "tmsh_sys_httpd",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys httpd all-properties"
+      },
+      "blob_sha256": "8b1bbce5e5513e10",
+      "bytes": 1347
+    },
+    "tmsh_cli_global_settings": {
+      "source": "tmsh_cli_global_settings",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list cli global-settings all-properties"
+      },
+      "blob_sha256": "ae199dd1e9ef8a80",
+      "bytes": 123
+    },
+    "tmsh_sys_global_settings": {
+      "source": "tmsh_sys_global_settings",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys global-settings all-properties"
+      },
+      "blob_sha256": "d667ef5cfd769b48",
+      "bytes": 2780
+    },
+    "sys_sshd": {
+      "source": "sys_sshd",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/sshd"
+      },
+      "blob_sha256": "f55dd9182a31d455",
+      "bytes": 1584
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266095:sys_httpd_auth_pam_idle_timeout:1",
+      "carrier_coordinate": "tmsh:list sys httpd all-properties",
+      "measurable": "sys_httpd.auth_pam_idle_timeout",
+      "lawful_property": "<= 300",
+      "required": "<= 300",
+      "observed": "300",
+      "comparison_expression": "observed(300) satisfies required(<= 300)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_httpd",
+      "source_stig": {
+        "vuln_id": "V-266095",
+        "ruleID": "SV-266095r1024904_rule",
+        "checkid": "C-70019r1024903_chk",
+        "fixid": "F-69922r1023535_fix",
+        "title": "The F5 BIG-IP appliance must set the idle time before automatic logout to five minutes of inactivity except to fulfill documented and validated mission requirements.",
+        "checktext": "If a documented and validated reason for not implementing the five-minute idle timeout exists, this is not a finding.\n\nFrom the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings, verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\n\ntmsh list sys httpd auth-pam-idle-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list sys httpd auth-pam-dashboard-timeout\nNote: This must return a value of \"on\".\n\ntmsh list sys global-settings console-inactivity-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list cli global-settings idle-timeout\nNote: This must return a value of 5.\n\nSSHD:\ntmsh list sys sshd inactivity-timeout\nNote: This must return a value of 300 or less.\n\nIf the BIG-IP appliance is not configured to terminate inactive sessions after five minutes of inactivity, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n4. Click \"Update\".\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n6. Click \"Update\".\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\ntmsh modify sys httpd auth-pam-idle-timeout 300\n\ntmsh modify sys httpd auth-pam-dashboard-timeout on\n\ntmsh modify sys global-settings console-inactivity-timeout 300\n\ntmsh modify cli global-settings idle-timeout 5\n\nSSHD:\ntmsh modify sys sshd inactivity-timeout 300\n\ntmsh save sys config",
+        "description": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. \n\nTerminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level, or deallocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.\n\nSatisfies: SRG-APP-000190-NDM-000267, SRG-APP-000003-NDM-000202",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "4df1e340eae909e65cc79c406f79b0d015c49a8ed300d21266256beaa29458f5"
+      },
+      "vuln_id": "V-266095"
+    },
+    {
+      "pullback_id": "V-266095:sys_httpd_auth_pam_dashboard_timeout:2",
+      "carrier_coordinate": "tmsh:list sys httpd all-properties",
+      "measurable": "sys_httpd.auth_pam_dashboard_timeout",
+      "lawful_property": "on",
+      "required": "on",
+      "observed": "on",
+      "comparison_expression": "observed(on) satisfies required(on)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_httpd",
+      "source_stig": {
+        "vuln_id": "V-266095",
+        "ruleID": "SV-266095r1024904_rule",
+        "checkid": "C-70019r1024903_chk",
+        "fixid": "F-69922r1023535_fix",
+        "title": "The F5 BIG-IP appliance must set the idle time before automatic logout to five minutes of inactivity except to fulfill documented and validated mission requirements.",
+        "checktext": "If a documented and validated reason for not implementing the five-minute idle timeout exists, this is not a finding.\n\nFrom the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings, verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\n\ntmsh list sys httpd auth-pam-idle-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list sys httpd auth-pam-dashboard-timeout\nNote: This must return a value of \"on\".\n\ntmsh list sys global-settings console-inactivity-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list cli global-settings idle-timeout\nNote: This must return a value of 5.\n\nSSHD:\ntmsh list sys sshd inactivity-timeout\nNote: This must return a value of 300 or less.\n\nIf the BIG-IP appliance is not configured to terminate inactive sessions after five minutes of inactivity, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n4. Click \"Update\".\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n6. Click \"Update\".\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\ntmsh modify sys httpd auth-pam-idle-timeout 300\n\ntmsh modify sys httpd auth-pam-dashboard-timeout on\n\ntmsh modify sys global-settings console-inactivity-timeout 300\n\ntmsh modify cli global-settings idle-timeout 5\n\nSSHD:\ntmsh modify sys sshd inactivity-timeout 300\n\ntmsh save sys config",
+        "description": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. \n\nTerminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level, or deallocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.\n\nSatisfies: SRG-APP-000190-NDM-000267, SRG-APP-000003-NDM-000202",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "4df1e340eae909e65cc79c406f79b0d015c49a8ed300d21266256beaa29458f5"
+      },
+      "vuln_id": "V-266095"
+    },
+    {
+      "pullback_id": "V-266095:cli_global_idle_timeout:3",
+      "carrier_coordinate": "tmsh:list cli global-settings all-properties",
+      "measurable": "cli_global.idle_timeout",
+      "lawful_property": "<= 5",
+      "required": "<= 5",
+      "observed": "5",
+      "comparison_expression": "observed(5) satisfies required(<= 5)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_cli_global_settings",
+      "source_stig": {
+        "vuln_id": "V-266095",
+        "ruleID": "SV-266095r1024904_rule",
+        "checkid": "C-70019r1024903_chk",
+        "fixid": "F-69922r1023535_fix",
+        "title": "The F5 BIG-IP appliance must set the idle time before automatic logout to five minutes of inactivity except to fulfill documented and validated mission requirements.",
+        "checktext": "If a documented and validated reason for not implementing the five-minute idle timeout exists, this is not a finding.\n\nFrom the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings, verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\n\ntmsh list sys httpd auth-pam-idle-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list sys httpd auth-pam-dashboard-timeout\nNote: This must return a value of \"on\".\n\ntmsh list sys global-settings console-inactivity-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list cli global-settings idle-timeout\nNote: This must return a value of 5.\n\nSSHD:\ntmsh list sys sshd inactivity-timeout\nNote: This must return a value of 300 or less.\n\nIf the BIG-IP appliance is not configured to terminate inactive sessions after five minutes of inactivity, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n4. Click \"Update\".\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n6. Click \"Update\".\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\ntmsh modify sys httpd auth-pam-idle-timeout 300\n\ntmsh modify sys httpd auth-pam-dashboard-timeout on\n\ntmsh modify sys global-settings console-inactivity-timeout 300\n\ntmsh modify cli global-settings idle-timeout 5\n\nSSHD:\ntmsh modify sys sshd inactivity-timeout 300\n\ntmsh save sys config",
+        "description": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. \n\nTerminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level, or deallocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.\n\nSatisfies: SRG-APP-000190-NDM-000267, SRG-APP-000003-NDM-000202",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "4df1e340eae909e65cc79c406f79b0d015c49a8ed300d21266256beaa29458f5"
+      },
+      "vuln_id": "V-266095"
+    },
+    {
+      "pullback_id": "V-266095:sys_global_settings_console_inactivity_timeout:4",
+      "carrier_coordinate": "tmsh:list sys global-settings all-properties",
+      "measurable": "sys_global_settings.console_inactivity_timeout",
+      "lawful_property": "<= 300",
+      "required": "<= 300",
+      "observed": "300",
+      "comparison_expression": "observed(300) satisfies required(<= 300)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_global_settings",
+      "source_stig": {
+        "vuln_id": "V-266095",
+        "ruleID": "SV-266095r1024904_rule",
+        "checkid": "C-70019r1024903_chk",
+        "fixid": "F-69922r1023535_fix",
+        "title": "The F5 BIG-IP appliance must set the idle time before automatic logout to five minutes of inactivity except to fulfill documented and validated mission requirements.",
+        "checktext": "If a documented and validated reason for not implementing the five-minute idle timeout exists, this is not a finding.\n\nFrom the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings, verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\n\ntmsh list sys httpd auth-pam-idle-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list sys httpd auth-pam-dashboard-timeout\nNote: This must return a value of \"on\".\n\ntmsh list sys global-settings console-inactivity-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list cli global-settings idle-timeout\nNote: This must return a value of 5.\n\nSSHD:\ntmsh list sys sshd inactivity-timeout\nNote: This must return a value of 300 or less.\n\nIf the BIG-IP appliance is not configured to terminate inactive sessions after five minutes of inactivity, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n4. Click \"Update\".\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n6. Click \"Update\".\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\ntmsh modify sys httpd auth-pam-idle-timeout 300\n\ntmsh modify sys httpd auth-pam-dashboard-timeout on\n\ntmsh modify sys global-settings console-inactivity-timeout 300\n\ntmsh modify cli global-settings idle-timeout 5\n\nSSHD:\ntmsh modify sys sshd inactivity-timeout 300\n\ntmsh save sys config",
+        "description": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. \n\nTerminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level, or deallocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.\n\nSatisfies: SRG-APP-000190-NDM-000267, SRG-APP-000003-NDM-000202",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "4df1e340eae909e65cc79c406f79b0d015c49a8ed300d21266256beaa29458f5"
+      },
+      "vuln_id": "V-266095"
+    },
+    {
+      "pullback_id": "V-266095:sys_sshd_inactivity_timeout:5",
+      "carrier_coordinate": "rest:/mgmt/tm/sys/sshd",
+      "measurable": "sys_sshd.inactivity_timeout",
+      "lawful_property": "<= 300",
+      "required": "<= 300",
+      "observed": "300",
+      "comparison_expression": "observed(300) satisfies required(<= 300)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "sys_sshd",
+      "source_stig": {
+        "vuln_id": "V-266095",
+        "ruleID": "SV-266095r1024904_rule",
+        "checkid": "C-70019r1024903_chk",
+        "fixid": "F-69922r1023535_fix",
+        "title": "The F5 BIG-IP appliance must set the idle time before automatic logout to five minutes of inactivity except to fulfill documented and validated mission requirements.",
+        "checktext": "If a documented and validated reason for not implementing the five-minute idle timeout exists, this is not a finding.\n\nFrom the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings, verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Verify \"Idle Time Before Automatic Logout\" is configured for 300 seconds or less.\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\n\ntmsh list sys httpd auth-pam-idle-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list sys httpd auth-pam-dashboard-timeout\nNote: This must return a value of \"on\".\n\ntmsh list sys global-settings console-inactivity-timeout\nNote: This must return a value of 300 or less.\n\ntmsh list cli global-settings idle-timeout\nNote: This must return a value of 5.\n\nSSHD:\ntmsh list sys sshd inactivity-timeout\nNote: This must return a value of 300 or less.\n\nIf the BIG-IP appliance is not configured to terminate inactive sessions after five minutes of inactivity, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\nHTTPD/TMSH:\n1. System.\n2. Preferences.\n3. Under Security Settings configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n4. Click \"Update\".\n\nSSHD:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Configure \"Idle Time Before Automatic Logout\" to 300 seconds.\n6. Click \"Update\".\n\nFrom the BIG-IP Console, issue the following commands:\nHTTPD/TMSH:\ntmsh modify sys httpd auth-pam-idle-timeout 300\n\ntmsh modify sys httpd auth-pam-dashboard-timeout on\n\ntmsh modify sys global-settings console-inactivity-timeout 300\n\ntmsh modify cli global-settings idle-timeout 5\n\nSSHD:\ntmsh modify sys sshd inactivity-timeout 300\n\ntmsh save sys config",
+        "description": "Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. \n\nTerminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level, or deallocating networking assignments at the application level if multiple application sessions are using a single, operating system-level network connection. This does not mean that the device terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.\n\nSatisfies: SRG-APP-000190-NDM-000267, SRG-APP-000003-NDM-000202",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "4df1e340eae909e65cc79c406f79b0d015c49a8ed300d21266256beaa29458f5"
+      },
+      "vuln_id": "V-266095"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266095)",
+      "source_a_count": 5,
+      "source_b": "STIG-required predicates (V-266095)",
+      "source_b_count": 5,
+      "codomain": "shared measurables (V-266095)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 5,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266095:sys_httpd_auth_pam_idle_timeout:1",
+          "shared_key": "sys_httpd.auth_pam_idle_timeout",
+          "left_id": "observed[sys_httpd.auth_pam_idle_timeout] = 300",
+          "right_id": "required[sys_httpd.auth_pam_idle_timeout] <= 300",
+          "observed_value": "300",
+          "required_value": "<= 300",
+          "comparison_expression": "observed(300) satisfies required(<= 300)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys httpd all-properties"
+        },
+        {
+          "pullback_id": "V-266095:sys_httpd_auth_pam_dashboard_timeout:2",
+          "shared_key": "sys_httpd.auth_pam_dashboard_timeout",
+          "left_id": "observed[sys_httpd.auth_pam_dashboard_timeout] = on",
+          "right_id": "required[sys_httpd.auth_pam_dashboard_timeout] on",
+          "observed_value": "on",
+          "required_value": "on",
+          "comparison_expression": "observed(on) satisfies required(on)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys httpd all-properties"
+        },
+        {
+          "pullback_id": "V-266095:cli_global_idle_timeout:3",
+          "shared_key": "cli_global.idle_timeout",
+          "left_id": "observed[cli_global.idle_timeout] = 5",
+          "right_id": "required[cli_global.idle_timeout] <= 5",
+          "observed_value": "5",
+          "required_value": "<= 5",
+          "comparison_expression": "observed(5) satisfies required(<= 5)",
+          "cardinality": "ok",
+          "source": "tmsh:list cli global-settings all-properties"
+        },
+        {
+          "pullback_id": "V-266095:sys_global_settings_console_inactivity_timeout:4",
+          "shared_key": "sys_global_settings.console_inactivity_timeout",
+          "left_id": "observed[sys_global_settings.console_inactivity_timeout] = 300",
+          "right_id": "required[sys_global_settings.console_inactivity_timeout] <= 300",
+          "observed_value": "300",
+          "required_value": "<= 300",
+          "comparison_expression": "observed(300) satisfies required(<= 300)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys global-settings all-properties"
+        },
+        {
+          "pullback_id": "V-266095:sys_sshd_inactivity_timeout:5",
+          "shared_key": "sys_sshd.inactivity_timeout",
+          "left_id": "observed[sys_sshd.inactivity_timeout] = 300",
+          "right_id": "required[sys_sshd.inactivity_timeout] <= 300",
+          "observed_value": "300",
+          "required_value": "<= 300",
+          "comparison_expression": "observed(300) satisfies required(<= 300)",
+          "cardinality": "ok",
+          "source": "rest:/mgmt/tm/sys/sshd"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266095:sys_httpd_auth_pam_idle_timeout:1",
+      "shared_key": "sys_httpd.auth_pam_idle_timeout",
+      "left_id": "observed[sys_httpd.auth_pam_idle_timeout] = 300",
+      "right_id": "required[sys_httpd.auth_pam_idle_timeout] <= 300",
+      "observed_value": "300",
+      "required_value": "<= 300",
+      "source": "tmsh:list sys httpd all-properties",
+      "comparison_expression": "observed(300) satisfies required(<= 300)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266095:sys_httpd_auth_pam_dashboard_timeout:2",
+      "shared_key": "sys_httpd.auth_pam_dashboard_timeout",
+      "left_id": "observed[sys_httpd.auth_pam_dashboard_timeout] = on",
+      "right_id": "required[sys_httpd.auth_pam_dashboard_timeout] on",
+      "observed_value": "on",
+      "required_value": "on",
+      "source": "tmsh:list sys httpd all-properties",
+      "comparison_expression": "observed(on) satisfies required(on)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266095:cli_global_idle_timeout:3",
+      "shared_key": "cli_global.idle_timeout",
+      "left_id": "observed[cli_global.idle_timeout] = 5",
+      "right_id": "required[cli_global.idle_timeout] <= 5",
+      "observed_value": "5",
+      "required_value": "<= 5",
+      "source": "tmsh:list cli global-settings all-properties",
+      "comparison_expression": "observed(5) satisfies required(<= 5)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266095:sys_global_settings_console_inactivity_timeout:4",
+      "shared_key": "sys_global_settings.console_inactivity_timeout",
+      "left_id": "observed[sys_global_settings.console_inactivity_timeout] = 300",
+      "right_id": "required[sys_global_settings.console_inactivity_timeout] <= 300",
+      "observed_value": "300",
+      "required_value": "<= 300",
+      "source": "tmsh:list sys global-settings all-properties",
+      "comparison_expression": "observed(300) satisfies required(<= 300)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266095:sys_sshd_inactivity_timeout:5",
+      "shared_key": "sys_sshd.inactivity_timeout",
+      "left_id": "observed[sys_sshd.inactivity_timeout] = 300",
+      "right_id": "required[sys_sshd.inactivity_timeout] <= 300",
+      "observed_value": "300",
+      "required_value": "<= 300",
+      "source": "rest:/mgmt/tm/sys/sshd",
+      "comparison_expression": "observed(300) satisfies required(<= 300)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266095",
+      "requirement": "The F5 BIG-IP appliance must set the idle time before automatic logout to five minutes of inactivity except to fulfill documented and validated mission requirements.",
+      "status": "NOT_A_FINDING",
+      "why": "Idle logout evaluated across HTTPD/TMUI, CLI, console, and SSH timeout sources.",
+      "tmsh_remediation_command": "tmsh modify sys sshd inactivity-timeout 600 login no; tmsh save sys config",
+      "rest_remediation_command": "PATCH /mgmt/tm/sys/sshd {\"inactivityTimeout\": 600, \"login\": \"no\"}",
+      "evidence_keys": [
+        "sys_sshd"
+      ],
+      "comparison_summary": {
+        "total": 5,
+        "pass": 5,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266095 - sshd evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266095",
+        "detail": "Collected 4 source snapshot(s) producing 5 measurement(s).",
+        "endpoints": [
+          "tmsh:list sys httpd all-properties",
+          "tmsh:list cli global-settings all-properties",
+          "tmsh:list sys global-settings all-properties",
+          "rest:/mgmt/tm/sys/sshd"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266095",
+        "source_a": "observed appliance evidence (V-266095)",
+        "source_a_count": 5,
+        "source_b": "STIG-required predicates (V-266095)",
+        "source_b_count": 5,
+        "codomain": "shared measurables (V-266095)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 5,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266095:sys_httpd_auth_pam_idle_timeout:1",
+            "shared_key": "sys_httpd.auth_pam_idle_timeout",
+            "left_id": "observed[sys_httpd.auth_pam_idle_timeout] = 300",
+            "right_id": "required[sys_httpd.auth_pam_idle_timeout] <= 300",
+            "observed_value": "300",
+            "required_value": "<= 300",
+            "comparison_expression": "observed(300) satisfies required(<= 300)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys httpd all-properties"
+          },
+          {
+            "pullback_id": "V-266095:sys_httpd_auth_pam_dashboard_timeout:2",
+            "shared_key": "sys_httpd.auth_pam_dashboard_timeout",
+            "left_id": "observed[sys_httpd.auth_pam_dashboard_timeout] = on",
+            "right_id": "required[sys_httpd.auth_pam_dashboard_timeout] on",
+            "observed_value": "on",
+            "required_value": "on",
+            "comparison_expression": "observed(on) satisfies required(on)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys httpd all-properties"
+          },
+          {
+            "pullback_id": "V-266095:cli_global_idle_timeout:3",
+            "shared_key": "cli_global.idle_timeout",
+            "left_id": "observed[cli_global.idle_timeout] = 5",
+            "right_id": "required[cli_global.idle_timeout] <= 5",
+            "observed_value": "5",
+            "required_value": "<= 5",
+            "comparison_expression": "observed(5) satisfies required(<= 5)",
+            "cardinality": "ok",
+            "source": "tmsh:list cli global-settings all-properties"
+          },
+          {
+            "pullback_id": "V-266095:sys_global_settings_console_inactivity_timeout:4",
+            "shared_key": "sys_global_settings.console_inactivity_timeout",
+            "left_id": "observed[sys_global_settings.console_inactivity_timeout] = 300",
+            "right_id": "required[sys_global_settings.console_inactivity_timeout] <= 300",
+            "observed_value": "300",
+            "required_value": "<= 300",
+            "comparison_expression": "observed(300) satisfies required(<= 300)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys global-settings all-properties"
+          },
+          {
+            "pullback_id": "V-266095:sys_sshd_inactivity_timeout:5",
+            "shared_key": "sys_sshd.inactivity_timeout",
+            "left_id": "observed[sys_sshd.inactivity_timeout] = 300",
+            "right_id": "required[sys_sshd.inactivity_timeout] <= 300",
+            "observed_value": "300",
+            "required_value": "<= 300",
+            "comparison_expression": "observed(300) satisfies required(<= 300)",
+            "cardinality": "ok",
+            "source": "rest:/mgmt/tm/sys/sshd"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_httpd.auth_pam_idle_timeout @ tmsh:list sys httpd all-properties",
+        "pullback_id": "V-266095:sys_httpd_auth_pam_idle_timeout:1",
+        "required": "<= 300",
+        "observed": "300",
+        "source": "tmsh:list sys httpd all-properties",
+        "comparison_expression": "observed(300) satisfies required(<= 300)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_httpd.auth_pam_dashboard_timeout @ tmsh:list sys httpd all-properties",
+        "pullback_id": "V-266095:sys_httpd_auth_pam_dashboard_timeout:2",
+        "required": "on",
+        "observed": "on",
+        "source": "tmsh:list sys httpd all-properties",
+        "comparison_expression": "observed(on) satisfies required(on)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - cli_global.idle_timeout @ tmsh:list cli global-settings all-properties",
+        "pullback_id": "V-266095:cli_global_idle_timeout:3",
+        "required": "<= 5",
+        "observed": "5",
+        "source": "tmsh:list cli global-settings all-properties",
+        "comparison_expression": "observed(5) satisfies required(<= 5)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_global_settings.console_inactivity_timeout @ tmsh:list sys global-settings all-properties",
+        "pullback_id": "V-266095:sys_global_settings_console_inactivity_timeout:4",
+        "required": "<= 300",
+        "observed": "300",
+        "source": "tmsh:list sys global-settings all-properties",
+        "comparison_expression": "observed(300) satisfies required(<= 300)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_sshd.inactivity_timeout @ rest:/mgmt/tm/sys/sshd",
+        "pullback_id": "V-266095:sys_sshd_inactivity_timeout:5",
+        "required": "<= 300",
+        "observed": "300",
+        "source": "rest:/mgmt/tm/sys/sshd",
+        "comparison_expression": "observed(300) satisfies required(<= 300)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 5,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 5
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Idle logout evaluated across HTTPD/TMUI, CLI, console, and SSH timeout sources.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Idle logout evaluated across HTTPD/TMUI, CLI, console, and SSH timeout sources.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266095"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266095/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266095/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

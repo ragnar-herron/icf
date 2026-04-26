@@ -1,12 +1,12 @@
 {
   "record_kind": "ExportBundle",
-  "generated_at": "2026-04-23T22:42:01.092220+00:00",
+  "generated_at": "2026-04-23T23:56:06.210226+00:00",
   "invariant": "Projection coalgebra may not exist unless Adapter coalgebra is promoted.",
   "kill_switch_enforced": true,
   "summary": {
     "total": 67,
-    "promoted": 52,
-    "projected_unresolved": 15
+    "promoted": 60,
+    "projected_unresolved": 7
   },
   "entries": [
     {
@@ -529,16 +529,30 @@
     },
     {
       "vuln_id": "V-266164",
-      "status": "projected_unresolved",
-      "verdict": "unresolved",
+      "status": "resolved",
+      "verdict": "not_a_finding",
       "evidence_ref": "live_state/full_campaign -> V-266164",
-      "pullback_row": null,
-      "legitimacy": "7/9",
-      "dp_gates": "8/10",
+      "pullback_row": {
+        "vuln_id": "V-266164",
+        "fields": [
+          "apm_profile_cookie_persistent"
+        ],
+        "required": {
+          "apm_profile_cookie_persistent": "== false"
+        },
+        "observed": {
+          "apm_profile_cookie_persistent": false
+        },
+        "operator_summary": "apm_profile_cookie_persistent == false",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
       "provenance_chain": [
         "assertion_contracts.json -> V-266164",
-        "KILL SWITCH: adapter not promoted (7/9)",
-        "live disposition was: pass"
+        "FactoryDistinctionBundle.json -> V-266164",
+        "LiveControlOutcomeMatrix.json -> V-266164",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
       ]
     },
     {
@@ -960,16 +974,33 @@
     },
     {
       "vuln_id": "V-266139",
-      "status": "projected_unresolved",
-      "verdict": "unresolved",
+      "status": "resolved",
+      "verdict": "not_a_finding",
       "evidence_ref": "live_state/full_campaign -> V-266139",
-      "pullback_row": null,
-      "legitimacy": "6/9",
-      "dp_gates": "7/10",
+      "pullback_row": {
+        "vuln_id": "V-266139",
+        "fields": [
+          "ltm_attached_client_ssl_profile_count",
+          "ltm_profile_client_ssl_protocol_compliant_count"
+        ],
+        "required": {
+          "ltm_attached_client_ssl_profile_count": "== 0",
+          "ltm_profile_client_ssl_protocol_compliant_count": "== ltm_attached_client_ssl_profile_count"
+        },
+        "observed": {
+          "ltm_attached_client_ssl_profile_count": 1,
+          "ltm_profile_client_ssl_protocol_compliant_count": 1
+        },
+        "operator_summary": "ltm_attached_client_ssl_profile_count == 0 OR ltm_profile_client_ssl_protocol_compliant_count == ltm_attached_client_ssl_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
       "provenance_chain": [
         "assertion_contracts.json -> V-266139",
-        "KILL SWITCH: adapter not promoted (6/9)",
-        "live disposition was: not-applicable"
+        "FactoryDistinctionBundle.json -> V-266139",
+        "LiveControlOutcomeMatrix.json -> V-266139",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
       ]
     },
     {
@@ -1098,58 +1129,126 @@
     },
     {
       "vuln_id": "V-266147",
-      "status": "projected_unresolved",
-      "verdict": "unresolved",
+      "status": "resolved",
+      "verdict": "not_a_finding",
       "evidence_ref": "live_state/full_campaign -> V-266147",
-      "pullback_row": null,
-      "legitimacy": "8/9",
-      "dp_gates": "9/10",
+      "pullback_row": {
+        "vuln_id": "V-266147",
+        "fields": [
+          "ltm_attached_smtp_profile_count",
+          "smtp_protocol_security_enabled_count"
+        ],
+        "required": {
+          "ltm_attached_smtp_profile_count": "== 0",
+          "smtp_protocol_security_enabled_count": "== ltm_attached_smtp_profile_count"
+        },
+        "observed": {
+          "ltm_attached_smtp_profile_count": 0,
+          "smtp_protocol_security_enabled_count": 0
+        },
+        "operator_summary": "ltm_attached_smtp_profile_count == 0 OR smtp_protocol_security_enabled_count == ltm_attached_smtp_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
       "provenance_chain": [
         "assertion_contracts.json -> V-266147",
-        "KILL SWITCH: adapter not promoted (8/9)",
-        "live disposition was: pass"
+        "FactoryDistinctionBundle.json -> V-266147",
+        "LiveControlOutcomeMatrix.json -> V-266147",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
       ]
     },
     {
       "vuln_id": "V-266148",
-      "status": "projected_unresolved",
-      "verdict": "unresolved",
+      "status": "resolved",
+      "verdict": "not_a_finding",
       "evidence_ref": "live_state/full_campaign -> V-266148",
-      "pullback_row": null,
-      "legitimacy": "8/9",
-      "dp_gates": "9/10",
+      "pullback_row": {
+        "vuln_id": "V-266148",
+        "fields": [
+          "ltm_attached_ftp_profile_count",
+          "ftp_protocol_security_enabled_count"
+        ],
+        "required": {
+          "ltm_attached_ftp_profile_count": "== 0",
+          "ftp_protocol_security_enabled_count": "== ltm_attached_ftp_profile_count"
+        },
+        "observed": {
+          "ltm_attached_ftp_profile_count": 0,
+          "ftp_protocol_security_enabled_count": 0
+        },
+        "operator_summary": "ltm_attached_ftp_profile_count == 0 OR ftp_protocol_security_enabled_count == ltm_attached_ftp_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
       "provenance_chain": [
         "assertion_contracts.json -> V-266148",
-        "KILL SWITCH: adapter not promoted (8/9)",
-        "live disposition was: pass"
+        "FactoryDistinctionBundle.json -> V-266148",
+        "LiveControlOutcomeMatrix.json -> V-266148",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
       ]
     },
     {
       "vuln_id": "V-266156",
-      "status": "projected_unresolved",
-      "verdict": "unresolved",
+      "status": "resolved",
+      "verdict": "not_a_finding",
       "evidence_ref": "live_state/full_campaign -> V-266156",
-      "pullback_row": null,
-      "legitimacy": "8/9",
-      "dp_gates": "9/10",
+      "pullback_row": {
+        "vuln_id": "V-266156",
+        "fields": [
+          "dos_custom_profile_count",
+          "dos_profiles_network_mitigate_count"
+        ],
+        "required": {
+          "dos_custom_profile_count": "== 0",
+          "dos_profiles_network_mitigate_count": "== dos_custom_profile_count"
+        },
+        "observed": {
+          "dos_custom_profile_count": 0,
+          "dos_profiles_network_mitigate_count": 0
+        },
+        "operator_summary": "dos_custom_profile_count == 0 OR dos_profiles_network_mitigate_count == dos_custom_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
       "provenance_chain": [
         "assertion_contracts.json -> V-266156",
-        "KILL SWITCH: adapter not promoted (8/9)",
-        "live disposition was: pass"
+        "FactoryDistinctionBundle.json -> V-266156",
+        "LiveControlOutcomeMatrix.json -> V-266156",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
       ]
     },
     {
       "vuln_id": "V-266157",
-      "status": "projected_unresolved",
-      "verdict": "unresolved",
+      "status": "resolved",
+      "verdict": "not_a_finding",
       "evidence_ref": "live_state/full_campaign -> V-266157",
-      "pullback_row": null,
-      "legitimacy": "8/9",
-      "dp_gates": "9/10",
+      "pullback_row": {
+        "vuln_id": "V-266157",
+        "fields": [
+          "dos_custom_profile_count",
+          "dos_profiles_dynamic_signatures_count"
+        ],
+        "required": {
+          "dos_custom_profile_count": "== 0",
+          "dos_profiles_dynamic_signatures_count": "== dos_custom_profile_count"
+        },
+        "observed": {
+          "dos_custom_profile_count": 0,
+          "dos_profiles_dynamic_signatures_count": 0
+        },
+        "operator_summary": "dos_custom_profile_count == 0 OR dos_profiles_dynamic_signatures_count == dos_custom_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
       "provenance_chain": [
         "assertion_contracts.json -> V-266157",
-        "KILL SWITCH: adapter not promoted (8/9)",
-        "live disposition was: pass"
+        "FactoryDistinctionBundle.json -> V-266157",
+        "LiveControlOutcomeMatrix.json -> V-266157",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
       ]
     },
     {
@@ -1261,16 +1360,33 @@
     },
     {
       "vuln_id": "V-266170",
-      "status": "projected_unresolved",
-      "verdict": "unresolved",
+      "status": "resolved",
+      "verdict": "not_a_finding",
       "evidence_ref": "live_state/full_campaign -> V-266170",
-      "pullback_row": null,
-      "legitimacy": "6/9",
-      "dp_gates": "7/10",
+      "pullback_row": {
+        "vuln_id": "V-266170",
+        "fields": [
+          "ltm_attached_client_ssl_profile_count",
+          "ltm_profile_client_ssl_strong_cipher_count"
+        ],
+        "required": {
+          "ltm_attached_client_ssl_profile_count": "== 0",
+          "ltm_profile_client_ssl_strong_cipher_count": "== ltm_attached_client_ssl_profile_count"
+        },
+        "observed": {
+          "ltm_attached_client_ssl_profile_count": 1,
+          "ltm_profile_client_ssl_strong_cipher_count": 1
+        },
+        "operator_summary": "ltm_attached_client_ssl_profile_count == 0 OR ltm_profile_client_ssl_strong_cipher_count == ltm_attached_client_ssl_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
       "provenance_chain": [
         "assertion_contracts.json -> V-266170",
-        "KILL SWITCH: adapter not promoted (6/9)",
-        "live disposition was: pass"
+        "FactoryDistinctionBundle.json -> V-266170",
+        "LiveControlOutcomeMatrix.json -> V-266170",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
       ]
     },
     {
@@ -1639,16 +1755,30 @@
     },
     {
       "vuln_id": "V-266065",
-      "status": "projected_unresolved",
-      "verdict": "unresolved",
+      "status": "resolved",
+      "verdict": "not_a_finding",
       "evidence_ref": "live_state/full_campaign -> V-266065",
-      "pullback_row": null,
-      "legitimacy": "8/9",
-      "dp_gates": "9/10",
+      "pullback_row": {
+        "vuln_id": "V-266065",
+        "fields": [
+          "auth_user_shared_accounts"
+        ],
+        "required": {
+          "auth_user_shared_accounts": "== 0"
+        },
+        "observed": {
+          "auth_user_shared_accounts": 0
+        },
+        "operator_summary": "auth_user_shared_accounts == 0",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
       "provenance_chain": [
         "assertion_contracts.json -> V-266065",
-        "KILL SWITCH: adapter not promoted (8/9)",
-        "live disposition was: pass"
+        "FactoryDistinctionBundle.json -> V-266065",
+        "LiveControlOutcomeMatrix.json -> V-266065",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
       ]
     },
     {

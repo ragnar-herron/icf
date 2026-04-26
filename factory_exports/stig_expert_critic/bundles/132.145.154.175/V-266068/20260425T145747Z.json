@@ -1,0 +1,539 @@
+{
+  "ok": true,
+  "vuln_id": "V-266068",
+  "source_stig": {
+    "vuln_id": "V-266068",
+    "ruleID": "SV-266068r1024599_rule",
+    "checkid": "C-69991r1023453_chk",
+    "fixid": "F-69894r1023454_fix",
+    "title": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under Local Traffic Logging:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under Audit Logging:\n a. MCP: Enable.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh list sys daemon-log-settings tmm os-log-level\n\nNote: This command must return a value of \"informational\".\n\ntmsh list sys daemon-log-settings tmm ssl-log-level\n\nNote: This must return a value of \"informational\":\n\ntmsh list sys daemon-log-settings mcpd audit\n\nNote: This must return a value of \"enabled\".\n\ntmsh list sys daemon-log-settings mcpd log-level\n\nNote: This must return a value of \"notice\".\n\ntmsh list sys db log.ssl.level value\n\nNote: This must return a value of \"informational\".\n\nIf the BIG-IP appliance is not configured to audit the execution of privileged functions, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under \u201cLocal Traffic Logging\u201d:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under \u201cAudit Logging\u201d:\n a. MCP: Enable.\n7. Update.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh modify sys daemon-log-settings tmm os-log-level informational\ntmsh modify sys daemon-log-settings tmm ssl-log-level informational\ntmsh modify sys daemon-log-settings mcpd audit enabled\ntmsh modify sys daemon-log-settings mcpd log-level notice\ntmsh modify sys db log.ssl.level value informational\ntmsh save sys config",
+    "description": "Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.\n\nSatisfies: SRG-APP-000343-NDM-000289, SRG-APP-000026-NDM-000208, SRG-APP-000027-NDM-000209, SRG-APP-000028-NDM-000210, SRG-APP-000029-NDM-000211, SRG-APP-000319-NDM-000283, SRG-APP-000080-NDM-000220, SRG-APP-000516-NDM-000334, SRG-APP-000091-NDM-000223, SRG-APP-000495-NDM-000318, SRG-APP-000499-NDM-000319, SRG-APP-000503-NDM-000320, SRG-APP-000504-NDM-000321, SRG-APP-000095-NDM-000225, SRG-APP-000096-NDM-000226, SRG-APP-000097-NDM-000227, SRG-APP-000098-NDM-000228, SRG-APP-000099-NDM-000229, SRG-APP-000100-NDM-000230, SRG-APP-000101-NDM-000231, SRG-APP-000381-NDM-000305",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "24feabe3e3ec2171bd34c3cd780a1b6da203f954106aca99e444bf40a0b31b20"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_sys_daemon_log_settings": {
+      "source": "tmsh_sys_daemon_log_settings",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys daemon-log-settings all-properties"
+      },
+      "blob_sha256": "02a2a477ed516b62",
+      "bytes": 685
+    },
+    "tmsh_cli_global_settings": {
+      "source": "tmsh_cli_global_settings",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list cli global-settings all-properties"
+      },
+      "blob_sha256": "ae199dd1e9ef8a80",
+      "bytes": 123
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266068:daemon_log_mcpd_audit:1",
+      "carrier_coordinate": "tmsh:list sys daemon-log-settings all-properties",
+      "measurable": "daemon_log.mcpd.audit",
+      "lawful_property": "enabled",
+      "required": "enabled",
+      "observed": "enabled",
+      "comparison_expression": "observed(enabled) satisfies required(enabled)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_daemon_log_settings",
+      "source_stig": {
+        "vuln_id": "V-266068",
+        "ruleID": "SV-266068r1024599_rule",
+        "checkid": "C-69991r1023453_chk",
+        "fixid": "F-69894r1023454_fix",
+        "title": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under Local Traffic Logging:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under Audit Logging:\n a. MCP: Enable.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh list sys daemon-log-settings tmm os-log-level\n\nNote: This command must return a value of \"informational\".\n\ntmsh list sys daemon-log-settings tmm ssl-log-level\n\nNote: This must return a value of \"informational\":\n\ntmsh list sys daemon-log-settings mcpd audit\n\nNote: This must return a value of \"enabled\".\n\ntmsh list sys daemon-log-settings mcpd log-level\n\nNote: This must return a value of \"notice\".\n\ntmsh list sys db log.ssl.level value\n\nNote: This must return a value of \"informational\".\n\nIf the BIG-IP appliance is not configured to audit the execution of privileged functions, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under \u201cLocal Traffic Logging\u201d:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under \u201cAudit Logging\u201d:\n a. MCP: Enable.\n7. Update.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh modify sys daemon-log-settings tmm os-log-level informational\ntmsh modify sys daemon-log-settings tmm ssl-log-level informational\ntmsh modify sys daemon-log-settings mcpd audit enabled\ntmsh modify sys daemon-log-settings mcpd log-level notice\ntmsh modify sys db log.ssl.level value informational\ntmsh save sys config",
+        "description": "Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.\n\nSatisfies: SRG-APP-000343-NDM-000289, SRG-APP-000026-NDM-000208, SRG-APP-000027-NDM-000209, SRG-APP-000028-NDM-000210, SRG-APP-000029-NDM-000211, SRG-APP-000319-NDM-000283, SRG-APP-000080-NDM-000220, SRG-APP-000516-NDM-000334, SRG-APP-000091-NDM-000223, SRG-APP-000495-NDM-000318, SRG-APP-000499-NDM-000319, SRG-APP-000503-NDM-000320, SRG-APP-000504-NDM-000321, SRG-APP-000095-NDM-000225, SRG-APP-000096-NDM-000226, SRG-APP-000097-NDM-000227, SRG-APP-000098-NDM-000228, SRG-APP-000099-NDM-000229, SRG-APP-000100-NDM-000230, SRG-APP-000101-NDM-000231, SRG-APP-000381-NDM-000305",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "24feabe3e3ec2171bd34c3cd780a1b6da203f954106aca99e444bf40a0b31b20"
+      },
+      "vuln_id": "V-266068"
+    },
+    {
+      "pullback_id": "V-266068:daemon_log_mcpd_log_level:2",
+      "carrier_coordinate": "tmsh:list sys daemon-log-settings all-properties",
+      "measurable": "daemon_log.mcpd.log_level",
+      "lawful_property": "notice",
+      "required": "notice",
+      "observed": "notice",
+      "comparison_expression": "observed(notice) satisfies required(notice)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_daemon_log_settings",
+      "source_stig": {
+        "vuln_id": "V-266068",
+        "ruleID": "SV-266068r1024599_rule",
+        "checkid": "C-69991r1023453_chk",
+        "fixid": "F-69894r1023454_fix",
+        "title": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under Local Traffic Logging:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under Audit Logging:\n a. MCP: Enable.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh list sys daemon-log-settings tmm os-log-level\n\nNote: This command must return a value of \"informational\".\n\ntmsh list sys daemon-log-settings tmm ssl-log-level\n\nNote: This must return a value of \"informational\":\n\ntmsh list sys daemon-log-settings mcpd audit\n\nNote: This must return a value of \"enabled\".\n\ntmsh list sys daemon-log-settings mcpd log-level\n\nNote: This must return a value of \"notice\".\n\ntmsh list sys db log.ssl.level value\n\nNote: This must return a value of \"informational\".\n\nIf the BIG-IP appliance is not configured to audit the execution of privileged functions, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under \u201cLocal Traffic Logging\u201d:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under \u201cAudit Logging\u201d:\n a. MCP: Enable.\n7. Update.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh modify sys daemon-log-settings tmm os-log-level informational\ntmsh modify sys daemon-log-settings tmm ssl-log-level informational\ntmsh modify sys daemon-log-settings mcpd audit enabled\ntmsh modify sys daemon-log-settings mcpd log-level notice\ntmsh modify sys db log.ssl.level value informational\ntmsh save sys config",
+        "description": "Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.\n\nSatisfies: SRG-APP-000343-NDM-000289, SRG-APP-000026-NDM-000208, SRG-APP-000027-NDM-000209, SRG-APP-000028-NDM-000210, SRG-APP-000029-NDM-000211, SRG-APP-000319-NDM-000283, SRG-APP-000080-NDM-000220, SRG-APP-000516-NDM-000334, SRG-APP-000091-NDM-000223, SRG-APP-000495-NDM-000318, SRG-APP-000499-NDM-000319, SRG-APP-000503-NDM-000320, SRG-APP-000504-NDM-000321, SRG-APP-000095-NDM-000225, SRG-APP-000096-NDM-000226, SRG-APP-000097-NDM-000227, SRG-APP-000098-NDM-000228, SRG-APP-000099-NDM-000229, SRG-APP-000100-NDM-000230, SRG-APP-000101-NDM-000231, SRG-APP-000381-NDM-000305",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "24feabe3e3ec2171bd34c3cd780a1b6da203f954106aca99e444bf40a0b31b20"
+      },
+      "vuln_id": "V-266068"
+    },
+    {
+      "pullback_id": "V-266068:daemon_log_tmm_os_log_level:3",
+      "carrier_coordinate": "tmsh:list sys daemon-log-settings all-properties",
+      "measurable": "daemon_log.tmm.os_log_level",
+      "lawful_property": "informational",
+      "required": "informational",
+      "observed": "informational",
+      "comparison_expression": "observed(informational) satisfies required(informational)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_daemon_log_settings",
+      "source_stig": {
+        "vuln_id": "V-266068",
+        "ruleID": "SV-266068r1024599_rule",
+        "checkid": "C-69991r1023453_chk",
+        "fixid": "F-69894r1023454_fix",
+        "title": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under Local Traffic Logging:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under Audit Logging:\n a. MCP: Enable.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh list sys daemon-log-settings tmm os-log-level\n\nNote: This command must return a value of \"informational\".\n\ntmsh list sys daemon-log-settings tmm ssl-log-level\n\nNote: This must return a value of \"informational\":\n\ntmsh list sys daemon-log-settings mcpd audit\n\nNote: This must return a value of \"enabled\".\n\ntmsh list sys daemon-log-settings mcpd log-level\n\nNote: This must return a value of \"notice\".\n\ntmsh list sys db log.ssl.level value\n\nNote: This must return a value of \"informational\".\n\nIf the BIG-IP appliance is not configured to audit the execution of privileged functions, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under \u201cLocal Traffic Logging\u201d:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under \u201cAudit Logging\u201d:\n a. MCP: Enable.\n7. Update.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh modify sys daemon-log-settings tmm os-log-level informational\ntmsh modify sys daemon-log-settings tmm ssl-log-level informational\ntmsh modify sys daemon-log-settings mcpd audit enabled\ntmsh modify sys daemon-log-settings mcpd log-level notice\ntmsh modify sys db log.ssl.level value informational\ntmsh save sys config",
+        "description": "Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.\n\nSatisfies: SRG-APP-000343-NDM-000289, SRG-APP-000026-NDM-000208, SRG-APP-000027-NDM-000209, SRG-APP-000028-NDM-000210, SRG-APP-000029-NDM-000211, SRG-APP-000319-NDM-000283, SRG-APP-000080-NDM-000220, SRG-APP-000516-NDM-000334, SRG-APP-000091-NDM-000223, SRG-APP-000495-NDM-000318, SRG-APP-000499-NDM-000319, SRG-APP-000503-NDM-000320, SRG-APP-000504-NDM-000321, SRG-APP-000095-NDM-000225, SRG-APP-000096-NDM-000226, SRG-APP-000097-NDM-000227, SRG-APP-000098-NDM-000228, SRG-APP-000099-NDM-000229, SRG-APP-000100-NDM-000230, SRG-APP-000101-NDM-000231, SRG-APP-000381-NDM-000305",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "24feabe3e3ec2171bd34c3cd780a1b6da203f954106aca99e444bf40a0b31b20"
+      },
+      "vuln_id": "V-266068"
+    },
+    {
+      "pullback_id": "V-266068:daemon_log_tmm_ssl_log_level:4",
+      "carrier_coordinate": "tmsh:list sys daemon-log-settings all-properties",
+      "measurable": "daemon_log.tmm.ssl_log_level",
+      "lawful_property": "informational",
+      "required": "informational",
+      "observed": "informational",
+      "comparison_expression": "observed(informational) satisfies required(informational)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_daemon_log_settings",
+      "source_stig": {
+        "vuln_id": "V-266068",
+        "ruleID": "SV-266068r1024599_rule",
+        "checkid": "C-69991r1023453_chk",
+        "fixid": "F-69894r1023454_fix",
+        "title": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under Local Traffic Logging:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under Audit Logging:\n a. MCP: Enable.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh list sys daemon-log-settings tmm os-log-level\n\nNote: This command must return a value of \"informational\".\n\ntmsh list sys daemon-log-settings tmm ssl-log-level\n\nNote: This must return a value of \"informational\":\n\ntmsh list sys daemon-log-settings mcpd audit\n\nNote: This must return a value of \"enabled\".\n\ntmsh list sys daemon-log-settings mcpd log-level\n\nNote: This must return a value of \"notice\".\n\ntmsh list sys db log.ssl.level value\n\nNote: This must return a value of \"informational\".\n\nIf the BIG-IP appliance is not configured to audit the execution of privileged functions, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under \u201cLocal Traffic Logging\u201d:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under \u201cAudit Logging\u201d:\n a. MCP: Enable.\n7. Update.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh modify sys daemon-log-settings tmm os-log-level informational\ntmsh modify sys daemon-log-settings tmm ssl-log-level informational\ntmsh modify sys daemon-log-settings mcpd audit enabled\ntmsh modify sys daemon-log-settings mcpd log-level notice\ntmsh modify sys db log.ssl.level value informational\ntmsh save sys config",
+        "description": "Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.\n\nSatisfies: SRG-APP-000343-NDM-000289, SRG-APP-000026-NDM-000208, SRG-APP-000027-NDM-000209, SRG-APP-000028-NDM-000210, SRG-APP-000029-NDM-000211, SRG-APP-000319-NDM-000283, SRG-APP-000080-NDM-000220, SRG-APP-000516-NDM-000334, SRG-APP-000091-NDM-000223, SRG-APP-000495-NDM-000318, SRG-APP-000499-NDM-000319, SRG-APP-000503-NDM-000320, SRG-APP-000504-NDM-000321, SRG-APP-000095-NDM-000225, SRG-APP-000096-NDM-000226, SRG-APP-000097-NDM-000227, SRG-APP-000098-NDM-000228, SRG-APP-000099-NDM-000229, SRG-APP-000100-NDM-000230, SRG-APP-000101-NDM-000231, SRG-APP-000381-NDM-000305",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "24feabe3e3ec2171bd34c3cd780a1b6da203f954106aca99e444bf40a0b31b20"
+      },
+      "vuln_id": "V-266068"
+    },
+    {
+      "pullback_id": "V-266068:cli_global_audit:5",
+      "carrier_coordinate": "tmsh:list cli global-settings all-properties",
+      "measurable": "cli_global.audit",
+      "lawful_property": "enabled",
+      "required": "enabled",
+      "observed": "enabled",
+      "comparison_expression": "observed(enabled) satisfies required(enabled)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_cli_global_settings",
+      "source_stig": {
+        "vuln_id": "V-266068",
+        "ruleID": "SV-266068r1024599_rule",
+        "checkid": "C-69991r1023453_chk",
+        "fixid": "F-69894r1023454_fix",
+        "title": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under Local Traffic Logging:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under Audit Logging:\n a. MCP: Enable.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh list sys daemon-log-settings tmm os-log-level\n\nNote: This command must return a value of \"informational\".\n\ntmsh list sys daemon-log-settings tmm ssl-log-level\n\nNote: This must return a value of \"informational\":\n\ntmsh list sys daemon-log-settings mcpd audit\n\nNote: This must return a value of \"enabled\".\n\ntmsh list sys daemon-log-settings mcpd log-level\n\nNote: This must return a value of \"notice\".\n\ntmsh list sys db log.ssl.level value\n\nNote: This must return a value of \"informational\".\n\nIf the BIG-IP appliance is not configured to audit the execution of privileged functions, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Options.\n5. Under \u201cLocal Traffic Logging\u201d:\n a. MCP: Notice.\n b. SSL: Informational.\n c. Traffic Management OS: Informational.\n6. Under \u201cAudit Logging\u201d:\n a. MCP: Enable.\n7. Update.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh modify sys daemon-log-settings tmm os-log-level informational\ntmsh modify sys daemon-log-settings tmm ssl-log-level informational\ntmsh modify sys daemon-log-settings mcpd audit enabled\ntmsh modify sys daemon-log-settings mcpd log-level notice\ntmsh modify sys db log.ssl.level value informational\ntmsh save sys config",
+        "description": "Misuse of privileged functions, either intentionally or unintentionally by authorized users, or by unauthorized external entities that have compromised information system accounts, is a serious and ongoing concern and can have significant adverse impacts on organizations. Auditing the use of privileged functions is one way to detect such misuse and identify the risk from insider threats and the advanced persistent threat.\n\nSatisfies: SRG-APP-000343-NDM-000289, SRG-APP-000026-NDM-000208, SRG-APP-000027-NDM-000209, SRG-APP-000028-NDM-000210, SRG-APP-000029-NDM-000211, SRG-APP-000319-NDM-000283, SRG-APP-000080-NDM-000220, SRG-APP-000516-NDM-000334, SRG-APP-000091-NDM-000223, SRG-APP-000495-NDM-000318, SRG-APP-000499-NDM-000319, SRG-APP-000503-NDM-000320, SRG-APP-000504-NDM-000321, SRG-APP-000095-NDM-000225, SRG-APP-000096-NDM-000226, SRG-APP-000097-NDM-000227, SRG-APP-000098-NDM-000228, SRG-APP-000099-NDM-000229, SRG-APP-000100-NDM-000230, SRG-APP-000101-NDM-000231, SRG-APP-000381-NDM-000305",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "24feabe3e3ec2171bd34c3cd780a1b6da203f954106aca99e444bf40a0b31b20"
+      },
+      "vuln_id": "V-266068"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266068)",
+      "source_a_count": 5,
+      "source_b": "STIG-required predicates (V-266068)",
+      "source_b_count": 5,
+      "codomain": "shared measurables (V-266068)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 5,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266068:daemon_log_mcpd_audit:1",
+          "shared_key": "daemon_log.mcpd.audit",
+          "left_id": "observed[daemon_log.mcpd.audit] = enabled",
+          "right_id": "required[daemon_log.mcpd.audit] enabled",
+          "observed_value": "enabled",
+          "required_value": "enabled",
+          "comparison_expression": "observed(enabled) satisfies required(enabled)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys daemon-log-settings all-properties"
+        },
+        {
+          "pullback_id": "V-266068:daemon_log_mcpd_log_level:2",
+          "shared_key": "daemon_log.mcpd.log_level",
+          "left_id": "observed[daemon_log.mcpd.log_level] = notice",
+          "right_id": "required[daemon_log.mcpd.log_level] notice",
+          "observed_value": "notice",
+          "required_value": "notice",
+          "comparison_expression": "observed(notice) satisfies required(notice)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys daemon-log-settings all-properties"
+        },
+        {
+          "pullback_id": "V-266068:daemon_log_tmm_os_log_level:3",
+          "shared_key": "daemon_log.tmm.os_log_level",
+          "left_id": "observed[daemon_log.tmm.os_log_level] = informational",
+          "right_id": "required[daemon_log.tmm.os_log_level] informational",
+          "observed_value": "informational",
+          "required_value": "informational",
+          "comparison_expression": "observed(informational) satisfies required(informational)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys daemon-log-settings all-properties"
+        },
+        {
+          "pullback_id": "V-266068:daemon_log_tmm_ssl_log_level:4",
+          "shared_key": "daemon_log.tmm.ssl_log_level",
+          "left_id": "observed[daemon_log.tmm.ssl_log_level] = informational",
+          "right_id": "required[daemon_log.tmm.ssl_log_level] informational",
+          "observed_value": "informational",
+          "required_value": "informational",
+          "comparison_expression": "observed(informational) satisfies required(informational)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys daemon-log-settings all-properties"
+        },
+        {
+          "pullback_id": "V-266068:cli_global_audit:5",
+          "shared_key": "cli_global.audit",
+          "left_id": "observed[cli_global.audit] = enabled",
+          "right_id": "required[cli_global.audit] enabled",
+          "observed_value": "enabled",
+          "required_value": "enabled",
+          "comparison_expression": "observed(enabled) satisfies required(enabled)",
+          "cardinality": "ok",
+          "source": "tmsh:list cli global-settings all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266068:daemon_log_mcpd_audit:1",
+      "shared_key": "daemon_log.mcpd.audit",
+      "left_id": "observed[daemon_log.mcpd.audit] = enabled",
+      "right_id": "required[daemon_log.mcpd.audit] enabled",
+      "observed_value": "enabled",
+      "required_value": "enabled",
+      "source": "tmsh:list sys daemon-log-settings all-properties",
+      "comparison_expression": "observed(enabled) satisfies required(enabled)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266068:daemon_log_mcpd_log_level:2",
+      "shared_key": "daemon_log.mcpd.log_level",
+      "left_id": "observed[daemon_log.mcpd.log_level] = notice",
+      "right_id": "required[daemon_log.mcpd.log_level] notice",
+      "observed_value": "notice",
+      "required_value": "notice",
+      "source": "tmsh:list sys daemon-log-settings all-properties",
+      "comparison_expression": "observed(notice) satisfies required(notice)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266068:daemon_log_tmm_os_log_level:3",
+      "shared_key": "daemon_log.tmm.os_log_level",
+      "left_id": "observed[daemon_log.tmm.os_log_level] = informational",
+      "right_id": "required[daemon_log.tmm.os_log_level] informational",
+      "observed_value": "informational",
+      "required_value": "informational",
+      "source": "tmsh:list sys daemon-log-settings all-properties",
+      "comparison_expression": "observed(informational) satisfies required(informational)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266068:daemon_log_tmm_ssl_log_level:4",
+      "shared_key": "daemon_log.tmm.ssl_log_level",
+      "left_id": "observed[daemon_log.tmm.ssl_log_level] = informational",
+      "right_id": "required[daemon_log.tmm.ssl_log_level] informational",
+      "observed_value": "informational",
+      "required_value": "informational",
+      "source": "tmsh:list sys daemon-log-settings all-properties",
+      "comparison_expression": "observed(informational) satisfies required(informational)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266068:cli_global_audit:5",
+      "shared_key": "cli_global.audit",
+      "left_id": "observed[cli_global.audit] = enabled",
+      "right_id": "required[cli_global.audit] enabled",
+      "observed_value": "enabled",
+      "required_value": "enabled",
+      "source": "tmsh:list cli global-settings all-properties",
+      "comparison_expression": "observed(enabled) satisfies required(enabled)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266068",
+      "requirement": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+      "status": "NOT_A_FINDING",
+      "why": "Privileged-function auditing evaluated across mcpd / tmm daemon-log-settings and the CLI global audit flag.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 5,
+        "pass": 5,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266068 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266068",
+        "detail": "Collected 2 source snapshot(s) producing 5 measurement(s).",
+        "endpoints": [
+          "tmsh:list sys daemon-log-settings all-properties",
+          "tmsh:list cli global-settings all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266068",
+        "source_a": "observed appliance evidence (V-266068)",
+        "source_a_count": 5,
+        "source_b": "STIG-required predicates (V-266068)",
+        "source_b_count": 5,
+        "codomain": "shared measurables (V-266068)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 5,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266068:daemon_log_mcpd_audit:1",
+            "shared_key": "daemon_log.mcpd.audit",
+            "left_id": "observed[daemon_log.mcpd.audit] = enabled",
+            "right_id": "required[daemon_log.mcpd.audit] enabled",
+            "observed_value": "enabled",
+            "required_value": "enabled",
+            "comparison_expression": "observed(enabled) satisfies required(enabled)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys daemon-log-settings all-properties"
+          },
+          {
+            "pullback_id": "V-266068:daemon_log_mcpd_log_level:2",
+            "shared_key": "daemon_log.mcpd.log_level",
+            "left_id": "observed[daemon_log.mcpd.log_level] = notice",
+            "right_id": "required[daemon_log.mcpd.log_level] notice",
+            "observed_value": "notice",
+            "required_value": "notice",
+            "comparison_expression": "observed(notice) satisfies required(notice)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys daemon-log-settings all-properties"
+          },
+          {
+            "pullback_id": "V-266068:daemon_log_tmm_os_log_level:3",
+            "shared_key": "daemon_log.tmm.os_log_level",
+            "left_id": "observed[daemon_log.tmm.os_log_level] = informational",
+            "right_id": "required[daemon_log.tmm.os_log_level] informational",
+            "observed_value": "informational",
+            "required_value": "informational",
+            "comparison_expression": "observed(informational) satisfies required(informational)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys daemon-log-settings all-properties"
+          },
+          {
+            "pullback_id": "V-266068:daemon_log_tmm_ssl_log_level:4",
+            "shared_key": "daemon_log.tmm.ssl_log_level",
+            "left_id": "observed[daemon_log.tmm.ssl_log_level] = informational",
+            "right_id": "required[daemon_log.tmm.ssl_log_level] informational",
+            "observed_value": "informational",
+            "required_value": "informational",
+            "comparison_expression": "observed(informational) satisfies required(informational)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys daemon-log-settings all-properties"
+          },
+          {
+            "pullback_id": "V-266068:cli_global_audit:5",
+            "shared_key": "cli_global.audit",
+            "left_id": "observed[cli_global.audit] = enabled",
+            "right_id": "required[cli_global.audit] enabled",
+            "observed_value": "enabled",
+            "required_value": "enabled",
+            "comparison_expression": "observed(enabled) satisfies required(enabled)",
+            "cardinality": "ok",
+            "source": "tmsh:list cli global-settings all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - daemon_log.mcpd.audit @ tmsh:list sys daemon-log-settings all-properties",
+        "pullback_id": "V-266068:daemon_log_mcpd_audit:1",
+        "required": "enabled",
+        "observed": "enabled",
+        "source": "tmsh:list sys daemon-log-settings all-properties",
+        "comparison_expression": "observed(enabled) satisfies required(enabled)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - daemon_log.mcpd.log_level @ tmsh:list sys daemon-log-settings all-properties",
+        "pullback_id": "V-266068:daemon_log_mcpd_log_level:2",
+        "required": "notice",
+        "observed": "notice",
+        "source": "tmsh:list sys daemon-log-settings all-properties",
+        "comparison_expression": "observed(notice) satisfies required(notice)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - daemon_log.tmm.os_log_level @ tmsh:list sys daemon-log-settings all-properties",
+        "pullback_id": "V-266068:daemon_log_tmm_os_log_level:3",
+        "required": "informational",
+        "observed": "informational",
+        "source": "tmsh:list sys daemon-log-settings all-properties",
+        "comparison_expression": "observed(informational) satisfies required(informational)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - daemon_log.tmm.ssl_log_level @ tmsh:list sys daemon-log-settings all-properties",
+        "pullback_id": "V-266068:daemon_log_tmm_ssl_log_level:4",
+        "required": "informational",
+        "observed": "informational",
+        "source": "tmsh:list sys daemon-log-settings all-properties",
+        "comparison_expression": "observed(informational) satisfies required(informational)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - cli_global.audit @ tmsh:list cli global-settings all-properties",
+        "pullback_id": "V-266068:cli_global_audit:5",
+        "required": "enabled",
+        "observed": "enabled",
+        "source": "tmsh:list cli global-settings all-properties",
+        "comparison_expression": "observed(enabled) satisfies required(enabled)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 5,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 5
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Privileged-function auditing evaluated across mcpd / tmm daemon-log-settings and the CLI global audit flag.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Privileged-function auditing evaluated across mcpd / tmm daemon-log-settings and the CLI global audit flag.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266068"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266068/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266068/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

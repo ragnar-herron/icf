@@ -1,3 +1,8 @@
+STATUS: SUPERSEDED BY docs/canonical/CANONICAL_GATE_SUITE.md
+DO NOT USE AS BUILD AUTHORITY
+
+---
+
 # Coalgebra Production Test - STIG Expert Critic
 
 This is a formal, build-ready checklist for the Coalgebra Production Test applied to the STIG Expert Critic. It is a gate: mark Pass/Fail and capture evidence. If any row is Fail, the system does not qualify as a valid coalgebra and should not be promoted.

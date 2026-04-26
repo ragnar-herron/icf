@@ -1,0 +1,3 @@
+OPTIONAL_TMSH_NOT_FOUND
+command=list apm profile connectivity all-properties
+error=tmsh failed: not found

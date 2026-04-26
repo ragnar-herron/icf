@@ -14070,7 +14070,8 @@
         "MultiField": {
           "fields": {
             "sys_httpd_gui_security_banner_configured": "true",
-            "sys_sshd_banner": "enabled"
+            "sys_sshd_banner": "enabled",
+            "guiSecurityBannerText": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
           }
         }
       },
@@ -14087,7 +14088,8 @@
         "MultiField": {
           "fields": {
             "sys_httpd_gui_security_banner_configured": "false",
-            "sys_sshd_banner": "enabled_variant_0"
+            "sys_sshd_banner": "enabled_variant_0",
+            "guiSecurityBannerText": "ICF-LIVE-REGRESSION-BREAK-2026-04-21T21:33:36Z This value was set by icf/scripts/live_break_fix.py and will be restored to the pre-flight value within seconds. If you see this after the run completes, REPORT a test failure immediately."
           }
         }
       },
@@ -14104,7 +14106,8 @@
         "MultiField": {
           "fields": {
             "sys_httpd_gui_security_banner_configured": "false",
-            "sys_sshd_banner": "enabled_variant_1"
+            "sys_sshd_banner": "enabled_variant_1",
+            "guiSecurityBannerText": "ICF-LIVE-REGRESSION-BREAK-2026-04-21T21:33:36Z This value was set by icf/scripts/live_break_fix.py and will be restored to the pre-flight value within seconds. If you see this after the run completes, REPORT a test failure immediately."
           }
         }
       },
@@ -14121,7 +14124,8 @@
         "MultiField": {
           "fields": {
             "sys_httpd_gui_security_banner_configured": "true",
-            "sys_sshd_banner": "enabled"
+            "sys_sshd_banner": "enabled",
+            "guiSecurityBannerText": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
           }
         }
       },
@@ -14192,7 +14196,8 @@
           ],
           "target_fields": {
             "sys_httpd_gui_security_banner_configured": "true",
-            "sys_sshd_banner": "enabled"
+            "sys_sshd_banner": "enabled",
+            "guiSecurityBannerText": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
           }
         }
       },
@@ -14209,7 +14214,8 @@
         "OutOfScopeMultiField": {
           "fields": {
             "sys_httpd_gui_security_banner_configured": "true",
-            "sys_sshd_banner": "enabled"
+            "sys_sshd_banner": "enabled",
+            "guiSecurityBannerText": "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
           },
           "observed_scope_id": "f5-bigip:cluster:untested:fixture"
         }

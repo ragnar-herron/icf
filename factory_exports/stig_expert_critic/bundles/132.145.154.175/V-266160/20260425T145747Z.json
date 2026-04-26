@@ -1,0 +1,245 @@
+{
+  "ok": true,
+  "vuln_id": "V-266160",
+  "source_stig": {
+    "vuln_id": "V-266160",
+    "ruleID": "SV-266160r1024389_rule",
+    "checkid": "C-70084r1023726_chk",
+    "fixid": "F-69987r1023727_fix",
+    "title": "The F5 BIG-IP appliance providing content filtering must detect use of network services that have not been authorized or approved by the information system security manager (ISSM) and information system security officer (ISSO), at a minimum.",
+    "checktext": "If the BIG-IP appliance does not perform content filtering as part of the traffic management functions, this is not applicable. \n\nIf using the BIG-IP AFM module to perform content filtering:\n\nAFM ACL:\nFrom the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Policies.\n4. <Policy Name>.\n5. Verify a rule is configured that uses a \"Classification Policy\".\n\nLog Profile:\nFrom the BIG-IP GUI:\n1. Security.\n2. Event Logs.\n3. Logging Profiles.\n4. Edit the global-network profile.\n5. Classification tab.\n6. Verify the Log Publisher is set to the desired setting. (For production environments, F5 recommends using remote logging.)\n\nIf configured rules in the policy do not detect use of network services that have not been authorized or approved by the ISSM and ISSO, at a minimum, this is a finding.",
+    "fixtext": "AFM ACL:\nFrom the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Policies.\n4. <Policy Name>.\n5. Configure a rule that uses a \"Classification Policy\".\nNote: To create a Classification Policy, go to Traffic Intelligence >> Policies.\n6. Click \"Commit Changes to System\".\n\nLog Profile:\nFrom the BIG-IP GUI:\n1. Security.\n2. Event Logs.\n3. Logging Profiles.\n4. Edit the global-network profile.\n5. Check \"Enabled\" for \"Classification\".\n6. Classification tab.\n7. Configure the Log Publisher. (For production environments, F5 recommends using remote logging.)\n8. Click \"Update\".",
+    "description": "Unauthorized or unapproved network services lack organizational verification or validation, and therefore may be unreliable or serve as malicious rogues for valid services.\n\nExamples of network services include service-oriented architectures (SOAs), cloud-based services (e.g., infrastructure as a service, platform as a service, or software as a service), cross-domain, Voice Over Internet Protocol, Instant Messaging, auto-execute, and file sharing.\n\nTo comply with this requirement, the ALG may be configured to detect services either directly or indirectly (i.e., by detecting traffic associated with a service). This requirement applies to gateways/firewalls that perform content inspection or have higher-layer proxy functionality.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "2482dde35f75844339846f4632f827439caba2aff75db4af086434059b426da5"
+  },
+  "status": "UNKNOWN",
+  "disposition": "blocked-external",
+  "evidence": {
+    "external_evidence_packages": {
+      "source": "external_evidence_packages",
+      "source_detail": {
+        "kind": "repo-json",
+        "path": "data/ExternalEvidencePackages.json"
+      },
+      "blob_sha256": "ba51fca997b400cd",
+      "bytes": 3589
+    },
+    "tmsh_security_firewall_policy": {
+      "source": "tmsh_security_firewall_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list security firewall policy all-properties"
+      },
+      "blob_sha256": "cc0c31a8db4518bb",
+      "bytes": 161
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266160:external_evidence_package:1",
+      "carrier_coordinate": "repo-json:data/ExternalEvidencePackages.json",
+      "measurable": "external_evidence_package",
+      "lawful_property": "package_id == service_authorization_gap (disposition=blocked-external)",
+      "required": "package_id == service_authorization_gap (disposition=blocked-external)",
+      "observed": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+      "comparison_expression": "observed(These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.) satisfies required(package_id == service_authorization_gap (disposition=blocked-external))",
+      "match": false,
+      "comparison_confidence": 0.0,
+      "pullback_unmatched": true,
+      "reviewer_action": "external_evidence_required",
+      "source_key": "external_evidence_packages",
+      "source_stig": {
+        "vuln_id": "V-266160",
+        "ruleID": "SV-266160r1024389_rule",
+        "checkid": "C-70084r1023726_chk",
+        "fixid": "F-69987r1023727_fix",
+        "title": "The F5 BIG-IP appliance providing content filtering must detect use of network services that have not been authorized or approved by the information system security manager (ISSM) and information system security officer (ISSO), at a minimum.",
+        "checktext": "If the BIG-IP appliance does not perform content filtering as part of the traffic management functions, this is not applicable. \n\nIf using the BIG-IP AFM module to perform content filtering:\n\nAFM ACL:\nFrom the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Policies.\n4. <Policy Name>.\n5. Verify a rule is configured that uses a \"Classification Policy\".\n\nLog Profile:\nFrom the BIG-IP GUI:\n1. Security.\n2. Event Logs.\n3. Logging Profiles.\n4. Edit the global-network profile.\n5. Classification tab.\n6. Verify the Log Publisher is set to the desired setting. (For production environments, F5 recommends using remote logging.)\n\nIf configured rules in the policy do not detect use of network services that have not been authorized or approved by the ISSM and ISSO, at a minimum, this is a finding.",
+        "fixtext": "AFM ACL:\nFrom the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Policies.\n4. <Policy Name>.\n5. Configure a rule that uses a \"Classification Policy\".\nNote: To create a Classification Policy, go to Traffic Intelligence >> Policies.\n6. Click \"Commit Changes to System\".\n\nLog Profile:\nFrom the BIG-IP GUI:\n1. Security.\n2. Event Logs.\n3. Logging Profiles.\n4. Edit the global-network profile.\n5. Check \"Enabled\" for \"Classification\".\n6. Classification tab.\n7. Configure the Log Publisher. (For production environments, F5 recommends using remote logging.)\n8. Click \"Update\".",
+        "description": "Unauthorized or unapproved network services lack organizational verification or validation, and therefore may be unreliable or serve as malicious rogues for valid services.\n\nExamples of network services include service-oriented architectures (SOAs), cloud-based services (e.g., infrastructure as a service, platform as a service, or software as a service), cross-domain, Voice Over Internet Protocol, Instant Messaging, auto-execute, and file sharing.\n\nTo comply with this requirement, the ALG may be configured to detect services either directly or indirectly (i.e., by detecting traffic associated with a service). This requirement applies to gateways/firewalls that perform content inspection or have higher-layer proxy functionality.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "2482dde35f75844339846f4632f827439caba2aff75db4af086434059b426da5"
+      },
+      "vuln_id": "V-266160"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266160)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266160)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266160)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 0,
+      "mismatch_count": 0,
+      "unresolved_count": 1,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266160:external_evidence_package:1",
+          "shared_key": "external_evidence_package",
+          "left_id": "observed[external_evidence_package] = These controls depend on organization-approved service catal ... (86 more chars)",
+          "right_id": "required[external_evidence_package] package_id == service_authorization_gap (disposition=blocked ... (10 more chars)",
+          "observed_value": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+          "required_value": "package_id == service_authorization_gap (disposition=blocked-external)",
+          "comparison_expression": "observed(These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.) satisfies required(package_id == service_authorization_gap (disposition=blocked-external))",
+          "cardinality": "unresolved",
+          "source": "repo-json:data/ExternalEvidencePackages.json"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "warning",
+      "aspect": "unresolved",
+      "finding": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+    },
+    {
+      "record_type": "unmatched_right",
+      "pullback_id": "V-266160:external_evidence_package:1",
+      "shared_key": "external_evidence_package",
+      "left_id": "observed[external_evidence_package] = These controls depend on organization-approved service catal ... (86 more chars)",
+      "right_id": "required[external_evidence_package] package_id == service_authorization_gap (disposition=blocked ... (10 more chars)",
+      "observed_value": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+      "required_value": "package_id == service_authorization_gap (disposition=blocked-external)",
+      "source": "repo-json:data/ExternalEvidencePackages.json",
+      "comparison_expression": "observed(These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.) satisfies required(package_id == service_authorization_gap (disposition=blocked-external))"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266160",
+      "requirement": "The F5 BIG-IP appliance providing content filtering must detect use of network services that have not been authorized or approved by the information system security manager (ISSM) and information system security officer (ISSO), at a minimum.",
+      "status": "UNKNOWN",
+      "why": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+      "tmsh_remediation_command": "[Manual] Enforce an AFM policy on the scoped virtual with approved rules.",
+      "rest_remediation_command": "[Manual] PATCH /mgmt/tm/ltm/virtual/<name> to attach an enforced AFM policy.",
+      "evidence_keys": [
+        "tmsh_security_firewall_policy"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 0,
+        "fail": 0,
+        "unresolved": 1
+      }
+    },
+    "violations": [
+      "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266160 - afm_firewall evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266160",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "repo-json:data/ExternalEvidencePackages.json"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266160",
+        "source_a": "observed appliance evidence (V-266160)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266160)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266160)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 0,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 1,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266160:external_evidence_package:1",
+            "shared_key": "external_evidence_package",
+            "left_id": "observed[external_evidence_package] = These controls depend on organization-approved service catal ... (86 more chars)",
+            "right_id": "required[external_evidence_package] package_id == service_authorization_gap (disposition=blocked ... (10 more chars)",
+            "observed_value": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+            "required_value": "package_id == service_authorization_gap (disposition=blocked-external)",
+            "comparison_expression": "observed(These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.) satisfies required(package_id == service_authorization_gap (disposition=blocked-external))",
+            "cardinality": "unresolved",
+            "source": "repo-json:data/ExternalEvidencePackages.json"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": [
+          "external_evidence_package"
+        ]
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - unresolved",
+        "severity": "warning",
+        "aspect": "unresolved",
+        "detail": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - external_evidence_package @ repo-json:data/ExternalEvidencePackages.json",
+        "pullback_id": "V-266160:external_evidence_package:1",
+        "required": "package_id == service_authorization_gap (disposition=blocked-external)",
+        "observed": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+        "source": "repo-json:data/ExternalEvidencePackages.json",
+        "comparison_expression": "observed(These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.) satisfies required(package_id == service_authorization_gap (disposition=blocked-external))",
+        "verdict": "UNRESOLVED",
+        "is_unmatched": true
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 0,
+        "fail_count": 0,
+        "unresolved_count": 1,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+        "status": "UNKNOWN",
+        "naf_expression": "If the BIG-IP appliance does not perform content filtering as part of the traffic management functions, this is not applicable.",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "These controls depend on organization-approved service catalogs or ISSM/ISSO authorization inputs that cannot be derived from the appliance alone.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266160"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266160/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266160/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

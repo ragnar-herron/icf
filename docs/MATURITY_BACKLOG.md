@@ -1,3 +1,8 @@
+STATUS: EVIDENCE SOURCE
+CANONICAL INTERPRETATION IN docs/canonical/CANONICAL_BACKLOG.md
+
+---
+
 # Maturity Production Backlog
 
 The demo maturity gate now passes for all 47 rows (41 structural C/P/M/E/D + 6 L live-evidence rows from the real-device break/fix run and the full 67-control live campaign against `bigip1` at `132.145.154.175`):

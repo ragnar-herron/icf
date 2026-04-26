@@ -1,3 +1,8 @@
+STATUS: SUPERSEDED BY docs/canonical/CANONICAL_GATE_SUITE.md
+DO NOT USE AS BUILD AUTHORITY
+
+---
+
 run docs/info_maturity_score_v2.md with canvas and report the score
 # 🔒 **Distinction-Preserving Maturity Test v2 (Complete Rewrite)**
 

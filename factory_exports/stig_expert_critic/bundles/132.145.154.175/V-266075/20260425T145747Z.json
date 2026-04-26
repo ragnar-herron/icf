@@ -1,0 +1,242 @@
+{
+  "ok": true,
+  "vuln_id": "V-266075",
+  "source_stig": {
+    "vuln_id": "V-266075",
+    "ruleID": "SV-266075r1024607_rule",
+    "checkid": "C-69998r1024606_chk",
+    "fixid": "F-69901r1023475_fix",
+    "title": "The F5 BIG-IP appliance must generate audit records and send records to redundant central syslog servers that are separate from the appliance.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Remote Logging.\n\nFrom the BIG-IP Console, issue the following command:\n\ntmsh list sys syslog remote-servers\n\nNote: This must return at least two remote IP addresses of syslog server.\n\nIf the BIG-IP appliance does not send audit records to one or more central syslog servers that are separate from the appliance, this is a finding.",
+    "fixtext": "Configure two or more central syslog servers.\n\nFrom the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Remote Logging.\n5. Add the IP address of a syslog server in the \"Remote IP\" field, modify the port if necessary, and click \"Add\".\n6. Click \"Update\".\n\nFrom the BIG-IP Console, issue the following commands:\n\n tmsh modify sys syslog remote-servers add { <name> { host <ip address> remote-port <port> } }\n tmsh save sys config",
+    "description": "Information stored in one location is vulnerable to accidental or incidental deletion or alteration.\n\nWithout generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.\n\nMCP audit records are generated from various components within the network device. For example, it logs the creation of DNS objects and DNSSEC configuration, including key creations.\n\nSatisfies: SRG-APP-000515-NDM-000325, SRG-APP-000360-NDM-000295, SRG-APP-000516-NDM-000350",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "4072ada9e5abc42c975fba73ed137f65b272b8d6401c2cd9bf902053c13be454"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_sys_syslog": {
+      "source": "tmsh_sys_syslog",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys syslog all-properties"
+      },
+      "blob_sha256": "76dafda6245e70eb",
+      "bytes": 825
+    },
+    "bash_log_storage_capacity": {
+      "source": "bash_log_storage_capacity",
+      "source_detail": {
+        "kind": "bash",
+        "command": "df -h /var/log /shared || df -h"
+      },
+      "blob_sha256": "8cc0dab8fe441d62",
+      "bytes": 199
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266075:sys_syslog_remote_server_count:1",
+      "carrier_coordinate": "tmsh:list sys syslog all-properties",
+      "measurable": "sys_syslog.remote_server_count",
+      "lawful_property": ">= 1",
+      "required": ">= 1",
+      "observed": "2",
+      "comparison_expression": "observed(2) satisfies required(>= 1)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_syslog",
+      "source_stig": {
+        "vuln_id": "V-266075",
+        "ruleID": "SV-266075r1024607_rule",
+        "checkid": "C-69998r1024606_chk",
+        "fixid": "F-69901r1023475_fix",
+        "title": "The F5 BIG-IP appliance must generate audit records and send records to redundant central syslog servers that are separate from the appliance.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Remote Logging.\n\nFrom the BIG-IP Console, issue the following command:\n\ntmsh list sys syslog remote-servers\n\nNote: This must return at least two remote IP addresses of syslog server.\n\nIf the BIG-IP appliance does not send audit records to one or more central syslog servers that are separate from the appliance, this is a finding.",
+        "fixtext": "Configure two or more central syslog servers.\n\nFrom the BIG-IP GUI:\n1. System.\n2. Logs.\n3. Configuration.\n4. Remote Logging.\n5. Add the IP address of a syslog server in the \"Remote IP\" field, modify the port if necessary, and click \"Add\".\n6. Click \"Update\".\n\nFrom the BIG-IP Console, issue the following commands:\n\n tmsh modify sys syslog remote-servers add { <name> { host <ip address> remote-port <port> } }\n tmsh save sys config",
+        "description": "Information stored in one location is vulnerable to accidental or incidental deletion or alteration.\n\nWithout generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.\n\nMCP audit records are generated from various components within the network device. For example, it logs the creation of DNS objects and DNSSEC configuration, including key creations.\n\nSatisfies: SRG-APP-000515-NDM-000325, SRG-APP-000360-NDM-000295, SRG-APP-000516-NDM-000350",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "4072ada9e5abc42c975fba73ed137f65b272b8d6401c2cd9bf902053c13be454"
+      },
+      "vuln_id": "V-266075"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266075)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266075)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266075)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266075:sys_syslog_remote_server_count:1",
+          "shared_key": "sys_syslog.remote_server_count",
+          "left_id": "observed[sys_syslog.remote_server_count] = 2",
+          "right_id": "required[sys_syslog.remote_server_count] >= 1",
+          "observed_value": "2",
+          "required_value": ">= 1",
+          "comparison_expression": "observed(2) satisfies required(>= 1)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys syslog all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266075:sys_syslog_remote_server_count:1",
+      "shared_key": "sys_syslog.remote_server_count",
+      "left_id": "observed[sys_syslog.remote_server_count] = 2",
+      "right_id": "required[sys_syslog.remote_server_count] >= 1",
+      "observed_value": "2",
+      "required_value": ">= 1",
+      "source": "tmsh:list sys syslog all-properties",
+      "comparison_expression": "observed(2) satisfies required(>= 1)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266075",
+      "requirement": "The F5 BIG-IP appliance must generate audit records and send records to redundant central syslog servers that are separate from the appliance.",
+      "status": "NOT_A_FINDING",
+      "why": "Syslog: detected 2 remote 'host' entries (>= 1 required).",
+      "tmsh_remediation_command": "[Manual] tmsh modify sys syslog remote-servers replace-all-with { stig_syslog1 { host <siem1> } stig_syslog2 { host <siem2> } }; tmsh save sys config",
+      "rest_remediation_command": "[Manual] PATCH /mgmt/tm/sys/syslog with org-approved remote SIEM servers.",
+      "evidence_keys": [
+        "tmsh_sys_syslog",
+        "bash_log_storage_capacity"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266075 - logging evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266075",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "tmsh:list sys syslog all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266075",
+        "source_a": "observed appliance evidence (V-266075)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266075)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266075)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266075:sys_syslog_remote_server_count:1",
+            "shared_key": "sys_syslog.remote_server_count",
+            "left_id": "observed[sys_syslog.remote_server_count] = 2",
+            "right_id": "required[sys_syslog.remote_server_count] >= 1",
+            "observed_value": "2",
+            "required_value": ">= 1",
+            "comparison_expression": "observed(2) satisfies required(>= 1)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys syslog all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_syslog.remote_server_count @ tmsh:list sys syslog all-properties",
+        "pullback_id": "V-266075:sys_syslog_remote_server_count:1",
+        "required": ">= 1",
+        "observed": "2",
+        "source": "tmsh:list sys syslog all-properties",
+        "comparison_expression": "observed(2) satisfies required(>= 1)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Syslog: detected 2 remote 'host' entries (>= 1 required).",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Syslog: detected 2 remote 'host' entries (>= 1 required).",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266075"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266075/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266075/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

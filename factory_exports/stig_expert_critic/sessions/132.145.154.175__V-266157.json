@@ -1,0 +1,128 @@
+{
+  "ok": true,
+  "vuln_id": "V-266157",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:55:34.944880Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "dos_custom_profile_count": 1,
+    "dos_profiles_dynamic_signatures_count": 1
+  },
+  "evidence": {
+    "firewall_policies": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/security/firewall/policy"
+      },
+      "preview": "[\n  {\n    \"kind\": \"tm:security:firewall:policy:policystate\",\n    \"name\": \"stig_compliance_policy\",\n    \"partition\": \"Common\",\n    \"fullPath\": \"/Common/stig_compliance_policy\",\n    \"generation\": 1,\n    \"selfLink\": \"https://localhost/mgmt/tm/security/firewall/policy/~Common~stig_compliance_policy?ver=17.5.1.3\",\n    \"description\": \"STIG-required AFM firewall policy\",\n    \"rulesReference\": {\n      \"link\": \"https://localhost/mgmt/tm/security/firewall/policy/~Common~stig_compliance_policy/rules?ver=17.5.1.3\",\n      \"isSubcollection\": true\n    }\n  }\n]",
+      "blob_sha256": "",
+      "bytes": 550
+    },
+    "dos_dynamic_signatures": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/security/dos/profile/*"
+      },
+      "preview": "[\n  {\n    \"profile\": \"/Common/stig_dos_profile\",\n    \"dynamic_signatures_enabled\": true\n  }\n]",
+      "blob_sha256": "",
+      "bytes": 93
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "dos_custom_profile_count:79b0c083",
+      "measurable": "dos_custom_profile_count",
+      "required": "== 0",
+      "observed": 1,
+      "evidence_source": "rest:/mgmt/tm/security/dos/profile",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "dos_profiles_dynamic_signatures_count:8aec8159",
+      "measurable": "dos_profiles_dynamic_signatures_count",
+      "required": "== dos_custom_profile_count",
+      "observed": 1,
+      "evidence_source": "rest:/mgmt/tm/security/dos/profile/*",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266157",
+      "status": "NOT_A_FINDING",
+      "requirement": "Custom AFM DoS profiles were checked for dynamic signature detection across their live subprofiles.",
+      "why": "Custom AFM DoS profiles were checked for dynamic signature detection across their live subprofiles.",
+      "tmsh_remediation_command": "",
+      "rest_remediation_command": "/mgmt/tm/security/dos/profile"
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "dos_custom_profile_count == 0 AND dos_profiles_dynamic_signatures_count == dos_custom_profile_count",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "dos_custom_profile_count:79b0c083",
+            "measurable": "dos_custom_profile_count",
+            "required": "== 0",
+            "observed": 1,
+            "evidence_source": "rest:/mgmt/tm/security/dos/profile",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "dos_profiles_dynamic_signatures_count:8aec8159",
+            "measurable": "dos_profiles_dynamic_signatures_count",
+            "required": "== dos_custom_profile_count",
+            "observed": 1,
+            "evidence_source": "rest:/mgmt/tm/security/dos/profile/*",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266157",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "adapter_family_id": "sshd",
+  "controls_covered": [
+    "V-266095"
+  ],
+  "broken_measurable": "sys_global_settings_console_inactivity_timeout",
+  "distinction_integrity": true,
+  "live_break_detects": true,
+  "live_fix_restores": true,
+  "device_clean": true,
+  "capture_refs": [
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266095.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266095",
+      "status": "open"
+    }
+  ],
+  "details": "Break/fix executed on consoleInactivityTimeout using a compliant promotion baseline of 300 seconds, break at 301, restore to 300."
+}

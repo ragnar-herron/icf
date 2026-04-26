@@ -1,0 +1,35 @@
+{
+  "adapter_family_id": "ltm_virtual_services",
+  "controls_covered": [
+    "V-266084",
+    "V-266150"
+  ],
+  "broken_measurable": "virtual_server_services_restricted",
+  "distinction_integrity": true,
+  "live_break_detects": true,
+  "live_fix_restores": true,
+  "device_clean": true,
+  "capture_refs": [
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266084.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266150.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266084",
+      "status": "open"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266150",
+      "status": "open"
+    }
+  ],
+  "details": "Break/fix executed by enabling the prohibited-port virtual server stig_disallowed_test and restoring it to disabled."
+}

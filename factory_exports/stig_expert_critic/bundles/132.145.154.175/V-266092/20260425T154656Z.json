@@ -1,0 +1,241 @@
+{
+  "ok": true,
+  "vuln_id": "V-266092",
+  "source_stig": {
+    "vuln_id": "V-266092",
+    "ruleID": "SV-266092r1024896_rule",
+    "checkid": "C-70016r1023525_chk",
+    "fixid": "F-69919r1024895_fix",
+    "title": "The F5 BIG-IP appliance must require that when a password is changed, the characters are changed in at least eight of the positions within the password.",
+    "checktext": "From the BIG-IP console, type the following command:\n\ntmsh list sys db password.difok\n\nNote: Verify the value is set to at least 8.\n\nIf the BIG-IP appliance is not configured to require that when a password is changed, the characters are changed in at least eight of the positions within the password, this is a finding.",
+    "fixtext": "If this setting has been changed from the default value of 8, reset the value.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh modify sys db password.difok value 8\ntmsh save sys config",
+    "description": "If the application allows the user to consecutively reuse extensive portions of passwords, this increases the chances of password compromise by increasing the window of opportunity for attempts at guessing and brute-force attacks.\n\nThe number of changed characters refers to the number of changes required with respect to the total number of positions in the current password. In other words, characters may be the same within the two passwords; however, the positions of the like characters must be different.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords must only be used when MFA using PKI is not available, and for the account of last resort and root account.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "848631b6b33f6d606725c244ef9f7dfe60d20fa11b491130bde4e31620f7350b"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_sys_db_security": {
+      "source": "tmsh_sys_db_security",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys db liveinstall.checksig password.difok all-properties"
+      },
+      "blob_sha256": "f5815c6e3541d576",
+      "bytes": 260
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266092:sys_db_password_difok:1",
+      "carrier_coordinate": "tmsh:list sys db liveinstall.checksig password.difok all-properties",
+      "measurable": "sys_db.password_difok",
+      "lawful_property": "value \"8\"",
+      "required": "value \"8\"",
+      "observed": "8",
+      "comparison_expression": "observed(8) satisfies required(value \"8\")",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_db_security",
+      "source_stig": {
+        "vuln_id": "V-266092",
+        "ruleID": "SV-266092r1024896_rule",
+        "checkid": "C-70016r1023525_chk",
+        "fixid": "F-69919r1024895_fix",
+        "title": "The F5 BIG-IP appliance must require that when a password is changed, the characters are changed in at least eight of the positions within the password.",
+        "checktext": "From the BIG-IP console, type the following command:\n\ntmsh list sys db password.difok\n\nNote: Verify the value is set to at least 8.\n\nIf the BIG-IP appliance is not configured to require that when a password is changed, the characters are changed in at least eight of the positions within the password, this is a finding.",
+        "fixtext": "If this setting has been changed from the default value of 8, reset the value.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh modify sys db password.difok value 8\ntmsh save sys config",
+        "description": "If the application allows the user to consecutively reuse extensive portions of passwords, this increases the chances of password compromise by increasing the window of opportunity for attempts at guessing and brute-force attacks.\n\nThe number of changed characters refers to the number of changes required with respect to the total number of positions in the current password. In other words, characters may be the same within the two passwords; however, the positions of the like characters must be different.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords must only be used when MFA using PKI is not available, and for the account of last resort and root account.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "848631b6b33f6d606725c244ef9f7dfe60d20fa11b491130bde4e31620f7350b"
+      },
+      "vuln_id": "V-266092"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266092)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266092)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266092)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266092:sys_db_password_difok:1",
+          "shared_key": "sys_db.password_difok",
+          "left_id": "observed[sys_db.password_difok] = 8",
+          "right_id": "required[sys_db.password_difok] value \"8\"",
+          "observed_value": "8",
+          "required_value": "value \"8\"",
+          "comparison_expression": "observed(8) satisfies required(value \"8\")",
+          "cardinality": "ok",
+          "source": "tmsh:list sys db liveinstall.checksig password.difok all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266092:sys_db_password_difok:1",
+      "shared_key": "sys_db.password_difok",
+      "left_id": "observed[sys_db.password_difok] = 8",
+      "right_id": "required[sys_db.password_difok] value \"8\"",
+      "observed_value": "8",
+      "required_value": "value \"8\"",
+      "source": "tmsh:list sys db liveinstall.checksig password.difok all-properties",
+      "comparison_expression": "observed(8) satisfies required(value \"8\")"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266092",
+      "requirement": "The F5 BIG-IP appliance must require that when a password is changed, the characters are changed in at least eight of the positions within the password.",
+      "status": "NOT_A_FINDING",
+      "why": "Password reuse distance evaluated from sys db password.difok.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266092 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266092",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "tmsh:list sys db liveinstall.checksig password.difok all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266092",
+        "source_a": "observed appliance evidence (V-266092)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266092)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266092)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266092:sys_db_password_difok:1",
+            "shared_key": "sys_db.password_difok",
+            "left_id": "observed[sys_db.password_difok] = 8",
+            "right_id": "required[sys_db.password_difok] value \"8\"",
+            "observed_value": "8",
+            "required_value": "value \"8\"",
+            "comparison_expression": "observed(8) satisfies required(value \"8\")",
+            "cardinality": "ok",
+            "source": "tmsh:list sys db liveinstall.checksig password.difok all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_db.password_difok @ tmsh:list sys db liveinstall.checksig password.difok all-properties",
+        "pullback_id": "V-266092:sys_db_password_difok:1",
+        "required": "value \"8\"",
+        "observed": "8",
+        "source": "tmsh:list sys db liveinstall.checksig password.difok all-properties",
+        "comparison_expression": "observed(8) satisfies required(value \"8\")",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Password reuse distance evaluated from sys db password.difok.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Password reuse distance evaluated from sys db password.difok.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266092"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266092/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266092/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

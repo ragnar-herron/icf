@@ -1,0 +1,125 @@
+{
+  "ok": true,
+  "vuln_id": "V-266162",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:55:50.208611Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "apm_profile_cookie_http_only": [
+      true,
+      true
+    ],
+    "apm_selected_profile_count": 2,
+    "apm_selected_profiles": [
+      "/Common/kerberos_auth_config_default",
+      "/Common/stig_access_policy"
+    ]
+  },
+  "evidence": {
+    "apm_profiles": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/apm/profile/access"
+      },
+      "preview": "[\n  {\n    \"kind\": \"tm:apm:profile:access:accessstate\",\n    \"name\": \"kerberos_auth_config_default\",\n    \"partition\": \"Common\",\n    \"fullPath\": \"/Common/kerberos_auth_config_default\",\n    \"generation\": 3932,\n    \"selfLink\": \"https://localhost/mgmt/tm/apm/profile/access/~Common~kerberos_auth_config_default?ver=17.5.1.3\",\n    \"acceptLanguages\": [\n      \"en\"\n    ],\n    \"accessPolicy\": \"/Common/kerberos_auth_config_default\",\n    \"accessPolicyReference\": {\n      \"link\": \"https://localhost/mgmt/tm/apm/policy/access-policy/~Common~kerberos_auth_config_default?ver=17.5.1.3\"\n    },\n    \"accessPolicyTimeout\": 300,\n    \"cpcCheckInterval\": 90,\n    \"cpcInspectionEnabled\": \"true\",\n    \"cpcLogLevel\": \"info\",\n    \"customizationGroup\": \"/Common/kerberos_auth_config_default_logout\",\n    \"customizationGroupRef",
+      "blob_sha256": "",
+      "bytes": 6589
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "/Common/kerberos_auth_config_default::apm_profile_cookie_http_only:5bce149e",
+      "measurable": "/Common/kerberos_auth_config_default::apm_profile_cookie_http_only",
+      "required": "== true",
+      "observed": true,
+      "evidence_source": "rest:/mgmt/tm/apm/profile/access",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "/Common/stig_access_policy::apm_profile_cookie_http_only:8bc8cf8f",
+      "measurable": "/Common/stig_access_policy::apm_profile_cookie_http_only",
+      "required": "== true",
+      "observed": true,
+      "evidence_source": "rest:/mgmt/tm/apm/profile/access",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266162",
+      "status": "NOT_A_FINDING",
+      "requirement": "Selected APM access profiles with assigned policies were evaluated directly from live profile fields.",
+      "why": "Selected APM access profiles with assigned policies were evaluated directly from live profile fields.",
+      "tmsh_remediation_command": "",
+      "rest_remediation_command": "/mgmt/tm/apm/profile/access"
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "/Common/kerberos_auth_config_default::apm_profile_cookie_http_only == true AND /Common/stig_access_policy::apm_profile_cookie_http_only == true",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "/Common/kerberos_auth_config_default::apm_profile_cookie_http_only:5bce149e",
+            "measurable": "/Common/kerberos_auth_config_default::apm_profile_cookie_http_only",
+            "required": "== true",
+            "observed": true,
+            "evidence_source": "rest:/mgmt/tm/apm/profile/access",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "/Common/stig_access_policy::apm_profile_cookie_http_only:8bc8cf8f",
+            "measurable": "/Common/stig_access_policy::apm_profile_cookie_http_only",
+            "required": "== true",
+            "observed": true,
+            "evidence_source": "rest:/mgmt/tm/apm/profile/access",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266162",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

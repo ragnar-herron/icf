@@ -1,0 +1,308 @@
+{
+  "ok": true,
+  "vuln_id": "V-266086",
+  "source_stig": {
+    "vuln_id": "V-266086",
+    "ruleID": "SV-266086r1024925_rule",
+    "checkid": "C-70009r1023507_chk",
+    "fixid": "F-69912r1024925_fix",
+    "title": "The F5 BIG-IP appliance must authenticate Network Time Protocol (NTP) sources using authentication that is cryptographically based.",
+    "checktext": "From the BIG-IP Console:\ncat /etc/ntp/keys\n\n#Verify this key is installed on all the NTP servers and clients participating in the NTP time synchronization.\n\ntmsh list sys ntp include\n\n#Verify there is a line similar to the following:\n#server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\n\nIf the BIG-IP appliance is not configured to authenticate Network Time Protocol sources using authentication that is cryptographically based, this is a finding.",
+    "fixtext": "From the BIG-IP console, type the following commands:\n\necho \"1 M <passphrase> #MD5 Key\" > /etc/ntp/keys\n\nNote: This command assumes that no other keys have been previously configured in the /etc/ntp/keys file. Running this command will overwrite the file.\n\n#Make sure this key is installed on all the NTP servers and clients participating in the NTP time synchronization.\n\ntmsh edit sys ntp all-properties\n\n#Replace the \"include\" section with the following (add as many ntp server lines as necessary for the environment, but configure at least 2):\n\ninclude \"server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\nserver <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\"\n\ntmsh save sys config",
+    "description": "If NTP is not authenticated, an attacker can introduce a rogue NTP server. This rogue server can then be used to send incorrect time information to network devices, which will make log timestamps inaccurate and affect scheduled actions. NTP authentication is used to prevent this tampering by authenticating the time source.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "b53816257cec9c52c2cf31b987503243641e0033a331a198ede100fce7209cdd"
+  },
+  "status": "OPEN",
+  "disposition": "fail",
+  "evidence": {
+    "tmsh_sys_ntp": {
+      "source": "tmsh_sys_ntp",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys ntp"
+      },
+      "blob_sha256": "e1d28ef3594e2c89",
+      "bytes": 144
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266086:sys_ntp_servers:1",
+      "carrier_coordinate": "tmsh:list sys ntp",
+      "measurable": "sys_ntp.servers",
+      "lawful_property": "non-empty servers { ... }",
+      "required": "non-empty servers { ... }",
+      "observed": "present",
+      "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_ntp",
+      "source_stig": {
+        "vuln_id": "V-266086",
+        "ruleID": "SV-266086r1024925_rule",
+        "checkid": "C-70009r1023507_chk",
+        "fixid": "F-69912r1024925_fix",
+        "title": "The F5 BIG-IP appliance must authenticate Network Time Protocol (NTP) sources using authentication that is cryptographically based.",
+        "checktext": "From the BIG-IP Console:\ncat /etc/ntp/keys\n\n#Verify this key is installed on all the NTP servers and clients participating in the NTP time synchronization.\n\ntmsh list sys ntp include\n\n#Verify there is a line similar to the following:\n#server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\n\nIf the BIG-IP appliance is not configured to authenticate Network Time Protocol sources using authentication that is cryptographically based, this is a finding.",
+        "fixtext": "From the BIG-IP console, type the following commands:\n\necho \"1 M <passphrase> #MD5 Key\" > /etc/ntp/keys\n\nNote: This command assumes that no other keys have been previously configured in the /etc/ntp/keys file. Running this command will overwrite the file.\n\n#Make sure this key is installed on all the NTP servers and clients participating in the NTP time synchronization.\n\ntmsh edit sys ntp all-properties\n\n#Replace the \"include\" section with the following (add as many ntp server lines as necessary for the environment, but configure at least 2):\n\ninclude \"server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\nserver <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\"\n\ntmsh save sys config",
+        "description": "If NTP is not authenticated, an attacker can introduce a rogue NTP server. This rogue server can then be used to send incorrect time information to network devices, which will make log timestamps inaccurate and affect scheduled actions. NTP authentication is used to prevent this tampering by authenticating the time source.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "b53816257cec9c52c2cf31b987503243641e0033a331a198ede100fce7209cdd"
+      },
+      "vuln_id": "V-266086"
+    },
+    {
+      "pullback_id": "V-266086:sys_ntp_include_authenticate:2",
+      "carrier_coordinate": "tmsh:list sys ntp",
+      "measurable": "sys_ntp.include_authenticate",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "false",
+      "comparison_expression": "observed(false) satisfies required(true)",
+      "match": false,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "remediate_or_document_exception",
+      "source_key": "tmsh_sys_ntp",
+      "source_stig": {
+        "vuln_id": "V-266086",
+        "ruleID": "SV-266086r1024925_rule",
+        "checkid": "C-70009r1023507_chk",
+        "fixid": "F-69912r1024925_fix",
+        "title": "The F5 BIG-IP appliance must authenticate Network Time Protocol (NTP) sources using authentication that is cryptographically based.",
+        "checktext": "From the BIG-IP Console:\ncat /etc/ntp/keys\n\n#Verify this key is installed on all the NTP servers and clients participating in the NTP time synchronization.\n\ntmsh list sys ntp include\n\n#Verify there is a line similar to the following:\n#server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\n\nIf the BIG-IP appliance is not configured to authenticate Network Time Protocol sources using authentication that is cryptographically based, this is a finding.",
+        "fixtext": "From the BIG-IP console, type the following commands:\n\necho \"1 M <passphrase> #MD5 Key\" > /etc/ntp/keys\n\nNote: This command assumes that no other keys have been previously configured in the /etc/ntp/keys file. Running this command will overwrite the file.\n\n#Make sure this key is installed on all the NTP servers and clients participating in the NTP time synchronization.\n\ntmsh edit sys ntp all-properties\n\n#Replace the \"include\" section with the following (add as many ntp server lines as necessary for the environment, but configure at least 2):\n\ninclude \"server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\nserver <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\"\n\ntmsh save sys config",
+        "description": "If NTP is not authenticated, an attacker can introduce a rogue NTP server. This rogue server can then be used to send incorrect time information to network devices, which will make log timestamps inaccurate and affect scheduled actions. NTP authentication is used to prevent this tampering by authenticating the time source.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "b53816257cec9c52c2cf31b987503243641e0033a331a198ede100fce7209cdd"
+      },
+      "vuln_id": "V-266086"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266086)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266086)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266086)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 1,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266086:sys_ntp_servers:1",
+          "shared_key": "sys_ntp.servers",
+          "left_id": "observed[sys_ntp.servers] = present",
+          "right_id": "required[sys_ntp.servers] non-empty servers { ... }",
+          "observed_value": "present",
+          "required_value": "non-empty servers { ... }",
+          "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })",
+          "cardinality": "ok",
+          "source": "tmsh:list sys ntp"
+        },
+        {
+          "pullback_id": "V-266086:sys_ntp_include_authenticate:2",
+          "shared_key": "sys_ntp.include_authenticate",
+          "left_id": "observed[sys_ntp.include_authenticate] = false",
+          "right_id": "required[sys_ntp.include_authenticate] true",
+          "observed_value": "false",
+          "required_value": "true",
+          "comparison_expression": "observed(false) satisfies required(true)",
+          "cardinality": "mismatch",
+          "source": "tmsh:list sys ntp"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "error",
+      "aspect": "mismatch",
+      "finding": "1 measurement(s) observed on the appliance do not satisfy the STIG predicate; see the truth table for exact values."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266086:sys_ntp_servers:1",
+      "shared_key": "sys_ntp.servers",
+      "left_id": "observed[sys_ntp.servers] = present",
+      "right_id": "required[sys_ntp.servers] non-empty servers { ... }",
+      "observed_value": "present",
+      "required_value": "non-empty servers { ... }",
+      "source": "tmsh:list sys ntp",
+      "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })"
+    },
+    {
+      "record_type": "mismatch",
+      "pullback_id": "V-266086:sys_ntp_include_authenticate:2",
+      "shared_key": "sys_ntp.include_authenticate",
+      "left_id": "observed[sys_ntp.include_authenticate] = false",
+      "right_id": "required[sys_ntp.include_authenticate] true",
+      "observed_value": "false",
+      "required_value": "true",
+      "source": "tmsh:list sys ntp",
+      "comparison_expression": "observed(false) satisfies required(true)"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266086",
+      "requirement": "The F5 BIG-IP appliance must authenticate Network Time Protocol (NTP) sources using authentication that is cryptographically based.",
+      "status": "OPEN",
+      "why": "NTP must define servers AND 'include authenticate' so time sync is authenticated.",
+      "tmsh_remediation_command": "tmsh modify sys ntp servers add { <approved_ntp1> <approved_ntp2> }; tmsh save sys config",
+      "rest_remediation_command": "PATCH /mgmt/tm/sys/ntp {\"servers\": [\"<approved_ntp1>\", \"<approved_ntp2>\"]}",
+      "evidence_keys": [
+        "tmsh_sys_ntp"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 1,
+        "fail": 1,
+        "unresolved": 0
+      }
+    },
+    "violations": [
+      "NTP must define servers AND 'include authenticate' so time sync is authenticated."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266086 - ntp evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266086",
+        "detail": "Collected 1 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list sys ntp"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266086",
+        "source_a": "observed appliance evidence (V-266086)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266086)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266086)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 1,
+        "mismatch_count": 1,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266086:sys_ntp_servers:1",
+            "shared_key": "sys_ntp.servers",
+            "left_id": "observed[sys_ntp.servers] = present",
+            "right_id": "required[sys_ntp.servers] non-empty servers { ... }",
+            "observed_value": "present",
+            "required_value": "non-empty servers { ... }",
+            "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })",
+            "cardinality": "ok",
+            "source": "tmsh:list sys ntp"
+          },
+          {
+            "pullback_id": "V-266086:sys_ntp_include_authenticate:2",
+            "shared_key": "sys_ntp.include_authenticate",
+            "left_id": "observed[sys_ntp.include_authenticate] = false",
+            "right_id": "required[sys_ntp.include_authenticate] true",
+            "observed_value": "false",
+            "required_value": "true",
+            "comparison_expression": "observed(false) satisfies required(true)",
+            "cardinality": "mismatch",
+            "source": "tmsh:list sys ntp"
+          }
+        ],
+        "missing_items": [
+          "sys_ntp.include_authenticate"
+        ],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - mismatch",
+        "severity": "error",
+        "aspect": "mismatch",
+        "detail": "1 measurement(s) observed on the appliance do not satisfy the STIG predicate; see the truth table for exact values."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_ntp.servers @ tmsh:list sys ntp",
+        "pullback_id": "V-266086:sys_ntp_servers:1",
+        "required": "non-empty servers { ... }",
+        "observed": "present",
+        "source": "tmsh:list sys ntp",
+        "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_ntp.include_authenticate @ tmsh:list sys ntp",
+        "pullback_id": "V-266086:sys_ntp_include_authenticate:2",
+        "required": "true",
+        "observed": "false",
+        "source": "tmsh:list sys ntp",
+        "comparison_expression": "observed(false) satisfies required(true)",
+        "verdict": "FAIL",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 1,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "NTP must define servers AND 'include authenticate' so time sync is authenticated.",
+        "status": "OPEN",
+        "naf_expression": "observed == required",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": true
+      }
+    ]
+  },
+  "rationale": "NTP must define servers AND 'include authenticate' so time sync is authenticated.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266086"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266086/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266086/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "ok": true,
+  "vuln_id": "V-266095",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:59.422292Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "sys_httpd_auth_pam_idle_timeout": 300,
+    "sys_httpd_auth_pam_dashboard_timeout": true,
+    "sys_global_settings_console_inactivity_timeout": 300,
+    "cli_global_settings_idle_timeout": 5,
+    "sys_sshd_inactivity_timeout": 300
+  },
+  "evidence": {
+    "tmsh_sys_httpd": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/httpd"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:httpd:httpdstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/httpd?ver=17.5.1.3\",\n  \"allow\": [\n    \"All\",\n    \"all\"\n  ],\n  \"authName\": \"BIG-IP\",\n  \"authPamDashboardTimeout\": \"on\",\n  \"authPamIdleTimeout\": 300,\n  \"authPamValidateIp\": \"on\",\n  \"fastcgiTimeout\": 300,\n  \"fipsCipherVersion\": 2,\n  \"hostnameLookup\": \"off\",\n  \"logLevel\": \"warn\",\n  \"maxClients\": 10,\n  \"redirectHttpToHttps\": \"disabled\",\n  \"requestBodyMaxTimeout\": 0,\n  \"requestBodyMinRate\": 500,\n  \"requestBodyTimeout\": 60,\n  \"requestHeaderMaxTimeout\": 40,\n  \"requestHeaderMinRate\": 500,\n  \"requestHeaderTimeout\": 20,\n  \"sslCertfile\": \"/etc/httpd/conf/ssl.crt/server.crt\",\n  \"sslCertkeyfile\": \"/etc/httpd/conf/ssl.key/server.key\",\n  \"sslCiphersuite\": \"ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-A",
+      "blob_sha256": "",
+      "bytes": 1364
+    },
+    "tmsh_cli_global_settings": {
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "tmsh list cli global-settings idle-timeout",
+        "path": null
+      },
+      "preview": "cli global-settings {\n    idle-timeout 5\n}\n",
+      "blob_sha256": "",
+      "bytes": 43
+    },
+    "tmsh_sys_global_settings": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/global-settings"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:global-settings:global-settingsstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/global-settings?ver=17.5.1.3\",\n  \"awsApiMaxConcurrency\": 1,\n  \"consoleInactivityTimeout\": 300,\n  \"customAddr\": \"none\",\n  \"failsafeAction\": \"go-offline-restart-tm\",\n  \"fileBlacklistPathPrefix\": \"{/shared/3dns/} {/shared/bin/} {/shared/core/} {/appdata/core/} {/shared/datasync/} {/shared/em/} {/shared/GeoIP/} {/shared/images/} {/shared/lib/} {/shared/lib64/} {/shared/log/} {/shared/lost+found/} {/shared/mgmt/} {/shared/nfb/} {/shared/ssh/} {/shared/statsd/} {/shared/tmstat/} {/shared/vadc/} {/config/aaa/} {/config/big3d/} {/config/bigip/} {/config/filestore/} {/config/gtm/} {/config/httpd/} {/config/ntp.conf} {/config/rndc.key} {/config/ssh/} {/config/ssl/}\",\n  \"fileBlacklistReadOnlyPathPr",
+      "blob_sha256": "",
+      "bytes": 2805
+    },
+    "sys_sshd": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/sshd"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:sshd:sshdstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/sshd?ver=17.5.1.3\",\n  \"allow\": [\n    \"ALL\"\n  ],\n  \"banner\": \"enabled\",\n  \"bannerText\": \"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not privat",
+      "blob_sha256": "",
+      "bytes": 1583
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "sys_httpd_auth_pam_idle_timeout:3a7b8680",
+      "measurable": "sys_httpd_auth_pam_idle_timeout",
+      "required": "<= 300",
+      "observed": 300,
+      "evidence_source": "rest:/mgmt/tm/sys/httpd",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "sys_httpd_auth_pam_dashboard_timeout:6f18aa25",
+      "measurable": "sys_httpd_auth_pam_dashboard_timeout",
+      "required": "== true",
+      "observed": true,
+      "evidence_source": "rest:/mgmt/tm/sys/httpd",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "sys_global_settings_console_inactivity_timeout:f32c99d7",
+      "measurable": "sys_global_settings_console_inactivity_timeout",
+      "required": "<= 300",
+      "observed": 300,
+      "evidence_source": "rest:/mgmt/tm/sys/global-settings",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "cli_global_settings_idle_timeout:728a9f50",
+      "measurable": "cli_global_settings_idle_timeout",
+      "required": "<= 5",
+      "observed": 5,
+      "evidence_source": "tmsh:tmsh list cli global-settings idle-timeout",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "sys_sshd_inactivity_timeout:082aae65",
+      "measurable": "sys_sshd_inactivity_timeout",
+      "required": "<= 300",
+      "observed": 300,
+      "evidence_source": "rest:/mgmt/tm/sys/sshd",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266095",
+      "status": "NOT_A_FINDING",
+      "requirement": "Idle logout was evaluated across HTTPD/TMUI, CLI, console, and SSH timeout sources.",
+      "why": "Idle logout was evaluated across HTTPD/TMUI, CLI, console, and SSH timeout sources.",
+      "tmsh_remediation_command": "tmsh modify sys httpd auth-pam-idle-timeout 300 auth-pam-dashboard-timeout on; tmsh modify sys global-settings console-inactivity-timeout 300; tmsh modify cli global-settings idle-timeout 5; tmsh modify sys sshd inactivity-timeout 300; tmsh save sys config",
+      "rest_remediation_command": ""
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 5,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "sys_httpd_auth_pam_idle_timeout <= 300 AND sys_httpd_auth_pam_dashboard_timeout == true AND sys_global_settings_console_inactivity_timeout <= 300 AND cli_global_settings_idle_timeout <= 5 AND sys_sshd_inactivity_timeout <= 300",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "sys_httpd_auth_pam_idle_timeout:3a7b8680",
+            "measurable": "sys_httpd_auth_pam_idle_timeout",
+            "required": "<= 300",
+            "observed": 300,
+            "evidence_source": "rest:/mgmt/tm/sys/httpd",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "sys_httpd_auth_pam_dashboard_timeout:6f18aa25",
+            "measurable": "sys_httpd_auth_pam_dashboard_timeout",
+            "required": "== true",
+            "observed": true,
+            "evidence_source": "rest:/mgmt/tm/sys/httpd",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "sys_global_settings_console_inactivity_timeout:f32c99d7",
+            "measurable": "sys_global_settings_console_inactivity_timeout",
+            "required": "<= 300",
+            "observed": 300,
+            "evidence_source": "rest:/mgmt/tm/sys/global-settings",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "cli_global_settings_idle_timeout:728a9f50",
+            "measurable": "cli_global_settings_idle_timeout",
+            "required": "<= 5",
+            "observed": 5,
+            "evidence_source": "tmsh:tmsh list cli global-settings idle-timeout",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "sys_sshd_inactivity_timeout:082aae65",
+            "measurable": "sys_sshd_inactivity_timeout",
+            "required": "<= 300",
+            "observed": 300,
+            "evidence_source": "rest:/mgmt/tm/sys/sshd",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266095",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

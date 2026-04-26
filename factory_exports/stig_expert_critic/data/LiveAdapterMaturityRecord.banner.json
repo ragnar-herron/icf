@@ -1,0 +1,45 @@
+{
+  "record_type": "LiveAdapterMaturityRecord",
+  "schema_version": "1.0",
+  "generated_at": "2026-04-24T16:25:21Z",
+  "adapter_family_id": "banner",
+  "controls_covered": [
+    "V-266070"
+  ],
+  "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.banner.json",
+  "hard_gates": {
+    "LA-HG1 Replay fidelity": true,
+    "LA-HG2 Distinction integrity": true,
+    "LA-HG3 Atomic integrity": true,
+    "LA-HG4 Known bad detects": true,
+    "LA-HG5 Known good survives": true,
+    "LA-HG6 Live baseline": true,
+    "LA-HG7 Live break detects": true,
+    "LA-HG8 Live fix proves": true,
+    "LA-HG9 Device clean": true,
+    "LA-HG10 Export equivalence": true
+  },
+  "all_hard_gates_pass": true,
+  "metrics": {
+    "capture_coverage": 1.0,
+    "normalization_success_rate": 1.0,
+    "representation_coverage": 1.0,
+    "atomic_integrity": 1.0,
+    "known_bad_detection": 1.0,
+    "known_good_survival": 1.0,
+    "live_break_detection": 1.0,
+    "live_fix_recovery": 1.0,
+    "export_equivalence": 1.0,
+    "distinction_loss_rate": 0.0
+  },
+  "maturity_score": 1.0,
+  "promotion_decision": "PROMOTABLE",
+  "hard_gate_status": "PASS",
+  "blocking_reasons": [],
+  "next_best_action": "Request promotion review.",
+  "regression_report": {
+    "current_bundle_status": "PROMOTED",
+    "export_equivalence_result": true,
+    "live_break_detect_result": true
+  }
+}

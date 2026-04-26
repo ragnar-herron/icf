@@ -1,0 +1,24 @@
+{
+  "adapter_family_id": "logging",
+  "controls_covered": [
+    "V-266075"
+  ],
+  "broken_measurable": "sys_syslog_remote_server_count",
+  "distinction_integrity": true,
+  "live_break_detects": true,
+  "live_fix_restores": true,
+  "device_clean": true,
+  "capture_refs": [
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266075.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266075",
+      "status": "open"
+    }
+  ],
+  "details": "Break/fix executed by reducing syslog remote server count from 2 to 1 and restoring to 2."
+}

@@ -1,0 +1,54 @@
+{
+  "adapter_family_id": "afm_firewall",
+  "controls_covered": [
+    "V-266144",
+    "V-266156",
+    "V-266157",
+    "V-266159",
+    "V-266160",
+    "V-266161"
+  ],
+  "broken_measurable": "global_network_classification_logging_enabled",
+  "distinction_integrity": true,
+  "live_break_detects": true,
+  "live_fix_restores": true,
+  "device_clean": true,
+  "capture_refs": [
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266144.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266156.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266157.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266159.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266160.json",
+      "status": "not_applicable"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266161.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266161",
+      "status": "open"
+    }
+  ],
+  "details": "Break/fix executed by disabling AFM global-network ACL logging filters and restoring the original filter set."
+}

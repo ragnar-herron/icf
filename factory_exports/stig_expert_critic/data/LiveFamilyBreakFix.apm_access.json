@@ -1,0 +1,132 @@
+{
+  "adapter_family_id": "apm_access",
+  "controls_covered": [
+    "V-266137",
+    "V-266143",
+    "V-266145",
+    "V-266146",
+    "V-266151",
+    "V-266152",
+    "V-266153",
+    "V-266154",
+    "V-266155",
+    "V-266162",
+    "V-266163",
+    "V-266164",
+    "V-266165",
+    "V-266166",
+    "V-266168",
+    "V-266169",
+    "V-266171",
+    "V-266172",
+    "V-266175"
+  ],
+  "broken_measurable": "apm_revocation_cache_configured",
+  "distinction_integrity": true,
+  "live_break_detects": true,
+  "live_fix_restores": true,
+  "device_clean": true,
+  "capture_refs": [
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266137.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266143.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266145.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266146.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266151.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266152.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266153.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266154.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266155.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266162.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266163.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266164.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266165.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266166.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266168.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266169.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266171.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266172.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266175.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266154",
+      "status": "open"
+    }
+  ],
+  "details": "Break/fix executed on /Common/stig_ocsp_validator by setting statusAge from 1 to 0 and restoring to 1."
+}

@@ -1,3 +1,8 @@
+STATUS: SUPERSEDED BY docs/canonical/CANONICAL_ARCHITECTURE.md
+DO NOT USE AS BUILD AUTHORITY
+
+---
+
 # ICF Build Specification
 
 Version: `0.1`

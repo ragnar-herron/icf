@@ -1,0 +1,245 @@
+{
+  "ok": true,
+  "vuln_id": "V-266096",
+  "source_stig": {
+    "vuln_id": "V-266096",
+    "ruleID": "SV-266096r1024630_rule",
+    "checkid": "C-70020r1023537_chk",
+    "fixid": "F-69923r1023538_fix",
+    "title": "The F5 BIG-IP appliance must conduct backups of the configuration at a weekly or organization-defined frequency and store on a separate device.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Archives.\n3. Review the list of archives to verify backups are conducted in accordance with the local backup policy.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list sys ucs\n\nIf the BIG-IP appliance is not configured to back up at system-level information weekly or at an organization-defined frequency this is a finding.",
+    "fixtext": "Document this process in the system security plan (SSP) and perform periodic manual backups. This process backs up the current configuration. Backups must be weekly or a documented organization-defined frequency.\n\nFrom the BIG-IP GUI:\n1. System.\n2. Archives.\n3. Create.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh save sys ucs <name>",
+    "description": "Information system backup is a critical step in maintaining data assurance and availability. Information system and security-related documentation contains information pertaining to system configuration and security settings. If this information were not backed up, and a system failure were to occur, the security settings would be difficult to reconfigure quickly and accurately. Maintaining a backup of information system and security-related documentation provides for a quicker recovery time when system outages occur.\n\nThis control requires the network device to support the organizational central backup process for user account information associated with the network device. This function may be provided by the network device itself; however, the preferred best practice is a centralized backup rather than each network device performing discrete backups.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "4b614134b8a73143fb0fea9819846a37e56a5d16f766013675e04e477ef40757"
+  },
+  "status": "UNKNOWN",
+  "disposition": "blocked-external",
+  "evidence": {
+    "external_evidence_packages": {
+      "source": "external_evidence_packages",
+      "source_detail": {
+        "kind": "repo-json",
+        "path": "data/ExternalEvidencePackages.json"
+      },
+      "blob_sha256": "ba51fca997b400cd",
+      "bytes": 3589
+    },
+    "tmsh_sys_ucs": {
+      "source": "tmsh_sys_ucs",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys ucs"
+      },
+      "blob_sha256": "11eaf7d7c55d4feb",
+      "bytes": 823
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266096:external_evidence_package:1",
+      "carrier_coordinate": "repo-json:data/ExternalEvidencePackages.json",
+      "measurable": "external_evidence_package",
+      "lawful_property": "package_id == backup_topology_gap (disposition=blocked-external)",
+      "required": "package_id == backup_topology_gap (disposition=blocked-external)",
+      "observed": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+      "comparison_expression": "observed(Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.) satisfies required(package_id == backup_topology_gap (disposition=blocked-external))",
+      "match": false,
+      "comparison_confidence": 0.0,
+      "pullback_unmatched": true,
+      "reviewer_action": "external_evidence_required",
+      "source_key": "external_evidence_packages",
+      "source_stig": {
+        "vuln_id": "V-266096",
+        "ruleID": "SV-266096r1024630_rule",
+        "checkid": "C-70020r1023537_chk",
+        "fixid": "F-69923r1023538_fix",
+        "title": "The F5 BIG-IP appliance must conduct backups of the configuration at a weekly or organization-defined frequency and store on a separate device.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Archives.\n3. Review the list of archives to verify backups are conducted in accordance with the local backup policy.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list sys ucs\n\nIf the BIG-IP appliance is not configured to back up at system-level information weekly or at an organization-defined frequency this is a finding.",
+        "fixtext": "Document this process in the system security plan (SSP) and perform periodic manual backups. This process backs up the current configuration. Backups must be weekly or a documented organization-defined frequency.\n\nFrom the BIG-IP GUI:\n1. System.\n2. Archives.\n3. Create.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh save sys ucs <name>",
+        "description": "Information system backup is a critical step in maintaining data assurance and availability. Information system and security-related documentation contains information pertaining to system configuration and security settings. If this information were not backed up, and a system failure were to occur, the security settings would be difficult to reconfigure quickly and accurately. Maintaining a backup of information system and security-related documentation provides for a quicker recovery time when system outages occur.\n\nThis control requires the network device to support the organizational central backup process for user account information associated with the network device. This function may be provided by the network device itself; however, the preferred best practice is a centralized backup rather than each network device performing discrete backups.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "4b614134b8a73143fb0fea9819846a37e56a5d16f766013675e04e477ef40757"
+      },
+      "vuln_id": "V-266096"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266096)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266096)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266096)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 0,
+      "mismatch_count": 0,
+      "unresolved_count": 1,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266096:external_evidence_package:1",
+          "shared_key": "external_evidence_package",
+          "left_id": "observed[external_evidence_package] = Local UCS archives are present, but off-device storage locat ... (116 more chars)",
+          "right_id": "required[external_evidence_package] package_id == backup_topology_gap (disposition=blocked-exter ... (4 more chars)",
+          "observed_value": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+          "required_value": "package_id == backup_topology_gap (disposition=blocked-external)",
+          "comparison_expression": "observed(Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.) satisfies required(package_id == backup_topology_gap (disposition=blocked-external))",
+          "cardinality": "unresolved",
+          "source": "repo-json:data/ExternalEvidencePackages.json"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "warning",
+      "aspect": "unresolved",
+      "finding": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+    },
+    {
+      "record_type": "unmatched_right",
+      "pullback_id": "V-266096:external_evidence_package:1",
+      "shared_key": "external_evidence_package",
+      "left_id": "observed[external_evidence_package] = Local UCS archives are present, but off-device storage locat ... (116 more chars)",
+      "right_id": "required[external_evidence_package] package_id == backup_topology_gap (disposition=blocked-exter ... (4 more chars)",
+      "observed_value": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+      "required_value": "package_id == backup_topology_gap (disposition=blocked-external)",
+      "source": "repo-json:data/ExternalEvidencePackages.json",
+      "comparison_expression": "observed(Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.) satisfies required(package_id == backup_topology_gap (disposition=blocked-external))"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266096",
+      "requirement": "The F5 BIG-IP appliance must conduct backups of the configuration at a weekly or organization-defined frequency and store on a separate device.",
+      "status": "UNKNOWN",
+      "why": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+      "tmsh_remediation_command": "tmsh save sys ucs /var/local/ucs/stig_backup.ucs passphrase <org_phrase>",
+      "rest_remediation_command": "[Manual] POST /mgmt/tm/sys/ucs with organization-approved passphrase.",
+      "evidence_keys": [
+        "tmsh_sys_ucs"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 0,
+        "fail": 0,
+        "unresolved": 1
+      }
+    },
+    "violations": [
+      "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266096 - backup evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266096",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "repo-json:data/ExternalEvidencePackages.json"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266096",
+        "source_a": "observed appliance evidence (V-266096)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266096)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266096)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 0,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 1,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266096:external_evidence_package:1",
+            "shared_key": "external_evidence_package",
+            "left_id": "observed[external_evidence_package] = Local UCS archives are present, but off-device storage locat ... (116 more chars)",
+            "right_id": "required[external_evidence_package] package_id == backup_topology_gap (disposition=blocked-exter ... (4 more chars)",
+            "observed_value": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+            "required_value": "package_id == backup_topology_gap (disposition=blocked-external)",
+            "comparison_expression": "observed(Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.) satisfies required(package_id == backup_topology_gap (disposition=blocked-external))",
+            "cardinality": "unresolved",
+            "source": "repo-json:data/ExternalEvidencePackages.json"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": [
+          "external_evidence_package"
+        ]
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - unresolved",
+        "severity": "warning",
+        "aspect": "unresolved",
+        "detail": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - external_evidence_package @ repo-json:data/ExternalEvidencePackages.json",
+        "pullback_id": "V-266096:external_evidence_package:1",
+        "required": "package_id == backup_topology_gap (disposition=blocked-external)",
+        "observed": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+        "source": "repo-json:data/ExternalEvidencePackages.json",
+        "comparison_expression": "observed(Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.) satisfies required(package_id == backup_topology_gap (disposition=blocked-external))",
+        "verdict": "UNRESOLVED",
+        "is_unmatched": true
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 0,
+        "fail_count": 0,
+        "unresolved_count": 1,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+        "status": "UNKNOWN",
+        "naf_expression": "observed == required",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Local UCS archives are present, but off-device storage location and organization-defined backup frequency require external backup-policy evidence beyond the appliance snapshot.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266096"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266096/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266096/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

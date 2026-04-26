@@ -1,0 +1,38 @@
+sys syslog {
+    auth-priv-from notice
+    auth-priv-to emerg
+    clustered-host-slot enabled
+    clustered-message-slot disabled
+    console-log enabled
+    cron-from warning
+    cron-to emerg
+    daemon-from notice
+    daemon-to emerg
+    description none
+    include none
+    iso-date disabled
+    kern-from debug
+    kern-to emerg
+    local6-from notice
+    local6-to emerg
+    mail-from notice
+    mail-to emerg
+    messages-from notice
+    messages-to warning
+    remote-servers {
+        stig_syslog {
+            description none
+            host 10.0.0.1
+            local-ip none
+            remote-port 514
+        }
+        stig_syslog2 {
+            description none
+            host 10.0.0.2
+            local-ip none
+            remote-port 514
+        }
+    }
+    user-log-from notice
+    user-log-to emerg
+}

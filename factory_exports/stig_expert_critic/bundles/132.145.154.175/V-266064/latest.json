@@ -1,0 +1,241 @@
+{
+  "ok": true,
+  "vuln_id": "V-266064",
+  "source_stig": {
+    "vuln_id": "V-266064",
+    "ruleID": "SV-266064r1024595_rule",
+    "checkid": "C-69987r1023441_chk",
+    "fixid": "F-69890r1023442_fix",
+    "title": "The F5 BIG-IP appliance must be configured to limit the number of concurrent sessions to the Configuration Utility to 10 or an organization-defined number.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Verify that System Settings view is set to Advanced.\n4. Verify Maximum HTTP connections to Configuration Utility is set to 10 or an organization-defined number.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list sys httpd max-clients\n\nIf the device is not configured to limit the number of concurrent sessions to the Configuration Utility to 10 or an organization-defined number, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Set System Settings view to Advanced.\n4. Maximum HTTP connections to Configuration Utility: enter 10 or an organization-defined number.\n5. Update.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh modify sys httpd max-clients <10 or an organization-defined number>\ntmsh save sys config",
+    "description": "Device management includes the ability to control the number of administrators and management sessions that manage a device. Limiting the number of allowed administrators and sessions per administrator is helpful in limiting risks related to denial-of-service (DoS) attacks.\n\nThis requirement addresses concurrent sessions for administrative accounts and does not address concurrent sessions by a single administrator via multiple administrative accounts. \n\nSatisfies: SRG-APP-000001-NDM-000200, SRG-APP-000435-NDM-000315",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "addf7f80f034ca7bbbcad25267582b4f3c4bc8b4e1546c77cdf0690d12e17879"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_sys_httpd": {
+      "source": "tmsh_sys_httpd",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys httpd all-properties"
+      },
+      "blob_sha256": "8b1bbce5e5513e10",
+      "bytes": 1347
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266064:sys_httpd_max_clients:1",
+      "carrier_coordinate": "tmsh:list sys httpd all-properties",
+      "measurable": "sys_httpd.max_clients",
+      "lawful_property": "<= 10",
+      "required": "<= 10",
+      "observed": "10",
+      "comparison_expression": "observed(10) satisfies required(<= 10)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_httpd",
+      "source_stig": {
+        "vuln_id": "V-266064",
+        "ruleID": "SV-266064r1024595_rule",
+        "checkid": "C-69987r1023441_chk",
+        "fixid": "F-69890r1023442_fix",
+        "title": "The F5 BIG-IP appliance must be configured to limit the number of concurrent sessions to the Configuration Utility to 10 or an organization-defined number.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Verify that System Settings view is set to Advanced.\n4. Verify Maximum HTTP connections to Configuration Utility is set to 10 or an organization-defined number.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list sys httpd max-clients\n\nIf the device is not configured to limit the number of concurrent sessions to the Configuration Utility to 10 or an organization-defined number, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Set System Settings view to Advanced.\n4. Maximum HTTP connections to Configuration Utility: enter 10 or an organization-defined number.\n5. Update.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh modify sys httpd max-clients <10 or an organization-defined number>\ntmsh save sys config",
+        "description": "Device management includes the ability to control the number of administrators and management sessions that manage a device. Limiting the number of allowed administrators and sessions per administrator is helpful in limiting risks related to denial-of-service (DoS) attacks.\n\nThis requirement addresses concurrent sessions for administrative accounts and does not address concurrent sessions by a single administrator via multiple administrative accounts. \n\nSatisfies: SRG-APP-000001-NDM-000200, SRG-APP-000435-NDM-000315",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "addf7f80f034ca7bbbcad25267582b4f3c4bc8b4e1546c77cdf0690d12e17879"
+      },
+      "vuln_id": "V-266064"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266064)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266064)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266064)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266064:sys_httpd_max_clients:1",
+          "shared_key": "sys_httpd.max_clients",
+          "left_id": "observed[sys_httpd.max_clients] = 10",
+          "right_id": "required[sys_httpd.max_clients] <= 10",
+          "observed_value": "10",
+          "required_value": "<= 10",
+          "comparison_expression": "observed(10) satisfies required(<= 10)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys httpd all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266064:sys_httpd_max_clients:1",
+      "shared_key": "sys_httpd.max_clients",
+      "left_id": "observed[sys_httpd.max_clients] = 10",
+      "right_id": "required[sys_httpd.max_clients] <= 10",
+      "observed_value": "10",
+      "required_value": "<= 10",
+      "source": "tmsh:list sys httpd all-properties",
+      "comparison_expression": "observed(10) satisfies required(<= 10)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266064",
+      "requirement": "The F5 BIG-IP appliance must be configured to limit the number of concurrent sessions to the Configuration Utility to 10 or an organization-defined number.",
+      "status": "NOT_A_FINDING",
+      "why": "Configuration Utility concurrency: detected max-clients=10 (<= 10 required).",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266064 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266064",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "tmsh:list sys httpd all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266064",
+        "source_a": "observed appliance evidence (V-266064)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266064)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266064)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266064:sys_httpd_max_clients:1",
+            "shared_key": "sys_httpd.max_clients",
+            "left_id": "observed[sys_httpd.max_clients] = 10",
+            "right_id": "required[sys_httpd.max_clients] <= 10",
+            "observed_value": "10",
+            "required_value": "<= 10",
+            "comparison_expression": "observed(10) satisfies required(<= 10)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys httpd all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_httpd.max_clients @ tmsh:list sys httpd all-properties",
+        "pullback_id": "V-266064:sys_httpd_max_clients:1",
+        "required": "<= 10",
+        "observed": "10",
+        "source": "tmsh:list sys httpd all-properties",
+        "comparison_expression": "observed(10) satisfies required(<= 10)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Configuration Utility concurrency: detected max-clients=10 (<= 10 required).",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Configuration Utility concurrency: detected max-clients=10 (<= 10 required).",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266064"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266064/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266064/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

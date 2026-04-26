@@ -1,0 +1,7 @@
+sys ntp {
+    include "authenticate yes
+keys /etc/ntp/keys
+trustedkey 1"
+    servers { 0.us.pool.ntp.org 1.us.pool.ntp.org }
+    timezone UTC
+}

@@ -1,0 +1,324 @@
+{
+  "ok": true,
+  "vuln_id": "V-266168",
+  "source_stig": {
+    "vuln_id": "V-266168",
+    "ruleID": "SV-266168r1024400_rule",
+    "checkid": "C-70092r1023750_chk",
+    "fixid": "F-69995r1023751_fix",
+    "title": "The F5 BIG-IP appliance must be configured to limit authenticated client sessions to initial session source IP.",
+    "checktext": "If the site has documented an adverse operational impact and has AO approval, this is not a finding.\n\nFrom the BIG-IP GUI:\n1. System.\n2. Access.\n3. Profiles/Policies.\n4. Access Profiles.\n5. Click the access profile name.\n6. Under Settings, verify \"Restrict to Single Client IP\" is checked.\n\nIf the BIG-IP appliance is not configured to limit authenticated client sessions to initial session source IP, this is a finding.",
+    "fixtext": "Note: Setting must be tested. If there are operational impacts that prevent the use of this setting, document the impacts, and obtain approval from the AO if this requirement will not be implemented. \n\nFrom the BIG-IP GUI:\n1. System.\n2. Access.\n3. Profiles/Policies.\n4. Access Profiles.\n5. Click the access profile name.\n6. Under Settings, check \"Restrict to Single Client IP\".\nNote: If the box is grayed out, check the box all the way to the right of the setting first and then check the box.\n7. Click \"Update\".\n8. Click \"Apply Access Policy\".",
+    "description": "The \"Restrict to Single Client IP\u201d is a safeguard against session hijacking or cookie theft. Even if an attacker manages to steal a session cookie, the cookie cannot be used from a different source IP address that the address used to initiate the session. This security measure is set within the APM Access Profiles.\n\nThis setting has been recommended by F5 as a defense-in-depth measure. However, in some networks, this may result in false positives or rejection of legitimate connections. Users behind a shared proxy address may be denied access. Thus, sites must test this setting within their network prior to implementing to determine if there are operational impacts that prevent the use of this setting. If so, the site must document the impacts and get approval from the authorizing official (AO) if this required setting will not be implemented.",
+    "severity": "low",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "e2708caf7285599cd217e064745f6b530eb3a25d5fc36c3be62db6e707b0b4df"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_apm_profile_access": {
+      "source": "tmsh_apm_profile_access",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm profile access all-properties"
+      },
+      "blob_sha256": "fbce69c889c04c18",
+      "bytes": 4743
+    },
+    "tmsh_apm_policy_access_policy": {
+      "source": "tmsh_apm_policy_access_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm policy access-policy all-properties"
+      },
+      "blob_sha256": "655e6d9da7eac748",
+      "bytes": 1788
+    },
+    "tmsh_apm_log_setting": {
+      "source": "tmsh_apm_log_setting",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm log-setting all-properties"
+      },
+      "blob_sha256": "0bf6b6fc4b86188b",
+      "bytes": 2506
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266168:apm_profile_access_restrict_to_single_client_ip:1",
+      "carrier_coordinate": "tmsh:list apm profile access all-properties",
+      "measurable": "apm_profile_access.restrict_to_single_client_ip",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "true",
+      "comparison_expression": "observed(true) satisfies required(true)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_profile_access",
+      "source_stig": {
+        "vuln_id": "V-266168",
+        "ruleID": "SV-266168r1024400_rule",
+        "checkid": "C-70092r1023750_chk",
+        "fixid": "F-69995r1023751_fix",
+        "title": "The F5 BIG-IP appliance must be configured to limit authenticated client sessions to initial session source IP.",
+        "checktext": "If the site has documented an adverse operational impact and has AO approval, this is not a finding.\n\nFrom the BIG-IP GUI:\n1. System.\n2. Access.\n3. Profiles/Policies.\n4. Access Profiles.\n5. Click the access profile name.\n6. Under Settings, verify \"Restrict to Single Client IP\" is checked.\n\nIf the BIG-IP appliance is not configured to limit authenticated client sessions to initial session source IP, this is a finding.",
+        "fixtext": "Note: Setting must be tested. If there are operational impacts that prevent the use of this setting, document the impacts, and obtain approval from the AO if this requirement will not be implemented. \n\nFrom the BIG-IP GUI:\n1. System.\n2. Access.\n3. Profiles/Policies.\n4. Access Profiles.\n5. Click the access profile name.\n6. Under Settings, check \"Restrict to Single Client IP\".\nNote: If the box is grayed out, check the box all the way to the right of the setting first and then check the box.\n7. Click \"Update\".\n8. Click \"Apply Access Policy\".",
+        "description": "The \"Restrict to Single Client IP\u201d is a safeguard against session hijacking or cookie theft. Even if an attacker manages to steal a session cookie, the cookie cannot be used from a different source IP address that the address used to initiate the session. This security measure is set within the APM Access Profiles.\n\nThis setting has been recommended by F5 as a defense-in-depth measure. However, in some networks, this may result in false positives or rejection of legitimate connections. Users behind a shared proxy address may be denied access. Thus, sites must test this setting within their network prior to implementing to determine if there are operational impacts that prevent the use of this setting. If so, the site must document the impacts and get approval from the authorizing official (AO) if this required setting will not be implemented.",
+        "severity": "low",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "e2708caf7285599cd217e064745f6b530eb3a25d5fc36c3be62db6e707b0b4df"
+      },
+      "vuln_id": "V-266168"
+    },
+    {
+      "pullback_id": "V-266168:apm_profile_access_max_concurrent_users:2",
+      "carrier_coordinate": "tmsh:list apm profile access all-properties",
+      "measurable": "apm_profile_access.max_concurrent_users",
+      "lawful_property": "== 1",
+      "required": "== 1",
+      "observed": "1",
+      "comparison_expression": "observed(1) satisfies required(== 1)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_profile_access",
+      "source_stig": {
+        "vuln_id": "V-266168",
+        "ruleID": "SV-266168r1024400_rule",
+        "checkid": "C-70092r1023750_chk",
+        "fixid": "F-69995r1023751_fix",
+        "title": "The F5 BIG-IP appliance must be configured to limit authenticated client sessions to initial session source IP.",
+        "checktext": "If the site has documented an adverse operational impact and has AO approval, this is not a finding.\n\nFrom the BIG-IP GUI:\n1. System.\n2. Access.\n3. Profiles/Policies.\n4. Access Profiles.\n5. Click the access profile name.\n6. Under Settings, verify \"Restrict to Single Client IP\" is checked.\n\nIf the BIG-IP appliance is not configured to limit authenticated client sessions to initial session source IP, this is a finding.",
+        "fixtext": "Note: Setting must be tested. If there are operational impacts that prevent the use of this setting, document the impacts, and obtain approval from the AO if this requirement will not be implemented. \n\nFrom the BIG-IP GUI:\n1. System.\n2. Access.\n3. Profiles/Policies.\n4. Access Profiles.\n5. Click the access profile name.\n6. Under Settings, check \"Restrict to Single Client IP\".\nNote: If the box is grayed out, check the box all the way to the right of the setting first and then check the box.\n7. Click \"Update\".\n8. Click \"Apply Access Policy\".",
+        "description": "The \"Restrict to Single Client IP\u201d is a safeguard against session hijacking or cookie theft. Even if an attacker manages to steal a session cookie, the cookie cannot be used from a different source IP address that the address used to initiate the session. This security measure is set within the APM Access Profiles.\n\nThis setting has been recommended by F5 as a defense-in-depth measure. However, in some networks, this may result in false positives or rejection of legitimate connections. Users behind a shared proxy address may be denied access. Thus, sites must test this setting within their network prior to implementing to determine if there are operational impacts that prevent the use of this setting. If so, the site must document the impacts and get approval from the authorizing official (AO) if this required setting will not be implemented.",
+        "severity": "low",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "e2708caf7285599cd217e064745f6b530eb3a25d5fc36c3be62db6e707b0b4df"
+      },
+      "vuln_id": "V-266168"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266168)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266168)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266168)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 2,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266168:apm_profile_access_restrict_to_single_client_ip:1",
+          "shared_key": "apm_profile_access.restrict_to_single_client_ip",
+          "left_id": "observed[apm_profile_access.restrict_to_single_client_ip] = true",
+          "right_id": "required[apm_profile_access.restrict_to_single_client_ip] true",
+          "observed_value": "true",
+          "required_value": "true",
+          "comparison_expression": "observed(true) satisfies required(true)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm profile access all-properties"
+        },
+        {
+          "pullback_id": "V-266168:apm_profile_access_max_concurrent_users:2",
+          "shared_key": "apm_profile_access.max_concurrent_users",
+          "left_id": "observed[apm_profile_access.max_concurrent_users] = 1",
+          "right_id": "required[apm_profile_access.max_concurrent_users] == 1",
+          "observed_value": "1",
+          "required_value": "== 1",
+          "comparison_expression": "observed(1) satisfies required(== 1)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm profile access all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266168:apm_profile_access_restrict_to_single_client_ip:1",
+      "shared_key": "apm_profile_access.restrict_to_single_client_ip",
+      "left_id": "observed[apm_profile_access.restrict_to_single_client_ip] = true",
+      "right_id": "required[apm_profile_access.restrict_to_single_client_ip] true",
+      "observed_value": "true",
+      "required_value": "true",
+      "source": "tmsh:list apm profile access all-properties",
+      "comparison_expression": "observed(true) satisfies required(true)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266168:apm_profile_access_max_concurrent_users:2",
+      "shared_key": "apm_profile_access.max_concurrent_users",
+      "left_id": "observed[apm_profile_access.max_concurrent_users] = 1",
+      "right_id": "required[apm_profile_access.max_concurrent_users] == 1",
+      "observed_value": "1",
+      "required_value": "== 1",
+      "source": "tmsh:list apm profile access all-properties",
+      "comparison_expression": "observed(1) satisfies required(== 1)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266168",
+      "requirement": "The F5 BIG-IP appliance must be configured to limit authenticated client sessions to initial session source IP.",
+      "status": "NOT_A_FINDING",
+      "why": "APM access-profile baseline: restrict-to-single-client-ip=true AND max-concurrent-users=1.",
+      "tmsh_remediation_command": "[Manual] Review APM access profile / policy and apply DoD-approved controls.",
+      "rest_remediation_command": "[Manual] PATCH APM objects via Policy Editor or iControl-REST.",
+      "evidence_keys": [
+        "tmsh_apm_profile_access",
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_log_setting"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 2,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266168 - apm_access evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266168",
+        "detail": "Collected 1 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list apm profile access all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266168",
+        "source_a": "observed appliance evidence (V-266168)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266168)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266168)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 2,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266168:apm_profile_access_restrict_to_single_client_ip:1",
+            "shared_key": "apm_profile_access.restrict_to_single_client_ip",
+            "left_id": "observed[apm_profile_access.restrict_to_single_client_ip] = true",
+            "right_id": "required[apm_profile_access.restrict_to_single_client_ip] true",
+            "observed_value": "true",
+            "required_value": "true",
+            "comparison_expression": "observed(true) satisfies required(true)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm profile access all-properties"
+          },
+          {
+            "pullback_id": "V-266168:apm_profile_access_max_concurrent_users:2",
+            "shared_key": "apm_profile_access.max_concurrent_users",
+            "left_id": "observed[apm_profile_access.max_concurrent_users] = 1",
+            "right_id": "required[apm_profile_access.max_concurrent_users] == 1",
+            "observed_value": "1",
+            "required_value": "== 1",
+            "comparison_expression": "observed(1) satisfies required(== 1)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm profile access all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_profile_access.restrict_to_single_client_ip @ tmsh:list apm profile access all-properties",
+        "pullback_id": "V-266168:apm_profile_access_restrict_to_single_client_ip:1",
+        "required": "true",
+        "observed": "true",
+        "source": "tmsh:list apm profile access all-properties",
+        "comparison_expression": "observed(true) satisfies required(true)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_profile_access.max_concurrent_users @ tmsh:list apm profile access all-properties",
+        "pullback_id": "V-266168:apm_profile_access_max_concurrent_users:2",
+        "required": "== 1",
+        "observed": "1",
+        "source": "tmsh:list apm profile access all-properties",
+        "comparison_expression": "observed(1) satisfies required(== 1)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "APM access-profile baseline: restrict-to-single-client-ip=true AND max-concurrent-users=1.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "APM access-profile baseline: restrict-to-single-client-ip=true AND max-concurrent-users=1.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266168"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266168/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266168/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

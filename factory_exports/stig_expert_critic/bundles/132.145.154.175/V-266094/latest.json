@@ -1,0 +1,245 @@
+{
+  "ok": true,
+  "vuln_id": "V-266094",
+  "source_stig": {
+    "vuln_id": "V-266094",
+    "ruleID": "SV-266094r1024902_rule",
+    "checkid": "C-70018r1024900_chk",
+    "fixid": "F-69921r1024901_fix",
+    "title": "The F5 BIG-IP appliance must be configured to use DOD approved OCSP responders or CRLs to validate certificates used for PKI-based authentication.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - ClientCert LDAP\", verify the \"OCSP Responder\" configured is DOD approved\nNote: The OCSP Override option must be set to \"on\" to view the OCSP Responder value.\n\nIf the BIG-IP appliance is not configured to use DOD-approved OCSP responders or CRLs to validate certificates used for PKI-based authentication, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. If ClientCert LDAP is used as the remote authentication type, click \"Change\".\n6. Set \"OCSP Responder\" IP address to one that is DOD approved.\nNote: The OCSP Override option must be set to \"on\" to view the OCSP Responder value.\n7. Click \"Finish\".",
+    "description": "Once issued by a DOD certificate authority (CA), public key infrastructure (PKI) certificates are typically valid for three years or shorter within the DOD. However, there are many reasons a certificate may become invalid before the prescribed expiration date. For example, an employee may leave or be terminated and still possess the smartcard on which the PKI certificates were stored. Another example is that a smartcard containing PKI certificates may become lost or stolen. A more serious issue could be that the CA or server which issued the PKI certificates has become compromised, thereby jeopardizing every certificate keypair that was issued by the CA. These examples of revocation use cases and many more can be researched further using internet cybersecurity resources.\n\nPKI user certificates presented as part of the identification and authentication criteria (e.g., DOD PKI as multifactor authentication [MFA]) must be checked for validity by network devices. For example, valid PKI certificates are digitally signed by a trusted DOD certificate authority (CA). Additionally, valid PKI certificates are not expired, and valid certificates have not been revoked by a DOD CA.\n\nNetwork devices can verify the validity of PKI certificates by checking with an authoritative CA. One method of checking the status of PKI certificates is to query databases referred to as certificate revocation lists (CRL). These are lists which are published, updated, and maintained by authoritative DOD CAs. For example, once certificates are expired or revoked, issuing CAs place the certificates on a CRL. Organizations can download these lists periodically (i.e., daily or weekly) and store them locally on the devices themselves or even onto another nearby local enclave resource. Storing them locally ensures revocation status can be checked even if internet connectivity is severed at the enclave\u2019s point of presence (PoP). However, CRLs can be rather large in storage size and further, the use of CRLs can be rather taxing on some computing resources.\n\nAnother method of validating certificate status is to use the online certificate status protocol (OCSP). Using OCSP, a requestor (i.e., the network device which the user is trying to authenticate to) sends a request to an authoritative CA challenging the validity of a certificate that has been presented for identification and authentication. The CA receives the request and sends a digitally signed response indicating the status of the user\u2019s certificate as valid, revoked, or unknown. Network devices must only allow access for responses that indicate the certificates presented by the user were considered valid by an approved DOD CA. OCSP is the preferred method because it is fast, provides the most current status, and is lightweight.",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "6a1604c0e3092264983374519630a3b161881f171ce9f57f21a4611dc1ae604a"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "not-applicable",
+  "evidence": {
+    "tmsh_auth_source": {
+      "source": "tmsh_auth_source",
+      "preview": "auth source {\n    description none\n    fallback true\n    type tacacs\n}",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth source all-properties"
+      },
+      "blob_sha256": "b148eaa410ae5563",
+      "bytes": 71
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266094:auth_source_type:1",
+      "carrier_coordinate": "tmsh:list auth source all-properties",
+      "measurable": "auth_source.type",
+      "lawful_property": "clientcert-ldap (for applicability)",
+      "required": "clientcert-ldap (for applicability)",
+      "observed": "tacacs",
+      "comparison_expression": "observed(tacacs) satisfies required(clientcert-ldap (for applicability))",
+      "match": false,
+      "comparison_confidence": 0.0,
+      "pullback_unmatched": true,
+      "reviewer_action": "external_evidence_required",
+      "source_key": "tmsh_auth_source",
+      "source_stig": {
+        "vuln_id": "V-266094",
+        "ruleID": "SV-266094r1024902_rule",
+        "checkid": "C-70018r1024900_chk",
+        "fixid": "F-69921r1024901_fix",
+        "title": "The F5 BIG-IP appliance must be configured to use DOD approved OCSP responders or CRLs to validate certificates used for PKI-based authentication.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - ClientCert LDAP\", verify the \"OCSP Responder\" configured is DOD approved\nNote: The OCSP Override option must be set to \"on\" to view the OCSP Responder value.\n\nIf the BIG-IP appliance is not configured to use DOD-approved OCSP responders or CRLs to validate certificates used for PKI-based authentication, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. If ClientCert LDAP is used as the remote authentication type, click \"Change\".\n6. Set \"OCSP Responder\" IP address to one that is DOD approved.\nNote: The OCSP Override option must be set to \"on\" to view the OCSP Responder value.\n7. Click \"Finish\".",
+        "description": "Once issued by a DOD certificate authority (CA), public key infrastructure (PKI) certificates are typically valid for three years or shorter within the DOD. However, there are many reasons a certificate may become invalid before the prescribed expiration date. For example, an employee may leave or be terminated and still possess the smartcard on which the PKI certificates were stored. Another example is that a smartcard containing PKI certificates may become lost or stolen. A more serious issue could be that the CA or server which issued the PKI certificates has become compromised, thereby jeopardizing every certificate keypair that was issued by the CA. These examples of revocation use cases and many more can be researched further using internet cybersecurity resources.\n\nPKI user certificates presented as part of the identification and authentication criteria (e.g., DOD PKI as multifactor authentication [MFA]) must be checked for validity by network devices. For example, valid PKI certificates are digitally signed by a trusted DOD certificate authority (CA). Additionally, valid PKI certificates are not expired, and valid certificates have not been revoked by a DOD CA.\n\nNetwork devices can verify the validity of PKI certificates by checking with an authoritative CA. One method of checking the status of PKI certificates is to query databases referred to as certificate revocation lists (CRL). These are lists which are published, updated, and maintained by authoritative DOD CAs. For example, once certificates are expired or revoked, issuing CAs place the certificates on a CRL. Organizations can download these lists periodically (i.e., daily or weekly) and store them locally on the devices themselves or even onto another nearby local enclave resource. Storing them locally ensures revocation status can be checked even if internet connectivity is severed at the enclave\u2019s point of presence (PoP). However, CRLs can be rather large in storage size and further, the use of CRLs can be rather taxing on some computing resources.\n\nAnother method of validating certificate status is to use the online certificate status protocol (OCSP). Using OCSP, a requestor (i.e., the network device which the user is trying to authenticate to) sends a request to an authoritative CA challenging the validity of a certificate that has been presented for identification and authentication. The CA receives the request and sends a digitally signed response indicating the status of the user\u2019s certificate as valid, revoked, or unknown. Network devices must only allow access for responses that indicate the certificates presented by the user were considered valid by an approved DOD CA. OCSP is the preferred method because it is fast, provides the most current status, and is lightweight.",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "6a1604c0e3092264983374519630a3b161881f171ce9f57f21a4611dc1ae604a"
+      },
+      "vuln_id": "V-266094",
+      "note": "Control applies only when PKI ClientCert LDAP is in use."
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266094)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266094)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266094)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 0,
+      "mismatch_count": 0,
+      "unresolved_count": 1,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266094:auth_source_type:1",
+          "shared_key": "auth_source.type",
+          "left_id": "observed[auth_source.type] = tacacs",
+          "right_id": "required[auth_source.type] clientcert-ldap (for applicability)",
+          "observed_value": "tacacs",
+          "required_value": "clientcert-ldap (for applicability)",
+          "comparison_expression": "observed(tacacs) satisfies required(clientcert-ldap (for applicability))",
+          "cardinality": "unresolved",
+          "source": "tmsh:list auth source all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "warning",
+      "aspect": "unresolved",
+      "finding": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+    },
+    {
+      "record_type": "unmatched_right",
+      "pullback_id": "V-266094:auth_source_type:1",
+      "shared_key": "auth_source.type",
+      "left_id": "observed[auth_source.type] = tacacs",
+      "right_id": "required[auth_source.type] clientcert-ldap (for applicability)",
+      "observed_value": "tacacs",
+      "required_value": "clientcert-ldap (for applicability)",
+      "source": "tmsh:list auth source all-properties",
+      "comparison_expression": "observed(tacacs) satisfies required(clientcert-ldap (for applicability))"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266094",
+      "requirement": "The F5 BIG-IP appliance must be configured to use DOD approved OCSP responders or CRLs to validate certificates used for PKI-based authentication.",
+      "status": "NOT_A_FINDING",
+      "why": "Control applies only when device-management authentication uses ClientCert LDAP / PKI-based auth.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 0,
+        "fail": 0,
+        "unresolved": 1
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266094 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266094",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "tmsh:list auth source all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266094",
+        "source_a": "observed appliance evidence (V-266094)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266094)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266094)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 0,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 1,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266094:auth_source_type:1",
+            "shared_key": "auth_source.type",
+            "left_id": "observed[auth_source.type] = tacacs",
+            "right_id": "required[auth_source.type] clientcert-ldap (for applicability)",
+            "observed_value": "tacacs",
+            "required_value": "clientcert-ldap (for applicability)",
+            "comparison_expression": "observed(tacacs) satisfies required(clientcert-ldap (for applicability))",
+            "cardinality": "unresolved",
+            "source": "tmsh:list auth source all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": [
+          "auth_source.type"
+        ]
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - unresolved",
+        "severity": "warning",
+        "aspect": "unresolved",
+        "detail": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_source.type @ tmsh:list auth source all-properties",
+        "pullback_id": "V-266094:auth_source_type:1",
+        "required": "clientcert-ldap (for applicability)",
+        "observed": "tacacs",
+        "source": "tmsh:list auth source all-properties",
+        "comparison_expression": "observed(tacacs) satisfies required(clientcert-ldap (for applicability))",
+        "verdict": "UNRESOLVED",
+        "is_unmatched": true
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 0,
+        "fail_count": 0,
+        "unresolved_count": 1,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Control applies only when device-management authentication uses ClientCert LDAP / PKI-based auth.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Control applies only when device-management authentication uses ClientCert LDAP / PKI-based auth.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266094"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266094/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266094/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

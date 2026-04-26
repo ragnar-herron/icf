@@ -1,0 +1,315 @@
+{
+  "ok": true,
+  "vuln_id": "V-266159",
+  "source_stig": {
+    "vuln_id": "V-266159",
+    "ruleID": "SV-266159r1024388_rule",
+    "checkid": "C-70083r1023723_chk",
+    "fixid": "F-69986r1023724_fix",
+    "title": "The F5 BIG-IP appliance providing content filtering must automatically update malicious code protection mechanisms.",
+    "checktext": "If the BIG-IP does not perform content filtering as part of its traffic management functionality, this is not applicable.\n\nNote: Automatic signature updates can be configured, but depending on site connectivity this may not be possible. In this case manual upload of updates is possible. The below covers automatic update configuration.\n\nAutomatic Update Check:\nFrom the BIG-IP GUI:\n1. System.\n2. Software Management.\n3. Update Check.\n4. Verify that \"Automatic Update Check\" is set to \"Enabled\".\n\nReal-Time Installation of Updates:\n1. System.\n2. Software Management.\n3. Live Update.\n4. Under \"Updates Configuration\" click on each item and check that \"Real-Time\" is selected for the setting \"Installation of Automatically Downloaded Updates\".\n\nIf the BIG-IP appliance is not configured to automatically update malicious code protection mechanisms, this is a finding.",
+    "fixtext": "Note: Automatic signature updates can be configured, but depending on site connectivity this may not be possible. In this case, manual upload of updates is possible. The below covers automatic update configuration.\n\nAutomatic Update Check:\nFrom the BIG-IP GUI:\n1. System.\n2. Software Management.\n3. Update Check.\n4. Set \"Automatic Update Check\" to \"Enabled\".\n5. Click \"Apply Settings\".\n\nReal-Time Installation of Updates:\n1. System.\n2. Software Management.\n3. Live Update.\n4. Under \"Updates Configuration\" click on each item and click \"Real-Time\" for the setting \"Installation of Automatically Downloaded Updates\".\n5. Click \"Save\" for each item.",
+    "description": "The malicious software detection functionality on network elements needs to be constantly updated to identify new threats as they are discovered.\n\nAll malicious software detection functions must come with an update mechanism that automatically updates the application and any associated signature definitions. The organization (including any contractor to the organization) is required to promptly install security-relevant malicious code protection updates. Examples of relevant updates include antivirus signatures, detection heuristic rule sets, and/or file reputation data employed to identify and/or block malicious software from executing.\n\nMalicious code includes viruses, worms, Trojan horses, and spyware.\n\nThis requirement is limited to ALGs, web content filters, and packet inspection firewalls that perform malicious code detection as part of their functionality.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "210f11eea30dd5eed73bc677b7d6fa384db1674c4d9d1587f95238b73d4793a0"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_security_firewall_policy": {
+      "source": "tmsh_security_firewall_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list security firewall policy all-properties"
+      },
+      "blob_sha256": "cc0c31a8db4518bb",
+      "bytes": 161
+    },
+    "tmsh_ltm_virtual": {
+      "source": "tmsh_ltm_virtual",
+      "preview": "ltm virtual stig_disallowed_test {\n    address-status yes\n    app-cloud-security-services none\n    app-service none\n    auth none\n    auto-discovery disabled\n    auto-lasthop default\n    bwc-policy none\n    clone-pools none\n    cmp-enabled  ... (3977 more chars)",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list ltm virtual all-properties"
+      },
+      "blob_sha256": "e8a6ff3b5a9eb261",
+      "bytes": 4218
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266159:security_firewall_policy_stig_compliance_policy:1",
+      "carrier_coordinate": "tmsh:list security firewall policy all-properties",
+      "measurable": "security_firewall_policy.stig_compliance_policy",
+      "lawful_property": "present",
+      "required": "present",
+      "observed": "present",
+      "comparison_expression": "observed(present) satisfies required(present)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_security_firewall_policy",
+      "source_stig": {
+        "vuln_id": "V-266159",
+        "ruleID": "SV-266159r1024388_rule",
+        "checkid": "C-70083r1023723_chk",
+        "fixid": "F-69986r1023724_fix",
+        "title": "The F5 BIG-IP appliance providing content filtering must automatically update malicious code protection mechanisms.",
+        "checktext": "If the BIG-IP does not perform content filtering as part of its traffic management functionality, this is not applicable.\n\nNote: Automatic signature updates can be configured, but depending on site connectivity this may not be possible. In this case manual upload of updates is possible. The below covers automatic update configuration.\n\nAutomatic Update Check:\nFrom the BIG-IP GUI:\n1. System.\n2. Software Management.\n3. Update Check.\n4. Verify that \"Automatic Update Check\" is set to \"Enabled\".\n\nReal-Time Installation of Updates:\n1. System.\n2. Software Management.\n3. Live Update.\n4. Under \"Updates Configuration\" click on each item and check that \"Real-Time\" is selected for the setting \"Installation of Automatically Downloaded Updates\".\n\nIf the BIG-IP appliance is not configured to automatically update malicious code protection mechanisms, this is a finding.",
+        "fixtext": "Note: Automatic signature updates can be configured, but depending on site connectivity this may not be possible. In this case, manual upload of updates is possible. The below covers automatic update configuration.\n\nAutomatic Update Check:\nFrom the BIG-IP GUI:\n1. System.\n2. Software Management.\n3. Update Check.\n4. Set \"Automatic Update Check\" to \"Enabled\".\n5. Click \"Apply Settings\".\n\nReal-Time Installation of Updates:\n1. System.\n2. Software Management.\n3. Live Update.\n4. Under \"Updates Configuration\" click on each item and click \"Real-Time\" for the setting \"Installation of Automatically Downloaded Updates\".\n5. Click \"Save\" for each item.",
+        "description": "The malicious software detection functionality on network elements needs to be constantly updated to identify new threats as they are discovered.\n\nAll malicious software detection functions must come with an update mechanism that automatically updates the application and any associated signature definitions. The organization (including any contractor to the organization) is required to promptly install security-relevant malicious code protection updates. Examples of relevant updates include antivirus signatures, detection heuristic rule sets, and/or file reputation data employed to identify and/or block malicious software from executing.\n\nMalicious code includes viruses, worms, Trojan horses, and spyware.\n\nThis requirement is limited to ALGs, web content filters, and packet inspection firewalls that perform malicious code detection as part of their functionality.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "210f11eea30dd5eed73bc677b7d6fa384db1674c4d9d1587f95238b73d4793a0"
+      },
+      "vuln_id": "V-266159"
+    },
+    {
+      "pullback_id": "V-266159:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+      "carrier_coordinate": "tmsh:list ltm virtual all-properties",
+      "measurable": "ltm_virtual.stig_test_vs.fw_enforced_policy",
+      "lawful_property": "stig_compliance_policy",
+      "required": "stig_compliance_policy",
+      "observed": "stig_compliance_policy",
+      "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_ltm_virtual",
+      "source_stig": {
+        "vuln_id": "V-266159",
+        "ruleID": "SV-266159r1024388_rule",
+        "checkid": "C-70083r1023723_chk",
+        "fixid": "F-69986r1023724_fix",
+        "title": "The F5 BIG-IP appliance providing content filtering must automatically update malicious code protection mechanisms.",
+        "checktext": "If the BIG-IP does not perform content filtering as part of its traffic management functionality, this is not applicable.\n\nNote: Automatic signature updates can be configured, but depending on site connectivity this may not be possible. In this case manual upload of updates is possible. The below covers automatic update configuration.\n\nAutomatic Update Check:\nFrom the BIG-IP GUI:\n1. System.\n2. Software Management.\n3. Update Check.\n4. Verify that \"Automatic Update Check\" is set to \"Enabled\".\n\nReal-Time Installation of Updates:\n1. System.\n2. Software Management.\n3. Live Update.\n4. Under \"Updates Configuration\" click on each item and check that \"Real-Time\" is selected for the setting \"Installation of Automatically Downloaded Updates\".\n\nIf the BIG-IP appliance is not configured to automatically update malicious code protection mechanisms, this is a finding.",
+        "fixtext": "Note: Automatic signature updates can be configured, but depending on site connectivity this may not be possible. In this case, manual upload of updates is possible. The below covers automatic update configuration.\n\nAutomatic Update Check:\nFrom the BIG-IP GUI:\n1. System.\n2. Software Management.\n3. Update Check.\n4. Set \"Automatic Update Check\" to \"Enabled\".\n5. Click \"Apply Settings\".\n\nReal-Time Installation of Updates:\n1. System.\n2. Software Management.\n3. Live Update.\n4. Under \"Updates Configuration\" click on each item and click \"Real-Time\" for the setting \"Installation of Automatically Downloaded Updates\".\n5. Click \"Save\" for each item.",
+        "description": "The malicious software detection functionality on network elements needs to be constantly updated to identify new threats as they are discovered.\n\nAll malicious software detection functions must come with an update mechanism that automatically updates the application and any associated signature definitions. The organization (including any contractor to the organization) is required to promptly install security-relevant malicious code protection updates. Examples of relevant updates include antivirus signatures, detection heuristic rule sets, and/or file reputation data employed to identify and/or block malicious software from executing.\n\nMalicious code includes viruses, worms, Trojan horses, and spyware.\n\nThis requirement is limited to ALGs, web content filters, and packet inspection firewalls that perform malicious code detection as part of their functionality.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "210f11eea30dd5eed73bc677b7d6fa384db1674c4d9d1587f95238b73d4793a0"
+      },
+      "vuln_id": "V-266159"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266159)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266159)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266159)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 2,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266159:security_firewall_policy_stig_compliance_policy:1",
+          "shared_key": "security_firewall_policy.stig_compliance_policy",
+          "left_id": "observed[security_firewall_policy.stig_compliance_policy] = present",
+          "right_id": "required[security_firewall_policy.stig_compliance_policy] present",
+          "observed_value": "present",
+          "required_value": "present",
+          "comparison_expression": "observed(present) satisfies required(present)",
+          "cardinality": "ok",
+          "source": "tmsh:list security firewall policy all-properties"
+        },
+        {
+          "pullback_id": "V-266159:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+          "shared_key": "ltm_virtual.stig_test_vs.fw_enforced_policy",
+          "left_id": "observed[ltm_virtual.stig_test_vs.fw_enforced_policy] = stig_compliance_policy",
+          "right_id": "required[ltm_virtual.stig_test_vs.fw_enforced_policy] stig_compliance_policy",
+          "observed_value": "stig_compliance_policy",
+          "required_value": "stig_compliance_policy",
+          "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)",
+          "cardinality": "ok",
+          "source": "tmsh:list ltm virtual all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266159:security_firewall_policy_stig_compliance_policy:1",
+      "shared_key": "security_firewall_policy.stig_compliance_policy",
+      "left_id": "observed[security_firewall_policy.stig_compliance_policy] = present",
+      "right_id": "required[security_firewall_policy.stig_compliance_policy] present",
+      "observed_value": "present",
+      "required_value": "present",
+      "source": "tmsh:list security firewall policy all-properties",
+      "comparison_expression": "observed(present) satisfies required(present)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266159:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+      "shared_key": "ltm_virtual.stig_test_vs.fw_enforced_policy",
+      "left_id": "observed[ltm_virtual.stig_test_vs.fw_enforced_policy] = stig_compliance_policy",
+      "right_id": "required[ltm_virtual.stig_test_vs.fw_enforced_policy] stig_compliance_policy",
+      "observed_value": "stig_compliance_policy",
+      "required_value": "stig_compliance_policy",
+      "source": "tmsh:list ltm virtual all-properties",
+      "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266159",
+      "requirement": "The F5 BIG-IP appliance providing content filtering must automatically update malicious code protection mechanisms.",
+      "status": "NOT_A_FINDING",
+      "why": "AFM: an enforced firewall policy must be attached to the STIG test virtual.",
+      "tmsh_remediation_command": "[Manual] Enforce an AFM policy on the scoped virtual with approved rules.",
+      "rest_remediation_command": "[Manual] PATCH /mgmt/tm/ltm/virtual/<name> to attach an enforced AFM policy.",
+      "evidence_keys": [
+        "tmsh_security_firewall_policy"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 2,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266159 - afm_firewall evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266159",
+        "detail": "Collected 2 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list security firewall policy all-properties",
+          "tmsh:list ltm virtual all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266159",
+        "source_a": "observed appliance evidence (V-266159)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266159)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266159)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 2,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266159:security_firewall_policy_stig_compliance_policy:1",
+            "shared_key": "security_firewall_policy.stig_compliance_policy",
+            "left_id": "observed[security_firewall_policy.stig_compliance_policy] = present",
+            "right_id": "required[security_firewall_policy.stig_compliance_policy] present",
+            "observed_value": "present",
+            "required_value": "present",
+            "comparison_expression": "observed(present) satisfies required(present)",
+            "cardinality": "ok",
+            "source": "tmsh:list security firewall policy all-properties"
+          },
+          {
+            "pullback_id": "V-266159:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+            "shared_key": "ltm_virtual.stig_test_vs.fw_enforced_policy",
+            "left_id": "observed[ltm_virtual.stig_test_vs.fw_enforced_policy] = stig_compliance_policy",
+            "right_id": "required[ltm_virtual.stig_test_vs.fw_enforced_policy] stig_compliance_policy",
+            "observed_value": "stig_compliance_policy",
+            "required_value": "stig_compliance_policy",
+            "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)",
+            "cardinality": "ok",
+            "source": "tmsh:list ltm virtual all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - security_firewall_policy.stig_compliance_policy @ tmsh:list security firewall policy all-properties",
+        "pullback_id": "V-266159:security_firewall_policy_stig_compliance_policy:1",
+        "required": "present",
+        "observed": "present",
+        "source": "tmsh:list security firewall policy all-properties",
+        "comparison_expression": "observed(present) satisfies required(present)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - ltm_virtual.stig_test_vs.fw_enforced_policy @ tmsh:list ltm virtual all-properties",
+        "pullback_id": "V-266159:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+        "required": "stig_compliance_policy",
+        "observed": "stig_compliance_policy",
+        "source": "tmsh:list ltm virtual all-properties",
+        "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "AFM: an enforced firewall policy must be attached to the STIG test virtual.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "If the BIG-IP does not perform content filtering as part of its traffic management functionality, this is not applicable.",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "AFM: an enforced firewall policy must be attached to the STIG test virtual.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266159"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266159/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266159/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

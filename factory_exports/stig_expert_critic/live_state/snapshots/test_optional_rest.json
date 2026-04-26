@@ -1,0 +1,5 @@
+{
+  "_error": "GET /mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource failed: HTTP 404 Not Found: Connectivity Resource Network Access was not found",
+  "_missing": true,
+  "_path": "/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource"
+}

@@ -1,0 +1,241 @@
+{
+  "ok": true,
+  "vuln_id": "V-266070",
+  "source_stig": {
+    "vuln_id": "V-266070",
+    "ruleID": "SV-266070r1024881_rule",
+    "checkid": "C-69993r1023459_chk",
+    "fixid": "F-69896r1024880_fix",
+    "title": "The F5 BIG-IP appliance must be configured to display the Standard Mandatory DOD Notice and Consent Banner upon access to the TMOS User Interface.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Security Banner Text To Show On The Login Screen.\n4. Review the \"Security Banner Text To Show On The Login Screen\" under the \"Security Settings\" section for the following verbiage:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nIf the banner is not presented, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Security Banner Text To Show On The Login Screen.\n4. Enter the text below in the \"Security Banner Text To Show On The Login Screen\" under the \"Security Settings\" section and then click \"Update\" to save.\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nSSH Banner:\nFrom the BIG-IP GUI:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Check the box for \"Show The Security Banner On The Login Screen\".\n6. Enter the following in the \"Security Banner Text To Show On The Login Screen\" under the \"Security Settings\" section:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nUse the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:\n\n\"I've read & consent to terms in IS user agreem't.\"\n\n7. Update.\n8. From the BIG-IP console, type the following commands:\n\ntmsh modify sys sshd banner enabled\ntmsh modify sys sshd banner-text \"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. At any time, the USG may inspect and seize data stored on this IS. Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG authorized purpose. This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\ntmsh save sys config",
+    "description": "Display of the DOD-approved use notification before granting access to the network device ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "447d40a52a5b8c684b668661ced8355c64f74d83f1ee698658f54dcb28f0927d"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "sys_global_settings": {
+      "source": "sys_global_settings",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/global-settings"
+      },
+      "blob_sha256": "b7abcd8a3ff3d581",
+      "bytes": 2806
+    },
+    "tmsh_sys_global_settings": {
+      "source": "tmsh_sys_global_settings",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys global-settings all-properties"
+      },
+      "blob_sha256": "d667ef5cfd769b48",
+      "bytes": 2780
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266070:sys_global_settings_gui_security_banner_text:1",
+      "carrier_coordinate": "rest:/mgmt/tm/sys/global-settings",
+      "measurable": "sys_global_settings.gui_security_banner_text",
+      "lawful_property": "== canonical DoD Notice and Consent banner",
+      "required": "== canonical DoD Notice and Consent banner",
+      "observed": "You are accessing a U.S. Government (USG) Information System...(+1238 chars)",
+      "comparison_expression": "observed(You are accessing a U.S. Government (USG) Information System...(+1238 chars)) satisfies required(== canonical DoD Notice and Consent banner)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "sys_global_settings",
+      "source_stig": {
+        "vuln_id": "V-266070",
+        "ruleID": "SV-266070r1024881_rule",
+        "checkid": "C-69993r1023459_chk",
+        "fixid": "F-69896r1024880_fix",
+        "title": "The F5 BIG-IP appliance must be configured to display the Standard Mandatory DOD Notice and Consent Banner upon access to the TMOS User Interface.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Security Banner Text To Show On The Login Screen.\n4. Review the \"Security Banner Text To Show On The Login Screen\" under the \"Security Settings\" section for the following verbiage:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nIf the banner is not presented, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Security Banner Text To Show On The Login Screen.\n4. Enter the text below in the \"Security Banner Text To Show On The Login Screen\" under the \"Security Settings\" section and then click \"Update\" to save.\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nSSH Banner:\nFrom the BIG-IP GUI:\n1. System.\n2. Configuration.\n3. Device.\n4. SSHD.\n5. Check the box for \"Show The Security Banner On The Login Screen\".\n6. Enter the following in the \"Security Banner Text To Show On The Login Screen\" under the \"Security Settings\" section:\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nUse the following verbiage for operating systems that have severe limitations on the number of characters that can be displayed in the banner:\n\n\"I've read & consent to terms in IS user agreem't.\"\n\n7. Update.\n8. From the BIG-IP console, type the following commands:\n\ntmsh modify sys sshd banner enabled\ntmsh modify sys sshd banner-text \"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. At any time, the USG may inspect and seize data stored on this IS. Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG authorized purpose. This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\ntmsh save sys config",
+        "description": "Display of the DOD-approved use notification before granting access to the network device ensures privacy and security notification verbiage used is consistent with applicable federal laws, Executive Orders, directives, policies, regulations, standards, and guidance.\n\nSystem use notifications are required only for access via logon interfaces with human users.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "447d40a52a5b8c684b668661ced8355c64f74d83f1ee698658f54dcb28f0927d"
+      },
+      "vuln_id": "V-266070"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266070)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266070)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266070)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266070:sys_global_settings_gui_security_banner_text:1",
+          "shared_key": "sys_global_settings.gui_security_banner_text",
+          "left_id": "observed[sys_global_settings.gui_security_banner_text] = You are accessing a U.S. Government (USG) Information System ... (16 more chars)",
+          "right_id": "required[sys_global_settings.gui_security_banner_text] == canonical DoD Notice and Consent banner",
+          "observed_value": "You are accessing a U.S. Government (USG) Information System...(+1238 chars)",
+          "required_value": "== canonical DoD Notice and Consent banner",
+          "comparison_expression": "observed(You are accessing a U.S. Government (USG) Information System...(+1238 chars)) satisfies required(== canonical DoD Notice and Consent banner)",
+          "cardinality": "ok",
+          "source": "rest:/mgmt/tm/sys/global-settings"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266070:sys_global_settings_gui_security_banner_text:1",
+      "shared_key": "sys_global_settings.gui_security_banner_text",
+      "left_id": "observed[sys_global_settings.gui_security_banner_text] = You are accessing a U.S. Government (USG) Information System ... (16 more chars)",
+      "right_id": "required[sys_global_settings.gui_security_banner_text] == canonical DoD Notice and Consent banner",
+      "observed_value": "You are accessing a U.S. Government (USG) Information System...(+1238 chars)",
+      "required_value": "== canonical DoD Notice and Consent banner",
+      "source": "rest:/mgmt/tm/sys/global-settings",
+      "comparison_expression": "observed(You are accessing a U.S. Government (USG) Information System...(+1238 chars)) satisfies required(== canonical DoD Notice and Consent banner)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266070",
+      "requirement": "The F5 BIG-IP appliance must be configured to display the Standard Mandatory DOD Notice and Consent Banner upon access to the TMOS User Interface.",
+      "status": "NOT_A_FINDING",
+      "why": "TMOS UI banner must exactly equal the canonical DoD Notice and Consent banner.",
+      "tmsh_remediation_command": "tmsh modify sys global-settings gui-setup disabled login-banner-text \"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions...\"; tmsh save sys config",
+      "rest_remediation_command": "PATCH /mgmt/tm/sys/global-settings {\"loginBannerText\": \"<DoD banner>\", \"guiSetup\": \"disabled\"}",
+      "evidence_keys": [
+        "tmsh_sys_global_settings"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266070 - banner evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266070",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "rest:/mgmt/tm/sys/global-settings"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266070",
+        "source_a": "observed appliance evidence (V-266070)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266070)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266070)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266070:sys_global_settings_gui_security_banner_text:1",
+            "shared_key": "sys_global_settings.gui_security_banner_text",
+            "left_id": "observed[sys_global_settings.gui_security_banner_text] = You are accessing a U.S. Government (USG) Information System ... (16 more chars)",
+            "right_id": "required[sys_global_settings.gui_security_banner_text] == canonical DoD Notice and Consent banner",
+            "observed_value": "You are accessing a U.S. Government (USG) Information System...(+1238 chars)",
+            "required_value": "== canonical DoD Notice and Consent banner",
+            "comparison_expression": "observed(You are accessing a U.S. Government (USG) Information System...(+1238 chars)) satisfies required(== canonical DoD Notice and Consent banner)",
+            "cardinality": "ok",
+            "source": "rest:/mgmt/tm/sys/global-settings"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_global_settings.gui_security_banner_text @ rest:/mgmt/tm/sys/global-settings",
+        "pullback_id": "V-266070:sys_global_settings_gui_security_banner_text:1",
+        "required": "== canonical DoD Notice and Consent banner",
+        "observed": "You are accessing a U.S. Government (USG) Information System...(+1238 chars)",
+        "source": "rest:/mgmt/tm/sys/global-settings",
+        "comparison_expression": "observed(You are accessing a U.S. Government (USG) Information System...(+1238 chars)) satisfies required(== canonical DoD Notice and Consent banner)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "TMOS UI banner must exactly equal the canonical DoD Notice and Consent banner.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "TMOS UI banner must exactly equal the canonical DoD Notice and Consent banner.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266070"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266070/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266070/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

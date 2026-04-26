@@ -1,0 +1,315 @@
+{
+  "ok": true,
+  "vuln_id": "V-266144",
+  "source_stig": {
+    "vuln_id": "V-266144",
+    "ruleID": "SV-266144r1024371_rule",
+    "checkid": "C-70068r1023678_chk",
+    "fixid": "F-69971r1023679_fix",
+    "title": "The F5 BIG-IP appliance providing user access control intermediary services must implement attribute- and content-based inspection of the source, destination, headers, and/or content of the communications traffic.",
+    "checktext": "From the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Active Rules.\n4. Verify \"Policy Type\" is set to \"Enforced\".\n5. Inspect the different \"Context\" choices and verify rules are configured to enforce approved authorizations for controlling the flow of information within the network.\n\nIf the BIG-IP appliance is not configured to enforce approved authorizations for controlling the flow of information within the network based on attribute- and content-based inspection of the source, destination, headers, and/or content of the communications traffic, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Policies.\n4. Create and/or edit firewall policies that are applied to the Context needed to enforce approved authorizations for controlling the flow of information within the network.",
+    "description": "Information flow control regulates where information is allowed to travel within a network. The flow of all network traffic must be monitored and controlled so it does not introduce any unacceptable risk to the network infrastructure or data.\n\nInformation flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., networks, individuals, devices) within information systems. Examples of information flow control restrictions include keeping export controlled information from being transmitted in the clear to the internet or blocking information marked as classified but is being transported to an unapproved destination.\n\nALGs enforce approved authorizations by employing security policy and/or rules that restrict information system services, provide packet filtering capability based on header or protocol information and/or message filtering capability based on data content (e.g., implementing key word searches or using document characteristics).\n\nSatisfies: SRG-NET-000018-ALG-000017, SRG-NET-000019-ALG-000018",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "427c98e8569fd53f9e0c2ed776b0ffc0ce9d96597ee359a0d9edd416c439d75f"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_security_firewall_policy": {
+      "source": "tmsh_security_firewall_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list security firewall policy all-properties"
+      },
+      "blob_sha256": "cc0c31a8db4518bb",
+      "bytes": 161
+    },
+    "tmsh_ltm_virtual": {
+      "source": "tmsh_ltm_virtual",
+      "preview": "ltm virtual stig_disallowed_test {\n    address-status yes\n    app-cloud-security-services none\n    app-service none\n    auth none\n    auto-discovery disabled\n    auto-lasthop default\n    bwc-policy none\n    clone-pools none\n    cmp-enabled  ... (3977 more chars)",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list ltm virtual all-properties"
+      },
+      "blob_sha256": "e8a6ff3b5a9eb261",
+      "bytes": 4218
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266144:security_firewall_policy_stig_compliance_policy:1",
+      "carrier_coordinate": "tmsh:list security firewall policy all-properties",
+      "measurable": "security_firewall_policy.stig_compliance_policy",
+      "lawful_property": "present",
+      "required": "present",
+      "observed": "present",
+      "comparison_expression": "observed(present) satisfies required(present)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_security_firewall_policy",
+      "source_stig": {
+        "vuln_id": "V-266144",
+        "ruleID": "SV-266144r1024371_rule",
+        "checkid": "C-70068r1023678_chk",
+        "fixid": "F-69971r1023679_fix",
+        "title": "The F5 BIG-IP appliance providing user access control intermediary services must implement attribute- and content-based inspection of the source, destination, headers, and/or content of the communications traffic.",
+        "checktext": "From the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Active Rules.\n4. Verify \"Policy Type\" is set to \"Enforced\".\n5. Inspect the different \"Context\" choices and verify rules are configured to enforce approved authorizations for controlling the flow of information within the network.\n\nIf the BIG-IP appliance is not configured to enforce approved authorizations for controlling the flow of information within the network based on attribute- and content-based inspection of the source, destination, headers, and/or content of the communications traffic, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Policies.\n4. Create and/or edit firewall policies that are applied to the Context needed to enforce approved authorizations for controlling the flow of information within the network.",
+        "description": "Information flow control regulates where information is allowed to travel within a network. The flow of all network traffic must be monitored and controlled so it does not introduce any unacceptable risk to the network infrastructure or data.\n\nInformation flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., networks, individuals, devices) within information systems. Examples of information flow control restrictions include keeping export controlled information from being transmitted in the clear to the internet or blocking information marked as classified but is being transported to an unapproved destination.\n\nALGs enforce approved authorizations by employing security policy and/or rules that restrict information system services, provide packet filtering capability based on header or protocol information and/or message filtering capability based on data content (e.g., implementing key word searches or using document characteristics).\n\nSatisfies: SRG-NET-000018-ALG-000017, SRG-NET-000019-ALG-000018",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "427c98e8569fd53f9e0c2ed776b0ffc0ce9d96597ee359a0d9edd416c439d75f"
+      },
+      "vuln_id": "V-266144"
+    },
+    {
+      "pullback_id": "V-266144:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+      "carrier_coordinate": "tmsh:list ltm virtual all-properties",
+      "measurable": "ltm_virtual.stig_test_vs.fw_enforced_policy",
+      "lawful_property": "stig_compliance_policy",
+      "required": "stig_compliance_policy",
+      "observed": "stig_compliance_policy",
+      "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_ltm_virtual",
+      "source_stig": {
+        "vuln_id": "V-266144",
+        "ruleID": "SV-266144r1024371_rule",
+        "checkid": "C-70068r1023678_chk",
+        "fixid": "F-69971r1023679_fix",
+        "title": "The F5 BIG-IP appliance providing user access control intermediary services must implement attribute- and content-based inspection of the source, destination, headers, and/or content of the communications traffic.",
+        "checktext": "From the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Active Rules.\n4. Verify \"Policy Type\" is set to \"Enforced\".\n5. Inspect the different \"Context\" choices and verify rules are configured to enforce approved authorizations for controlling the flow of information within the network.\n\nIf the BIG-IP appliance is not configured to enforce approved authorizations for controlling the flow of information within the network based on attribute- and content-based inspection of the source, destination, headers, and/or content of the communications traffic, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Security.\n2. Network Firewall.\n3. Policies.\n4. Create and/or edit firewall policies that are applied to the Context needed to enforce approved authorizations for controlling the flow of information within the network.",
+        "description": "Information flow control regulates where information is allowed to travel within a network. The flow of all network traffic must be monitored and controlled so it does not introduce any unacceptable risk to the network infrastructure or data.\n\nInformation flow control policies and enforcement mechanisms are commonly employed by organizations to control the flow of information between designated sources and destinations (e.g., networks, individuals, devices) within information systems. Examples of information flow control restrictions include keeping export controlled information from being transmitted in the clear to the internet or blocking information marked as classified but is being transported to an unapproved destination.\n\nALGs enforce approved authorizations by employing security policy and/or rules that restrict information system services, provide packet filtering capability based on header or protocol information and/or message filtering capability based on data content (e.g., implementing key word searches or using document characteristics).\n\nSatisfies: SRG-NET-000018-ALG-000017, SRG-NET-000019-ALG-000018",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "427c98e8569fd53f9e0c2ed776b0ffc0ce9d96597ee359a0d9edd416c439d75f"
+      },
+      "vuln_id": "V-266144"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266144)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266144)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266144)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 2,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266144:security_firewall_policy_stig_compliance_policy:1",
+          "shared_key": "security_firewall_policy.stig_compliance_policy",
+          "left_id": "observed[security_firewall_policy.stig_compliance_policy] = present",
+          "right_id": "required[security_firewall_policy.stig_compliance_policy] present",
+          "observed_value": "present",
+          "required_value": "present",
+          "comparison_expression": "observed(present) satisfies required(present)",
+          "cardinality": "ok",
+          "source": "tmsh:list security firewall policy all-properties"
+        },
+        {
+          "pullback_id": "V-266144:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+          "shared_key": "ltm_virtual.stig_test_vs.fw_enforced_policy",
+          "left_id": "observed[ltm_virtual.stig_test_vs.fw_enforced_policy] = stig_compliance_policy",
+          "right_id": "required[ltm_virtual.stig_test_vs.fw_enforced_policy] stig_compliance_policy",
+          "observed_value": "stig_compliance_policy",
+          "required_value": "stig_compliance_policy",
+          "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)",
+          "cardinality": "ok",
+          "source": "tmsh:list ltm virtual all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266144:security_firewall_policy_stig_compliance_policy:1",
+      "shared_key": "security_firewall_policy.stig_compliance_policy",
+      "left_id": "observed[security_firewall_policy.stig_compliance_policy] = present",
+      "right_id": "required[security_firewall_policy.stig_compliance_policy] present",
+      "observed_value": "present",
+      "required_value": "present",
+      "source": "tmsh:list security firewall policy all-properties",
+      "comparison_expression": "observed(present) satisfies required(present)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266144:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+      "shared_key": "ltm_virtual.stig_test_vs.fw_enforced_policy",
+      "left_id": "observed[ltm_virtual.stig_test_vs.fw_enforced_policy] = stig_compliance_policy",
+      "right_id": "required[ltm_virtual.stig_test_vs.fw_enforced_policy] stig_compliance_policy",
+      "observed_value": "stig_compliance_policy",
+      "required_value": "stig_compliance_policy",
+      "source": "tmsh:list ltm virtual all-properties",
+      "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266144",
+      "requirement": "The F5 BIG-IP appliance providing user access control intermediary services must implement attribute- and content-based inspection of the source, destination, headers, and/or content of the communications traffic.",
+      "status": "NOT_A_FINDING",
+      "why": "AFM: an enforced firewall policy must be attached to the STIG test virtual.",
+      "tmsh_remediation_command": "[Manual] Enforce an AFM policy on the scoped virtual with approved rules.",
+      "rest_remediation_command": "[Manual] PATCH /mgmt/tm/ltm/virtual/<name> to attach an enforced AFM policy.",
+      "evidence_keys": [
+        "tmsh_security_firewall_policy"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 2,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266144 - afm_firewall evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266144",
+        "detail": "Collected 2 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list security firewall policy all-properties",
+          "tmsh:list ltm virtual all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266144",
+        "source_a": "observed appliance evidence (V-266144)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266144)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266144)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 2,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266144:security_firewall_policy_stig_compliance_policy:1",
+            "shared_key": "security_firewall_policy.stig_compliance_policy",
+            "left_id": "observed[security_firewall_policy.stig_compliance_policy] = present",
+            "right_id": "required[security_firewall_policy.stig_compliance_policy] present",
+            "observed_value": "present",
+            "required_value": "present",
+            "comparison_expression": "observed(present) satisfies required(present)",
+            "cardinality": "ok",
+            "source": "tmsh:list security firewall policy all-properties"
+          },
+          {
+            "pullback_id": "V-266144:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+            "shared_key": "ltm_virtual.stig_test_vs.fw_enforced_policy",
+            "left_id": "observed[ltm_virtual.stig_test_vs.fw_enforced_policy] = stig_compliance_policy",
+            "right_id": "required[ltm_virtual.stig_test_vs.fw_enforced_policy] stig_compliance_policy",
+            "observed_value": "stig_compliance_policy",
+            "required_value": "stig_compliance_policy",
+            "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)",
+            "cardinality": "ok",
+            "source": "tmsh:list ltm virtual all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - security_firewall_policy.stig_compliance_policy @ tmsh:list security firewall policy all-properties",
+        "pullback_id": "V-266144:security_firewall_policy_stig_compliance_policy:1",
+        "required": "present",
+        "observed": "present",
+        "source": "tmsh:list security firewall policy all-properties",
+        "comparison_expression": "observed(present) satisfies required(present)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - ltm_virtual.stig_test_vs.fw_enforced_policy @ tmsh:list ltm virtual all-properties",
+        "pullback_id": "V-266144:ltm_virtual_stig_test_vs_fw_enforced_policy:2",
+        "required": "stig_compliance_policy",
+        "observed": "stig_compliance_policy",
+        "source": "tmsh:list ltm virtual all-properties",
+        "comparison_expression": "observed(stig_compliance_policy) satisfies required(stig_compliance_policy)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "AFM: an enforced firewall policy must be attached to the STIG test virtual.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "AFM: an enforced firewall policy must be attached to the STIG test virtual.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266144"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266144/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266144/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

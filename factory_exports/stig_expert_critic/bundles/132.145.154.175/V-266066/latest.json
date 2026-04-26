@@ -1,0 +1,325 @@
+{
+  "ok": true,
+  "vuln_id": "V-266066",
+  "source_stig": {
+    "vuln_id": "V-266066",
+    "ruleID": "SV-266066r1024597_rule",
+    "checkid": "C-69989r1023447_chk",
+    "fixid": "F-69892r1023448_fix",
+    "title": "The F5 BIG-IP appliance must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. User List.\n4. Verify there is only one account of last resort listed.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list auth user\n\nIf there is more than one account of last resort listed, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. User List.\n4. Delete any local users that are not the account of last resort.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh delete auth user <username>\ntmsh save sys config",
+    "description": "Authentication for administrative (privileged level) access to the device is required at all times. An account can be created on the device's local database for use when the authentication server is down or connectivity between the device and the authentication server is not operable. This account is referred to as the account of last resort since it is intended to be used as a last resort and when immediate administrative access is absolutely necessary.\n\nThe account of last resort logon credentials must be stored in a sealed envelope and kept in a safe. The safe must be periodically audited to verify the envelope remains sealed. The signature of the auditor and the date of the audit must be added to the envelope as a record. Administrators must secure the credentials and disable the root account (if possible) when not needed for system administration functions.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "af9888d2e142bbb411eb32c4dbc25ef966734359cd13b631f38b2a8e189276d8"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_auth_user": {
+      "source": "tmsh_auth_user",
+      "preview": "auth user admin {\n    description \"Admin User\"\n    encrypted-password $6$.RzZ5zWD$uloQrK7.e/jbcVUWCS71b5gkS4h1aRGjM.O6YikZJUJ0qvMbM8RtfAJ4uCggY/Qr0Yz9OaVe/9J9gJuzk4UBQ.\n    partition Common\n    partition-access {\n        all-partitions {\n   ... (418 more chars)",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth user"
+      },
+      "blob_sha256": "7e84b8b5a29477ec",
+      "bytes": 659
+    },
+    "tmsh_auth_source": {
+      "source": "tmsh_auth_source",
+      "preview": "auth source {\n    description none\n    fallback true\n    type tacacs\n}",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth source all-properties"
+      },
+      "blob_sha256": "b148eaa410ae5563",
+      "bytes": 71
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266066:auth_user_local_admin_count:1",
+      "carrier_coordinate": "tmsh:list auth user",
+      "measurable": "auth_user.local_admin_count",
+      "lawful_property": "== 1",
+      "required": "== 1",
+      "observed": "1",
+      "comparison_expression": "observed(1) satisfies required(== 1)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_user",
+      "source_stig": {
+        "vuln_id": "V-266066",
+        "ruleID": "SV-266066r1024597_rule",
+        "checkid": "C-69989r1023447_chk",
+        "fixid": "F-69892r1023448_fix",
+        "title": "The F5 BIG-IP appliance must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. User List.\n4. Verify there is only one account of last resort listed.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list auth user\n\nIf there is more than one account of last resort listed, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. User List.\n4. Delete any local users that are not the account of last resort.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh delete auth user <username>\ntmsh save sys config",
+        "description": "Authentication for administrative (privileged level) access to the device is required at all times. An account can be created on the device's local database for use when the authentication server is down or connectivity between the device and the authentication server is not operable. This account is referred to as the account of last resort since it is intended to be used as a last resort and when immediate administrative access is absolutely necessary.\n\nThe account of last resort logon credentials must be stored in a sealed envelope and kept in a safe. The safe must be periodically audited to verify the envelope remains sealed. The signature of the auditor and the date of the audit must be added to the envelope as a record. Administrators must secure the credentials and disable the root account (if possible) when not needed for system administration functions.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "af9888d2e142bbb411eb32c4dbc25ef966734359cd13b631f38b2a8e189276d8"
+      },
+      "vuln_id": "V-266066"
+    },
+    {
+      "pullback_id": "V-266066:auth_source_fallback:2",
+      "carrier_coordinate": "tmsh:list auth source all-properties",
+      "measurable": "auth_source.fallback",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "true",
+      "comparison_expression": "observed(true) satisfies required(true)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_source",
+      "source_stig": {
+        "vuln_id": "V-266066",
+        "ruleID": "SV-266066r1024597_rule",
+        "checkid": "C-69989r1023447_chk",
+        "fixid": "F-69892r1023448_fix",
+        "title": "The F5 BIG-IP appliance must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. User List.\n4. Verify there is only one account of last resort listed.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list auth user\n\nIf there is more than one account of last resort listed, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. User List.\n4. Delete any local users that are not the account of last resort.\n\nFrom the BIG-IP console, type the following commands:\n\ntmsh delete auth user <username>\ntmsh save sys config",
+        "description": "Authentication for administrative (privileged level) access to the device is required at all times. An account can be created on the device's local database for use when the authentication server is down or connectivity between the device and the authentication server is not operable. This account is referred to as the account of last resort since it is intended to be used as a last resort and when immediate administrative access is absolutely necessary.\n\nThe account of last resort logon credentials must be stored in a sealed envelope and kept in a safe. The safe must be periodically audited to verify the envelope remains sealed. The signature of the auditor and the date of the audit must be added to the envelope as a record. Administrators must secure the credentials and disable the root account (if possible) when not needed for system administration functions.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "af9888d2e142bbb411eb32c4dbc25ef966734359cd13b631f38b2a8e189276d8"
+      },
+      "vuln_id": "V-266066"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266066)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266066)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266066)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 2,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266066:auth_user_local_admin_count:1",
+          "shared_key": "auth_user.local_admin_count",
+          "left_id": "observed[auth_user.local_admin_count] = 1",
+          "right_id": "required[auth_user.local_admin_count] == 1",
+          "observed_value": "1",
+          "required_value": "== 1",
+          "comparison_expression": "observed(1) satisfies required(== 1)",
+          "cardinality": "ok",
+          "source": "tmsh:list auth user"
+        },
+        {
+          "pullback_id": "V-266066:auth_source_fallback:2",
+          "shared_key": "auth_source.fallback",
+          "left_id": "observed[auth_source.fallback] = true",
+          "right_id": "required[auth_source.fallback] true",
+          "observed_value": "true",
+          "required_value": "true",
+          "comparison_expression": "observed(true) satisfies required(true)",
+          "cardinality": "ok",
+          "source": "tmsh:list auth source all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266066:auth_user_local_admin_count:1",
+      "shared_key": "auth_user.local_admin_count",
+      "left_id": "observed[auth_user.local_admin_count] = 1",
+      "right_id": "required[auth_user.local_admin_count] == 1",
+      "observed_value": "1",
+      "required_value": "== 1",
+      "source": "tmsh:list auth user",
+      "comparison_expression": "observed(1) satisfies required(== 1)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266066:auth_source_fallback:2",
+      "shared_key": "auth_source.fallback",
+      "left_id": "observed[auth_source.fallback] = true",
+      "right_id": "required[auth_source.fallback] true",
+      "observed_value": "true",
+      "required_value": "true",
+      "source": "tmsh:list auth source all-properties",
+      "comparison_expression": "observed(true) satisfies required(true)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266066",
+      "requirement": "The F5 BIG-IP appliance must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.",
+      "status": "NOT_A_FINDING",
+      "why": "Account-of-last-resort: local_admins=1, fallback=enabled.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 2,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266066 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266066",
+        "detail": "Collected 2 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list auth user",
+          "tmsh:list auth source all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266066",
+        "source_a": "observed appliance evidence (V-266066)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266066)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266066)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 2,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266066:auth_user_local_admin_count:1",
+            "shared_key": "auth_user.local_admin_count",
+            "left_id": "observed[auth_user.local_admin_count] = 1",
+            "right_id": "required[auth_user.local_admin_count] == 1",
+            "observed_value": "1",
+            "required_value": "== 1",
+            "comparison_expression": "observed(1) satisfies required(== 1)",
+            "cardinality": "ok",
+            "source": "tmsh:list auth user"
+          },
+          {
+            "pullback_id": "V-266066:auth_source_fallback:2",
+            "shared_key": "auth_source.fallback",
+            "left_id": "observed[auth_source.fallback] = true",
+            "right_id": "required[auth_source.fallback] true",
+            "observed_value": "true",
+            "required_value": "true",
+            "comparison_expression": "observed(true) satisfies required(true)",
+            "cardinality": "ok",
+            "source": "tmsh:list auth source all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_user.local_admin_count @ tmsh:list auth user",
+        "pullback_id": "V-266066:auth_user_local_admin_count:1",
+        "required": "== 1",
+        "observed": "1",
+        "source": "tmsh:list auth user",
+        "comparison_expression": "observed(1) satisfies required(== 1)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_source.fallback @ tmsh:list auth source all-properties",
+        "pullback_id": "V-266066:auth_source_fallback:2",
+        "required": "true",
+        "observed": "true",
+        "source": "tmsh:list auth source all-properties",
+        "comparison_expression": "observed(true) satisfies required(true)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Account-of-last-resort: local_admins=1, fallback=enabled.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Account-of-last-resort: local_admins=1, fallback=enabled.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266066"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266066/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266066/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

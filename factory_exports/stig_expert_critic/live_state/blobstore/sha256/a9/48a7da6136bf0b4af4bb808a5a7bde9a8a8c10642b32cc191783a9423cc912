@@ -1,0 +1,10 @@
+apm policy agent message-box stig_access_policy_act_message_box_ag {
+    app-service none
+    customization-group stig_access_policy_act_message_box_ag
+    partition Common
+}
+apm policy agent message-box stig_dod_notice {
+    app-service none
+    customization-group stig_dod_notice
+    partition Common
+}

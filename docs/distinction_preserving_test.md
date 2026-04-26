@@ -1,3 +1,8 @@
+STATUS: SUPERSEDED BY docs/canonical/CANONICAL_GATE_SUITE.md
+DO NOT USE AS BUILD AUTHORITY
+
+---
+
 Yes.
 
 You can make those failures **impossible by construction** only if the adapter is forced through a small set of **distinction-preserving pullback gates** before it is accepted, promoted, exported, or shipped.

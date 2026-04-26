@@ -1,0 +1,24 @@
+name: STIG Export Certification
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  verify-stig-export:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Verify STIG export end to end
+        shell: pwsh
+        run: |
+          powershell -ExecutionPolicy Bypass -File scripts/verify_stig_export.ps1

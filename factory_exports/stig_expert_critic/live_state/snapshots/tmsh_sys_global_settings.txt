@@ -1,0 +1,33 @@
+sys global-settings {
+    aws-access-key none
+    aws-api-max-concurrency 1
+    aws-secret-key none
+    console-inactivity-timeout 300
+    custom-addr none
+    description none
+    failsafe-action go-offline-restart-tm
+    file-blacklist-path-prefix "{/shared/3dns/} {/shared/bin/} {/shared/core/} {/appdata/core/} {/shared/datasync/} {/shared/em/} {/shared/GeoIP/} {/shared/images/} {/shared/lib/} {/shared/lib64/} {/shared/log/} {/shared/lost+found/} {/shared/mgmt/} {/shared/nfb/} {/shared/ssh/} {/shared/statsd/} {/shared/tmstat/} {/shared/vadc/} {/config/aaa/} {/config/big3d/} {/config/bigip/} {/config/filestore/} {/config/gtm/} {/config/httpd/} {/config/ntp.conf} {/config/rndc.key} {/config/ssh/} {/config/ssl/}"
+    file-blacklist-read-only-path-prefix "{/etc/shadow}"
+    file-local-path-prefix "{/shared/} {/tmp/}"
+    file-whitelist-path-prefix "{/var/local/scf} {/tmp/} {/shared/} {/config/} {/usr/share/aws/}"
+    gui-audit disabled
+    gui-expired-cert-alert enabled
+    gui-security-banner enabled
+    gui-security-banner-text "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. -At any time, the USG may inspect and seize data stored on this IS. -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy. -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details."
+    gui-setup disabled
+    host-addr-mode management
+    hostname bigip1
+    hosts-allow-include none
+    lcd-display enabled
+    led-locator disabled
+    mgmt-dhcp enabled
+    net-reboot disabled
+    password-prompt Password
+    quiet-boot enabled
+    remote-host none
+    ssh-max-session-limit 10
+    ssh-max-session-limit-per-user -1
+    ssh-root-session-limit disabled
+    ssh-session-limit disabled
+    username-prompt Username
+}

@@ -1,0 +1,49 @@
+{
+  "record_kind": "StigExportReleaseManifest",
+  "generated_at": "20260423T235605Z",
+  "release_dir": "output\\releases\\stig_export_release_20260423T235605Z",
+  "artifacts": [
+    {
+      "name": "ExportBundle.json",
+      "source_path": "bridge\\ExportBundle.json",
+      "release_path": "output\\releases\\stig_export_release_20260423T235605Z\\ExportBundle.json",
+      "sha256": "096d00b1a37fe7a6c304e50deefe629c3124ffc34ebd61e838add4264e79757c",
+      "size_bytes": 64073
+    },
+    {
+      "name": "ProjectionBundle.json",
+      "source_path": "bridge\\ProjectionBundle.json",
+      "release_path": "output\\releases\\stig_export_release_20260423T235605Z\\ProjectionBundle.json",
+      "sha256": "127c5110421f397e1f01e96f4d9793ec8a5e1b61de1ed8fd28e82b10a431fe6d",
+      "size_bytes": 106458
+    },
+    {
+      "name": "LegitimacyRecords.json",
+      "source_path": "bridge\\LegitimacyRecords.json",
+      "release_path": "output\\releases\\stig_export_release_20260423T235605Z\\LegitimacyRecords.json",
+      "sha256": "67bb3e40692e7194e30a18e9d00a5e7a278c2a35d2f38171a19dd24b203e3d87",
+      "size_bytes": 10111683
+    },
+    {
+      "name": "stig_expert_critic.html",
+      "source_path": "export\\stig_expert_critic.html",
+      "release_path": "output\\releases\\stig_export_release_20260423T235605Z\\stig_expert_critic.html",
+      "sha256": "ab54e43e7be32842bcf8b6a26e092a08d62b2066fbe7e7d05a902e30b0cb0b89",
+      "size_bytes": 117773
+    },
+    {
+      "name": "stig_expert_critic.html",
+      "source_path": "factory_exports\\stig_expert_critic\\stig_expert_critic.html",
+      "release_path": "output\\releases\\stig_export_release_20260423T235605Z\\stig_expert_critic.html",
+      "sha256": "ab54e43e7be32842bcf8b6a26e092a08d62b2066fbe7e7d05a902e30b0cb0b89",
+      "size_bytes": 117773
+    },
+    {
+      "name": "ProjectionBundle.json",
+      "source_path": "factory_exports\\stig_expert_critic\\data\\ProjectionBundle.json",
+      "release_path": "output\\releases\\stig_export_release_20260423T235605Z\\ProjectionBundle.json",
+      "sha256": "127c5110421f397e1f01e96f4d9793ec8a5e1b61de1ed8fd28e82b10a431fe6d",
+      "size_bytes": 106458
+    }
+  ]
+}

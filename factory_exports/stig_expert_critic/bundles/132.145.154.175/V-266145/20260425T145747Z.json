@@ -1,0 +1,265 @@
+{
+  "ok": true,
+  "vuln_id": "V-266145",
+  "source_stig": {
+    "vuln_id": "V-266145",
+    "ruleID": "SV-266145r1024372_rule",
+    "checkid": "C-70069r1023681_chk",
+    "fixid": "F-69972r1023682_fix",
+    "title": "The F5 BIG-IP appliance providing user access control intermediary services must display the Standard Mandatory DOD-approved Notice and Consent Banner before granting access to the network.",
+    "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit...\" in the \"Per-Session Policy\" column for an Access Profile used for granting access.\n5. Verify the Access Profile is configured to display the Standard Mandatory DOD Notice and Consent Banner before granting access to the system. The banner must be exactly formatted in accordance with the policy (see below).\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nIf the BIG-IP APM module is not configured to display the Standard Mandatory DOD Notice and Consent Banner before granting access to the system, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit...\" in the \"Per-Session Policy\" column for an Access Profile used for granting access.\n5. Configure the Access Profile to display the Standard Mandatory DOD Notice and Consent Banner below before granting access to the system.\n6. Click \"Apply Access Policy\".\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"",
+    "description": "",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "27fbb81a4c99322665ce868e19263ff100de5e39b58694bd54b36762146c5e55"
+  },
+  "status": "UNKNOWN",
+  "disposition": "blocked-external",
+  "evidence": {
+    "external_evidence_packages": {
+      "source": "external_evidence_packages",
+      "source_detail": {
+        "kind": "repo-json",
+        "path": "data/ExternalEvidencePackages.json"
+      },
+      "blob_sha256": "ba51fca997b400cd",
+      "bytes": 3589
+    },
+    "tmsh_apm_profile_access": {
+      "source": "tmsh_apm_profile_access",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm profile access all-properties"
+      },
+      "blob_sha256": "fbce69c889c04c18",
+      "bytes": 4743
+    },
+    "tmsh_apm_policy_access_policy": {
+      "source": "tmsh_apm_policy_access_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm policy access-policy all-properties"
+      },
+      "blob_sha256": "655e6d9da7eac748",
+      "bytes": 1788
+    },
+    "tmsh_apm_log_setting": {
+      "source": "tmsh_apm_log_setting",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm log-setting all-properties"
+      },
+      "blob_sha256": "0bf6b6fc4b86188b",
+      "bytes": 2506
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266145:external_evidence_package:1",
+      "carrier_coordinate": "repo-json:data/ExternalEvidencePackages.json",
+      "measurable": "external_evidence_package",
+      "lawful_property": "package_id == apm_banner_policy_graph_gap (disposition=blocked-external)",
+      "required": "package_id == apm_banner_policy_graph_gap (disposition=blocked-external)",
+      "observed": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+      "comparison_expression": "observed(The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.) satisfies required(package_id == apm_banner_policy_graph_gap (disposition=blocked-external))",
+      "match": false,
+      "comparison_confidence": 0.0,
+      "pullback_unmatched": true,
+      "reviewer_action": "external_evidence_required",
+      "source_key": "external_evidence_packages",
+      "source_stig": {
+        "vuln_id": "V-266145",
+        "ruleID": "SV-266145r1024372_rule",
+        "checkid": "C-70069r1023681_chk",
+        "fixid": "F-69972r1023682_fix",
+        "title": "The F5 BIG-IP appliance providing user access control intermediary services must display the Standard Mandatory DOD-approved Notice and Consent Banner before granting access to the network.",
+        "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit...\" in the \"Per-Session Policy\" column for an Access Profile used for granting access.\n5. Verify the Access Profile is configured to display the Standard Mandatory DOD Notice and Consent Banner before granting access to the system. The banner must be exactly formatted in accordance with the policy (see below).\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"\n\nIf the BIG-IP APM module is not configured to display the Standard Mandatory DOD Notice and Consent Banner before granting access to the system, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit...\" in the \"Per-Session Policy\" column for an Access Profile used for granting access.\n5. Configure the Access Profile to display the Standard Mandatory DOD Notice and Consent Banner below before granting access to the system.\n6. Click \"Apply Access Policy\".\n\n\"You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.\"",
+        "description": "",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "27fbb81a4c99322665ce868e19263ff100de5e39b58694bd54b36762146c5e55"
+      },
+      "vuln_id": "V-266145"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266145)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266145)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266145)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 0,
+      "mismatch_count": 0,
+      "unresolved_count": 1,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266145:external_evidence_package:1",
+          "shared_key": "external_evidence_package",
+          "left_id": "observed[external_evidence_package] = The access policy contains a message-box stage and a dedicat ... (177 more chars)",
+          "right_id": "required[external_evidence_package] package_id == apm_banner_policy_graph_gap (disposition=block ... (12 more chars)",
+          "observed_value": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+          "required_value": "package_id == apm_banner_policy_graph_gap (disposition=blocked-external)",
+          "comparison_expression": "observed(The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.) satisfies required(package_id == apm_banner_policy_graph_gap (disposition=blocked-external))",
+          "cardinality": "unresolved",
+          "source": "repo-json:data/ExternalEvidencePackages.json"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "warning",
+      "aspect": "unresolved",
+      "finding": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+    },
+    {
+      "record_type": "unmatched_right",
+      "pullback_id": "V-266145:external_evidence_package:1",
+      "shared_key": "external_evidence_package",
+      "left_id": "observed[external_evidence_package] = The access policy contains a message-box stage and a dedicat ... (177 more chars)",
+      "right_id": "required[external_evidence_package] package_id == apm_banner_policy_graph_gap (disposition=block ... (12 more chars)",
+      "observed_value": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+      "required_value": "package_id == apm_banner_policy_graph_gap (disposition=blocked-external)",
+      "source": "repo-json:data/ExternalEvidencePackages.json",
+      "comparison_expression": "observed(The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.) satisfies required(package_id == apm_banner_policy_graph_gap (disposition=blocked-external))"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266145",
+      "requirement": "The F5 BIG-IP appliance providing user access control intermediary services must display the Standard Mandatory DOD-approved Notice and Consent Banner before granting access to the network.",
+      "status": "UNKNOWN",
+      "why": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+      "tmsh_remediation_command": "[Manual] Review APM access profile / policy and apply DoD-approved controls.",
+      "rest_remediation_command": "[Manual] PATCH APM objects via Policy Editor or iControl-REST.",
+      "evidence_keys": [
+        "tmsh_apm_profile_access",
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_log_setting"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 0,
+        "fail": 0,
+        "unresolved": 1
+      }
+    },
+    "violations": [
+      "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266145 - apm_access evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266145",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "repo-json:data/ExternalEvidencePackages.json"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266145",
+        "source_a": "observed appliance evidence (V-266145)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266145)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266145)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 0,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 1,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266145:external_evidence_package:1",
+            "shared_key": "external_evidence_package",
+            "left_id": "observed[external_evidence_package] = The access policy contains a message-box stage and a dedicat ... (177 more chars)",
+            "right_id": "required[external_evidence_package] package_id == apm_banner_policy_graph_gap (disposition=block ... (12 more chars)",
+            "observed_value": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+            "required_value": "package_id == apm_banner_policy_graph_gap (disposition=blocked-external)",
+            "comparison_expression": "observed(The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.) satisfies required(package_id == apm_banner_policy_graph_gap (disposition=blocked-external))",
+            "cardinality": "unresolved",
+            "source": "repo-json:data/ExternalEvidencePackages.json"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": [
+          "external_evidence_package"
+        ]
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - unresolved",
+        "severity": "warning",
+        "aspect": "unresolved",
+        "detail": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - external_evidence_package @ repo-json:data/ExternalEvidencePackages.json",
+        "pullback_id": "V-266145:external_evidence_package:1",
+        "required": "package_id == apm_banner_policy_graph_gap (disposition=blocked-external)",
+        "observed": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+        "source": "repo-json:data/ExternalEvidencePackages.json",
+        "comparison_expression": "observed(The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.) satisfies required(package_id == apm_banner_policy_graph_gap (disposition=blocked-external))",
+        "verdict": "UNRESOLVED",
+        "is_unmatched": true
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 0,
+        "fail_count": 0,
+        "unresolved_count": 1,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+        "status": "UNKNOWN",
+        "naf_expression": "observed == required",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "The access policy contains a message-box stage and a dedicated stig_dod_notice object, but the current API evidence does not expose the rendered banner body or branch order strongly enough to prove the exact DoD banner text before allow.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266145"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266145/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266145/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

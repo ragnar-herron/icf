@@ -1,0 +1,265 @@
+{
+  "ok": true,
+  "vuln_id": "V-266154",
+  "source_stig": {
+    "vuln_id": "V-266154",
+    "ruleID": "SV-266154r1024381_rule",
+    "checkid": "C-70078r1023708_chk",
+    "fixid": "F-69981r1023709_fix",
+    "title": "The F5 BIG-IP appliance providing user authentication intermediary services using PKI-based user authentication must implement a local cache of revocation data to support path discovery and validation in case of the inability to access revocation information via the network.",
+    "checktext": "If the BIG-IP appliance does not provide PKI-based user authentication intermediary services, this is not applicable.\n\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Verify an \"OSCP Auth\" and/or \"CRLDP\" object is configured in the Access Profile VPE AND that the fallback branch of these objects leads to a \"Deny\" ending.\n\nIf the BIG-IP appliance is not configured to deny access when revocation data is unavailable, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Add \"OCSP Auth\" and/or \"CRLDP\" object in the Access Profile.\nNote: To create an OCSP Responder, go to Access >> Authentication >> OCSP Responder.\nNote: To create a CRLDP object, go to Access >> Authentication >> CRLDP.\n6. Ensure the fallback branch of these objects goes to a \"Deny\" ending.\n7. Click \"Apply Access Policy\".",
+    "description": "Without configuring a local cache of revocation data, there is the potential to allow access to users who are no longer authorized (users with revoked certificates).\n\nThe intent of this requirement is to require support for a secondary certificate validation method using a locally cached revocation data, such as Certificate Revocation List (CRL), in case access to OCSP (required by CCI-000185) is not available. Based on a risk assessment, an alternate mitigation is to configure the system to deny access when revocation data is unavailable. \n\nThis requirement applies to ALGs that provide user authentication intermediary services (e.g., authentication gateway or TLS gateway). This does not apply to authentication for the purpose of configuring the device itself (device management).",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "0487f44ce80777f2a89e996738acafbee2fcb1687ec4c1c9e5fea7e5e36ac57f"
+  },
+  "status": "UNKNOWN",
+  "disposition": "blocked-external",
+  "evidence": {
+    "external_evidence_packages": {
+      "source": "external_evidence_packages",
+      "source_detail": {
+        "kind": "repo-json",
+        "path": "data/ExternalEvidencePackages.json"
+      },
+      "blob_sha256": "ba51fca997b400cd",
+      "bytes": 3589
+    },
+    "tmsh_apm_profile_access": {
+      "source": "tmsh_apm_profile_access",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm profile access all-properties"
+      },
+      "blob_sha256": "fbce69c889c04c18",
+      "bytes": 4743
+    },
+    "tmsh_apm_policy_access_policy": {
+      "source": "tmsh_apm_policy_access_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm policy access-policy all-properties"
+      },
+      "blob_sha256": "655e6d9da7eac748",
+      "bytes": 1788
+    },
+    "tmsh_apm_log_setting": {
+      "source": "tmsh_apm_log_setting",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm log-setting all-properties"
+      },
+      "blob_sha256": "0bf6b6fc4b86188b",
+      "bytes": 2506
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266154:external_evidence_package:1",
+      "carrier_coordinate": "repo-json:data/ExternalEvidencePackages.json",
+      "measurable": "external_evidence_package",
+      "lawful_property": "package_id == pki_revocation_gap (disposition=blocked-external)",
+      "required": "package_id == pki_revocation_gap (disposition=blocked-external)",
+      "observed": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+      "comparison_expression": "observed(The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.) satisfies required(package_id == pki_revocation_gap (disposition=blocked-external))",
+      "match": false,
+      "comparison_confidence": 0.0,
+      "pullback_unmatched": true,
+      "reviewer_action": "external_evidence_required",
+      "source_key": "external_evidence_packages",
+      "source_stig": {
+        "vuln_id": "V-266154",
+        "ruleID": "SV-266154r1024381_rule",
+        "checkid": "C-70078r1023708_chk",
+        "fixid": "F-69981r1023709_fix",
+        "title": "The F5 BIG-IP appliance providing user authentication intermediary services using PKI-based user authentication must implement a local cache of revocation data to support path discovery and validation in case of the inability to access revocation information via the network.",
+        "checktext": "If the BIG-IP appliance does not provide PKI-based user authentication intermediary services, this is not applicable.\n\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Verify an \"OSCP Auth\" and/or \"CRLDP\" object is configured in the Access Profile VPE AND that the fallback branch of these objects leads to a \"Deny\" ending.\n\nIf the BIG-IP appliance is not configured to deny access when revocation data is unavailable, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Add \"OCSP Auth\" and/or \"CRLDP\" object in the Access Profile.\nNote: To create an OCSP Responder, go to Access >> Authentication >> OCSP Responder.\nNote: To create a CRLDP object, go to Access >> Authentication >> CRLDP.\n6. Ensure the fallback branch of these objects goes to a \"Deny\" ending.\n7. Click \"Apply Access Policy\".",
+        "description": "Without configuring a local cache of revocation data, there is the potential to allow access to users who are no longer authorized (users with revoked certificates).\n\nThe intent of this requirement is to require support for a secondary certificate validation method using a locally cached revocation data, such as Certificate Revocation List (CRL), in case access to OCSP (required by CCI-000185) is not available. Based on a risk assessment, an alternate mitigation is to configure the system to deny access when revocation data is unavailable. \n\nThis requirement applies to ALGs that provide user authentication intermediary services (e.g., authentication gateway or TLS gateway). This does not apply to authentication for the purpose of configuring the device itself (device management).",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "0487f44ce80777f2a89e996738acafbee2fcb1687ec4c1c9e5fea7e5e36ac57f"
+      },
+      "vuln_id": "V-266154"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266154)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266154)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266154)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 0,
+      "mismatch_count": 0,
+      "unresolved_count": 1,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266154:external_evidence_package:1",
+          "shared_key": "external_evidence_package",
+          "left_id": "observed[external_evidence_package] = The access policy shows PKI-oriented stages, but the current ... (125 more chars)",
+          "right_id": "required[external_evidence_package] package_id == pki_revocation_gap (disposition=blocked-extern ... (3 more chars)",
+          "observed_value": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+          "required_value": "package_id == pki_revocation_gap (disposition=blocked-external)",
+          "comparison_expression": "observed(The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.) satisfies required(package_id == pki_revocation_gap (disposition=blocked-external))",
+          "cardinality": "unresolved",
+          "source": "repo-json:data/ExternalEvidencePackages.json"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "warning",
+      "aspect": "unresolved",
+      "finding": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+    },
+    {
+      "record_type": "unmatched_right",
+      "pullback_id": "V-266154:external_evidence_package:1",
+      "shared_key": "external_evidence_package",
+      "left_id": "observed[external_evidence_package] = The access policy shows PKI-oriented stages, but the current ... (125 more chars)",
+      "right_id": "required[external_evidence_package] package_id == pki_revocation_gap (disposition=blocked-extern ... (3 more chars)",
+      "observed_value": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+      "required_value": "package_id == pki_revocation_gap (disposition=blocked-external)",
+      "source": "repo-json:data/ExternalEvidencePackages.json",
+      "comparison_expression": "observed(The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.) satisfies required(package_id == pki_revocation_gap (disposition=blocked-external))"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266154",
+      "requirement": "The F5 BIG-IP appliance providing user authentication intermediary services using PKI-based user authentication must implement a local cache of revocation data to support path discovery and validation in case of the inability to access revocation information via the network.",
+      "status": "UNKNOWN",
+      "why": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+      "tmsh_remediation_command": "[Manual] Review APM access profile / policy and apply DoD-approved controls.",
+      "rest_remediation_command": "[Manual] PATCH APM objects via Policy Editor or iControl-REST.",
+      "evidence_keys": [
+        "tmsh_apm_profile_access",
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_log_setting"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 0,
+        "fail": 0,
+        "unresolved": 1
+      }
+    },
+    "violations": [
+      "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266154 - apm_access evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266154",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "repo-json:data/ExternalEvidencePackages.json"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266154",
+        "source_a": "observed appliance evidence (V-266154)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266154)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266154)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 0,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 1,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266154:external_evidence_package:1",
+            "shared_key": "external_evidence_package",
+            "left_id": "observed[external_evidence_package] = The access policy shows PKI-oriented stages, but the current ... (125 more chars)",
+            "right_id": "required[external_evidence_package] package_id == pki_revocation_gap (disposition=blocked-extern ... (3 more chars)",
+            "observed_value": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+            "required_value": "package_id == pki_revocation_gap (disposition=blocked-external)",
+            "comparison_expression": "observed(The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.) satisfies required(package_id == pki_revocation_gap (disposition=blocked-external))",
+            "cardinality": "unresolved",
+            "source": "repo-json:data/ExternalEvidencePackages.json"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": [
+          "external_evidence_package"
+        ]
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - unresolved",
+        "severity": "warning",
+        "aspect": "unresolved",
+        "detail": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - external_evidence_package @ repo-json:data/ExternalEvidencePackages.json",
+        "pullback_id": "V-266154:external_evidence_package:1",
+        "required": "package_id == pki_revocation_gap (disposition=blocked-external)",
+        "observed": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+        "source": "repo-json:data/ExternalEvidencePackages.json",
+        "comparison_expression": "observed(The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.) satisfies required(package_id == pki_revocation_gap (disposition=blocked-external))",
+        "verdict": "UNRESOLVED",
+        "is_unmatched": true
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 0,
+        "fail_count": 0,
+        "unresolved_count": 1,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+        "status": "UNKNOWN",
+        "naf_expression": "If the BIG-IP appliance does not provide PKI-based user authentication intermediary services, this is not applicable.",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "The access policy shows PKI-oriented stages, but the current evidence set does not expose fallback deny branches or local cached revocation behavior strongly enough to prove compliance.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266154"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266154/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266154/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

@@ -1,0 +1,681 @@
+{
+  "record_type": "LiveAdapterPromotionBundle",
+  "generated_at": "2026-04-24T20:51:52Z",
+  "adapter_family_id": "apm_access",
+  "controls_covered": [
+    "V-266137",
+    "V-266143",
+    "V-266145",
+    "V-266146",
+    "V-266151",
+    "V-266152",
+    "V-266153",
+    "V-266154",
+    "V-266155",
+    "V-266162",
+    "V-266163",
+    "V-266164",
+    "V-266165",
+    "V-266166",
+    "V-266168",
+    "V-266169",
+    "V-266171",
+    "V-266172",
+    "V-266175"
+  ],
+  "capture_refs": [
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266137.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266143.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266145.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266146.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266151.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266152.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266153.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266154.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266155.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266162.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266163.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266164.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266165.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266166.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266168.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266169.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266171.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266172.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266175.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266137.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266143.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266145.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266146.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266151.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266152.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266153.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266154.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266155.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266162.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266163.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266164.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266165.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266166.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266168.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266169.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266171.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266172.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266175.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266154",
+      "status": "open"
+    }
+  ],
+  "normalizer_version": "factory_exports/stig_expert_critic/live_family_evaluators.py@sha256:20cce06ec5379245edf715b33947f2c20a375c6577e3fad7e9bccc8f5dda206e | evaluators:apm_log_setting,apm_network_access,apm_policy,apm_profile_scalar",
+  "fixture_pack_refs": [
+    {
+      "vuln_id": "V-266137",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266137::good_minimal",
+        "fx::V-266137::bad_canonical",
+        "fx::V-266137::bad_representation_variant",
+        "fx::V-266137::boundary_value",
+        "fx::V-266137::disabled_state",
+        "fx::V-266137::absent_state",
+        "fx::V-266137::malformed_state",
+        "fx::V-266137::noisy_evidence",
+        "fx::V-266137::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266143",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266143::good_minimal",
+        "fx::V-266143::bad_canonical",
+        "fx::V-266143::bad_representation_variant",
+        "fx::V-266143::boundary_value",
+        "fx::V-266143::disabled_state",
+        "fx::V-266143::absent_state",
+        "fx::V-266143::malformed_state",
+        "fx::V-266143::noisy_evidence",
+        "fx::V-266143::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266145",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266145::good_minimal",
+        "fx::V-266145::bad_canonical",
+        "fx::V-266145::bad_representation_variant",
+        "fx::V-266145::boundary_value",
+        "fx::V-266145::disabled_state",
+        "fx::V-266145::absent_state",
+        "fx::V-266145::malformed_state",
+        "fx::V-266145::noisy_evidence",
+        "fx::V-266145::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266146",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266146::good_minimal",
+        "fx::V-266146::bad_canonical",
+        "fx::V-266146::bad_representation_variant",
+        "fx::V-266146::boundary_value",
+        "fx::V-266146::disabled_state",
+        "fx::V-266146::absent_state",
+        "fx::V-266146::malformed_state",
+        "fx::V-266146::noisy_evidence",
+        "fx::V-266146::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266151",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266151::good_minimal",
+        "fx::V-266151::bad_canonical",
+        "fx::V-266151::bad_representation_variant",
+        "fx::V-266151::boundary_value",
+        "fx::V-266151::disabled_state",
+        "fx::V-266151::absent_state",
+        "fx::V-266151::malformed_state",
+        "fx::V-266151::noisy_evidence",
+        "fx::V-266151::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266152",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266152::good_minimal",
+        "fx::V-266152::bad_canonical",
+        "fx::V-266152::bad_representation_variant",
+        "fx::V-266152::boundary_value",
+        "fx::V-266152::disabled_state",
+        "fx::V-266152::absent_state",
+        "fx::V-266152::malformed_state",
+        "fx::V-266152::noisy_evidence",
+        "fx::V-266152::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266153",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266153::good_minimal",
+        "fx::V-266153::bad_canonical",
+        "fx::V-266153::bad_representation_variant",
+        "fx::V-266153::boundary_value",
+        "fx::V-266153::disabled_state",
+        "fx::V-266153::absent_state",
+        "fx::V-266153::malformed_state",
+        "fx::V-266153::noisy_evidence",
+        "fx::V-266153::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266154",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266154::good_minimal",
+        "fx::V-266154::bad_canonical",
+        "fx::V-266154::bad_representation_variant",
+        "fx::V-266154::boundary_value",
+        "fx::V-266154::disabled_state",
+        "fx::V-266154::absent_state",
+        "fx::V-266154::malformed_state",
+        "fx::V-266154::noisy_evidence",
+        "fx::V-266154::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266155",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266155::good_minimal",
+        "fx::V-266155::bad_canonical",
+        "fx::V-266155::bad_representation_variant",
+        "fx::V-266155::boundary_value",
+        "fx::V-266155::disabled_state",
+        "fx::V-266155::absent_state",
+        "fx::V-266155::malformed_state",
+        "fx::V-266155::noisy_evidence",
+        "fx::V-266155::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266162",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266162::good_minimal",
+        "fx::V-266162::bad_canonical",
+        "fx::V-266162::bad_representation_variant",
+        "fx::V-266162::boundary_value",
+        "fx::V-266162::disabled_state",
+        "fx::V-266162::absent_state",
+        "fx::V-266162::malformed_state",
+        "fx::V-266162::noisy_evidence",
+        "fx::V-266162::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266163",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266163::good_minimal",
+        "fx::V-266163::bad_canonical",
+        "fx::V-266163::bad_representation_variant",
+        "fx::V-266163::boundary_value",
+        "fx::V-266163::disabled_state",
+        "fx::V-266163::absent_state",
+        "fx::V-266163::malformed_state",
+        "fx::V-266163::noisy_evidence",
+        "fx::V-266163::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266164",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266164::good_minimal",
+        "fx::V-266164::bad_canonical",
+        "fx::V-266164::bad_representation_variant",
+        "fx::V-266164::boundary_value",
+        "fx::V-266164::disabled_state",
+        "fx::V-266164::absent_state",
+        "fx::V-266164::malformed_state",
+        "fx::V-266164::noisy_evidence",
+        "fx::V-266164::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266165",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266165::good_minimal",
+        "fx::V-266165::bad_canonical",
+        "fx::V-266165::bad_representation_variant",
+        "fx::V-266165::boundary_value",
+        "fx::V-266165::disabled_state",
+        "fx::V-266165::absent_state",
+        "fx::V-266165::malformed_state",
+        "fx::V-266165::noisy_evidence",
+        "fx::V-266165::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266166",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266166::good_minimal",
+        "fx::V-266166::bad_canonical",
+        "fx::V-266166::bad_representation_variant",
+        "fx::V-266166::boundary_value",
+        "fx::V-266166::disabled_state",
+        "fx::V-266166::absent_state",
+        "fx::V-266166::malformed_state",
+        "fx::V-266166::noisy_evidence",
+        "fx::V-266166::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266168",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266168::good_minimal",
+        "fx::V-266168::bad_canonical",
+        "fx::V-266168::bad_representation_variant",
+        "fx::V-266168::boundary_value",
+        "fx::V-266168::disabled_state",
+        "fx::V-266168::absent_state",
+        "fx::V-266168::malformed_state",
+        "fx::V-266168::noisy_evidence",
+        "fx::V-266168::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266169",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266169::good_minimal",
+        "fx::V-266169::bad_canonical",
+        "fx::V-266169::bad_representation_variant",
+        "fx::V-266169::boundary_value",
+        "fx::V-266169::disabled_state",
+        "fx::V-266169::absent_state",
+        "fx::V-266169::malformed_state",
+        "fx::V-266169::noisy_evidence",
+        "fx::V-266169::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266171",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266171::good_minimal",
+        "fx::V-266171::bad_canonical",
+        "fx::V-266171::bad_representation_variant",
+        "fx::V-266171::boundary_value",
+        "fx::V-266171::disabled_state",
+        "fx::V-266171::absent_state",
+        "fx::V-266171::malformed_state",
+        "fx::V-266171::noisy_evidence",
+        "fx::V-266171::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266172",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266172::good_minimal",
+        "fx::V-266172::bad_canonical",
+        "fx::V-266172::bad_representation_variant",
+        "fx::V-266172::boundary_value",
+        "fx::V-266172::disabled_state",
+        "fx::V-266172::absent_state",
+        "fx::V-266172::malformed_state",
+        "fx::V-266172::noisy_evidence",
+        "fx::V-266172::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266175",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266175::good_minimal",
+        "fx::V-266175::bad_canonical",
+        "fx::V-266175::bad_representation_variant",
+        "fx::V-266175::boundary_value",
+        "fx::V-266175::disabled_state",
+        "fx::V-266175::absent_state",
+        "fx::V-266175::malformed_state",
+        "fx::V-266175::noisy_evidence",
+        "fx::V-266175::out_of_scope_variant"
+      ]
+    }
+  ],
+  "replay_fidelity": 1.0,
+  "distinction_integrity": true,
+  "atomic_integrity": true,
+  "known_bad_detects": true,
+  "known_good_survives": true,
+  "live_break_detects": true,
+  "live_fix_restores": true,
+  "device_clean": true,
+  "export_equivalence": true,
+  "promotion_decision": "PROMOTED",
+  "details": {
+    "family_total_controls": 19,
+    "family_supported_controls": 19,
+    "family_unsupported_controls": 0,
+    "session_capture_count": 19,
+    "unsupported_controls_present": false,
+    "break_fix_details": "Break/fix executed on /Common/stig_ocsp_validator by setting statusAge from 1 to 0 and restoring to 1.",
+    "replay_fixture_counts": {
+      "controls": 19,
+      "fixtures": 171
+    }
+  },
+  "replay_results": [
+    {
+      "vuln_id": "V-266137",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266143",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266145",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266146",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266151",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266152",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266153",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266154",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266155",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266162",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266163",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266164",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266165",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266166",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266168",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266169",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266171",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266172",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266175",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    }
+  ],
+  "hard_gates": {
+    "LA-HG1 Replay fidelity": true,
+    "LA-HG2 Distinction integrity": true,
+    "LA-HG3 Atomic integrity": true,
+    "LA-HG4 Known bad detects": true,
+    "LA-HG5 Known good survives": true,
+    "LA-HG6 Live baseline": true,
+    "LA-HG7 Live break detects": true,
+    "LA-HG8 Live fix proves": true,
+    "LA-HG9 Device clean": true,
+    "LA-HG10 Export equivalence": true
+  },
+  "missing_gates": []
+}

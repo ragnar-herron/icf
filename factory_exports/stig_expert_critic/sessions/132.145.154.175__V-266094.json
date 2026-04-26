@@ -1,0 +1,121 @@
+{
+  "ok": true,
+  "vuln_id": "V-266094",
+  "status": "not_applicable",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:53.734885Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Standalone export determined this control is not applicable to the appliance's current live authentication path."
+  },
+  "evidence_summary": {
+    "auth_source_type": "tacacs",
+    "ldap_config_count": 0,
+    "clientcert_ldap_source_detected": false,
+    "clientcert_ldap_profile_detected": false,
+    "ocsp_object_count": 2
+  },
+  "evidence": {
+    "auth_source": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/auth/source"
+      },
+      "preview": "{\n  \"kind\": \"tm:auth:source:sourcestate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/auth/source?ver=17.5.1.3\",\n  \"fallback\": \"true\",\n  \"type\": \"tacacs\"\n}",
+      "blob_sha256": "",
+      "bytes": 152
+    },
+    "apm_aaa_ldap": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/apm/aaa/ldap"
+      },
+      "preview": "[]",
+      "blob_sha256": "",
+      "bytes": 2
+    },
+    "apm_profile_access": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/apm/profile/access"
+      },
+      "preview": "[\n  {\n    \"kind\": \"tm:apm:profile:access:accessstate\",\n    \"name\": \"access\",\n    \"partition\": \"Common\",\n    \"fullPath\": \"/Common/access\",\n    \"generation\": 4028,\n    \"selfLink\": \"https://localhost/mgmt/tm/apm/profile/access/~Common~access?ver=17.5.1.3\",\n    \"acceptLanguages\": [\n      \"en\"\n    ],\n    \"accessPolicyTimeout\": 300,\n    \"cpcCheckInterval\": 90,\n    \"cpcInspectionEnabled\": \"true\",\n    \"cpcLogLevel\": \"info\",\n    \"customizationKey\": \"58637b09ed4c898a1a5182658d05915e\",\n    \"defaultLanguage\": \"en\",\n    \"domainMode\": \"single-domain\",\n    \"enforcePolicy\": \"true\",\n    \"tmGeneration\": 0,\n    \"generationAction\": \"noop\",\n    \"httponlyCookie\": \"true\",\n    \"inactivityTimeout\": 900,\n    \"logoutUriTimeout\": 5,\n    \"maxConcurrentSessions\": 10,\n    \"maxConcurrentUsers\": 1,\n    \"maxFailureDelay\": ",
+      "blob_sha256": "",
+      "bytes": 8243
+    },
+    "apm_aaa_ocsp": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/apm/aaa/ocsp"
+      },
+      "preview": "[\n  {\n    \"kind\": \"tm:apm:aaa:ocsp:ocspstate\",\n    \"name\": \"default-ocsp\",\n    \"partition\": \"Common\",\n    \"fullPath\": \"/Common/default-ocsp\",\n    \"generation\": 1,\n    \"selfLink\": \"https://localhost/mgmt/tm/apm/aaa/ocsp/~Common~default-ocsp?ver=17.5.1.3\",\n    \"allowCerts\": \"true\",\n    \"certIdDigest\": \"sha1\",\n    \"chain\": \"true\",\n    \"checkCerts\": \"true\",\n    \"explicitOcsp\": \"true\",\n    \"ignoreAia\": \"false\",\n    \"intern\": \"true\",\n    \"locationSpecific\": \"true\",\n    \"nonce\": \"true\",\n    \"signDigest\": \"sha1\",\n    \"statusAge\": 3600,\n    \"trustOther\": \"false\",\n    \"validityPeriod\": 300,\n    \"verify\": \"true\",\n    \"verifyCert\": \"true\",\n    \"verifySig\": \"true\"\n  },\n  {\n    \"kind\": \"tm:apm:aaa:ocsp:ocspstate\",\n    \"name\": \"stig_ocsp_validator\",\n    \"partition\": \"Common\",\n    \"fullPath\": \"/Common/sti",
+      "blob_sha256": "",
+      "bytes": 1349
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "clientcert_ldap_auth_path_applicable:f27b0d97",
+      "measurable": "clientcert_ldap_auth_path_applicable",
+      "required": "== true for this control to apply",
+      "observed": false,
+      "evidence_source": "rest:/mgmt/tm/auth/source",
+      "reviewer_action": "Current live authentication path is not Remote - ClientCert LDAP",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266094",
+      "status": "NOT_APPLICABLE",
+      "requirement": "This control applies only when User Directory is configured for Remote - ClientCert LDAP. The current appliance authentication path is not in that scope.",
+      "why": "This control applies only when User Directory is configured for Remote - ClientCert LDAP. The current appliance authentication path is not in that scope.",
+      "tmsh_remediation_command": "",
+      "rest_remediation_command": ""
+    },
+    "proof_steps": [
+      {
+        "step": "applicability",
+        "result": "not_applicable",
+        "reason": "This control applies only when User Directory is configured for Remote - ClientCert LDAP. The current appliance authentication path is not in that scope."
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "clientcert_ldap_auth_path_applicable:f27b0d97",
+            "measurable": "clientcert_ldap_auth_path_applicable",
+            "required": "== true for this control to apply",
+            "observed": false,
+            "evidence_source": "rest:/mgmt/tm/auth/source",
+            "reviewer_action": "Current live authentication path is not Remote - ClientCert LDAP",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266094",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

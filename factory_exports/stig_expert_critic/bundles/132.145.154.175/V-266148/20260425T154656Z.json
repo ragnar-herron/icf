@@ -1,0 +1,320 @@
+{
+  "ok": true,
+  "vuln_id": "V-266148",
+  "source_stig": {
+    "vuln_id": "V-266148",
+    "ruleID": "SV-266148r1024375_rule",
+    "checkid": "C-70072r1023690_chk",
+    "fixid": "F-69975r1023691_fix",
+    "title": "The F5 BIG-IP appliance that intermediary services for FTP must inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies.",
+    "checktext": "If the BIG-IP appliance does not provide intermediary/proxy services for FTP communications traffic, this is not applicable.\n\nFTP Profile:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Profiles.\n3. Services.\n4. FTP.\n5. Click the name of the FTP profile.\n6. Verify \"Protocol Security\" is checked.\n\nFTP Virtual Server:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the FTP virtual server.\n5. Verify the FTP profile is selected in the \"FTP Profile\" drop-down list.\n\nIf the BIG-IP appliance is not configured to inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies, this is a finding.",
+    "fixtext": "FTP Profile:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Profiles.\n3. Services.\n4. FTP.\n5. Click the name of the FTP profile.\n6. Check \"Protocol Security\".\n7. Click \"Update\".\n\nFTP Virtual Server:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the FTP virtual server.\n5. Select the FTP profile from the \"FTP Profile\" drop-down list.\n6. Click \"Update\".\n\nRefer to vendor documentation for more information.",
+    "description": "Application protocol anomaly detection examines application layer protocols such as FTP to identify attacks based on observed deviations in the normal RFC behavior of a protocol or service. This type of monitoring allows for the detection of known and unknown exploits which exploit weaknesses of commonly used protocols.\n\nSince protocol anomaly analysis examines the application payload for patterns or anomalies, an FTP proxy must be included in the ALG. This ALG will be configured to inspect inbound and outbound FTP communications traffic to detect protocol anomalies such as malformed message and command insertion attacks.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "614a15c150060bce0de38e7ef88830ca5620f2215683b2fc95ee2bf7412cd078"
+  },
+  "status": "OPEN",
+  "disposition": "fail",
+  "evidence": {
+    "tmsh_ltm_profile_client_ssl": {
+      "source": "tmsh_ltm_profile_client_ssl",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list ltm profile client-ssl all-properties"
+      },
+      "blob_sha256": "07cda1ee14966c45",
+      "bytes": 19556
+    },
+    "tmsh_ltm_virtual": {
+      "source": "tmsh_ltm_virtual",
+      "preview": "ltm virtual stig_disallowed_test {\n    address-status yes\n    app-cloud-security-services none\n    app-service none\n    auth none\n    auto-discovery disabled\n    auto-lasthop default\n    bwc-policy none\n    clone-pools none\n    cmp-enabled  ... (3977 more chars)",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list ltm virtual all-properties"
+      },
+      "blob_sha256": "e8a6ff3b5a9eb261",
+      "bytes": 4218
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266148:ltm_profile_client_ssl_fips_cipher_suite:1",
+      "carrier_coordinate": "tmsh:list ltm profile client-ssl all-properties",
+      "measurable": "ltm_profile_client_ssl.fips_cipher_suite",
+      "lawful_property": "ecdhe-rsa-aes128-gcm-sha256",
+      "required": "ecdhe-rsa-aes128-gcm-sha256",
+      "observed": "absent",
+      "comparison_expression": "observed(absent) satisfies required(ecdhe-rsa-aes128-gcm-sha256)",
+      "match": false,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "remediate_or_document_exception",
+      "source_key": "tmsh_ltm_profile_client_ssl",
+      "source_stig": {
+        "vuln_id": "V-266148",
+        "ruleID": "SV-266148r1024375_rule",
+        "checkid": "C-70072r1023690_chk",
+        "fixid": "F-69975r1023691_fix",
+        "title": "The F5 BIG-IP appliance that intermediary services for FTP must inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies.",
+        "checktext": "If the BIG-IP appliance does not provide intermediary/proxy services for FTP communications traffic, this is not applicable.\n\nFTP Profile:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Profiles.\n3. Services.\n4. FTP.\n5. Click the name of the FTP profile.\n6. Verify \"Protocol Security\" is checked.\n\nFTP Virtual Server:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the FTP virtual server.\n5. Verify the FTP profile is selected in the \"FTP Profile\" drop-down list.\n\nIf the BIG-IP appliance is not configured to inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies, this is a finding.",
+        "fixtext": "FTP Profile:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Profiles.\n3. Services.\n4. FTP.\n5. Click the name of the FTP profile.\n6. Check \"Protocol Security\".\n7. Click \"Update\".\n\nFTP Virtual Server:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the FTP virtual server.\n5. Select the FTP profile from the \"FTP Profile\" drop-down list.\n6. Click \"Update\".\n\nRefer to vendor documentation for more information.",
+        "description": "Application protocol anomaly detection examines application layer protocols such as FTP to identify attacks based on observed deviations in the normal RFC behavior of a protocol or service. This type of monitoring allows for the detection of known and unknown exploits which exploit weaknesses of commonly used protocols.\n\nSince protocol anomaly analysis examines the application payload for patterns or anomalies, an FTP proxy must be included in the ALG. This ALG will be configured to inspect inbound and outbound FTP communications traffic to detect protocol anomalies such as malformed message and command insertion attacks.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "614a15c150060bce0de38e7ef88830ca5620f2215683b2fc95ee2bf7412cd078"
+      },
+      "vuln_id": "V-266148"
+    },
+    {
+      "pullback_id": "V-266148:ltm_virtual_stig_test_vs_insecure_compatible_attached:2",
+      "carrier_coordinate": "tmsh:list ltm virtual all-properties",
+      "measurable": "ltm_virtual.stig_test_vs.insecure_compatible_attached",
+      "lawful_property": "false",
+      "required": "false",
+      "observed": "false",
+      "comparison_expression": "observed(false) satisfies required(false)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_ltm_virtual",
+      "source_stig": {
+        "vuln_id": "V-266148",
+        "ruleID": "SV-266148r1024375_rule",
+        "checkid": "C-70072r1023690_chk",
+        "fixid": "F-69975r1023691_fix",
+        "title": "The F5 BIG-IP appliance that intermediary services for FTP must inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies.",
+        "checktext": "If the BIG-IP appliance does not provide intermediary/proxy services for FTP communications traffic, this is not applicable.\n\nFTP Profile:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Profiles.\n3. Services.\n4. FTP.\n5. Click the name of the FTP profile.\n6. Verify \"Protocol Security\" is checked.\n\nFTP Virtual Server:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the FTP virtual server.\n5. Verify the FTP profile is selected in the \"FTP Profile\" drop-down list.\n\nIf the BIG-IP appliance is not configured to inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies, this is a finding.",
+        "fixtext": "FTP Profile:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Profiles.\n3. Services.\n4. FTP.\n5. Click the name of the FTP profile.\n6. Check \"Protocol Security\".\n7. Click \"Update\".\n\nFTP Virtual Server:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the FTP virtual server.\n5. Select the FTP profile from the \"FTP Profile\" drop-down list.\n6. Click \"Update\".\n\nRefer to vendor documentation for more information.",
+        "description": "Application protocol anomaly detection examines application layer protocols such as FTP to identify attacks based on observed deviations in the normal RFC behavior of a protocol or service. This type of monitoring allows for the detection of known and unknown exploits which exploit weaknesses of commonly used protocols.\n\nSince protocol anomaly analysis examines the application payload for patterns or anomalies, an FTP proxy must be included in the ALG. This ALG will be configured to inspect inbound and outbound FTP communications traffic to detect protocol anomalies such as malformed message and command insertion attacks.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "614a15c150060bce0de38e7ef88830ca5620f2215683b2fc95ee2bf7412cd078"
+      },
+      "vuln_id": "V-266148"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266148)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266148)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266148)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 1,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266148:ltm_profile_client_ssl_fips_cipher_suite:1",
+          "shared_key": "ltm_profile_client_ssl.fips_cipher_suite",
+          "left_id": "observed[ltm_profile_client_ssl.fips_cipher_suite] = absent",
+          "right_id": "required[ltm_profile_client_ssl.fips_cipher_suite] ecdhe-rsa-aes128-gcm-sha256",
+          "observed_value": "absent",
+          "required_value": "ecdhe-rsa-aes128-gcm-sha256",
+          "comparison_expression": "observed(absent) satisfies required(ecdhe-rsa-aes128-gcm-sha256)",
+          "cardinality": "mismatch",
+          "source": "tmsh:list ltm profile client-ssl all-properties"
+        },
+        {
+          "pullback_id": "V-266148:ltm_virtual_stig_test_vs_insecure_compatible_attached:2",
+          "shared_key": "ltm_virtual.stig_test_vs.insecure_compatible_attached",
+          "left_id": "observed[ltm_virtual.stig_test_vs.insecure_compatible_attached] = false",
+          "right_id": "required[ltm_virtual.stig_test_vs.insecure_compatible_attached] false",
+          "observed_value": "false",
+          "required_value": "false",
+          "comparison_expression": "observed(false) satisfies required(false)",
+          "cardinality": "ok",
+          "source": "tmsh:list ltm virtual all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "error",
+      "aspect": "mismatch",
+      "finding": "1 measurement(s) observed on the appliance do not satisfy the STIG predicate; see the truth table for exact values."
+    },
+    {
+      "record_type": "mismatch",
+      "pullback_id": "V-266148:ltm_profile_client_ssl_fips_cipher_suite:1",
+      "shared_key": "ltm_profile_client_ssl.fips_cipher_suite",
+      "left_id": "observed[ltm_profile_client_ssl.fips_cipher_suite] = absent",
+      "right_id": "required[ltm_profile_client_ssl.fips_cipher_suite] ecdhe-rsa-aes128-gcm-sha256",
+      "observed_value": "absent",
+      "required_value": "ecdhe-rsa-aes128-gcm-sha256",
+      "source": "tmsh:list ltm profile client-ssl all-properties",
+      "comparison_expression": "observed(absent) satisfies required(ecdhe-rsa-aes128-gcm-sha256)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266148:ltm_virtual_stig_test_vs_insecure_compatible_attached:2",
+      "shared_key": "ltm_virtual.stig_test_vs.insecure_compatible_attached",
+      "left_id": "observed[ltm_virtual.stig_test_vs.insecure_compatible_attached] = false",
+      "right_id": "required[ltm_virtual.stig_test_vs.insecure_compatible_attached] false",
+      "observed_value": "false",
+      "required_value": "false",
+      "source": "tmsh:list ltm virtual all-properties",
+      "comparison_expression": "observed(false) satisfies required(false)"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266148",
+      "requirement": "The F5 BIG-IP appliance that intermediary services for FTP must inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies.",
+      "status": "OPEN",
+      "why": "TLS/SSL intermediary: a FIPS cipher profile must be present AND the STIG virtual must not attach the insecure-compatible profile.",
+      "tmsh_remediation_command": "[Manual] Bind a FIPS-validated client-ssl profile (TLS 1.2+) to the virtual.",
+      "rest_remediation_command": "[Manual] PATCH /mgmt/tm/ltm/virtual/<name> to set a FIPS client-ssl profile.",
+      "evidence_keys": [
+        "tmsh_ltm_profile_client_ssl",
+        "tmsh_ltm_virtual"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 1,
+        "fail": 1,
+        "unresolved": 0
+      }
+    },
+    "violations": [
+      "TLS/SSL intermediary: a FIPS cipher profile must be present AND the STIG virtual must not attach the insecure-compatible profile."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266148 - ltm_virtual_ssl evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266148",
+        "detail": "Collected 2 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list ltm profile client-ssl all-properties",
+          "tmsh:list ltm virtual all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266148",
+        "source_a": "observed appliance evidence (V-266148)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266148)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266148)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 1,
+        "mismatch_count": 1,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266148:ltm_profile_client_ssl_fips_cipher_suite:1",
+            "shared_key": "ltm_profile_client_ssl.fips_cipher_suite",
+            "left_id": "observed[ltm_profile_client_ssl.fips_cipher_suite] = absent",
+            "right_id": "required[ltm_profile_client_ssl.fips_cipher_suite] ecdhe-rsa-aes128-gcm-sha256",
+            "observed_value": "absent",
+            "required_value": "ecdhe-rsa-aes128-gcm-sha256",
+            "comparison_expression": "observed(absent) satisfies required(ecdhe-rsa-aes128-gcm-sha256)",
+            "cardinality": "mismatch",
+            "source": "tmsh:list ltm profile client-ssl all-properties"
+          },
+          {
+            "pullback_id": "V-266148:ltm_virtual_stig_test_vs_insecure_compatible_attached:2",
+            "shared_key": "ltm_virtual.stig_test_vs.insecure_compatible_attached",
+            "left_id": "observed[ltm_virtual.stig_test_vs.insecure_compatible_attached] = false",
+            "right_id": "required[ltm_virtual.stig_test_vs.insecure_compatible_attached] false",
+            "observed_value": "false",
+            "required_value": "false",
+            "comparison_expression": "observed(false) satisfies required(false)",
+            "cardinality": "ok",
+            "source": "tmsh:list ltm virtual all-properties"
+          }
+        ],
+        "missing_items": [
+          "ltm_profile_client_ssl.fips_cipher_suite"
+        ],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - mismatch",
+        "severity": "error",
+        "aspect": "mismatch",
+        "detail": "1 measurement(s) observed on the appliance do not satisfy the STIG predicate; see the truth table for exact values."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - ltm_profile_client_ssl.fips_cipher_suite @ tmsh:list ltm profile client-ssl all-properties",
+        "pullback_id": "V-266148:ltm_profile_client_ssl_fips_cipher_suite:1",
+        "required": "ecdhe-rsa-aes128-gcm-sha256",
+        "observed": "absent",
+        "source": "tmsh:list ltm profile client-ssl all-properties",
+        "comparison_expression": "observed(absent) satisfies required(ecdhe-rsa-aes128-gcm-sha256)",
+        "verdict": "FAIL",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - ltm_virtual.stig_test_vs.insecure_compatible_attached @ tmsh:list ltm virtual all-properties",
+        "pullback_id": "V-266148:ltm_virtual_stig_test_vs_insecure_compatible_attached:2",
+        "required": "false",
+        "observed": "false",
+        "source": "tmsh:list ltm virtual all-properties",
+        "comparison_expression": "observed(false) satisfies required(false)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 1,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "TLS/SSL intermediary: a FIPS cipher profile must be present AND the STIG virtual must not attach the insecure-compatible profile.",
+        "status": "OPEN",
+        "naf_expression": "If the BIG-IP appliance does not provide intermediary/proxy services for FTP communications traffic, this is not applicable.",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": true
+      }
+    ]
+  },
+  "rationale": "TLS/SSL intermediary: a FIPS cipher profile must be present AND the STIG virtual must not attach the insecure-compatible profile.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266148"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266148/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266148/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

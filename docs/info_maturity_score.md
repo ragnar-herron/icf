@@ -1,3 +1,8 @@
+STATUS: SUPERSEDED BY docs/canonical/CANONICAL_RECORD_SCHEMAS.md
+DO NOT USE AS BUILD AUTHORITY
+
+---
+
 
 # 1. `MaturityGateRecord` schema
 

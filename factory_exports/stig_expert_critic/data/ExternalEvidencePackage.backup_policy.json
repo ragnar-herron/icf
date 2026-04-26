@@ -1,0 +1,16 @@
+{
+  "control": "V-266096",
+  "evidence_type": "backup_policy",
+  "schedule_verified": false,
+  "off_device_verified": false,
+  "retention_verified": false,
+  "source": "doc",
+  "timestamp": "2026-04-24T19:30:00Z",
+  "verifier": "repo_gap_record",
+  "status": "BLOCKED_EXTERNAL",
+  "rationale": "The repository contains local appliance proof that UCS archives exist, but it still lacks audited external evidence proving backup schedule, off-device storage, and retention policy.",
+  "source_refs": [
+    "C:\\work\\dev\\github\\icf_gpt\\docs\\LIVE_RUN_REPORT.md",
+    "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\ExternalEvidencePackages.json"
+  ]
+}

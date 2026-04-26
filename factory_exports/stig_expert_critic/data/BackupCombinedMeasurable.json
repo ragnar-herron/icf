@@ -1,0 +1,12 @@
+{
+  "record_type": "BackupCombinedMeasurable",
+  "local_backup_exists": true,
+  "schedule_verified": false,
+  "off_device_verified": false,
+  "retention_verified": false,
+  "external_evidence_present": true,
+  "external_evidence_valid": false,
+  "local_evidence_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\BackupLocalEvidence.json",
+  "external_evidence_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\ExternalEvidencePackage.backup_policy.json",
+  "blocking_reason": "backup external evidence package is incomplete or malformed"
+}

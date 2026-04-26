@@ -1,0 +1,97 @@
+{
+  "ok": true,
+  "vuln_id": "V-266160",
+  "status": "not_applicable",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:55:45.260138Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Standalone export determined this control is not applicable to the appliance's current live authentication path."
+  },
+  "evidence_summary": {
+    "firewall_rule_count": 0
+  },
+  "evidence": {
+    "firewall_policies": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/security/firewall/policy"
+      },
+      "preview": "[\n  {\n    \"kind\": \"tm:security:firewall:policy:policystate\",\n    \"name\": \"stig_compliance_policy\",\n    \"partition\": \"Common\",\n    \"fullPath\": \"/Common/stig_compliance_policy\",\n    \"generation\": 1,\n    \"selfLink\": \"https://localhost/mgmt/tm/security/firewall/policy/~Common~stig_compliance_policy?ver=17.5.1.3\",\n    \"description\": \"STIG-required AFM firewall policy\",\n    \"rulesReference\": {\n      \"link\": \"https://localhost/mgmt/tm/security/firewall/policy/~Common~stig_compliance_policy/rules?ver=17.5.1.3\",\n      \"isSubcollection\": true\n    }\n  }\n]",
+      "blob_sha256": "",
+      "bytes": 550
+    },
+    "global_network_profile": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/security/log/profile/global-network"
+      },
+      "preview": "{\n  \"profile\": {\n    \"kind\": \"tm:security:log:profile:profilestate\",\n    \"name\": \"global-network\",\n    \"fullPath\": \"global-network\",\n    \"generation\": 4875,\n    \"selfLink\": \"https://localhost/mgmt/tm/security/log/profile/global-network?ver=17.5.1.3\",\n    \"autoDiscovery\": {},\n    \"builtIn\": \"enabled\",\n    \"classification\": {\n      \"logAllClassificationMatches\": \"disabled\"\n    },\n    \"description\": \"Default logging profile for network events\",\n    \"flowspec\": {},\n    \"hidden\": \"false\",\n    \"ipIntelligence\": {\n      \"aggregateRate\": 4294967295,\n      \"logGeo\": \"disabled\",\n      \"logRtbh\": \"disabled\",\n      \"logScrubber\": \"disabled\",\n      \"logShun\": \"disabled\",\n      \"logTranslationFields\": \"disabled\"\n    },\n    \"nat\": {\n      \"endInboundSession\": \"disabled\",\n      \"endOutboundSession\": {\n   ",
+      "blob_sha256": "",
+      "bytes": 4267
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "firewall_rule_count:4c92481a",
+      "measurable": "firewall_rule_count",
+      "required": "> 0",
+      "observed": 0,
+      "evidence_source": "rest:/mgmt/tm/security/firewall/policy",
+      "reviewer_action": "",
+      "match": false,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266160",
+      "status": "NOT_APPLICABLE",
+      "requirement": "No AFM content-filtering rules are configured on the live appliance.",
+      "why": "No AFM content-filtering rules are configured on the live appliance.",
+      "tmsh_remediation_command": "",
+      "rest_remediation_command": ""
+    },
+    "proof_steps": [
+      {
+        "step": "applicability",
+        "result": "not_applicable",
+        "reason": "No AFM content-filtering rules are configured on the live appliance."
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "firewall_rule_count:4c92481a",
+            "measurable": "firewall_rule_count",
+            "required": "> 0",
+            "observed": 0,
+            "evidence_source": "rest:/mgmt/tm/security/firewall/policy",
+            "reviewer_action": "",
+            "match": false,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266160",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

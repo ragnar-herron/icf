@@ -1,0 +1,241 @@
+{
+  "ok": true,
+  "vuln_id": "V-266167",
+  "source_stig": {
+    "vuln_id": "V-266167",
+    "ruleID": "SV-266167r1024399_rule",
+    "checkid": "C-70091r1023747_chk",
+    "fixid": "F-69994r1023748_fix",
+    "title": "The F5 BIG-IP appliance must be configured to restrict a consistent inbound IP for the entire management session.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Under Security Settings, verify \"Require A Consistent Inbound IP For The Entire Web Session\" box is checked.\n\nFrom the BIG-IP Console:\n\ntmsh list sys httpd auth-pam-validate-ip\n\nNote: This returns a value of \"on\".\n\nIf the BIG-IP appliance is not configured to require a consistent inbound IP for the entire session for management sessions, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Under Security Settings, check \"Require A Consistent Inbound IP For The Entire Web Session\".\n4. Click \"Update\".\n\nFrom the BIG-IP Console:\n\ntmsh modify sys httpd auth-pam-validate-ip on\ntmsh save sys config",
+    "description": "This security measure helps limit the effects of denial-of-service attacks by employing antisession hijacking security safeguards. Session hijacking, also called cookie hijacking, is the exploitation of a valid computer session to gain unauthorized access to an application. The attacker steals (or hijacks) the cookies from a valid user and attempts to use them for authentication.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "37267c50fcd72753f7ada76b0f30c6a3917b70b72174e3fe70a040bb323cc1f7"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_sys_httpd": {
+      "source": "tmsh_sys_httpd",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys httpd all-properties"
+      },
+      "blob_sha256": "8b1bbce5e5513e10",
+      "bytes": 1347
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266167:sys_httpd_auth_pam_validate_ip:1",
+      "carrier_coordinate": "tmsh:list sys httpd all-properties",
+      "measurable": "sys_httpd.auth_pam_validate_ip",
+      "lawful_property": "on",
+      "required": "on",
+      "observed": "on",
+      "comparison_expression": "observed(on) satisfies required(on)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_httpd",
+      "source_stig": {
+        "vuln_id": "V-266167",
+        "ruleID": "SV-266167r1024399_rule",
+        "checkid": "C-70091r1023747_chk",
+        "fixid": "F-69994r1023748_fix",
+        "title": "The F5 BIG-IP appliance must be configured to restrict a consistent inbound IP for the entire management session.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Under Security Settings, verify \"Require A Consistent Inbound IP For The Entire Web Session\" box is checked.\n\nFrom the BIG-IP Console:\n\ntmsh list sys httpd auth-pam-validate-ip\n\nNote: This returns a value of \"on\".\n\nIf the BIG-IP appliance is not configured to require a consistent inbound IP for the entire session for management sessions, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Preferences.\n3. Under Security Settings, check \"Require A Consistent Inbound IP For The Entire Web Session\".\n4. Click \"Update\".\n\nFrom the BIG-IP Console:\n\ntmsh modify sys httpd auth-pam-validate-ip on\ntmsh save sys config",
+        "description": "This security measure helps limit the effects of denial-of-service attacks by employing antisession hijacking security safeguards. Session hijacking, also called cookie hijacking, is the exploitation of a valid computer session to gain unauthorized access to an application. The attacker steals (or hijacks) the cookies from a valid user and attempts to use them for authentication.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "37267c50fcd72753f7ada76b0f30c6a3917b70b72174e3fe70a040bb323cc1f7"
+      },
+      "vuln_id": "V-266167"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266167)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266167)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266167)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266167:sys_httpd_auth_pam_validate_ip:1",
+          "shared_key": "sys_httpd.auth_pam_validate_ip",
+          "left_id": "observed[sys_httpd.auth_pam_validate_ip] = on",
+          "right_id": "required[sys_httpd.auth_pam_validate_ip] on",
+          "observed_value": "on",
+          "required_value": "on",
+          "comparison_expression": "observed(on) satisfies required(on)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys httpd all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266167:sys_httpd_auth_pam_validate_ip:1",
+      "shared_key": "sys_httpd.auth_pam_validate_ip",
+      "left_id": "observed[sys_httpd.auth_pam_validate_ip] = on",
+      "right_id": "required[sys_httpd.auth_pam_validate_ip] on",
+      "observed_value": "on",
+      "required_value": "on",
+      "source": "tmsh:list sys httpd all-properties",
+      "comparison_expression": "observed(on) satisfies required(on)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266167",
+      "requirement": "The F5 BIG-IP appliance must be configured to restrict a consistent inbound IP for the entire management session.",
+      "status": "NOT_A_FINDING",
+      "why": "Management-session source-IP pinning evaluated from sys httpd auth-pam-validate-ip.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266167 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266167",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "tmsh:list sys httpd all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266167",
+        "source_a": "observed appliance evidence (V-266167)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266167)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266167)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266167:sys_httpd_auth_pam_validate_ip:1",
+            "shared_key": "sys_httpd.auth_pam_validate_ip",
+            "left_id": "observed[sys_httpd.auth_pam_validate_ip] = on",
+            "right_id": "required[sys_httpd.auth_pam_validate_ip] on",
+            "observed_value": "on",
+            "required_value": "on",
+            "comparison_expression": "observed(on) satisfies required(on)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys httpd all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_httpd.auth_pam_validate_ip @ tmsh:list sys httpd all-properties",
+        "pullback_id": "V-266167:sys_httpd_auth_pam_validate_ip:1",
+        "required": "on",
+        "observed": "on",
+        "source": "tmsh:list sys httpd all-properties",
+        "comparison_expression": "observed(on) satisfies required(on)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Management-session source-IP pinning evaluated from sys httpd auth-pam-validate-ip.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Management-session source-IP pinning evaluated from sys httpd auth-pam-validate-ip.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266167"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266167/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266167/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

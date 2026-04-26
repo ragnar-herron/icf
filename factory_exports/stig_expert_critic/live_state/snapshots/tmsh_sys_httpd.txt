@@ -1,0 +1,37 @@
+sys httpd {
+    allow { All all }
+    auth-name BIG-IP
+    auth-pam-dashboard-timeout on
+    auth-pam-idle-timeout 300
+    auth-pam-validate-ip on
+    description none
+    fastcgi-timeout 300
+    fips-cipher-version 2
+    hostname-lookup off
+    include none
+    log-level warn
+    max-clients 10
+    redirect-http-to-https disabled
+    request-body-max-timeout 0
+    request-body-min-rate 500
+    request-body-timeout 60
+    request-header-max-timeout 40
+    request-header-min-rate 500
+    request-header-timeout 20
+    ssl-ca-cert-file none
+    ssl-certchainfile none
+    ssl-certfile /etc/httpd/conf/ssl.crt/server.crt
+    ssl-certkeyfile /etc/httpd/conf/ssl.key/server.key
+    ssl-ciphersuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-SHA384
+    ssl-include none
+    ssl-ocsp-default-responder http://127.0.0.1
+    ssl-ocsp-enable off
+    ssl-ocsp-override-responder off
+    ssl-ocsp-responder-timeout 300
+    ssl-ocsp-response-max-age -1
+    ssl-ocsp-response-time-skew 300
+    ssl-port 443
+    ssl-protocol "all -SSLv2 -SSLv3 -TLSv1"
+    ssl-verify-client no
+    ssl-verify-depth 10
+}

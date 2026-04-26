@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "vuln_id": "V-266086",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:36.902766Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "sys_ntp_authentication_enabled": true
+  },
+  "evidence": {
+    "sys_ntp_include": {
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "tmsh list sys ntp include",
+        "path": null
+      },
+      "preview": "sys ntp {\n    include \"authenticate yes\nkeys /etc/ntp/keys\ntrustedkey 1\"\n}\n",
+      "blob_sha256": "",
+      "bytes": 75
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "sys_ntp_authentication_enabled:6db9bc26",
+      "measurable": "sys_ntp_authentication_enabled",
+      "required": "== true",
+      "observed": true,
+      "evidence_source": "tmsh:tmsh list sys ntp include",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266086",
+      "status": "NOT_A_FINDING",
+      "requirement": "NTP authentication directives were evaluated from the live BIG-IP NTP include block.",
+      "why": "NTP authentication directives were evaluated from the live BIG-IP NTP include block.",
+      "tmsh_remediation_command": "echo '1 M <key> #MD5 Key' > /etc/ntp/keys; tmsh edit sys ntp all-properties; tmsh save sys config",
+      "rest_remediation_command": ""
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "sys_ntp_authentication_enabled == true",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "sys_ntp_authentication_enabled:6db9bc26",
+            "measurable": "sys_ntp_authentication_enabled",
+            "required": "== true",
+            "observed": true,
+            "evidence_source": "tmsh:tmsh list sys ntp include",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266086",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

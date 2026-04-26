@@ -1,0 +1,304 @@
+{
+  "ok": true,
+  "vuln_id": "V-266088",
+  "source_stig": {
+    "vuln_id": "V-266088",
+    "ruleID": "SV-266088r1024894_rule",
+    "checkid": "C-70012r1024892_chk",
+    "fixid": "F-69915r1024893_fix",
+    "title": "The F5 BIG-IP appliance must enforce password complexity by requiring that at least one uppercase character be used.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. Verify that \"Secure Password Enforcement\" is set to \"Enabled\".\n5. Verify under \"Required Characters\" that \"Uppercase\" is set to at least 1.\n\nFrom the BIG-IP console, type the following command(s):\n\ntmsh list auth password-policy required-uppercase\n\nNote: Verify the value is set to at least 1.\n\nIf the BIG-IP appliance is not configured to enforce password complexity by requiring that at least one uppercase character be used, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. Under \"Password Policy\" set \"Secure Password Enforcement\" to \"Enabled\".\n5. Under \"Required Characters\" set \"Uppercase\" to at least 1.\n6. Click \"Update\".\n\nFrom the BIG-IP console, type the following command(s):\n\ntmsh modify auth password-policy required-uppercase 1\ntmsh save sys config",
+    "description": "Use of a complex passwords helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password is, the greater the number of possible combinations that need to be tested before the password is compromised.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords must only be used when MFA using PKI is not available, and for the account of last resort and root account.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "8cc74936e4ac62e1838b03633049699899146d75dc2f0aff4a39f8987f9d5730"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_auth_password_policy": {
+      "source": "tmsh_auth_password_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth password-policy all-properties"
+      },
+      "blob_sha256": "831a26dbe55fcc8b",
+      "bytes": 334
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266088:auth_password_policy_policy_enforcement:1",
+      "carrier_coordinate": "tmsh:list auth password-policy all-properties",
+      "measurable": "auth_password_policy.policy_enforcement",
+      "lawful_property": "enabled",
+      "required": "enabled",
+      "observed": "enabled",
+      "comparison_expression": "observed(enabled) satisfies required(enabled)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_password_policy",
+      "source_stig": {
+        "vuln_id": "V-266088",
+        "ruleID": "SV-266088r1024894_rule",
+        "checkid": "C-70012r1024892_chk",
+        "fixid": "F-69915r1024893_fix",
+        "title": "The F5 BIG-IP appliance must enforce password complexity by requiring that at least one uppercase character be used.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. Verify that \"Secure Password Enforcement\" is set to \"Enabled\".\n5. Verify under \"Required Characters\" that \"Uppercase\" is set to at least 1.\n\nFrom the BIG-IP console, type the following command(s):\n\ntmsh list auth password-policy required-uppercase\n\nNote: Verify the value is set to at least 1.\n\nIf the BIG-IP appliance is not configured to enforce password complexity by requiring that at least one uppercase character be used, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. Under \"Password Policy\" set \"Secure Password Enforcement\" to \"Enabled\".\n5. Under \"Required Characters\" set \"Uppercase\" to at least 1.\n6. Click \"Update\".\n\nFrom the BIG-IP console, type the following command(s):\n\ntmsh modify auth password-policy required-uppercase 1\ntmsh save sys config",
+        "description": "Use of a complex passwords helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password is, the greater the number of possible combinations that need to be tested before the password is compromised.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords must only be used when MFA using PKI is not available, and for the account of last resort and root account.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "8cc74936e4ac62e1838b03633049699899146d75dc2f0aff4a39f8987f9d5730"
+      },
+      "vuln_id": "V-266088"
+    },
+    {
+      "pullback_id": "V-266088:auth_password_policy_required_uppercase:2",
+      "carrier_coordinate": "tmsh:list auth password-policy all-properties",
+      "measurable": "auth_password_policy.required-uppercase",
+      "lawful_property": ">= 1",
+      "required": ">= 1",
+      "observed": "1",
+      "comparison_expression": "observed(1) satisfies required(>= 1)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_password_policy",
+      "source_stig": {
+        "vuln_id": "V-266088",
+        "ruleID": "SV-266088r1024894_rule",
+        "checkid": "C-70012r1024892_chk",
+        "fixid": "F-69915r1024893_fix",
+        "title": "The F5 BIG-IP appliance must enforce password complexity by requiring that at least one uppercase character be used.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. Verify that \"Secure Password Enforcement\" is set to \"Enabled\".\n5. Verify under \"Required Characters\" that \"Uppercase\" is set to at least 1.\n\nFrom the BIG-IP console, type the following command(s):\n\ntmsh list auth password-policy required-uppercase\n\nNote: Verify the value is set to at least 1.\n\nIf the BIG-IP appliance is not configured to enforce password complexity by requiring that at least one uppercase character be used, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Authentication.\n4. Under \"Password Policy\" set \"Secure Password Enforcement\" to \"Enabled\".\n5. Under \"Required Characters\" set \"Uppercase\" to at least 1.\n6. Click \"Update\".\n\nFrom the BIG-IP console, type the following command(s):\n\ntmsh modify auth password-policy required-uppercase 1\ntmsh save sys config",
+        "description": "Use of a complex passwords helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.\n\nPassword complexity is one factor of several that determine how long it takes to crack a password. The more complex the password is, the greater the number of possible combinations that need to be tested before the password is compromised.\n\nMultifactor authentication (MFA) is required for all administrative and user accounts on network devices, except for an account of last resort and (where applicable) a root account. Passwords must only be used when MFA using PKI is not available, and for the account of last resort and root account.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "8cc74936e4ac62e1838b03633049699899146d75dc2f0aff4a39f8987f9d5730"
+      },
+      "vuln_id": "V-266088"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266088)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266088)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266088)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 2,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266088:auth_password_policy_policy_enforcement:1",
+          "shared_key": "auth_password_policy.policy_enforcement",
+          "left_id": "observed[auth_password_policy.policy_enforcement] = enabled",
+          "right_id": "required[auth_password_policy.policy_enforcement] enabled",
+          "observed_value": "enabled",
+          "required_value": "enabled",
+          "comparison_expression": "observed(enabled) satisfies required(enabled)",
+          "cardinality": "ok",
+          "source": "tmsh:list auth password-policy all-properties"
+        },
+        {
+          "pullback_id": "V-266088:auth_password_policy_required_uppercase:2",
+          "shared_key": "auth_password_policy.required-uppercase",
+          "left_id": "observed[auth_password_policy.required-uppercase] = 1",
+          "right_id": "required[auth_password_policy.required-uppercase] >= 1",
+          "observed_value": "1",
+          "required_value": ">= 1",
+          "comparison_expression": "observed(1) satisfies required(>= 1)",
+          "cardinality": "ok",
+          "source": "tmsh:list auth password-policy all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266088:auth_password_policy_policy_enforcement:1",
+      "shared_key": "auth_password_policy.policy_enforcement",
+      "left_id": "observed[auth_password_policy.policy_enforcement] = enabled",
+      "right_id": "required[auth_password_policy.policy_enforcement] enabled",
+      "observed_value": "enabled",
+      "required_value": "enabled",
+      "source": "tmsh:list auth password-policy all-properties",
+      "comparison_expression": "observed(enabled) satisfies required(enabled)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266088:auth_password_policy_required_uppercase:2",
+      "shared_key": "auth_password_policy.required-uppercase",
+      "left_id": "observed[auth_password_policy.required-uppercase] = 1",
+      "right_id": "required[auth_password_policy.required-uppercase] >= 1",
+      "observed_value": "1",
+      "required_value": ">= 1",
+      "source": "tmsh:list auth password-policy all-properties",
+      "comparison_expression": "observed(1) satisfies required(>= 1)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266088",
+      "requirement": "The F5 BIG-IP appliance must enforce password complexity by requiring that at least one uppercase character be used.",
+      "status": "NOT_A_FINDING",
+      "why": "Password policy: policy-enforcement must be enabled and required-uppercase >= 1.",
+      "tmsh_remediation_command": "tmsh modify auth password-policy policy-enforcement enabled max-login-failures 3 lockout-duration 900 minimum-length 15 required-uppercase 1 required-lowercase 1 required-numeric 1 required-special 1 password-memory 5 expiration-warning 14; tmsh save sys config",
+      "rest_remediation_command": "PATCH /mgmt/tm/auth/password-policy {\"policyEnforcement\":\"enabled\",\"maxLoginFailures\":3,\"lockoutDuration\":900,\"minimumLength\":15}",
+      "evidence_keys": [
+        "tmsh_auth_password_policy"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 2,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266088 - password_policy evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266088",
+        "detail": "Collected 1 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list auth password-policy all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266088",
+        "source_a": "observed appliance evidence (V-266088)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266088)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266088)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 2,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266088:auth_password_policy_policy_enforcement:1",
+            "shared_key": "auth_password_policy.policy_enforcement",
+            "left_id": "observed[auth_password_policy.policy_enforcement] = enabled",
+            "right_id": "required[auth_password_policy.policy_enforcement] enabled",
+            "observed_value": "enabled",
+            "required_value": "enabled",
+            "comparison_expression": "observed(enabled) satisfies required(enabled)",
+            "cardinality": "ok",
+            "source": "tmsh:list auth password-policy all-properties"
+          },
+          {
+            "pullback_id": "V-266088:auth_password_policy_required_uppercase:2",
+            "shared_key": "auth_password_policy.required-uppercase",
+            "left_id": "observed[auth_password_policy.required-uppercase] = 1",
+            "right_id": "required[auth_password_policy.required-uppercase] >= 1",
+            "observed_value": "1",
+            "required_value": ">= 1",
+            "comparison_expression": "observed(1) satisfies required(>= 1)",
+            "cardinality": "ok",
+            "source": "tmsh:list auth password-policy all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_password_policy.policy_enforcement @ tmsh:list auth password-policy all-properties",
+        "pullback_id": "V-266088:auth_password_policy_policy_enforcement:1",
+        "required": "enabled",
+        "observed": "enabled",
+        "source": "tmsh:list auth password-policy all-properties",
+        "comparison_expression": "observed(enabled) satisfies required(enabled)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_password_policy.required-uppercase @ tmsh:list auth password-policy all-properties",
+        "pullback_id": "V-266088:auth_password_policy_required_uppercase:2",
+        "required": ">= 1",
+        "observed": "1",
+        "source": "tmsh:list auth password-policy all-properties",
+        "comparison_expression": "observed(1) satisfies required(>= 1)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Password policy: policy-enforcement must be enabled and required-uppercase >= 1.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Password policy: policy-enforcement must be enabled and required-uppercase >= 1.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266088"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266088/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266088/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "vuln_id": "V-266076",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:26.809259Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "sys_ntp_server_count": 2
+  },
+  "evidence": {
+    "sys_ntp": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/ntp"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:ntp:ntpstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/ntp?ver=17.5.1.3\",\n  \"include\": \"authenticate yes\\nkeys /etc/ntp/keys\\ntrustedkey 1\",\n  \"servers\": [\n    \"0.us.pool.ntp.org\",\n    \"1.us.pool.ntp.org\"\n  ],\n  \"timezone\": \"UTC\",\n  \"restrictReference\": {\n    \"link\": \"https://localhost/mgmt/tm/sys/ntp/restrict?ver=17.5.1.3\",\n    \"isSubcollection\": true\n  }\n}",
+      "blob_sha256": "",
+      "bytes": 385
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "sys_ntp_server_count:9555d618",
+      "measurable": "sys_ntp_server_count",
+      "required": ">= 2",
+      "observed": 2,
+      "evidence_source": "rest:/mgmt/tm/sys/ntp",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266076",
+      "status": "NOT_A_FINDING",
+      "requirement": "Configured NTP server count was evaluated from live BIG-IP NTP settings.",
+      "why": "Configured NTP server count was evaluated from live BIG-IP NTP settings.",
+      "tmsh_remediation_command": "tmsh modify sys ntp servers add { <ntp_server1> <ntp_server2> }; tmsh save sys config",
+      "rest_remediation_command": "/mgmt/tm/sys/ntp"
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "sys_ntp_server_count >= 2",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "sys_ntp_server_count:9555d618",
+            "measurable": "sys_ntp_server_count",
+            "required": ">= 2",
+            "observed": 2,
+            "evidence_source": "rest:/mgmt/tm/sys/ntp",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266076",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

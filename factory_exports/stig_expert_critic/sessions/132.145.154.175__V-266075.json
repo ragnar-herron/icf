@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "vuln_id": "V-266075",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:25.642219Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "sys_syslog_remote_server_count": 2
+  },
+  "evidence": {
+    "sys_syslog": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/syslog"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:syslog:syslogstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/syslog?ver=17.5.1.3\",\n  \"authPrivFrom\": \"notice\",\n  \"authPrivTo\": \"emerg\",\n  \"clusteredHostSlot\": \"enabled\",\n  \"clusteredMessageSlot\": \"disabled\",\n  \"consoleLog\": \"enabled\",\n  \"cronFrom\": \"warning\",\n  \"cronTo\": \"emerg\",\n  \"daemonFrom\": \"notice\",\n  \"daemonTo\": \"emerg\",\n  \"isoDate\": \"disabled\",\n  \"kernFrom\": \"debug\",\n  \"kernTo\": \"emerg\",\n  \"local6From\": \"notice\",\n  \"local6To\": \"emerg\",\n  \"mailFrom\": \"notice\",\n  \"mailTo\": \"emerg\",\n  \"messagesFrom\": \"notice\",\n  \"messagesTo\": \"warning\",\n  \"userLogFrom\": \"notice\",\n  \"userLogTo\": \"emerg\",\n  \"remoteServers\": [\n    {\n      \"name\": \"/Common/stig_syslog\",\n      \"host\": \"10.0.0.1\",\n      \"localIp\": \"none\",\n      \"remotePort\": 514\n    },\n    {\n      \"name\": \"/Common/s",
+      "blob_sha256": "",
+      "bytes": 900
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "sys_syslog_remote_server_count:34a847e5",
+      "measurable": "sys_syslog_remote_server_count",
+      "required": ">= 2",
+      "observed": 2,
+      "evidence_source": "rest:/mgmt/tm/sys/syslog",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266075",
+      "status": "NOT_A_FINDING",
+      "requirement": "Remote syslog destination count was evaluated from live BIG-IP syslog settings.",
+      "why": "Remote syslog destination count was evaluated from live BIG-IP syslog settings.",
+      "tmsh_remediation_command": "tmsh modify sys syslog remote-servers add { stig_syslog1 { host <ip1> remote-port 514 } stig_syslog2 { host <ip2> remote-port 514 } }; tmsh save sys config",
+      "rest_remediation_command": "/mgmt/tm/sys/syslog"
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "sys_syslog_remote_server_count >= 2",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "sys_syslog_remote_server_count:34a847e5",
+            "measurable": "sys_syslog_remote_server_count",
+            "required": ">= 2",
+            "observed": 2,
+            "evidence_source": "rest:/mgmt/tm/sys/syslog",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266075",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "ok": true,
+  "vuln_id": "V-266076",
+  "source_stig": {
+    "vuln_id": "V-266076",
+    "ruleID": "SV-266076r1024608_rule",
+    "checkid": "C-69999r1023477_chk",
+    "fixid": "F-69902r1023478_fix",
+    "title": "The F5 BIG-IP appliance must be configured to synchronize internal information system clocks using redundant authoritative time sources.",
+    "checktext": "From the BIG-IP Console, issue the following commands:\n\ntmsh list sys ntp include\n#Verify there is a line similar to the following with more than one \"server\" listed\n#server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\n\nIf the BIG-IP appliance is not configured to synchronize internal information system clocks using redundant authoritative time sources, this is a finding.",
+    "fixtext": "From the BIG-IP Console, issue the following commands:\n\ntmsh edit sys ntp all-properties\n\n#Replace the \"include\" section with the following (add as many ntp server lines as necessary for the environment):\n\ninclude \"server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\nserver <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\"\n\ntmsh save sys config",
+    "description": "The loss of connectivity to a particular authoritative time source will result in the loss of time synchronization (free-run mode) and increasingly inaccurate time stamps on audit events and other functions. \n\nMultiple time sources provide redundancy by including a secondary source. Time synchronization is usually a hierarchy; clients synchronize time to a local source while that source synchronizes its time to a more accurate source. The network device must use an authoritative time server and/or be configured to use redundant authoritative time sources. This requirement is related to the comparison done in CCI-001891.\n\nDOD-approved solutions consist of a combination of a primary and secondary time source using a combination or multiple instances of the following: a time server designated for the appropriate DOD network (NIPRNet/SIPRNet); United States Naval Observatory (USNO) time servers; and/or the Global Positioning System (GPS). The secondary time source must be located in a different geographic region than the primary time source.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "014685ce351f047dd34011606b990b42fe2555c2de23801b658d3d70f194103a"
+  },
+  "status": "OPEN",
+  "disposition": "fail",
+  "evidence": {
+    "tmsh_sys_ntp": {
+      "source": "tmsh_sys_ntp",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys ntp"
+      },
+      "blob_sha256": "e1d28ef3594e2c89",
+      "bytes": 144
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266076:sys_ntp_servers:1",
+      "carrier_coordinate": "tmsh:list sys ntp",
+      "measurable": "sys_ntp.servers",
+      "lawful_property": "non-empty servers { ... }",
+      "required": "non-empty servers { ... }",
+      "observed": "present",
+      "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_ntp",
+      "source_stig": {
+        "vuln_id": "V-266076",
+        "ruleID": "SV-266076r1024608_rule",
+        "checkid": "C-69999r1023477_chk",
+        "fixid": "F-69902r1023478_fix",
+        "title": "The F5 BIG-IP appliance must be configured to synchronize internal information system clocks using redundant authoritative time sources.",
+        "checktext": "From the BIG-IP Console, issue the following commands:\n\ntmsh list sys ntp include\n#Verify there is a line similar to the following with more than one \"server\" listed\n#server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\n\nIf the BIG-IP appliance is not configured to synchronize internal information system clocks using redundant authoritative time sources, this is a finding.",
+        "fixtext": "From the BIG-IP Console, issue the following commands:\n\ntmsh edit sys ntp all-properties\n\n#Replace the \"include\" section with the following (add as many ntp server lines as necessary for the environment):\n\ninclude \"server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\nserver <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\"\n\ntmsh save sys config",
+        "description": "The loss of connectivity to a particular authoritative time source will result in the loss of time synchronization (free-run mode) and increasingly inaccurate time stamps on audit events and other functions. \n\nMultiple time sources provide redundancy by including a secondary source. Time synchronization is usually a hierarchy; clients synchronize time to a local source while that source synchronizes its time to a more accurate source. The network device must use an authoritative time server and/or be configured to use redundant authoritative time sources. This requirement is related to the comparison done in CCI-001891.\n\nDOD-approved solutions consist of a combination of a primary and secondary time source using a combination or multiple instances of the following: a time server designated for the appropriate DOD network (NIPRNet/SIPRNet); United States Naval Observatory (USNO) time servers; and/or the Global Positioning System (GPS). The secondary time source must be located in a different geographic region than the primary time source.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "014685ce351f047dd34011606b990b42fe2555c2de23801b658d3d70f194103a"
+      },
+      "vuln_id": "V-266076"
+    },
+    {
+      "pullback_id": "V-266076:sys_ntp_include_authenticate:2",
+      "carrier_coordinate": "tmsh:list sys ntp",
+      "measurable": "sys_ntp.include_authenticate",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "false",
+      "comparison_expression": "observed(false) satisfies required(true)",
+      "match": false,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "remediate_or_document_exception",
+      "source_key": "tmsh_sys_ntp",
+      "source_stig": {
+        "vuln_id": "V-266076",
+        "ruleID": "SV-266076r1024608_rule",
+        "checkid": "C-69999r1023477_chk",
+        "fixid": "F-69902r1023478_fix",
+        "title": "The F5 BIG-IP appliance must be configured to synchronize internal information system clocks using redundant authoritative time sources.",
+        "checktext": "From the BIG-IP Console, issue the following commands:\n\ntmsh list sys ntp include\n#Verify there is a line similar to the following with more than one \"server\" listed\n#server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\n\nIf the BIG-IP appliance is not configured to synchronize internal information system clocks using redundant authoritative time sources, this is a finding.",
+        "fixtext": "From the BIG-IP Console, issue the following commands:\n\ntmsh edit sys ntp all-properties\n\n#Replace the \"include\" section with the following (add as many ntp server lines as necessary for the environment):\n\ninclude \"server <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\nserver <ntp server> key <trusted key number matched to /etc/ntp/keys> iburst trustedkey <trusted key number matched to /etc/ntp/keys>\"\n\ntmsh save sys config",
+        "description": "The loss of connectivity to a particular authoritative time source will result in the loss of time synchronization (free-run mode) and increasingly inaccurate time stamps on audit events and other functions. \n\nMultiple time sources provide redundancy by including a secondary source. Time synchronization is usually a hierarchy; clients synchronize time to a local source while that source synchronizes its time to a more accurate source. The network device must use an authoritative time server and/or be configured to use redundant authoritative time sources. This requirement is related to the comparison done in CCI-001891.\n\nDOD-approved solutions consist of a combination of a primary and secondary time source using a combination or multiple instances of the following: a time server designated for the appropriate DOD network (NIPRNet/SIPRNet); United States Naval Observatory (USNO) time servers; and/or the Global Positioning System (GPS). The secondary time source must be located in a different geographic region than the primary time source.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "014685ce351f047dd34011606b990b42fe2555c2de23801b658d3d70f194103a"
+      },
+      "vuln_id": "V-266076"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266076)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266076)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266076)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 1,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266076:sys_ntp_servers:1",
+          "shared_key": "sys_ntp.servers",
+          "left_id": "observed[sys_ntp.servers] = present",
+          "right_id": "required[sys_ntp.servers] non-empty servers { ... }",
+          "observed_value": "present",
+          "required_value": "non-empty servers { ... }",
+          "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })",
+          "cardinality": "ok",
+          "source": "tmsh:list sys ntp"
+        },
+        {
+          "pullback_id": "V-266076:sys_ntp_include_authenticate:2",
+          "shared_key": "sys_ntp.include_authenticate",
+          "left_id": "observed[sys_ntp.include_authenticate] = false",
+          "right_id": "required[sys_ntp.include_authenticate] true",
+          "observed_value": "false",
+          "required_value": "true",
+          "comparison_expression": "observed(false) satisfies required(true)",
+          "cardinality": "mismatch",
+          "source": "tmsh:list sys ntp"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "error",
+      "aspect": "mismatch",
+      "finding": "1 measurement(s) observed on the appliance do not satisfy the STIG predicate; see the truth table for exact values."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266076:sys_ntp_servers:1",
+      "shared_key": "sys_ntp.servers",
+      "left_id": "observed[sys_ntp.servers] = present",
+      "right_id": "required[sys_ntp.servers] non-empty servers { ... }",
+      "observed_value": "present",
+      "required_value": "non-empty servers { ... }",
+      "source": "tmsh:list sys ntp",
+      "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })"
+    },
+    {
+      "record_type": "mismatch",
+      "pullback_id": "V-266076:sys_ntp_include_authenticate:2",
+      "shared_key": "sys_ntp.include_authenticate",
+      "left_id": "observed[sys_ntp.include_authenticate] = false",
+      "right_id": "required[sys_ntp.include_authenticate] true",
+      "observed_value": "false",
+      "required_value": "true",
+      "source": "tmsh:list sys ntp",
+      "comparison_expression": "observed(false) satisfies required(true)"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266076",
+      "requirement": "The F5 BIG-IP appliance must be configured to synchronize internal information system clocks using redundant authoritative time sources.",
+      "status": "OPEN",
+      "why": "NTP must define servers AND 'include authenticate' so time sync is authenticated.",
+      "tmsh_remediation_command": "tmsh modify sys ntp servers add { <approved_ntp1> <approved_ntp2> }; tmsh save sys config",
+      "rest_remediation_command": "PATCH /mgmt/tm/sys/ntp {\"servers\": [\"<approved_ntp1>\", \"<approved_ntp2>\"]}",
+      "evidence_keys": [
+        "tmsh_sys_ntp"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 1,
+        "fail": 1,
+        "unresolved": 0
+      }
+    },
+    "violations": [
+      "NTP must define servers AND 'include authenticate' so time sync is authenticated."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266076 - ntp evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266076",
+        "detail": "Collected 1 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list sys ntp"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266076",
+        "source_a": "observed appliance evidence (V-266076)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266076)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266076)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 1,
+        "mismatch_count": 1,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266076:sys_ntp_servers:1",
+            "shared_key": "sys_ntp.servers",
+            "left_id": "observed[sys_ntp.servers] = present",
+            "right_id": "required[sys_ntp.servers] non-empty servers { ... }",
+            "observed_value": "present",
+            "required_value": "non-empty servers { ... }",
+            "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })",
+            "cardinality": "ok",
+            "source": "tmsh:list sys ntp"
+          },
+          {
+            "pullback_id": "V-266076:sys_ntp_include_authenticate:2",
+            "shared_key": "sys_ntp.include_authenticate",
+            "left_id": "observed[sys_ntp.include_authenticate] = false",
+            "right_id": "required[sys_ntp.include_authenticate] true",
+            "observed_value": "false",
+            "required_value": "true",
+            "comparison_expression": "observed(false) satisfies required(true)",
+            "cardinality": "mismatch",
+            "source": "tmsh:list sys ntp"
+          }
+        ],
+        "missing_items": [
+          "sys_ntp.include_authenticate"
+        ],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - mismatch",
+        "severity": "error",
+        "aspect": "mismatch",
+        "detail": "1 measurement(s) observed on the appliance do not satisfy the STIG predicate; see the truth table for exact values."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_ntp.servers @ tmsh:list sys ntp",
+        "pullback_id": "V-266076:sys_ntp_servers:1",
+        "required": "non-empty servers { ... }",
+        "observed": "present",
+        "source": "tmsh:list sys ntp",
+        "comparison_expression": "observed(present) satisfies required(non-empty servers { ... })",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_ntp.include_authenticate @ tmsh:list sys ntp",
+        "pullback_id": "V-266076:sys_ntp_include_authenticate:2",
+        "required": "true",
+        "observed": "false",
+        "source": "tmsh:list sys ntp",
+        "comparison_expression": "observed(false) satisfies required(true)",
+        "verdict": "FAIL",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 1,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "NTP must define servers AND 'include authenticate' so time sync is authenticated.",
+        "status": "OPEN",
+        "naf_expression": "observed == required",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": true
+      }
+    ]
+  },
+  "rationale": "NTP must define servers AND 'include authenticate' so time sync is authenticated.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266076"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266076/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266076/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "vuln_id": "V-266167",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:56:38.753353Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "sys_httpd_auth_pam_validate_ip": true
+  },
+  "evidence": {
+    "sys_httpd": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/httpd"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:httpd:httpdstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/httpd?ver=17.5.1.3\",\n  \"allow\": [\n    \"All\",\n    \"all\"\n  ],\n  \"authName\": \"BIG-IP\",\n  \"authPamDashboardTimeout\": \"on\",\n  \"authPamIdleTimeout\": 300,\n  \"authPamValidateIp\": \"on\",\n  \"fastcgiTimeout\": 300,\n  \"fipsCipherVersion\": 2,\n  \"hostnameLookup\": \"off\",\n  \"logLevel\": \"warn\",\n  \"maxClients\": 10,\n  \"redirectHttpToHttps\": \"disabled\",\n  \"requestBodyMaxTimeout\": 0,\n  \"requestBodyMinRate\": 500,\n  \"requestBodyTimeout\": 60,\n  \"requestHeaderMaxTimeout\": 40,\n  \"requestHeaderMinRate\": 500,\n  \"requestHeaderTimeout\": 20,\n  \"sslCertfile\": \"/etc/httpd/conf/ssl.crt/server.crt\",\n  \"sslCertkeyfile\": \"/etc/httpd/conf/ssl.key/server.key\",\n  \"sslCiphersuite\": \"ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-A",
+      "blob_sha256": "",
+      "bytes": 1364
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "sys_httpd_auth_pam_validate_ip:062a0cfe",
+      "measurable": "sys_httpd_auth_pam_validate_ip",
+      "required": "== true",
+      "observed": true,
+      "evidence_source": "rest:/mgmt/tm/sys/httpd",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266167",
+      "status": "NOT_A_FINDING",
+      "requirement": "TMUI session source-IP pinning was evaluated from the live sys httpd configuration.",
+      "why": "TMUI session source-IP pinning was evaluated from the live sys httpd configuration.",
+      "tmsh_remediation_command": "tmsh modify sys httpd auth-pam-validate-ip on",
+      "rest_remediation_command": ""
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "sys_httpd_auth_pam_validate_ip == true",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "sys_httpd_auth_pam_validate_ip:062a0cfe",
+            "measurable": "sys_httpd_auth_pam_validate_ip",
+            "required": "== true",
+            "observed": true,
+            "evidence_source": "rest:/mgmt/tm/sys/httpd",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266167",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

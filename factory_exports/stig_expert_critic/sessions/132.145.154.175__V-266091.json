@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "vuln_id": "V-266091",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:43.011778Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "auth_password_policy_required_special": 1
+  },
+  "evidence": {
+    "auth_password_policy": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/auth/password-policy"
+      },
+      "preview": "{\n  \"kind\": \"tm:auth:password-policy:password-policystate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/auth/password-policy?ver=17.5.1.3\",\n  \"expirationWarning\": 7,\n  \"lockoutDuration\": 900,\n  \"maxDuration\": 99999,\n  \"maxLoginFailures\": 3,\n  \"minDuration\": 0,\n  \"minimumLength\": 15,\n  \"passwordMemory\": 0,\n  \"policyEnforcement\": \"enabled\",\n  \"requiredLowercase\": 1,\n  \"requiredNumeric\": 1,\n  \"requiredSpecial\": 1,\n  \"requiredUppercase\": 1\n}",
+      "blob_sha256": "",
+      "bytes": 438
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "auth_password_policy_required_special:6ee19fbe",
+      "measurable": "auth_password_policy_required_special",
+      "required": ">= 1",
+      "observed": 1,
+      "evidence_source": "rest:/mgmt/tm/auth/password-policy",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266091",
+      "status": "NOT_A_FINDING",
+      "requirement": "Live BIG-IP password policy settings were evaluated from the password-policy endpoint.",
+      "why": "Live BIG-IP password policy settings were evaluated from the password-policy endpoint.",
+      "tmsh_remediation_command": "tmsh modify auth password-policy required-special 1; tmsh save sys config",
+      "rest_remediation_command": "/mgmt/tm/auth/password-policy"
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "auth_password_policy_required_special >= 1",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "auth_password_policy_required_special:6ee19fbe",
+            "measurable": "auth_password_policy_required_special",
+            "required": ">= 1",
+            "observed": 1,
+            "evidence_source": "rest:/mgmt/tm/auth/password-policy",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266091",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

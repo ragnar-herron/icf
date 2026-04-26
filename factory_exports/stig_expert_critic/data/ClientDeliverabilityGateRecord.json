@@ -1,0 +1,17 @@
+{
+  "record_kind": "ClientDeliverabilityGateRecord",
+  "release_scope": "supported_only",
+  "selected_controls": 67,
+  "shipped_controls": 62,
+  "supported_controls": 62,
+  "unsupported_controls": 5,
+  "unsupported_shipped_controls": 0,
+  "status": "DELIVERABLE_WITH_DECLARED_BOUNDARIES",
+  "requirements": {
+    "standalone_runtime_boundary": true,
+    "csv_runtime_configuration": true,
+    "live_connect_query_smoke_required": true,
+    "supported_only_release": true
+  },
+  "next_action": "Ship with declared external/manual boundaries or supply organization evidence to promote remaining controls."
+}

@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "vuln_id": "V-266092",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:44.277794Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "sys_db_password_difok": 8
+  },
+  "evidence": {
+    "password_difok": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/db/password.difok"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:db:dbstate\",\n  \"name\": \"password.difok\",\n  \"fullPath\": \"password.difok\",\n  \"generation\": 4040,\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/db/password.difok?ver=17.5.1.3\",\n  \"defaultValue\": \"8\",\n  \"scfConfig\": \"false\",\n  \"value\": \"8\",\n  \"valueRange\": \"integer min:0 max:255\"\n}",
+      "blob_sha256": "",
+      "bytes": 297
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "sys_db_password_difok:cb434a4f",
+      "measurable": "sys_db_password_difok",
+      "required": ">= 8",
+      "observed": 8,
+      "evidence_source": "rest:/mgmt/tm/sys/db/password.difok",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266092",
+      "status": "NOT_A_FINDING",
+      "requirement": "The password.difok policy value was evaluated from the live BIG-IP sys db setting.",
+      "why": "The password.difok policy value was evaluated from the live BIG-IP sys db setting.",
+      "tmsh_remediation_command": "tmsh modify sys db password.difok value 8; tmsh save sys config",
+      "rest_remediation_command": "/mgmt/tm/sys/db/password.difok"
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "sys_db_password_difok >= 8",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "sys_db_password_difok:cb434a4f",
+            "measurable": "sys_db_password_difok",
+            "required": ">= 8",
+            "observed": 8,
+            "evidence_source": "rest:/mgmt/tm/sys/db/password.difok",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266092",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

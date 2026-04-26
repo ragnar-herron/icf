@@ -1,0 +1,243 @@
+{
+  "ok": true,
+  "vuln_id": "V-266080",
+  "source_stig": {
+    "vuln_id": "V-266080",
+    "ruleID": "SV-266080r1024886_rule",
+    "checkid": "C-70003r1024885_chk",
+    "fixid": "F-69906r1023490_fix",
+    "title": "The F5 BIG-IP appliance must be running an operating system release that is currently supported by the vendor.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Configuration.\n3. Device.\n4. General.\n5. Verify \"Version\" is currently supported according to the vendor support site.\n\nFrom the BIG-IP console, type the following command(s):\n\ntmsh list cm device version\n\nNote: Verify the version is currently supported on the vendor's website.\n\nIf the BIG-IP appliance is not running an operating system release that is currently supported by the vendor, this is a finding.",
+    "fixtext": "If the release is not a supported version, then update the version.\n\nFrom the BIG-IP GUI:\n1. Import .iso.\na. System.\nb. Software Management.\nc. Image List.\nd. Import .iso of supported BIG-IP operating system.\ne. Import the corresponding .iso.sig file.\nf. Install.\n2. Switch boot location to new install.\na. System.\nb. Software Management.\nc. Boot Locations.\nd. Select new install location.\ne. Optionally change \"Install Configuration\" to \"Yes\".\nf. Activate.",
+    "description": "Network devices running an unsupported operating system lack current security fixes required to mitigate the risks associated with recent vulnerabilities.",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "443989145172f21948d9bef6d87ff9fa3eb770448c78d4703d21e2d4c6897e6b"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "external_evidence_packages": {
+      "source": "external_evidence_packages",
+      "source_detail": {
+        "kind": "repo-json",
+        "path": "data/ExternalEvidencePackages.json"
+      },
+      "blob_sha256": "ba51fca997b400cd",
+      "bytes": 3589
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266080:external_evidence_package:1",
+      "carrier_coordinate": "repo-json:data/ExternalEvidencePackages.json",
+      "measurable": "external_evidence_package",
+      "lawful_property": "package_id == vendor_support_bigip_17_5_1_3 (disposition=pass)",
+      "required": "package_id == vendor_support_bigip_17_5_1_3 (disposition=pass)",
+      "observed": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+      "comparison_expression": "observed(Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.) satisfies required(package_id == vendor_support_bigip_17_5_1_3 (disposition=pass))",
+      "match": true,
+      "comparison_confidence": 0.0,
+      "pullback_unmatched": true,
+      "reviewer_action": "external_evidence_required",
+      "source_key": "external_evidence_packages",
+      "source_stig": {
+        "vuln_id": "V-266080",
+        "ruleID": "SV-266080r1024886_rule",
+        "checkid": "C-70003r1024885_chk",
+        "fixid": "F-69906r1023490_fix",
+        "title": "The F5 BIG-IP appliance must be running an operating system release that is currently supported by the vendor.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Configuration.\n3. Device.\n4. General.\n5. Verify \"Version\" is currently supported according to the vendor support site.\n\nFrom the BIG-IP console, type the following command(s):\n\ntmsh list cm device version\n\nNote: Verify the version is currently supported on the vendor's website.\n\nIf the BIG-IP appliance is not running an operating system release that is currently supported by the vendor, this is a finding.",
+        "fixtext": "If the release is not a supported version, then update the version.\n\nFrom the BIG-IP GUI:\n1. Import .iso.\na. System.\nb. Software Management.\nc. Image List.\nd. Import .iso of supported BIG-IP operating system.\ne. Import the corresponding .iso.sig file.\nf. Install.\n2. Switch boot location to new install.\na. System.\nb. Software Management.\nc. Boot Locations.\nd. Select new install location.\ne. Optionally change \"Install Configuration\" to \"Yes\".\nf. Activate.",
+        "description": "Network devices running an unsupported operating system lack current security fixes required to mitigate the risks associated with recent vulnerabilities.",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "443989145172f21948d9bef6d87ff9fa3eb770448c78d4703d21e2d4c6897e6b"
+      },
+      "vuln_id": "V-266080"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266080)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266080)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266080)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 1,
+      "mismatch_count": 0,
+      "unresolved_count": 1,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266080:external_evidence_package:1",
+          "shared_key": "external_evidence_package",
+          "left_id": "observed[external_evidence_package] = Official F5 documentation shows BIG-IP 17.5.1.5 was released ... (135 more chars)",
+          "right_id": "required[external_evidence_package] package_id == vendor_support_bigip_17_5_1_3 (disposition=pas ... (2 more chars)",
+          "observed_value": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+          "required_value": "package_id == vendor_support_bigip_17_5_1_3 (disposition=pass)",
+          "comparison_expression": "observed(Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.) satisfies required(package_id == vendor_support_bigip_17_5_1_3 (disposition=pass))",
+          "cardinality": "unresolved",
+          "source": "repo-json:data/ExternalEvidencePackages.json"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "warning",
+      "aspect": "unresolved",
+      "finding": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266080:external_evidence_package:1",
+      "shared_key": "external_evidence_package",
+      "left_id": "observed[external_evidence_package] = Official F5 documentation shows BIG-IP 17.5.1.5 was released ... (135 more chars)",
+      "right_id": "required[external_evidence_package] package_id == vendor_support_bigip_17_5_1_3 (disposition=pas ... (2 more chars)",
+      "observed_value": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+      "required_value": "package_id == vendor_support_bigip_17_5_1_3 (disposition=pass)",
+      "source": "repo-json:data/ExternalEvidencePackages.json",
+      "comparison_expression": "observed(Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.) satisfies required(package_id == vendor_support_bigip_17_5_1_3 (disposition=pass))"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266080",
+      "requirement": "The F5 BIG-IP appliance must be running an operating system release that is currently supported by the vendor.",
+      "status": "NOT_A_FINDING",
+      "why": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 1,
+        "fail": 0,
+        "unresolved": 1
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266080 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266080",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "repo-json:data/ExternalEvidencePackages.json"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266080",
+        "source_a": "observed appliance evidence (V-266080)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266080)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266080)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 1,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 1,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266080:external_evidence_package:1",
+            "shared_key": "external_evidence_package",
+            "left_id": "observed[external_evidence_package] = Official F5 documentation shows BIG-IP 17.5.1.5 was released ... (135 more chars)",
+            "right_id": "required[external_evidence_package] package_id == vendor_support_bigip_17_5_1_3 (disposition=pas ... (2 more chars)",
+            "observed_value": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+            "required_value": "package_id == vendor_support_bigip_17_5_1_3 (disposition=pass)",
+            "comparison_expression": "observed(Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.) satisfies required(package_id == vendor_support_bigip_17_5_1_3 (disposition=pass))",
+            "cardinality": "unresolved",
+            "source": "repo-json:data/ExternalEvidencePackages.json"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": [
+          "external_evidence_package"
+        ]
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - unresolved",
+        "severity": "warning",
+        "aspect": "unresolved",
+        "detail": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - external_evidence_package @ repo-json:data/ExternalEvidencePackages.json",
+        "pullback_id": "V-266080:external_evidence_package:1",
+        "required": "package_id == vendor_support_bigip_17_5_1_3 (disposition=pass)",
+        "observed": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+        "source": "repo-json:data/ExternalEvidencePackages.json",
+        "comparison_expression": "observed(Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.) satisfies required(package_id == vendor_support_bigip_17_5_1_3 (disposition=pass))",
+        "verdict": "PASS",
+        "is_unmatched": true
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 1,
+        "fail_count": 0,
+        "unresolved_count": 1,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Official F5 documentation shows BIG-IP 17.5.1.5 was released on 2026-04-01 after 17.5.1.3, which is strong evidence that the running 17.5.1.3 release remains on a currently supported vendor line.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266080"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266080/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266080/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

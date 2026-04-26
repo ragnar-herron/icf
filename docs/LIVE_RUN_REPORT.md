@@ -1,3 +1,8 @@
+STATUS: EVIDENCE SOURCE
+CANONICAL INTERPRETATION IN docs/canonical/CANONICAL_GATE_SUITE.md
+
+---
+
 # STIG Expert Critic — Live Full Campaign Report
 
 This report records the full live STIG campaign run against `bigip1` at `132.145.154.175` (TMOS `17.5.1.3`).

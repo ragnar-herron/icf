@@ -1,0 +1,324 @@
+{
+  "ok": true,
+  "vuln_id": "V-266079",
+  "source_stig": {
+    "vuln_id": "V-266079",
+    "ruleID": "SV-266079r1024884_rule",
+    "checkid": "C-70002r1024882_chk",
+    "fixid": "F-69905r1024883_fix",
+    "title": "The F5 BIG-IP appliance must be configured to use at least two authentication servers to authenticate administrative users.",
+    "checktext": "From the BIG-IP GUI:\nRADIUS:\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - RADIUS\", verify different Primary and Secondary Hosts exist in the configuration.\nNote: To view Primary and Secondary Hosts, the \"Server Configuration\" must be set to \"Primary & Secondary\".\n\nTACACS+\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - TACACS+\", verify multiple servers exist in the configuration.\n5. Verify \"Authentication\" is set to \"Authenticate to each server until success\".\n\nIf the BIG-IP appliance is not configured to use at least two authentication servers to authenticate administrative users, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\nRADIUS:\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - RADIUS\", click \"Change\" at the bottom.\n5. Configure values for Primary and Secondary servers.\nNote: To view Primary and Secondary Hosts, the \"Server Configuration\" must be set to \"Primary & Secondary\".\n6. Click \"Finished\".\n\nTACACS+\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - TACACS+\", click \"Change\" at the bottom\n5. Add multiple IP Addresses to the \"Servers\" field.\n6. Set \"Authentication\" to \"Authenticate to each server until success\".\n7. Click \"Finished\".",
+    "description": "Centralized management of authentication settings increases the security of remote and nonlocal access methods. This control is particularly important protection against the insider threat. With robust centralized management, audit records for administrator account access to the organization's network devices can be more readily analyzed for trends and anomalies. The alternative method of defining administrator accounts on each device exposes the device configuration to remote access authentication attacks and system administrators with multiple authenticators for each network device.",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "dd91e82c6fc50a645557a1b4ad1127d0702300f1e57fe1679bd64a61de0072e5"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_auth_source": {
+      "source": "tmsh_auth_source",
+      "preview": "auth source {\n    description none\n    fallback true\n    type tacacs\n}",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth source all-properties"
+      },
+      "blob_sha256": "b148eaa410ae5563",
+      "bytes": 71
+    },
+    "tmsh_auth_tacacs_system_auth": {
+      "source": "tmsh_auth_tacacs_system_auth",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth tacacs system-auth all-properties"
+      },
+      "blob_sha256": "57060bc81cefd4a5",
+      "bytes": 325
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266079:auth_source_type:1",
+      "carrier_coordinate": "tmsh:list auth source all-properties",
+      "measurable": "auth_source.type",
+      "lawful_property": "in {tacacs, radius, clientcert-ldap}",
+      "required": "in {tacacs, radius, clientcert-ldap}",
+      "observed": "tacacs",
+      "comparison_expression": "observed(tacacs) satisfies required(in {tacacs, radius, clientcert-ldap})",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_source",
+      "source_stig": {
+        "vuln_id": "V-266079",
+        "ruleID": "SV-266079r1024884_rule",
+        "checkid": "C-70002r1024882_chk",
+        "fixid": "F-69905r1024883_fix",
+        "title": "The F5 BIG-IP appliance must be configured to use at least two authentication servers to authenticate administrative users.",
+        "checktext": "From the BIG-IP GUI:\nRADIUS:\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - RADIUS\", verify different Primary and Secondary Hosts exist in the configuration.\nNote: To view Primary and Secondary Hosts, the \"Server Configuration\" must be set to \"Primary & Secondary\".\n\nTACACS+\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - TACACS+\", verify multiple servers exist in the configuration.\n5. Verify \"Authentication\" is set to \"Authenticate to each server until success\".\n\nIf the BIG-IP appliance is not configured to use at least two authentication servers to authenticate administrative users, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\nRADIUS:\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - RADIUS\", click \"Change\" at the bottom.\n5. Configure values for Primary and Secondary servers.\nNote: To view Primary and Secondary Hosts, the \"Server Configuration\" must be set to \"Primary & Secondary\".\n6. Click \"Finished\".\n\nTACACS+\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - TACACS+\", click \"Change\" at the bottom\n5. Add multiple IP Addresses to the \"Servers\" field.\n6. Set \"Authentication\" to \"Authenticate to each server until success\".\n7. Click \"Finished\".",
+        "description": "Centralized management of authentication settings increases the security of remote and nonlocal access methods. This control is particularly important protection against the insider threat. With robust centralized management, audit records for administrator account access to the organization's network devices can be more readily analyzed for trends and anomalies. The alternative method of defining administrator accounts on each device exposes the device configuration to remote access authentication attacks and system administrators with multiple authenticators for each network device.",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "dd91e82c6fc50a645557a1b4ad1127d0702300f1e57fe1679bd64a61de0072e5"
+      },
+      "vuln_id": "V-266079"
+    },
+    {
+      "pullback_id": "V-266079:auth_tacacs_server_count:2",
+      "carrier_coordinate": "tmsh:list auth tacacs system-auth all-properties",
+      "measurable": "auth_tacacs.server_count",
+      "lawful_property": ">= 2",
+      "required": ">= 2",
+      "observed": "2",
+      "comparison_expression": "observed(2) satisfies required(>= 2)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_tacacs_system_auth",
+      "source_stig": {
+        "vuln_id": "V-266079",
+        "ruleID": "SV-266079r1024884_rule",
+        "checkid": "C-70002r1024882_chk",
+        "fixid": "F-69905r1024883_fix",
+        "title": "The F5 BIG-IP appliance must be configured to use at least two authentication servers to authenticate administrative users.",
+        "checktext": "From the BIG-IP GUI:\nRADIUS:\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - RADIUS\", verify different Primary and Secondary Hosts exist in the configuration.\nNote: To view Primary and Secondary Hosts, the \"Server Configuration\" must be set to \"Primary & Secondary\".\n\nTACACS+\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - TACACS+\", verify multiple servers exist in the configuration.\n5. Verify \"Authentication\" is set to \"Authenticate to each server until success\".\n\nIf the BIG-IP appliance is not configured to use at least two authentication servers to authenticate administrative users, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\nRADIUS:\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - RADIUS\", click \"Change\" at the bottom.\n5. Configure values for Primary and Secondary servers.\nNote: To view Primary and Secondary Hosts, the \"Server Configuration\" must be set to \"Primary & Secondary\".\n6. Click \"Finished\".\n\nTACACS+\n1. System.\n2. Users.\n3. Authentication.\n4. If \"User Directory\" is configured for \"Remote - TACACS+\", click \"Change\" at the bottom\n5. Add multiple IP Addresses to the \"Servers\" field.\n6. Set \"Authentication\" to \"Authenticate to each server until success\".\n7. Click \"Finished\".",
+        "description": "Centralized management of authentication settings increases the security of remote and nonlocal access methods. This control is particularly important protection against the insider threat. With robust centralized management, audit records for administrator account access to the organization's network devices can be more readily analyzed for trends and anomalies. The alternative method of defining administrator accounts on each device exposes the device configuration to remote access authentication attacks and system administrators with multiple authenticators for each network device.",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "dd91e82c6fc50a645557a1b4ad1127d0702300f1e57fe1679bd64a61de0072e5"
+      },
+      "vuln_id": "V-266079"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266079)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266079)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266079)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 2,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266079:auth_source_type:1",
+          "shared_key": "auth_source.type",
+          "left_id": "observed[auth_source.type] = tacacs",
+          "right_id": "required[auth_source.type] in {tacacs, radius, clientcert-ldap}",
+          "observed_value": "tacacs",
+          "required_value": "in {tacacs, radius, clientcert-ldap}",
+          "comparison_expression": "observed(tacacs) satisfies required(in {tacacs, radius, clientcert-ldap})",
+          "cardinality": "ok",
+          "source": "tmsh:list auth source all-properties"
+        },
+        {
+          "pullback_id": "V-266079:auth_tacacs_server_count:2",
+          "shared_key": "auth_tacacs.server_count",
+          "left_id": "observed[auth_tacacs.server_count] = 2",
+          "right_id": "required[auth_tacacs.server_count] >= 2",
+          "observed_value": "2",
+          "required_value": ">= 2",
+          "comparison_expression": "observed(2) satisfies required(>= 2)",
+          "cardinality": "ok",
+          "source": "tmsh:list auth tacacs system-auth all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266079:auth_source_type:1",
+      "shared_key": "auth_source.type",
+      "left_id": "observed[auth_source.type] = tacacs",
+      "right_id": "required[auth_source.type] in {tacacs, radius, clientcert-ldap}",
+      "observed_value": "tacacs",
+      "required_value": "in {tacacs, radius, clientcert-ldap}",
+      "source": "tmsh:list auth source all-properties",
+      "comparison_expression": "observed(tacacs) satisfies required(in {tacacs, radius, clientcert-ldap})"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266079:auth_tacacs_server_count:2",
+      "shared_key": "auth_tacacs.server_count",
+      "left_id": "observed[auth_tacacs.server_count] = 2",
+      "right_id": "required[auth_tacacs.server_count] >= 2",
+      "observed_value": "2",
+      "required_value": ">= 2",
+      "source": "tmsh:list auth tacacs system-auth all-properties",
+      "comparison_expression": "observed(2) satisfies required(>= 2)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266079",
+      "requirement": "The F5 BIG-IP appliance must be configured to use at least two authentication servers to authenticate administrative users.",
+      "status": "NOT_A_FINDING",
+      "why": "Admin auth topology: detected type=tacacs, redundant-servers=2.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 2,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266079 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266079",
+        "detail": "Collected 2 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list auth source all-properties",
+          "tmsh:list auth tacacs system-auth all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266079",
+        "source_a": "observed appliance evidence (V-266079)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266079)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266079)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 2,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266079:auth_source_type:1",
+            "shared_key": "auth_source.type",
+            "left_id": "observed[auth_source.type] = tacacs",
+            "right_id": "required[auth_source.type] in {tacacs, radius, clientcert-ldap}",
+            "observed_value": "tacacs",
+            "required_value": "in {tacacs, radius, clientcert-ldap}",
+            "comparison_expression": "observed(tacacs) satisfies required(in {tacacs, radius, clientcert-ldap})",
+            "cardinality": "ok",
+            "source": "tmsh:list auth source all-properties"
+          },
+          {
+            "pullback_id": "V-266079:auth_tacacs_server_count:2",
+            "shared_key": "auth_tacacs.server_count",
+            "left_id": "observed[auth_tacacs.server_count] = 2",
+            "right_id": "required[auth_tacacs.server_count] >= 2",
+            "observed_value": "2",
+            "required_value": ">= 2",
+            "comparison_expression": "observed(2) satisfies required(>= 2)",
+            "cardinality": "ok",
+            "source": "tmsh:list auth tacacs system-auth all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_source.type @ tmsh:list auth source all-properties",
+        "pullback_id": "V-266079:auth_source_type:1",
+        "required": "in {tacacs, radius, clientcert-ldap}",
+        "observed": "tacacs",
+        "source": "tmsh:list auth source all-properties",
+        "comparison_expression": "observed(tacacs) satisfies required(in {tacacs, radius, clientcert-ldap})",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_tacacs.server_count @ tmsh:list auth tacacs system-auth all-properties",
+        "pullback_id": "V-266079:auth_tacacs_server_count:2",
+        "required": ">= 2",
+        "observed": "2",
+        "source": "tmsh:list auth tacacs system-auth all-properties",
+        "comparison_expression": "observed(2) satisfies required(>= 2)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Admin auth topology: detected type=tacacs, redundant-servers=2.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Admin auth topology: detected type=tacacs, redundant-servers=2.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266079"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266079/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266079/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

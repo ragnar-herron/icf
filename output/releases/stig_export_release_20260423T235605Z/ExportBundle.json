@@ -1,0 +1,1869 @@
+{
+  "record_kind": "ExportBundle",
+  "generated_at": "2026-04-23T23:39:32.875796+00:00",
+  "invariant": "Projection coalgebra may not exist unless Adapter coalgebra is promoted.",
+  "kill_switch_enforced": true,
+  "summary": {
+    "total": 67,
+    "promoted": 60,
+    "projected_unresolved": 7
+  },
+  "entries": [
+    {
+      "vuln_id": "V-266074",
+      "status": "projected_unresolved",
+      "verdict": "unresolved",
+      "evidence_ref": "live_state/full_campaign -> V-266074",
+      "pullback_row": null,
+      "legitimacy": "6/9",
+      "dp_gates": "8/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266074",
+        "KILL SWITCH: adapter not promoted (6/9)",
+        "live disposition was: blocked-external"
+      ]
+    },
+    {
+      "vuln_id": "V-266078",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266078",
+      "pullback_row": {
+        "vuln_id": "V-266078",
+        "fields": [
+          "software_signature_verification_enabled"
+        ],
+        "required": {
+          "software_signature_verification_enabled": "== true"
+        },
+        "observed": {
+          "software_signature_verification_enabled": true
+        },
+        "operator_summary": "software_signature_verification_enabled == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266078",
+        "FactoryDistinctionBundle.json -> V-266078",
+        "LiveControlOutcomeMatrix.json -> V-266078",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266080",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266080",
+      "pullback_row": {
+        "vuln_id": "V-266080",
+        "fields": [
+          "sys_version_supported"
+        ],
+        "required": {
+          "sys_version_supported": "== true"
+        },
+        "observed": {
+          "sys_version_supported": true
+        },
+        "operator_summary": "sys_version_supported == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266080",
+        "FactoryDistinctionBundle.json -> V-266080",
+        "LiveControlOutcomeMatrix.json -> V-266080",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266083",
+      "status": "projected_unresolved",
+      "verdict": "unresolved",
+      "evidence_ref": "live_state/full_campaign -> V-266083",
+      "pullback_row": null,
+      "legitimacy": "4/9",
+      "dp_gates": "6/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266083",
+        "KILL SWITCH: adapter not promoted (4/9)",
+        "live disposition was: fail"
+      ]
+    },
+    {
+      "vuln_id": "V-266084",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266084",
+      "pullback_row": {
+        "vuln_id": "V-266084",
+        "fields": [
+          "virtual_server_services_restricted"
+        ],
+        "required": {
+          "virtual_server_services_restricted": "== true"
+        },
+        "observed": {
+          "virtual_server_services_restricted": true
+        },
+        "operator_summary": "virtual_server_services_restricted == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266084",
+        "FactoryDistinctionBundle.json -> V-266084",
+        "LiveControlOutcomeMatrix.json -> V-266084",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266086",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266086",
+      "pullback_row": {
+        "vuln_id": "V-266086",
+        "fields": [
+          "sys_ntp_authentication_enabled"
+        ],
+        "required": {
+          "sys_ntp_authentication_enabled": "== true"
+        },
+        "observed": {
+          "sys_ntp_authentication_enabled": true
+        },
+        "operator_summary": "sys_ntp_authentication_enabled == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266086",
+        "FactoryDistinctionBundle.json -> V-266086",
+        "LiveControlOutcomeMatrix.json -> V-266086",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266093",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266093",
+      "pullback_row": {
+        "vuln_id": "V-266093",
+        "fields": [
+          "ocsp_max_clock_skew_configured"
+        ],
+        "required": {
+          "ocsp_max_clock_skew_configured": "== true"
+        },
+        "observed": {
+          "ocsp_max_clock_skew_configured": true
+        },
+        "operator_summary": "ocsp_max_clock_skew_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266093",
+        "FactoryDistinctionBundle.json -> V-266093",
+        "LiveControlOutcomeMatrix.json -> V-266093",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266094",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266094",
+      "pullback_row": {
+        "vuln_id": "V-266094",
+        "fields": [
+          "ocsp_responder_dod_approved"
+        ],
+        "required": {
+          "ocsp_responder_dod_approved": "== true"
+        },
+        "observed": {
+          "ocsp_responder_dod_approved": true
+        },
+        "operator_summary": "ocsp_responder_dod_approved == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266094",
+        "FactoryDistinctionBundle.json -> V-266094",
+        "LiveControlOutcomeMatrix.json -> V-266094",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266096",
+      "status": "projected_unresolved",
+      "verdict": "unresolved",
+      "evidence_ref": "live_state/full_campaign -> V-266096",
+      "pullback_row": null,
+      "legitimacy": "6/9",
+      "dp_gates": "8/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266096",
+        "KILL SWITCH: adapter not promoted (6/9)",
+        "live disposition was: blocked-external"
+      ]
+    },
+    {
+      "vuln_id": "V-266143",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266143",
+      "pullback_row": {
+        "vuln_id": "V-266143",
+        "fields": [
+          "apm_access_policy_authorization_configured"
+        ],
+        "required": {
+          "apm_access_policy_authorization_configured": "== true"
+        },
+        "observed": {
+          "apm_access_policy_authorization_configured": true
+        },
+        "operator_summary": "apm_access_policy_authorization_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266143",
+        "FactoryDistinctionBundle.json -> V-266143",
+        "LiveControlOutcomeMatrix.json -> V-266143",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266144",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266144",
+      "pullback_row": {
+        "vuln_id": "V-266144",
+        "fields": [
+          "security_firewall_policy_configured"
+        ],
+        "required": {
+          "security_firewall_policy_configured": "== true"
+        },
+        "observed": {
+          "security_firewall_policy_configured": true
+        },
+        "operator_summary": "security_firewall_policy_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266144",
+        "FactoryDistinctionBundle.json -> V-266144",
+        "LiveControlOutcomeMatrix.json -> V-266144",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266145",
+      "status": "projected_unresolved",
+      "verdict": "unresolved",
+      "evidence_ref": "live_state/full_campaign -> V-266145",
+      "pullback_row": null,
+      "legitimacy": "6/9",
+      "dp_gates": "8/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266145",
+        "KILL SWITCH: adapter not promoted (6/9)",
+        "live disposition was: blocked-external"
+      ]
+    },
+    {
+      "vuln_id": "V-266149",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266149",
+      "pullback_row": {
+        "vuln_id": "V-266149",
+        "fields": [
+          "asm_http_protocol_compliance_enabled"
+        ],
+        "required": {
+          "asm_http_protocol_compliance_enabled": "== true"
+        },
+        "observed": {
+          "asm_http_protocol_compliance_enabled": true
+        },
+        "operator_summary": "asm_http_protocol_compliance_enabled == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266149",
+        "FactoryDistinctionBundle.json -> V-266149",
+        "LiveControlOutcomeMatrix.json -> V-266149",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266150",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266150",
+      "pullback_row": {
+        "vuln_id": "V-266150",
+        "fields": [
+          "virtual_server_services_restricted"
+        ],
+        "required": {
+          "virtual_server_services_restricted": "== true"
+        },
+        "observed": {
+          "virtual_server_services_restricted": true
+        },
+        "operator_summary": "virtual_server_services_restricted == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266150",
+        "FactoryDistinctionBundle.json -> V-266150",
+        "LiveControlOutcomeMatrix.json -> V-266150",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266151",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266151",
+      "pullback_row": {
+        "vuln_id": "V-266151",
+        "fields": [
+          "apm_policy_reauthentication_configured"
+        ],
+        "required": {
+          "apm_policy_reauthentication_configured": "== true"
+        },
+        "observed": {
+          "apm_policy_reauthentication_configured": true
+        },
+        "operator_summary": "apm_policy_reauthentication_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266151",
+        "FactoryDistinctionBundle.json -> V-266151",
+        "LiveControlOutcomeMatrix.json -> V-266151",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266152",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266152",
+      "pullback_row": {
+        "vuln_id": "V-266152",
+        "fields": [
+          "apm_policy_mfa_and_redundant_auth_configured"
+        ],
+        "required": {
+          "apm_policy_mfa_and_redundant_auth_configured": "== true"
+        },
+        "observed": {
+          "apm_policy_mfa_and_redundant_auth_configured": true
+        },
+        "operator_summary": "apm_policy_mfa_and_redundant_auth_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266152",
+        "FactoryDistinctionBundle.json -> V-266152",
+        "LiveControlOutcomeMatrix.json -> V-266152",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266153",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266153",
+      "pullback_row": {
+        "vuln_id": "V-266153",
+        "fields": [
+          "apm_machine_cert_revocation_validation_configured"
+        ],
+        "required": {
+          "apm_machine_cert_revocation_validation_configured": "== true"
+        },
+        "observed": {
+          "apm_machine_cert_revocation_validation_configured": true
+        },
+        "operator_summary": "apm_machine_cert_revocation_validation_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266153",
+        "FactoryDistinctionBundle.json -> V-266153",
+        "LiveControlOutcomeMatrix.json -> V-266153",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266154",
+      "status": "projected_unresolved",
+      "verdict": "unresolved",
+      "evidence_ref": "live_state/full_campaign -> V-266154",
+      "pullback_row": null,
+      "legitimacy": "6/9",
+      "dp_gates": "8/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266154",
+        "KILL SWITCH: adapter not promoted (6/9)",
+        "live disposition was: blocked-external"
+      ]
+    },
+    {
+      "vuln_id": "V-266161",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266161",
+      "pullback_row": {
+        "vuln_id": "V-266161",
+        "fields": [
+          "global_network_classification_logging_enabled"
+        ],
+        "required": {
+          "global_network_classification_logging_enabled": "== true"
+        },
+        "observed": {
+          "global_network_classification_logging_enabled": true
+        },
+        "operator_summary": "global_network_classification_logging_enabled == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266161",
+        "FactoryDistinctionBundle.json -> V-266161",
+        "LiveControlOutcomeMatrix.json -> V-266161",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266162",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266162",
+      "pullback_row": {
+        "vuln_id": "V-266162",
+        "fields": [
+          "apm_profile_cookie_http_only"
+        ],
+        "required": {
+          "apm_profile_cookie_http_only": "== true"
+        },
+        "observed": {
+          "apm_profile_cookie_http_only": true
+        },
+        "operator_summary": "apm_profile_cookie_http_only == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266162",
+        "FactoryDistinctionBundle.json -> V-266162",
+        "LiveControlOutcomeMatrix.json -> V-266162",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266163",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266163",
+      "pullback_row": {
+        "vuln_id": "V-266163",
+        "fields": [
+          "apm_profile_cookie_secure"
+        ],
+        "required": {
+          "apm_profile_cookie_secure": "== true"
+        },
+        "observed": {
+          "apm_profile_cookie_secure": true
+        },
+        "operator_summary": "apm_profile_cookie_secure == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266163",
+        "FactoryDistinctionBundle.json -> V-266163",
+        "LiveControlOutcomeMatrix.json -> V-266163",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266164",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266164",
+      "pullback_row": {
+        "vuln_id": "V-266164",
+        "fields": [
+          "apm_profile_cookie_persistent"
+        ],
+        "required": {
+          "apm_profile_cookie_persistent": "== false"
+        },
+        "observed": {
+          "apm_profile_cookie_persistent": false
+        },
+        "operator_summary": "apm_profile_cookie_persistent == false",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266164",
+        "FactoryDistinctionBundle.json -> V-266164",
+        "LiveControlOutcomeMatrix.json -> V-266164",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266165",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266165",
+      "pullback_row": {
+        "vuln_id": "V-266165",
+        "fields": [
+          "apm_user_cert_revocation_validation_configured"
+        ],
+        "required": {
+          "apm_user_cert_revocation_validation_configured": "== true"
+        },
+        "observed": {
+          "apm_user_cert_revocation_validation_configured": true
+        },
+        "operator_summary": "apm_user_cert_revocation_validation_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266165",
+        "FactoryDistinctionBundle.json -> V-266165",
+        "LiveControlOutcomeMatrix.json -> V-266165",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266167",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266167",
+      "pullback_row": {
+        "vuln_id": "V-266167",
+        "fields": [
+          "sys_httpd_auth_pam_validate_ip"
+        ],
+        "required": {
+          "sys_httpd_auth_pam_validate_ip": "== true"
+        },
+        "observed": {
+          "sys_httpd_auth_pam_validate_ip": true
+        },
+        "operator_summary": "sys_httpd_auth_pam_validate_ip == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266167",
+        "FactoryDistinctionBundle.json -> V-266167",
+        "LiveControlOutcomeMatrix.json -> V-266167",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266168",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266168",
+      "pullback_row": {
+        "vuln_id": "V-266168",
+        "fields": [
+          "apm_restrict_single_client_ip"
+        ],
+        "required": {
+          "apm_restrict_single_client_ip": "== true"
+        },
+        "observed": {
+          "apm_restrict_single_client_ip": true
+        },
+        "operator_summary": "apm_restrict_single_client_ip == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266168",
+        "FactoryDistinctionBundle.json -> V-266168",
+        "LiveControlOutcomeMatrix.json -> V-266168",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266171",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266171",
+      "pullback_row": {
+        "vuln_id": "V-266171",
+        "fields": [
+          "apm_endpoint_device_auth_configured"
+        ],
+        "required": {
+          "apm_endpoint_device_auth_configured": "== true"
+        },
+        "observed": {
+          "apm_endpoint_device_auth_configured": true
+        },
+        "operator_summary": "apm_endpoint_device_auth_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266171",
+        "FactoryDistinctionBundle.json -> V-266171",
+        "LiveControlOutcomeMatrix.json -> V-266171",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266172",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266172",
+      "pullback_row": {
+        "vuln_id": "V-266172",
+        "fields": [
+          "apm_network_access_split_tunneling_disabled"
+        ],
+        "required": {
+          "apm_network_access_split_tunneling_disabled": "== true"
+        },
+        "observed": {
+          "apm_network_access_split_tunneling_disabled": true
+        },
+        "operator_summary": "apm_network_access_split_tunneling_disabled == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266172",
+        "FactoryDistinctionBundle.json -> V-266172",
+        "LiveControlOutcomeMatrix.json -> V-266172",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266173",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266173",
+      "pullback_row": {
+        "vuln_id": "V-266173",
+        "fields": [
+          "virtual_server_protocol_inspection_enabled"
+        ],
+        "required": {
+          "virtual_server_protocol_inspection_enabled": "== true"
+        },
+        "observed": {
+          "virtual_server_protocol_inspection_enabled": true
+        },
+        "operator_summary": "virtual_server_protocol_inspection_enabled == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266173",
+        "FactoryDistinctionBundle.json -> V-266173",
+        "LiveControlOutcomeMatrix.json -> V-266173",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266174",
+      "status": "projected_unresolved",
+      "verdict": "unresolved",
+      "evidence_ref": "live_state/full_campaign -> V-266174",
+      "pullback_row": null,
+      "legitimacy": "4/9",
+      "dp_gates": "6/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266174",
+        "KILL SWITCH: adapter not promoted (4/9)",
+        "live disposition was: fail"
+      ]
+    },
+    {
+      "vuln_id": "V-266067",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266067",
+      "pullback_row": {
+        "vuln_id": "V-266067",
+        "fields": [
+          "auth_remote_role_assignment_appropriate",
+          "auth_user_partition_access_appropriate"
+        ],
+        "required": {
+          "auth_remote_role_assignment_appropriate": "== true",
+          "auth_user_partition_access_appropriate": "== true"
+        },
+        "observed": {
+          "auth_remote_role_assignment_appropriate": true,
+          "auth_user_partition_access_appropriate": true
+        },
+        "operator_summary": "auth_remote_role_assignment_appropriate == true AND auth_user_partition_access_appropriate == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266067",
+        "FactoryDistinctionBundle.json -> V-266067",
+        "LiveControlOutcomeMatrix.json -> V-266067",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266068",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266068",
+      "pullback_row": {
+        "vuln_id": "V-266068",
+        "fields": [
+          "sys_daemon_log_tmm_os_log_level",
+          "sys_daemon_log_tmm_ssl_log_level",
+          "sys_daemon_log_mcpd_audit",
+          "sys_daemon_log_mcpd_log_level",
+          "sys_db_log_ssl_level"
+        ],
+        "required": {
+          "sys_daemon_log_tmm_os_log_level": "== 'informational'",
+          "sys_daemon_log_tmm_ssl_log_level": "== 'informational'",
+          "sys_daemon_log_mcpd_audit": "== 'enabled'",
+          "sys_daemon_log_mcpd_log_level": "== 'notice'",
+          "sys_db_log_ssl_level": "== 'informational'"
+        },
+        "observed": {
+          "sys_daemon_log_tmm_os_log_level": "informational",
+          "sys_daemon_log_tmm_ssl_log_level": "informational",
+          "sys_daemon_log_mcpd_audit": "enabled",
+          "sys_daemon_log_mcpd_log_level": "notice",
+          "sys_db_log_ssl_level": "informational"
+        },
+        "operator_summary": "sys_daemon_log_tmm_os_log_level == 'informational' AND sys_daemon_log_tmm_ssl_log_level == 'informational' AND sys_daemon_log_mcpd_audit == 'enabled' AND sys_daemon_log_mcpd_log_level == 'notice' AND sys_db_log_ssl_level == 'informational'",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266068",
+        "FactoryDistinctionBundle.json -> V-266068",
+        "LiveControlOutcomeMatrix.json -> V-266068",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266069",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266069",
+      "pullback_row": {
+        "vuln_id": "V-266069",
+        "fields": [
+          "auth_password_policy_max_login_failures",
+          "auth_password_policy_lockout_duration"
+        ],
+        "required": {
+          "auth_password_policy_max_login_failures": ">= 1",
+          "auth_password_policy_lockout_duration": ">= 900"
+        },
+        "observed": {
+          "auth_password_policy_max_login_failures": 3,
+          "auth_password_policy_lockout_duration": 900
+        },
+        "operator_summary": "auth_password_policy_max_login_failures <= 3 AND auth_password_policy_max_login_failures >= 1 AND auth_password_policy_lockout_duration >= 900",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266069",
+        "FactoryDistinctionBundle.json -> V-266069",
+        "LiveControlOutcomeMatrix.json -> V-266069",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266070",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266070",
+      "pullback_row": {
+        "vuln_id": "V-266070",
+        "fields": [
+          "sys_sshd_banner",
+          "sys_httpd_gui_security_banner_configured"
+        ],
+        "required": {
+          "sys_sshd_banner": "== 'enabled'",
+          "sys_httpd_gui_security_banner_configured": "== true"
+        },
+        "observed": {
+          "sys_sshd_banner": "enabled",
+          "sys_httpd_gui_security_banner_configured": true
+        },
+        "operator_summary": "sys_sshd_banner == 'enabled' AND sys_httpd_gui_security_banner_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266070",
+        "FactoryDistinctionBundle.json -> V-266070",
+        "LiveControlOutcomeMatrix.json -> V-266070",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266079",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266079",
+      "pullback_row": {
+        "vuln_id": "V-266079",
+        "fields": [
+          "auth_source_type",
+          "auth_server_count"
+        ],
+        "required": {
+          "auth_source_type": "== 'tacacs'",
+          "auth_server_count": ">= 2"
+        },
+        "observed": {
+          "auth_source_type": "tacacs",
+          "auth_server_count": 2
+        },
+        "operator_summary": "auth_source_type == 'tacacs' AND auth_server_count >= 2",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266079",
+        "FactoryDistinctionBundle.json -> V-266079",
+        "LiveControlOutcomeMatrix.json -> V-266079",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266095",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266095",
+      "pullback_row": {
+        "vuln_id": "V-266095",
+        "fields": [
+          "sys_httpd_auth_pam_idle_timeout",
+          "sys_httpd_auth_pam_dashboard_timeout",
+          "sys_global_settings_console_inactivity_timeout",
+          "cli_global_settings_idle_timeout",
+          "sys_sshd_inactivity_timeout"
+        ],
+        "required": {
+          "sys_httpd_auth_pam_idle_timeout": "<= 300",
+          "sys_httpd_auth_pam_dashboard_timeout": "== true",
+          "sys_global_settings_console_inactivity_timeout": "<= 300",
+          "cli_global_settings_idle_timeout": "<= 5",
+          "sys_sshd_inactivity_timeout": "<= 300"
+        },
+        "observed": {
+          "sys_httpd_auth_pam_idle_timeout": 300,
+          "sys_httpd_auth_pam_dashboard_timeout": true,
+          "sys_global_settings_console_inactivity_timeout": 300,
+          "cli_global_settings_idle_timeout": 5,
+          "sys_sshd_inactivity_timeout": 300
+        },
+        "operator_summary": "sys_httpd_auth_pam_idle_timeout > 0 AND sys_httpd_auth_pam_idle_timeout <= 300 AND sys_httpd_auth_pam_dashboard_timeout == true AND sys_global_settings_console_inactivity_timeout > 0 AND sys_global_settings_console_inactivity_timeout <= 300 AND cli_global_settings_idle_timeout > 0 AND cli_global_settings_idle_timeout <= 5 AND sys_sshd_inactivity_timeout > 0 AND sys_sshd_inactivity_timeout <= 300",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266095",
+        "FactoryDistinctionBundle.json -> V-266095",
+        "LiveControlOutcomeMatrix.json -> V-266095",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266138",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266138",
+      "pullback_row": {
+        "vuln_id": "V-266138",
+        "fields": [
+          "asm_policies_active",
+          "virtual_server_security_policy"
+        ],
+        "required": {
+          "asm_policies_active": "== true",
+          "virtual_server_security_policy": "!= 'none'"
+        },
+        "observed": {
+          "asm_policies_active": true,
+          "virtual_server_security_policy": "asm"
+        },
+        "operator_summary": "asm_policies_active == true AND virtual_server_security_policy != 'none'",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266138",
+        "FactoryDistinctionBundle.json -> V-266138",
+        "LiveControlOutcomeMatrix.json -> V-266138",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266139",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266139",
+      "pullback_row": {
+        "vuln_id": "V-266139",
+        "fields": [
+          "ltm_attached_client_ssl_profile_count",
+          "ltm_profile_client_ssl_protocol_compliant_count"
+        ],
+        "required": {
+          "ltm_attached_client_ssl_profile_count": "== 0",
+          "ltm_profile_client_ssl_protocol_compliant_count": "== ltm_attached_client_ssl_profile_count"
+        },
+        "observed": {
+          "ltm_attached_client_ssl_profile_count": 1,
+          "ltm_profile_client_ssl_protocol_compliant_count": 1
+        },
+        "operator_summary": "ltm_attached_client_ssl_profile_count == 0 OR ltm_profile_client_ssl_protocol_compliant_count == ltm_attached_client_ssl_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266139",
+        "FactoryDistinctionBundle.json -> V-266139",
+        "LiveControlOutcomeMatrix.json -> V-266139",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266140",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266140",
+      "pullback_row": {
+        "vuln_id": "V-266140",
+        "fields": [
+          "asm_policy_blocking_mode",
+          "asm_required_signature_sets_enforced"
+        ],
+        "required": {
+          "asm_policy_blocking_mode": "== 'blocking'",
+          "asm_required_signature_sets_enforced": "== true"
+        },
+        "observed": {
+          "asm_policy_blocking_mode": "blocking",
+          "asm_required_signature_sets_enforced": true
+        },
+        "operator_summary": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266140",
+        "FactoryDistinctionBundle.json -> V-266140",
+        "LiveControlOutcomeMatrix.json -> V-266140",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266141",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266141",
+      "pullback_row": {
+        "vuln_id": "V-266141",
+        "fields": [
+          "asm_policy_blocking_mode",
+          "asm_required_signature_sets_enforced"
+        ],
+        "required": {
+          "asm_policy_blocking_mode": "== 'blocking'",
+          "asm_required_signature_sets_enforced": "== true"
+        },
+        "observed": {
+          "asm_policy_blocking_mode": "blocking",
+          "asm_required_signature_sets_enforced": true
+        },
+        "operator_summary": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266141",
+        "FactoryDistinctionBundle.json -> V-266141",
+        "LiveControlOutcomeMatrix.json -> V-266141",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266142",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266142",
+      "pullback_row": {
+        "vuln_id": "V-266142",
+        "fields": [
+          "asm_policy_blocking_mode",
+          "asm_required_signature_sets_enforced"
+        ],
+        "required": {
+          "asm_policy_blocking_mode": "== 'blocking'",
+          "asm_required_signature_sets_enforced": "== true"
+        },
+        "observed": {
+          "asm_policy_blocking_mode": "blocking",
+          "asm_required_signature_sets_enforced": true
+        },
+        "operator_summary": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266142",
+        "FactoryDistinctionBundle.json -> V-266142",
+        "LiveControlOutcomeMatrix.json -> V-266142",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266146",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266146",
+      "pullback_row": {
+        "vuln_id": "V-266146",
+        "fields": [
+          "access_system_logs_enabled",
+          "access_log_settings_level"
+        ],
+        "required": {
+          "access_system_logs_enabled": "== true",
+          "access_log_settings_level": "== 'notice'"
+        },
+        "observed": {
+          "access_system_logs_enabled": true,
+          "access_log_settings_level": "notice"
+        },
+        "operator_summary": "access_system_logs_enabled == true AND access_log_settings_level == 'notice'",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266146",
+        "FactoryDistinctionBundle.json -> V-266146",
+        "LiveControlOutcomeMatrix.json -> V-266146",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266147",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266147",
+      "pullback_row": {
+        "vuln_id": "V-266147",
+        "fields": [
+          "ltm_attached_smtp_profile_count",
+          "smtp_protocol_security_enabled_count"
+        ],
+        "required": {
+          "ltm_attached_smtp_profile_count": "== 0",
+          "smtp_protocol_security_enabled_count": "== ltm_attached_smtp_profile_count"
+        },
+        "observed": {
+          "ltm_attached_smtp_profile_count": 0,
+          "smtp_protocol_security_enabled_count": 0
+        },
+        "operator_summary": "ltm_attached_smtp_profile_count == 0 OR smtp_protocol_security_enabled_count == ltm_attached_smtp_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266147",
+        "FactoryDistinctionBundle.json -> V-266147",
+        "LiveControlOutcomeMatrix.json -> V-266147",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266148",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266148",
+      "pullback_row": {
+        "vuln_id": "V-266148",
+        "fields": [
+          "ltm_attached_ftp_profile_count",
+          "ftp_protocol_security_enabled_count"
+        ],
+        "required": {
+          "ltm_attached_ftp_profile_count": "== 0",
+          "ftp_protocol_security_enabled_count": "== ltm_attached_ftp_profile_count"
+        },
+        "observed": {
+          "ltm_attached_ftp_profile_count": 0,
+          "ftp_protocol_security_enabled_count": 0
+        },
+        "operator_summary": "ltm_attached_ftp_profile_count == 0 OR ftp_protocol_security_enabled_count == ltm_attached_ftp_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266148",
+        "FactoryDistinctionBundle.json -> V-266148",
+        "LiveControlOutcomeMatrix.json -> V-266148",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266156",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266156",
+      "pullback_row": {
+        "vuln_id": "V-266156",
+        "fields": [
+          "dos_custom_profile_count",
+          "dos_profiles_network_mitigate_count"
+        ],
+        "required": {
+          "dos_custom_profile_count": "== 0",
+          "dos_profiles_network_mitigate_count": "== dos_custom_profile_count"
+        },
+        "observed": {
+          "dos_custom_profile_count": 0,
+          "dos_profiles_network_mitigate_count": 0
+        },
+        "operator_summary": "dos_custom_profile_count == 0 OR dos_profiles_network_mitigate_count == dos_custom_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266156",
+        "FactoryDistinctionBundle.json -> V-266156",
+        "LiveControlOutcomeMatrix.json -> V-266156",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266157",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266157",
+      "pullback_row": {
+        "vuln_id": "V-266157",
+        "fields": [
+          "dos_custom_profile_count",
+          "dos_profiles_dynamic_signatures_count"
+        ],
+        "required": {
+          "dos_custom_profile_count": "== 0",
+          "dos_profiles_dynamic_signatures_count": "== dos_custom_profile_count"
+        },
+        "observed": {
+          "dos_custom_profile_count": 0,
+          "dos_profiles_dynamic_signatures_count": 0
+        },
+        "operator_summary": "dos_custom_profile_count == 0 OR dos_profiles_dynamic_signatures_count == dos_custom_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266157",
+        "FactoryDistinctionBundle.json -> V-266157",
+        "LiveControlOutcomeMatrix.json -> V-266157",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266158",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266158",
+      "pullback_row": {
+        "vuln_id": "V-266158",
+        "fields": [
+          "asm_policy_count",
+          "asm_parameter_validation_policy_count"
+        ],
+        "required": {
+          "asm_policy_count": "> 0",
+          "asm_parameter_validation_policy_count": "== asm_policy_count"
+        },
+        "observed": {
+          "asm_policy_count": 1,
+          "asm_parameter_validation_policy_count": 1
+        },
+        "operator_summary": "asm_policy_count > 0 AND asm_parameter_validation_policy_count == asm_policy_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266158",
+        "FactoryDistinctionBundle.json -> V-266158",
+        "LiveControlOutcomeMatrix.json -> V-266158",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266159",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266159",
+      "pullback_row": {
+        "vuln_id": "V-266159",
+        "fields": [
+          "auto_update_check_enabled",
+          "live_update_realtime"
+        ],
+        "required": {
+          "auto_update_check_enabled": "== true",
+          "live_update_realtime": "== true"
+        },
+        "observed": {
+          "auto_update_check_enabled": true,
+          "live_update_realtime": true
+        },
+        "operator_summary": "auto_update_check_enabled == true AND live_update_realtime == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266159",
+        "FactoryDistinctionBundle.json -> V-266159",
+        "LiveControlOutcomeMatrix.json -> V-266159",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266160",
+      "status": "projected_unresolved",
+      "verdict": "unresolved",
+      "evidence_ref": "live_state/full_campaign -> V-266160",
+      "pullback_row": null,
+      "legitimacy": "6/9",
+      "dp_gates": "8/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266160",
+        "KILL SWITCH: adapter not promoted (6/9)",
+        "live disposition was: blocked-external"
+      ]
+    },
+    {
+      "vuln_id": "V-266166",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266166",
+      "pullback_row": {
+        "vuln_id": "V-266166",
+        "fields": [
+          "apm_on_demand_cert_auth_absent",
+          "apm_client_cert_inspection_configured"
+        ],
+        "required": {
+          "apm_on_demand_cert_auth_absent": "== true",
+          "apm_client_cert_inspection_configured": "== true"
+        },
+        "observed": {
+          "apm_on_demand_cert_auth_absent": true,
+          "apm_client_cert_inspection_configured": true
+        },
+        "operator_summary": "apm_on_demand_cert_auth_absent == true AND apm_client_cert_inspection_configured == true",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266166",
+        "FactoryDistinctionBundle.json -> V-266166",
+        "LiveControlOutcomeMatrix.json -> V-266166",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266170",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266170",
+      "pullback_row": {
+        "vuln_id": "V-266170",
+        "fields": [
+          "ltm_attached_client_ssl_profile_count",
+          "ltm_profile_client_ssl_strong_cipher_count"
+        ],
+        "required": {
+          "ltm_attached_client_ssl_profile_count": "== 0",
+          "ltm_profile_client_ssl_strong_cipher_count": "== ltm_attached_client_ssl_profile_count"
+        },
+        "observed": {
+          "ltm_attached_client_ssl_profile_count": 1,
+          "ltm_profile_client_ssl_strong_cipher_count": 1
+        },
+        "operator_summary": "ltm_attached_client_ssl_profile_count == 0 OR ltm_profile_client_ssl_strong_cipher_count == ltm_attached_client_ssl_profile_count",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266170",
+        "FactoryDistinctionBundle.json -> V-266170",
+        "LiveControlOutcomeMatrix.json -> V-266170",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266064",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266064",
+      "pullback_row": {
+        "vuln_id": "V-266064",
+        "fields": [
+          "sys_httpd_max_clients"
+        ],
+        "required": {
+          "sys_httpd_max_clients": "== org_defined_value"
+        },
+        "observed": {
+          "sys_httpd_max_clients": 10
+        },
+        "operator_summary": "sys_httpd_max_clients <= 10 OR sys_httpd_max_clients == org_defined_value",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266064",
+        "FactoryDistinctionBundle.json -> V-266064",
+        "LiveControlOutcomeMatrix.json -> V-266064",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266075",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266075",
+      "pullback_row": {
+        "vuln_id": "V-266075",
+        "fields": [
+          "sys_syslog_remote_server_count"
+        ],
+        "required": {
+          "sys_syslog_remote_server_count": ">= 2"
+        },
+        "observed": {
+          "sys_syslog_remote_server_count": 2
+        },
+        "operator_summary": "sys_syslog_remote_server_count >= 2",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266075",
+        "FactoryDistinctionBundle.json -> V-266075",
+        "LiveControlOutcomeMatrix.json -> V-266075",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266076",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266076",
+      "pullback_row": {
+        "vuln_id": "V-266076",
+        "fields": [
+          "sys_ntp_server_count"
+        ],
+        "required": {
+          "sys_ntp_server_count": ">= 2"
+        },
+        "observed": {
+          "sys_ntp_server_count": 2
+        },
+        "operator_summary": "sys_ntp_server_count >= 2",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266076",
+        "FactoryDistinctionBundle.json -> V-266076",
+        "LiveControlOutcomeMatrix.json -> V-266076",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266087",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266087",
+      "pullback_row": {
+        "vuln_id": "V-266087",
+        "fields": [
+          "auth_password_policy_min_length"
+        ],
+        "required": {
+          "auth_password_policy_min_length": ">= 15"
+        },
+        "observed": {
+          "auth_password_policy_min_length": 15
+        },
+        "operator_summary": "auth_password_policy_min_length >= 15",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266087",
+        "FactoryDistinctionBundle.json -> V-266087",
+        "LiveControlOutcomeMatrix.json -> V-266087",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266088",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266088",
+      "pullback_row": {
+        "vuln_id": "V-266088",
+        "fields": [
+          "auth_password_policy_required_uppercase"
+        ],
+        "required": {
+          "auth_password_policy_required_uppercase": ">= 1"
+        },
+        "observed": {
+          "auth_password_policy_required_uppercase": 1
+        },
+        "operator_summary": "auth_password_policy_required_uppercase >= 1",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266088",
+        "FactoryDistinctionBundle.json -> V-266088",
+        "LiveControlOutcomeMatrix.json -> V-266088",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266089",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266089",
+      "pullback_row": {
+        "vuln_id": "V-266089",
+        "fields": [
+          "auth_password_policy_required_lowercase"
+        ],
+        "required": {
+          "auth_password_policy_required_lowercase": ">= 1"
+        },
+        "observed": {
+          "auth_password_policy_required_lowercase": 1
+        },
+        "operator_summary": "auth_password_policy_required_lowercase >= 1",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266089",
+        "FactoryDistinctionBundle.json -> V-266089",
+        "LiveControlOutcomeMatrix.json -> V-266089",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266090",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266090",
+      "pullback_row": {
+        "vuln_id": "V-266090",
+        "fields": [
+          "auth_password_policy_required_numeric"
+        ],
+        "required": {
+          "auth_password_policy_required_numeric": ">= 1"
+        },
+        "observed": {
+          "auth_password_policy_required_numeric": 1
+        },
+        "operator_summary": "auth_password_policy_required_numeric >= 1",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266090",
+        "FactoryDistinctionBundle.json -> V-266090",
+        "LiveControlOutcomeMatrix.json -> V-266090",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266091",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266091",
+      "pullback_row": {
+        "vuln_id": "V-266091",
+        "fields": [
+          "auth_password_policy_required_special"
+        ],
+        "required": {
+          "auth_password_policy_required_special": ">= 1"
+        },
+        "observed": {
+          "auth_password_policy_required_special": 1
+        },
+        "operator_summary": "auth_password_policy_required_special >= 1",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266091",
+        "FactoryDistinctionBundle.json -> V-266091",
+        "LiveControlOutcomeMatrix.json -> V-266091",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266092",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266092",
+      "pullback_row": {
+        "vuln_id": "V-266092",
+        "fields": [
+          "sys_db_password_difok"
+        ],
+        "required": {
+          "sys_db_password_difok": ">= 8"
+        },
+        "observed": {
+          "sys_db_password_difok": 8
+        },
+        "operator_summary": "sys_db_password_difok >= 8",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266092",
+        "FactoryDistinctionBundle.json -> V-266092",
+        "LiveControlOutcomeMatrix.json -> V-266092",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266137",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266137",
+      "pullback_row": {
+        "vuln_id": "V-266137",
+        "fields": [
+          "apm_profile_access_max_concurrent_users"
+        ],
+        "required": {
+          "apm_profile_access_max_concurrent_users": "<= org_defined_session_limit"
+        },
+        "observed": {
+          "apm_profile_access_max_concurrent_users": 1
+        },
+        "operator_summary": "apm_profile_access_max_concurrent_users >= 1 AND apm_profile_access_max_concurrent_users <= org_defined_session_limit",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266137",
+        "FactoryDistinctionBundle.json -> V-266137",
+        "LiveControlOutcomeMatrix.json -> V-266137",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266155",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266155",
+      "pullback_row": {
+        "vuln_id": "V-266155",
+        "fields": [
+          "apm_profile_access_inactivity_timeout"
+        ],
+        "required": {
+          "apm_profile_access_inactivity_timeout": "> 0"
+        },
+        "observed": {
+          "apm_profile_access_inactivity_timeout": 900
+        },
+        "operator_summary": "apm_profile_access_inactivity_timeout <= 900 AND apm_profile_access_inactivity_timeout > 0",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266155",
+        "FactoryDistinctionBundle.json -> V-266155",
+        "LiveControlOutcomeMatrix.json -> V-266155",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266169",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266169",
+      "pullback_row": {
+        "vuln_id": "V-266169",
+        "fields": [
+          "apm_profile_access_max_session_timeout"
+        ],
+        "required": {
+          "apm_profile_access_max_session_timeout": "> 0"
+        },
+        "observed": {
+          "apm_profile_access_max_session_timeout": 28800
+        },
+        "operator_summary": "apm_profile_access_max_session_timeout <= 28800 AND apm_profile_access_max_session_timeout > 0",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266169",
+        "FactoryDistinctionBundle.json -> V-266169",
+        "LiveControlOutcomeMatrix.json -> V-266169",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266175",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266175",
+      "pullback_row": {
+        "vuln_id": "V-266175",
+        "fields": [
+          "apm_profile_access_max_sessions_per_client_ip"
+        ],
+        "required": {
+          "apm_profile_access_max_sessions_per_client_ip": ">= 1"
+        },
+        "observed": {
+          "apm_profile_access_max_sessions_per_client_ip": 10
+        },
+        "operator_summary": "apm_profile_access_max_sessions_per_client_ip <= 10 AND apm_profile_access_max_sessions_per_client_ip >= 1",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266175",
+        "FactoryDistinctionBundle.json -> V-266175",
+        "LiveControlOutcomeMatrix.json -> V-266175",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266065",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266065",
+      "pullback_row": {
+        "vuln_id": "V-266065",
+        "fields": [
+          "auth_user_shared_accounts"
+        ],
+        "required": {
+          "auth_user_shared_accounts": "== 0"
+        },
+        "observed": {
+          "auth_user_shared_accounts": 0
+        },
+        "operator_summary": "auth_user_shared_accounts == 0",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266065",
+        "FactoryDistinctionBundle.json -> V-266065",
+        "LiveControlOutcomeMatrix.json -> V-266065",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266066",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266066",
+      "pullback_row": {
+        "vuln_id": "V-266066",
+        "fields": [
+          "auth_user_local_account_count"
+        ],
+        "required": {
+          "auth_user_local_account_count": "== 1"
+        },
+        "observed": {
+          "auth_user_local_account_count": 1
+        },
+        "operator_summary": "auth_user_local_account_count == 1",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266066",
+        "FactoryDistinctionBundle.json -> V-266066",
+        "LiveControlOutcomeMatrix.json -> V-266066",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266077",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266077",
+      "pullback_row": {
+        "vuln_id": "V-266077",
+        "fields": [
+          "sys_ntp_timezone"
+        ],
+        "required": {
+          "sys_ntp_timezone": "== 'UTC'"
+        },
+        "observed": {
+          "sys_ntp_timezone": "UTC"
+        },
+        "operator_summary": "sys_ntp_timezone == 'UTC'",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266077",
+        "FactoryDistinctionBundle.json -> V-266077",
+        "LiveControlOutcomeMatrix.json -> V-266077",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    },
+    {
+      "vuln_id": "V-266085",
+      "status": "resolved",
+      "verdict": "not_a_finding",
+      "evidence_ref": "live_state/full_campaign -> V-266085",
+      "pullback_row": {
+        "vuln_id": "V-266085",
+        "fields": [
+          "auth_mfa_configured"
+        ],
+        "required": {
+          "auth_mfa_configured": "== 'tacacs'"
+        },
+        "observed": {
+          "auth_mfa_configured": "tacacs"
+        },
+        "operator_summary": "auth_mfa_configured == 'tacacs'",
+        "verdict": "pass"
+      },
+      "legitimacy": "9/9",
+      "dp_gates": "10/10",
+      "provenance_chain": [
+        "assertion_contracts.json -> V-266085",
+        "FactoryDistinctionBundle.json -> V-266085",
+        "LiveControlOutcomeMatrix.json -> V-266085",
+        "bridge/promote_all.py -> 9/9 legitimacy verified"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STIG Expert Critic</title>
+<style>
+body {{
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+}}
+header {{
+  padding: 18px 22px;
+  border-bottom: 1px solid #26456b;
+  background: #16213e;
+}}
+h1 {{
+  margin: 0 0 8px 0;
+  font-size: 24px;
+}}
+.summary {{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}}
+.pill {{
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #0f3460;
+}}
+.layout {{
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: calc(100vh - 85px);
+}}
+.sidebar {{
+  background: #16213e;
+  border-right: 1px solid #26456b;
+  padding: 16px;
+}}
+.filters {{
+  display: grid;
+  gap: 10px;
+}}
+.filter-row {{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}}
+button, input {{
+  font: inherit;
+}}
+.tab-filter {{
+  border: 1px solid #2a6b8f;
+  background: transparent;
+  color: #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}}
+.tab-filter.active {{
+  background: #00adb5;
+  color: #08131f;
+  border-color: #00adb5;
+}}
+#searchBox {{
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid #2a6b8f;
+  background: #0f3460;
+  color: #e0e0e0;
+}}
+.list {{
+  margin-top: 14px;
+  display: grid;
+  gap: 6px;
+  max-height: calc(100vh - 230px);
+  overflow: auto;
+}}
+.item {{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: #e0e0e0;
+  border: 1px solid #26456b;
+  border-left: 4px solid transparent;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}}
+.item.active {{
+  background: #0f3460;
+  border-left-color: #00adb5;
+}}
+.marker {{
+  width: 18px;
+  text-align: center;
+  font-weight: 700;
+}}
+.marker-green {{ color: #00cc66; }}
+.marker-red {{ color: #ff4444; }}
+.marker-amber {{ color: #ffaa00; }}
+.marker-gray {{ color: #888888; }}
+.vid {{
+  font-family: Consolas, monospace;
+  font-weight: 700;
+}}
+.detail {{
+  padding: 20px;
+}}
+.panel {{
+  background: #0f3460;
+  border: 1px solid #26456b;
+  border-radius: 12px;
+  padding: 18px;
+}}
+.meta {{
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}}
+.status-open {{ color: #ff4444; }}
+.status-good {{ color: #00cc66; }}
+.status-warn {{ color: #ffaa00; }}
+.status-block {{ color: #888888; }}
+.kv, .prov, .remedy {{
+  margin-top: 14px;
+}}
+.kv table {{
+  width: 100%;
+  border-collapse: collapse;
+}}
+.kv th, .kv td {{
+  text-align: left;
+  border-bottom: 1px solid #26456b;
+  padding: 8px 6px;
+  vertical-align: top;
+}}
+.prov ol {{
+  margin: 8px 0 0 20px;
+}}
+pre {{
+  background: #16213e;
+  padding: 12px;
+  border-radius: 8px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}}
+.action {{
+  margin-top: 18px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #00adb5;
+  color: #08131f;
+  font-weight: 700;
+  cursor: pointer;
+}}
+.muted {{
+  color: #b7c0cf;
+}}
+@media (max-width: 920px) {{
+  .layout {{
+    grid-template-columns: 1fr;
+  }}
+}}
+</style>
+</head>
+<body>
+<header>
+  <h1>STIG Expert Critic - ICF Compliance Report</h1>
+  <div class="summary" id="summaryBar"></div>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="filters">
+      <div class="filter-row" id="filterRow"></div>
+      <input id="searchBox" type="text" placeholder="Search by Vuln ID or title">
+    </div>
+    <div class="list" id="sidebarList"></div>
+  </aside>
+  <main class="detail">
+    <div class="panel" id="detailPanel"></div>
+  </main>
+</div>
+<script type="application/json" id="projection-data">
+[
+  {
+    "vuln_id": "V-266074",
+    "display_status": "blocked_external",
+    "stig_verdict": "unresolved",
+    "severity": "low",
+    "title": "Manage local audit storage capacity per organization-defined requirements",
+    "evidence_summary": null,
+    "pullback_row": null,
+    "legitimacy": "6/9",
+    "dp_gates": "8/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266074",
+      "KILL SWITCH: adapter not promoted (6/9)",
+      "live disposition was: blocked-external"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Configure log rotation frequency, age-based removal, archive copies, and alertd message conditions per organization requirements. Automated configuration depends on organization-defined storage thresholds.",
+      "commands": []
+    },
+    "explanation": "Requires organization-provided evidence not available from the appliance. Adapter not promoted (6/9).",
+    "live_validate_enabled": false
+  },
+  {
+    "vuln_id": "V-266078",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Verify software image signatures before installation",
+    "evidence_summary": {
+      "software_signature_verification_enabled": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266078",
+      "fields": [
+        "software_signature_verification_enabled"
+      ],
+      "required": {
+        "software_signature_verification_enabled": "== true"
+      },
+      "observed": {
+        "software_signature_verification_enabled": true
+      },
+      "operator_summary": "software_signature_verification_enabled == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266078",
+      "FactoryDistinctionBundle.json -> V-266078",
+      "LiveControlOutcomeMatrix.json -> V-266078",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Enable software image signature verification before installing BIG-IP updates.",
+      "tmsh_equivalent": "tmsh modify /sys db liveinstall.checksig value \"enable\"",
+      "commands": [
+        "modify /sys db liveinstall.checksig value \"enable\""
+      ]
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266080",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Run a supported BIG-IP TMOS software version with current security patches",
+    "evidence_summary": {
+      "sys_version_supported": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266080",
+      "fields": [
+        "sys_version_supported"
+      ],
+      "required": {
+        "sys_version_supported": "== true"
+      },
+      "observed": {
+        "sys_version_supported": true
+      },
+      "operator_summary": "sys_version_supported == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266080",
+      "FactoryDistinctionBundle.json -> V-266080",
+      "LiveControlOutcomeMatrix.json -> V-266080",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Upgrade to a supported BIG-IP TMOS version with current security patches. Automated upgrade is not supported.",
+      "commands": []
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266083",
+    "display_status": "open_finding",
+    "stig_verdict": "open",
+    "severity": "medium",
+    "title": "Use certificates from an approved DoD certificate authority",
+    "evidence_summary": null,
+    "pullback_row": null,
+    "legitimacy": "4/9",
+    "dp_gates": "6/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266083",
+      "KILL SWITCH: adapter not promoted (4/9)",
+      "live disposition was: fail"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Obtain and install certificates from a DoD-approved PKI Certificate Authority. Automated certificate procurement is not supported.",
+      "commands": []
+    },
+    "explanation": "Real evidence fails this control. Adapter not promoted (4/9).",
+    "live_validate_enabled": false
+  },
+  {
+    "vuln_id": "V-266084",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Prohibit unnecessary and nonsecure functions, ports, protocols, and services",
+    "evidence_summary": {
+      "virtual_server_services_restricted": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266084",
+      "fields": [
+        "virtual_server_services_restricted"
+      ],
+      "required": {
+        "virtual_server_services_restricted": "== true"
+      },
+      "observed": {
+        "virtual_server_services_restricted": true
+      },
+      "operator_summary": "virtual_server_services_restricted == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266084",
+      "FactoryDistinctionBundle.json -> V-266084",
+      "LiveControlOutcomeMatrix.json -> V-266084",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "VIRTUAL_SERVER_DISABLE_DISALLOWED_PORTS",
+      "endpoint": "/mgmt/tm/ltm/virtual",
+      "note": "Disable enabled virtual servers that expose prohibited or restricted listener ports until they can be reconfigured to approved services only."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266086",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Authenticate NTP sources using cryptographically-based authentication",
+    "evidence_summary": {
+      "sys_ntp_authentication_enabled": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266086",
+      "fields": [
+        "sys_ntp_authentication_enabled"
+      ],
+      "required": {
+        "sys_ntp_authentication_enabled": "== true"
+      },
+      "observed": {
+        "sys_ntp_authentication_enabled": true
+      },
+      "operator_summary": "sys_ntp_authentication_enabled == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266086",
+      "FactoryDistinctionBundle.json -> V-266086",
+      "LiveControlOutcomeMatrix.json -> V-266086",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Configure cryptographic NTP authentication with shared keys on all NTP servers and clients.",
+      "tmsh_equivalent": "echo '1 M <key> #MD5 Key' > /etc/ntp/keys; tmsh edit sys ntp all-properties; tmsh save sys config",
+      "commands": [
+        "modify sys ntp include \"authenticate yes\\nkeys /etc/ntp/keys\\ntrustedkey 1\""
+      ]
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266093",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Limit cached authenticator lifetime (OCSP max age)",
+    "evidence_summary": {
+      "ocsp_max_clock_skew_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266093",
+      "fields": [
+        "ocsp_max_clock_skew_configured"
+      ],
+      "required": {
+        "ocsp_max_clock_skew_configured": "== true"
+      },
+      "observed": {
+        "ocsp_max_clock_skew_configured": true
+      },
+      "operator_summary": "ocsp_max_clock_skew_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266093",
+      "FactoryDistinctionBundle.json -> V-266093",
+      "LiveControlOutcomeMatrix.json -> V-266093",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/apm/aaa/ocsp",
+      "payload": {
+        "statusAge": 86400
+      },
+      "note": "Configure the OCSP Response Max Age to organization-defined value.",
+      "selector": {}
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266094",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Use DoD-approved OCSP responders or CRLs for PKI certificate validation",
+    "evidence_summary": {
+      "ocsp_responder_dod_approved": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266094",
+      "fields": [
+        "ocsp_responder_dod_approved"
+      ],
+      "required": {
+        "ocsp_responder_dod_approved": "== true"
+      },
+      "observed": {
+        "ocsp_responder_dod_approved": true
+      },
+      "operator_summary": "ocsp_responder_dod_approved == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266094",
+      "FactoryDistinctionBundle.json -> V-266094",
+      "LiveControlOutcomeMatrix.json -> V-266094",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/apm/aaa/ocsp",
+      "note": "Configure the OCSP Responder to point to a DoD-approved URL. Requires organization-specific URL.",
+      "selector": {}
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266096",
+    "display_status": "blocked_external",
+    "stig_verdict": "unresolved",
+    "severity": "medium",
+    "title": "Perform regular configuration backups for recoverability",
+    "evidence_summary": null,
+    "pullback_row": null,
+    "legitimacy": "6/9",
+    "dp_gates": "8/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266096",
+      "KILL SWITCH: adapter not promoted (6/9)",
+      "live disposition was: blocked-external"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Perform weekly or organization-defined UCS configuration backups and store them on a separate system. Automated backup scheduling is external to BIG-IP.",
+      "commands": []
+    },
+    "explanation": "Requires organization-provided evidence not available from the appliance. Adapter not promoted (6/9).",
+    "live_validate_enabled": false
+  },
+  {
+    "vuln_id": "V-266143",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Enforce identity-, role-, or attribute-based authorization policies in APM access policy",
+    "evidence_summary": {
+      "apm_access_policy_authorization_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266143",
+      "fields": [
+        "apm_access_policy_authorization_configured"
+      ],
+      "required": {
+        "apm_access_policy_authorization_configured": "== true"
+      },
+      "observed": {
+        "apm_access_policy_authorization_configured": true
+      },
+      "operator_summary": "apm_access_policy_authorization_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266143",
+      "FactoryDistinctionBundle.json -> V-266143",
+      "LiveControlOutcomeMatrix.json -> V-266143",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/ltm/virtual",
+      "note": "Configure source address restrictions on virtual servers or use AFM firewall policies.",
+      "tmsh_equivalent": "tmsh modify ltm virtual <name> source <allowed_network/mask>",
+      "selector": {
+        "source_equals": "0.0.0.0/0"
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266144",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Implement traffic inspection and information flow controls via firewall policies",
+    "evidence_summary": {
+      "security_firewall_policy_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266144",
+      "fields": [
+        "security_firewall_policy_configured"
+      ],
+      "required": {
+        "security_firewall_policy_configured": "== true"
+      },
+      "observed": {
+        "security_firewall_policy_configured": true
+      },
+      "operator_summary": "security_firewall_policy_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266144",
+      "FactoryDistinctionBundle.json -> V-266144",
+      "LiveControlOutcomeMatrix.json -> V-266144",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "FIREWALL_POLICY_RULE_PATCH",
+      "endpoint": "/mgmt/tm/security/firewall/policy",
+      "payload": {
+        "action": "accept"
+      },
+      "note": "Configure enforced AFM Network Firewall policies and active rules so approved information flows are inspected.",
+      "selector": {},
+      "rule_selector": {}
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266145",
+    "display_status": "blocked_external",
+    "stig_verdict": "unresolved",
+    "severity": "medium",
+    "title": "Display Standard Mandatory DoD Notice and Consent Banner in APM access policy",
+    "evidence_summary": null,
+    "pullback_row": null,
+    "legitimacy": "6/9",
+    "dp_gates": "8/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266145",
+      "KILL SWITCH: adapter not promoted (6/9)",
+      "live disposition was: blocked-external"
+    ],
+    "remediation": {
+      "method": "APM_POLICY_ITEM_ENSURE",
+      "note": "Insert a Message Box item that references the selected access profile customization group so the DoD notice and consent banner is displayed before access is granted."
+    },
+    "explanation": "Requires organization-provided evidence not available from the appliance. Adapter not promoted (6/9).",
+    "live_validate_enabled": false
+  },
+  {
+    "vuln_id": "V-266149",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance that provides intermediary services for HTTP must inspect inbound and outbound HTTP traffic for protocol compliance and protocol anomalies.",
+    "evidence_summary": {
+      "asm_http_protocol_compliance_enabled": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266149",
+      "fields": [
+        "asm_http_protocol_compliance_enabled"
+      ],
+      "required": {
+        "asm_http_protocol_compliance_enabled": "== true"
+      },
+      "observed": {
+        "asm_http_protocol_compliance_enabled": true
+      },
+      "operator_summary": "asm_http_protocol_compliance_enabled == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266149",
+      "FactoryDistinctionBundle.json -> V-266149",
+      "LiveControlOutcomeMatrix.json -> V-266149",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "ASM_POLICY_BLOCKING_VIOLATION_PATCH",
+      "endpoint": "/mgmt/tm/asm/policies",
+      "payload": {
+        "alarm": true,
+        "block": true
+      },
+      "note": "Enable alarm/block enforcement for the HTTP protocol compliance failed ASM blocking violation on each scoped policy.",
+      "selector": {},
+      "violation_selector": {
+        "field": "description",
+        "equals": "HTTP protocol compliance failed"
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266150",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "The F5 BIG-IP appliance must be configured to prohibit or restrict the use of unnecessary or prohibited functions, ports, protocols, and/or services, including those defined in the PPSM CAL and vulnerability assessments.",
+    "evidence_summary": {
+      "virtual_server_services_restricted": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266150",
+      "fields": [
+        "virtual_server_services_restricted"
+      ],
+      "required": {
+        "virtual_server_services_restricted": "== true"
+      },
+      "observed": {
+        "virtual_server_services_restricted": true
+      },
+      "operator_summary": "virtual_server_services_restricted == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266150",
+      "FactoryDistinctionBundle.json -> V-266150",
+      "LiveControlOutcomeMatrix.json -> V-266150",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "VIRTUAL_SERVER_DISABLE_DISALLOWED_PORTS",
+      "endpoint": "/mgmt/tm/ltm/virtual",
+      "note": "Disable enabled virtual servers that expose prohibited or restricted listener ports until they can be reconfigured to approved services only."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266151",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Require reauthentication when privilege level changes or session conditions change",
+    "evidence_summary": {
+      "apm_policy_reauthentication_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266151",
+      "fields": [
+        "apm_policy_reauthentication_configured"
+      ],
+      "required": {
+        "apm_policy_reauthentication_configured": "== true"
+      },
+      "observed": {
+        "apm_policy_reauthentication_configured": true
+      },
+      "operator_summary": "apm_policy_reauthentication_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266151",
+      "FactoryDistinctionBundle.json -> V-266151",
+      "LiveControlOutcomeMatrix.json -> V-266151",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "APM_PER_REQUEST_SUBROUTINE_ENSURE",
+      "note": "Update each attached per-request access policy to use a gated subroutine so step-up authentication can rerun when access conditions change."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266152",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Use redundant authentication servers and multifactor authentication in APM access policy",
+    "evidence_summary": {
+      "apm_policy_mfa_and_redundant_auth_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266152",
+      "fields": [
+        "apm_policy_mfa_and_redundant_auth_configured"
+      ],
+      "required": {
+        "apm_policy_mfa_and_redundant_auth_configured": "== true"
+      },
+      "observed": {
+        "apm_policy_mfa_and_redundant_auth_configured": true
+      },
+      "operator_summary": "apm_policy_mfa_and_redundant_auth_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266152",
+      "FactoryDistinctionBundle.json -> V-266152",
+      "LiveControlOutcomeMatrix.json -> V-266152",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "COMPOSITE",
+      "steps": [
+        {
+          "method": "APM_POLICY_ITEM_ENSURE",
+          "required_policy_items": [
+            {
+              "caption_aliases": [
+                "RADIUS Auth",
+                "RADIUS Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-radius",
+              "agent_type": "aaa-radius",
+              "agent_type_aliases": [
+                "aaa-radius"
+              ],
+              "agent_payload": {
+                "server": "/Common/default-radius"
+              },
+              "agent_payload_nonempty_keys": [
+                "server"
+              ]
+            }
+          ]
+        },
+        {
+          "method": "APM_POLICY_ITEM_ENSURE",
+          "required_policy_items": [
+            {
+              "caption_aliases": [
+                "RSA AA Auth",
+                "RSA Adaptive Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-rsa-aa",
+              "agent_type": "aaa-rsa-aa",
+              "agent_type_aliases": [
+                "aaa-rsa-aa"
+              ]
+            }
+          ]
+        }
+      ],
+      "note": "Insert a server-backed primary AAA item and a distinct MFA-capable AAA item into each selected APM access policy."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266153",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Validate machine certificate revocation status in APM access policy",
+    "evidence_summary": {
+      "apm_machine_cert_revocation_validation_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266153",
+      "fields": [
+        "apm_machine_cert_revocation_validation_configured"
+      ],
+      "required": {
+        "apm_machine_cert_revocation_validation_configured": "== true"
+      },
+      "observed": {
+        "apm_machine_cert_revocation_validation_configured": true
+      },
+      "operator_summary": "apm_machine_cert_revocation_validation_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266153",
+      "FactoryDistinctionBundle.json -> V-266153",
+      "LiveControlOutcomeMatrix.json -> V-266153",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "COMPOSITE",
+      "steps": [
+        {
+          "method": "APM_POLICY_ITEM_ENSURE",
+          "required_policy_items": [
+            {
+              "caption_aliases": [
+                "Machine Cert Auth"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "endpoint-check-machine-cert",
+              "agent_type": "endpoint-check-machine-cert",
+              "agent_type_aliases": [
+                "endpoint-check-machine-cert"
+              ],
+              "agent_payload": {
+                "storeLocation": "machine"
+              }
+            }
+          ]
+        },
+        {
+          "method": "APM_POLICY_ITEM_ENSURE",
+          "required_policy_items": [
+            {
+              "caption_aliases": [
+                "OCSP Auth",
+                "OCSP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-ocsp",
+              "agent_type": "aaa-ocsp",
+              "agent_type_aliases": [
+                "aaa-ocsp"
+              ],
+              "agent_payload": {
+                "certificateType": "machine",
+                "ocspResponder": "/Common/default-ocsp"
+              }
+            }
+          ]
+        }
+      ],
+      "note": "Insert Machine Cert Auth plus OCSP validation into each selected APM access policy."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266154",
+    "display_status": "blocked_external",
+    "stig_verdict": "unresolved",
+    "severity": "medium",
+    "title": "Maintain local revocation cache for PKI-based user authentication",
+    "evidence_summary": null,
+    "pullback_row": null,
+    "legitimacy": "6/9",
+    "dp_gates": "8/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266154",
+      "KILL SWITCH: adapter not promoted (6/9)",
+      "live disposition was: blocked-external"
+    ],
+    "remediation": {
+      "method": "APM_POLICY_ITEM_ENSURE",
+      "note": "Insert OCSP validation backed by a cached OCSP responder configuration so revocation data remains available when live checks are temporarily unreachable."
+    },
+    "explanation": "Requires organization-provided evidence not available from the appliance. Adapter not promoted (6/9).",
+    "live_validate_enabled": false
+  },
+  {
+    "vuln_id": "V-266161",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Log unauthorized services via global-network logging profile with Classification enabled",
+    "evidence_summary": {
+      "global_network_classification_logging_enabled": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266161",
+      "fields": [
+        "global_network_classification_logging_enabled"
+      ],
+      "required": {
+        "global_network_classification_logging_enabled": "== true"
+      },
+      "observed": {
+        "global_network_classification_logging_enabled": true
+      },
+      "operator_summary": "global_network_classification_logging_enabled == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266161",
+      "FactoryDistinctionBundle.json -> V-266161",
+      "LiveControlOutcomeMatrix.json -> V-266161",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Enable Classification logging and set a log publisher on the global-network logging profile.",
+      "commands": [
+        "modify security log profile global-network { classification enabled }"
+      ]
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266162",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "low",
+    "title": "Enable HTTP Only flag on APM access profile session cookies",
+    "evidence_summary": {
+      "apm_profile_cookie_http_only": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266162",
+      "fields": [
+        "apm_profile_cookie_http_only"
+      ],
+      "required": {
+        "apm_profile_cookie_http_only": "== true"
+      },
+      "observed": {
+        "apm_profile_cookie_http_only": true
+      },
+      "operator_summary": "apm_profile_cookie_http_only == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266162",
+      "FactoryDistinctionBundle.json -> V-266162",
+      "LiveControlOutcomeMatrix.json -> V-266162",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "payload": {
+        "httponlyCookie": "true"
+      },
+      "note": "Enable the HTTP Only flag in the Access Profile SSO/Auth Domains cookie options.",
+      "selector": {
+        "field": "scope",
+        "equals": "profile"
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266163",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "low",
+    "title": "Enable Secure flag on APM access profile session cookies",
+    "evidence_summary": {
+      "apm_profile_cookie_secure": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266163",
+      "fields": [
+        "apm_profile_cookie_secure"
+      ],
+      "required": {
+        "apm_profile_cookie_secure": "== true"
+      },
+      "observed": {
+        "apm_profile_cookie_secure": true
+      },
+      "operator_summary": "apm_profile_cookie_secure == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266163",
+      "FactoryDistinctionBundle.json -> V-266163",
+      "LiveControlOutcomeMatrix.json -> V-266163",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "payload": {
+        "secureCookie": "true"
+      },
+      "note": "Enable the Secure flag in the Access Profile SSO/Auth Domains cookie options.",
+      "selector": {
+        "field": "scope",
+        "equals": "profile"
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266164",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "low",
+    "title": "Disable persistent cookies in APM access profile Cookie Options",
+    "evidence_summary": {
+      "apm_profile_cookie_persistent": false
+    },
+    "pullback_row": {
+      "vuln_id": "V-266164",
+      "fields": [
+        "apm_profile_cookie_persistent"
+      ],
+      "required": {
+        "apm_profile_cookie_persistent": "== false"
+      },
+      "observed": {
+        "apm_profile_cookie_persistent": false
+      },
+      "operator_summary": "apm_profile_cookie_persistent == false",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266164",
+      "FactoryDistinctionBundle.json -> V-266164",
+      "LiveControlOutcomeMatrix.json -> V-266164",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "payload": {
+        "persistentCookie": "false"
+      },
+      "note": "Disable persistent cookies on each APM access profile.",
+      "selector": {
+        "field": "scope",
+        "equals": "profile"
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266165",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Validate user certificate revocation status in APM access policy",
+    "evidence_summary": {
+      "apm_user_cert_revocation_validation_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266165",
+      "fields": [
+        "apm_user_cert_revocation_validation_configured"
+      ],
+      "required": {
+        "apm_user_cert_revocation_validation_configured": "== true"
+      },
+      "observed": {
+        "apm_user_cert_revocation_validation_configured": true
+      },
+      "operator_summary": "apm_user_cert_revocation_validation_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266165",
+      "FactoryDistinctionBundle.json -> V-266165",
+      "LiveControlOutcomeMatrix.json -> V-266165",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "COMPOSITE",
+      "steps": [
+        {
+          "method": "APM_POLICY_ITEM_ENSURE",
+          "required_policy_items": [
+            {
+              "caption_aliases": [
+                "Client Cert Inspection"
+              ],
+              "item_type_aliases": [
+                "action"
+              ]
+            }
+          ]
+        },
+        {
+          "method": "APM_POLICY_ITEM_ENSURE",
+          "required_policy_items": [
+            {
+              "caption_aliases": [
+                "OCSP Auth",
+                "OCSP Authentication"
+              ],
+              "item_type_aliases": [
+                "action"
+              ],
+              "agent_collection": "aaa-ocsp",
+              "agent_type": "aaa-ocsp",
+              "agent_type_aliases": [
+                "aaa-ocsp"
+              ],
+              "agent_payload": {
+                "certificateType": "user",
+                "ocspResponder": "/Common/default-ocsp"
+              }
+            }
+          ]
+        }
+      ],
+      "note": "Insert Client Cert Inspection plus OCSP validation into each selected APM access policy."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266167",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Enforce consistent IP address per session to prevent session hijacking",
+    "evidence_summary": {
+      "sys_httpd_auth_pam_validate_ip": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266167",
+      "fields": [
+        "sys_httpd_auth_pam_validate_ip"
+      ],
+      "required": {
+        "sys_httpd_auth_pam_validate_ip": "== true"
+      },
+      "observed": {
+        "sys_httpd_auth_pam_validate_ip": true
+      },
+      "operator_summary": "sys_httpd_auth_pam_validate_ip == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266167",
+      "FactoryDistinctionBundle.json -> V-266167",
+      "LiveControlOutcomeMatrix.json -> V-266167",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Enable the BIG-IP System Preferences control that requires a consistent inbound IP for the entire management web session.",
+      "tmsh_equivalent": "tmsh modify sys httpd auth-pam-validate-ip on",
+      "commands": [
+        "modify sys httpd auth-pam-validate-ip on"
+      ]
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266168",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "low",
+    "title": "Restrict session to single client IP in APM access profile",
+    "evidence_summary": {
+      "apm_restrict_single_client_ip": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266168",
+      "fields": [
+        "apm_restrict_single_client_ip"
+      ],
+      "required": {
+        "apm_restrict_single_client_ip": "== true"
+      },
+      "observed": {
+        "apm_restrict_single_client_ip": true
+      },
+      "operator_summary": "apm_restrict_single_client_ip == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266168",
+      "FactoryDistinctionBundle.json -> V-266168",
+      "LiveControlOutcomeMatrix.json -> V-266168",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "payload": {
+        "restrictToSingleClientIp": "true"
+      },
+      "note": "Restrict each APM session to a single client IP address.",
+      "selector": {
+        "field": "scope",
+        "equals": "profile"
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266171",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Authenticate endpoint devices via APM per-session policy",
+    "evidence_summary": {
+      "apm_endpoint_device_auth_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266171",
+      "fields": [
+        "apm_endpoint_device_auth_configured"
+      ],
+      "required": {
+        "apm_endpoint_device_auth_configured": "== true"
+      },
+      "observed": {
+        "apm_endpoint_device_auth_configured": true
+      },
+      "operator_summary": "apm_endpoint_device_auth_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266171",
+      "FactoryDistinctionBundle.json -> V-266171",
+      "LiveControlOutcomeMatrix.json -> V-266171",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "APM_POLICY_ITEM_ENSURE",
+      "note": "Insert Machine Cert Auth into each selected APM access policy to authenticate endpoint devices."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266172",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Disable split tunneling to prevent backdoor network access",
+    "evidence_summary": {
+      "apm_network_access_split_tunneling_disabled": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266172",
+      "fields": [
+        "apm_network_access_split_tunneling_disabled"
+      ],
+      "required": {
+        "apm_network_access_split_tunneling_disabled": "== true"
+      },
+      "observed": {
+        "apm_network_access_split_tunneling_disabled": true
+      },
+      "operator_summary": "apm_network_access_split_tunneling_disabled == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266172",
+      "FactoryDistinctionBundle.json -> V-266172",
+      "LiveControlOutcomeMatrix.json -> V-266172",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/apm/resource/network-access",
+      "payload": {
+        "splitTunneling": "false",
+        "addressSpaceLocalSubnetsExcluded": "false",
+        "addressSpaceLocDnsServersExcluded": "false",
+        "addressSpaceExcludeSubnet": "",
+        "addressSpaceExcludeDnsName": "",
+        "ipv6AddressSpaceExcludeSubnet": ""
+      },
+      "note": "Disable split tunneling and clear tunnel bypass settings for every APM Network Access resource.",
+      "selector": {
+        "field": "type",
+        "equals": "network-access"
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266173",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Route traffic to IDPS via Protocol Inspection Profile on virtual servers",
+    "evidence_summary": {
+      "virtual_server_protocol_inspection_enabled": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266173",
+      "fields": [
+        "virtual_server_protocol_inspection_enabled"
+      ],
+      "required": {
+        "virtual_server_protocol_inspection_enabled": "== true"
+      },
+      "observed": {
+        "virtual_server_protocol_inspection_enabled": true
+      },
+      "operator_summary": "virtual_server_protocol_inspection_enabled == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266173",
+      "FactoryDistinctionBundle.json -> V-266173",
+      "LiveControlOutcomeMatrix.json -> V-266173",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/ltm/virtual",
+      "payload": {
+        "protocolInspectionProfile": "/Common/protocol_inspection"
+      },
+      "note": "Enable Protocol Inspection Profile on virtual servers.",
+      "selector": {}
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266174",
+    "display_status": "open_finding",
+    "stig_verdict": "open",
+    "severity": "medium",
+    "title": "Use Always-On VPN or machine tunnel to prevent unsecured access",
+    "evidence_summary": null,
+    "pullback_row": null,
+    "legitimacy": "4/9",
+    "dp_gates": "6/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266174",
+      "KILL SWITCH: adapter not promoted (4/9)",
+      "live disposition was: fail"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "note": "Enable Always-On VPN or machine tunnel in APM connectivity profile. Requires organizational policy for VPN mode.",
+      "selector": {}
+    },
+    "explanation": "Real evidence fails this control. Adapter not promoted (4/9).",
+    "live_validate_enabled": false
+  },
+  {
+    "vuln_id": "V-266067",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "The F5 BIG-IP appliance must be configured to assign appropriate user roles or access levels to authenticated users.",
+    "evidence_summary": {
+      "auth_remote_role_assignment_appropriate": true,
+      "auth_user_partition_access_appropriate": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266067",
+      "fields": [
+        "auth_remote_role_assignment_appropriate",
+        "auth_user_partition_access_appropriate"
+      ],
+      "required": {
+        "auth_remote_role_assignment_appropriate": "== true",
+        "auth_user_partition_access_appropriate": "== true"
+      },
+      "observed": {
+        "auth_remote_role_assignment_appropriate": true,
+        "auth_user_partition_access_appropriate": true
+      },
+      "operator_summary": "auth_remote_role_assignment_appropriate == true AND auth_user_partition_access_appropriate == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266067",
+      "FactoryDistinctionBundle.json -> V-266067",
+      "LiveControlOutcomeMatrix.json -> V-266067",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Manual review required. The canonical STIG requires appropriate remote-role and local partition-access assignments, but the appropriate role/access level is organization-defined and cannot be auto-derived from the STIG text alone.",
+      "commands": []
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266068",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Audit execution of privileged functions including account changes",
+    "evidence_summary": {
+      "sys_daemon_log_tmm_os_log_level": "informational",
+      "sys_daemon_log_tmm_ssl_log_level": "informational",
+      "sys_daemon_log_mcpd_audit": "enabled",
+      "sys_daemon_log_mcpd_log_level": "notice",
+      "sys_db_log_ssl_level": "informational"
+    },
+    "pullback_row": {
+      "vuln_id": "V-266068",
+      "fields": [
+        "sys_daemon_log_tmm_os_log_level",
+        "sys_daemon_log_tmm_ssl_log_level",
+        "sys_daemon_log_mcpd_audit",
+        "sys_daemon_log_mcpd_log_level",
+        "sys_db_log_ssl_level"
+      ],
+      "required": {
+        "sys_daemon_log_tmm_os_log_level": "== 'informational'",
+        "sys_daemon_log_tmm_ssl_log_level": "== 'informational'",
+        "sys_daemon_log_mcpd_audit": "== 'enabled'",
+        "sys_daemon_log_mcpd_log_level": "== 'notice'",
+        "sys_db_log_ssl_level": "== 'informational'"
+      },
+      "observed": {
+        "sys_daemon_log_tmm_os_log_level": "informational",
+        "sys_daemon_log_tmm_ssl_log_level": "informational",
+        "sys_daemon_log_mcpd_audit": "enabled",
+        "sys_daemon_log_mcpd_log_level": "notice",
+        "sys_db_log_ssl_level": "informational"
+      },
+      "operator_summary": "sys_daemon_log_tmm_os_log_level == 'informational' AND sys_daemon_log_tmm_ssl_log_level == 'informational' AND sys_daemon_log_mcpd_audit == 'enabled' AND sys_daemon_log_mcpd_log_level == 'notice' AND sys_db_log_ssl_level == 'informational'",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266068",
+      "FactoryDistinctionBundle.json -> V-266068",
+      "LiveControlOutcomeMatrix.json -> V-266068",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "MULTI_PATCH",
+      "steps": [
+        {
+          "endpoint": "/mgmt/tm/sys/daemon-log-settings/tmm",
+          "payload": {
+            "osLogLevel": "informational",
+            "sslLogLevel": "informational"
+          }
+        },
+        {
+          "endpoint": "/mgmt/tm/sys/daemon-log-settings/mcpd",
+          "payload": {
+            "audit": "enabled",
+            "logLevel": "notice"
+          }
+        }
+      ],
+      "tmsh_equivalent": "tmsh modify sys daemon-log-settings tmm os-log-level informational; tmsh modify sys daemon-log-settings tmm ssl-log-level informational; tmsh modify sys daemon-log-settings mcpd audit enabled; tmsh modify sys daemon-log-settings mcpd log-level notice; tmsh modify sys db log.ssl.level value informational; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266069",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Enforce limit of 3 consecutive invalid logon attempts with 15-minute lockout",
+    "evidence_summary": {
+      "auth_password_policy_max_login_failures": 3,
+      "auth_password_policy_lockout_duration": 900
+    },
+    "pullback_row": {
+      "vuln_id": "V-266069",
+      "fields": [
+        "auth_password_policy_max_login_failures",
+        "auth_password_policy_lockout_duration"
+      ],
+      "required": {
+        "auth_password_policy_max_login_failures": ">= 1",
+        "auth_password_policy_lockout_duration": ">= 900"
+      },
+      "observed": {
+        "auth_password_policy_max_login_failures": 3,
+        "auth_password_policy_lockout_duration": 900
+      },
+      "operator_summary": "auth_password_policy_max_login_failures <= 3 AND auth_password_policy_max_login_failures >= 1 AND auth_password_policy_lockout_duration >= 900",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266069",
+      "FactoryDistinctionBundle.json -> V-266069",
+      "LiveControlOutcomeMatrix.json -> V-266069",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/auth/password-policy",
+      "payload": {
+        "maxLoginFailures": 3,
+        "lockoutDuration": 900
+      },
+      "tmsh_equivalent": "tmsh modify auth password-policy max-login-failures 3; tmsh modify auth password-policy lockout-duration 900; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266070",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Display Standard Mandatory DoD Notice and Consent Banner on TMOS User Interface",
+    "evidence_summary": {
+      "sys_sshd_banner": "enabled",
+      "sys_httpd_gui_security_banner_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266070",
+      "fields": [
+        "sys_sshd_banner",
+        "sys_httpd_gui_security_banner_configured"
+      ],
+      "required": {
+        "sys_sshd_banner": "== 'enabled'",
+        "sys_httpd_gui_security_banner_configured": "== true"
+      },
+      "observed": {
+        "sys_sshd_banner": "enabled",
+        "sys_httpd_gui_security_banner_configured": true
+      },
+      "operator_summary": "sys_sshd_banner == 'enabled' AND sys_httpd_gui_security_banner_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266070",
+      "FactoryDistinctionBundle.json -> V-266070",
+      "LiveControlOutcomeMatrix.json -> V-266070",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "MULTI_PATCH",
+      "steps": [
+        {
+          "endpoint": "/mgmt/tm/sys/sshd",
+          "payload": {
+            "banner": "enabled",
+            "bannerText": "You are accessing a U.S. Government (USG) Information System (IS)..."
+          }
+        },
+        {
+          "endpoint": "/mgmt/tm/sys/global-settings",
+          "payload": {
+            "guiSecurityBanner": "enabled",
+            "guiSecurityBannerText": "You are accessing a U.S. Government (USG) Information System (IS)..."
+          }
+        }
+      ],
+      "tmsh_equivalent": "tmsh modify sys sshd banner enabled; tmsh modify sys global-settings gui-security-banner enabled; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266079",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Configure redundant authentication servers for availability and security",
+    "evidence_summary": {
+      "auth_source_type": "tacacs",
+      "auth_server_count": 2
+    },
+    "pullback_row": {
+      "vuln_id": "V-266079",
+      "fields": [
+        "auth_source_type",
+        "auth_server_count"
+      ],
+      "required": {
+        "auth_source_type": "== 'tacacs'",
+        "auth_server_count": ">= 2"
+      },
+      "observed": {
+        "auth_source_type": "tacacs",
+        "auth_server_count": 2
+      },
+      "operator_summary": "auth_source_type == 'tacacs' AND auth_server_count >= 2",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266079",
+      "FactoryDistinctionBundle.json -> V-266079",
+      "LiveControlOutcomeMatrix.json -> V-266079",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/auth/source",
+      "payload": {
+        "type": "tacacs"
+      },
+      "note": "Configure at least two TACACS+ authentication servers. The PATCH sets auth source type; servers must be configured separately.",
+      "tmsh_equivalent": "tmsh modify auth source type tacacs"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266095",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Automatically terminate idle administrative sessions within 300 seconds",
+    "evidence_summary": {
+      "sys_httpd_auth_pam_idle_timeout": 300,
+      "sys_httpd_auth_pam_dashboard_timeout": true,
+      "sys_global_settings_console_inactivity_timeout": 300,
+      "cli_global_settings_idle_timeout": 5,
+      "sys_sshd_inactivity_timeout": 300
+    },
+    "pullback_row": {
+      "vuln_id": "V-266095",
+      "fields": [
+        "sys_httpd_auth_pam_idle_timeout",
+        "sys_httpd_auth_pam_dashboard_timeout",
+        "sys_global_settings_console_inactivity_timeout",
+        "cli_global_settings_idle_timeout",
+        "sys_sshd_inactivity_timeout"
+      ],
+      "required": {
+        "sys_httpd_auth_pam_idle_timeout": "<= 300",
+        "sys_httpd_auth_pam_dashboard_timeout": "== true",
+        "sys_global_settings_console_inactivity_timeout": "<= 300",
+        "cli_global_settings_idle_timeout": "<= 5",
+        "sys_sshd_inactivity_timeout": "<= 300"
+      },
+      "observed": {
+        "sys_httpd_auth_pam_idle_timeout": 300,
+        "sys_httpd_auth_pam_dashboard_timeout": true,
+        "sys_global_settings_console_inactivity_timeout": 300,
+        "cli_global_settings_idle_timeout": 5,
+        "sys_sshd_inactivity_timeout": 300
+      },
+      "operator_summary": "sys_httpd_auth_pam_idle_timeout > 0 AND sys_httpd_auth_pam_idle_timeout <= 300 AND sys_httpd_auth_pam_dashboard_timeout == true AND sys_global_settings_console_inactivity_timeout > 0 AND sys_global_settings_console_inactivity_timeout <= 300 AND cli_global_settings_idle_timeout > 0 AND cli_global_settings_idle_timeout <= 5 AND sys_sshd_inactivity_timeout > 0 AND sys_sshd_inactivity_timeout <= 300",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266095",
+      "FactoryDistinctionBundle.json -> V-266095",
+      "LiveControlOutcomeMatrix.json -> V-266095",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "MULTI_PATCH",
+      "steps": [
+        {
+          "endpoint": "/mgmt/tm/sys/httpd",
+          "payload": {
+            "authPamIdleTimeout": 300,
+            "authPamDashboardTimeout": "on"
+          }
+        },
+        {
+          "endpoint": "/mgmt/tm/sys/global-settings",
+          "payload": {
+            "consoleInactivityTimeout": 300
+          }
+        },
+        {
+          "endpoint": "/mgmt/tm/sys/sshd",
+          "payload": {
+            "inactivityTimeout": 300
+          }
+        }
+      ],
+      "note": "Set cli global-settings idle-timeout 5 via tmsh and persist configuration after REST changes.",
+      "tmsh_equivalent": "tmsh modify sys httpd auth-pam-idle-timeout 300 auth-pam-dashboard-timeout on; tmsh modify sys global-settings console-inactivity-timeout 300; tmsh modify cli global-settings idle-timeout 5; tmsh modify sys sshd inactivity-timeout 300; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266138",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Monitor remote access traffic with application security policies",
+    "evidence_summary": {
+      "asm_policies_active": true,
+      "virtual_server_security_policy": "asm"
+    },
+    "pullback_row": {
+      "vuln_id": "V-266138",
+      "fields": [
+        "asm_policies_active",
+        "virtual_server_security_policy"
+      ],
+      "required": {
+        "asm_policies_active": "== true",
+        "virtual_server_security_policy": "!= 'none'"
+      },
+      "observed": {
+        "asm_policies_active": true,
+        "virtual_server_security_policy": "asm"
+      },
+      "operator_summary": "asm_policies_active == true AND virtual_server_security_policy != 'none'",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266138",
+      "FactoryDistinctionBundle.json -> V-266138",
+      "LiveControlOutcomeMatrix.json -> V-266138",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/ltm/virtual",
+      "note": "Attach an Application Security Policy to remote-access virtual servers. Selection of the correct ASM policy requires organizational context.",
+      "selector": {}
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266139",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "The F5 BIG-IP appliance providing intermediary services for remote access must use FIPS-validated cryptographic algorithms, including TLS 1.2 at a minimum.",
+    "evidence_summary": {
+      "ltm_attached_client_ssl_profile_count": 1,
+      "ltm_profile_client_ssl_protocol_compliant_count": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266139",
+      "fields": [
+        "ltm_attached_client_ssl_profile_count",
+        "ltm_profile_client_ssl_protocol_compliant_count"
+      ],
+      "required": {
+        "ltm_attached_client_ssl_profile_count": "== 0",
+        "ltm_profile_client_ssl_protocol_compliant_count": "== ltm_attached_client_ssl_profile_count"
+      },
+      "observed": {
+        "ltm_attached_client_ssl_profile_count": 1,
+        "ltm_profile_client_ssl_protocol_compliant_count": 1
+      },
+      "operator_summary": "ltm_attached_client_ssl_profile_count == 0 OR ltm_profile_client_ssl_protocol_compliant_count == ltm_attached_client_ssl_profile_count",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266139",
+      "FactoryDistinctionBundle.json -> V-266139",
+      "LiveControlOutcomeMatrix.json -> V-266139",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/ltm/profile/client-ssl",
+      "payload": {
+        "options": [
+          "no-sslv2",
+          "no-sslv3",
+          "no-tlsv1",
+          "no-tlsv1.1"
+        ]
+      },
+      "tmsh_equivalent": "tmsh modify ltm profile client-ssl <name> options { no-sslv2 no-sslv3 no-tlsv1 no-tlsv1.1 } ciphers \"ECDHE+AES-GCM:DHE+AES-GCM:ECDHE+AES:DHE+AES\""
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266140",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent code injection attacks from being launched against data storage objects, including, at a minimum, databases, database records, queries, and fields.",
+    "evidence_summary": {
+      "asm_policy_blocking_mode": "blocking",
+      "asm_required_signature_sets_enforced": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266140",
+      "fields": [
+        "asm_policy_blocking_mode",
+        "asm_required_signature_sets_enforced"
+      ],
+      "required": {
+        "asm_policy_blocking_mode": "== 'blocking'",
+        "asm_required_signature_sets_enforced": "== true"
+      },
+      "observed": {
+        "asm_policy_blocking_mode": "blocking",
+        "asm_required_signature_sets_enforced": true
+      },
+      "operator_summary": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266140",
+      "FactoryDistinctionBundle.json -> V-266140",
+      "LiveControlOutcomeMatrix.json -> V-266140",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "COMPOSITE",
+      "steps": [
+        {
+          "method": "PATCH_COLLECTION",
+          "endpoint": "/mgmt/tm/asm/policies",
+          "payload": {
+            "enforcementMode": "blocking"
+          }
+        },
+        {
+          "method": "ASM_POLICY_SIGNATURE_SET_PATCH",
+          "endpoint": "/mgmt/tm/asm/policies",
+          "payload": {
+            "block": true,
+            "alarm": true,
+            "learn": true
+          }
+        }
+      ],
+      "note": "Set the Application Security Policy enforcement mode to Blocking and enforce the XPath Injection and LDAP Injection attack signatures before applying the policy."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266141",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent code injection attacks launched against application objects including, at a minimum, application URLs and application code.",
+    "evidence_summary": {
+      "asm_policy_blocking_mode": "blocking",
+      "asm_required_signature_sets_enforced": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266141",
+      "fields": [
+        "asm_policy_blocking_mode",
+        "asm_required_signature_sets_enforced"
+      ],
+      "required": {
+        "asm_policy_blocking_mode": "== 'blocking'",
+        "asm_required_signature_sets_enforced": "== true"
+      },
+      "observed": {
+        "asm_policy_blocking_mode": "blocking",
+        "asm_required_signature_sets_enforced": true
+      },
+      "operator_summary": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266141",
+      "FactoryDistinctionBundle.json -> V-266141",
+      "LiveControlOutcomeMatrix.json -> V-266141",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "COMPOSITE",
+      "steps": [
+        {
+          "method": "PATCH_COLLECTION",
+          "endpoint": "/mgmt/tm/asm/policies",
+          "payload": {
+            "enforcementMode": "blocking"
+          }
+        },
+        {
+          "method": "ASM_POLICY_SIGNATURE_SET_PATCH",
+          "endpoint": "/mgmt/tm/asm/policies",
+          "payload": {
+            "block": true,
+            "alarm": true,
+            "learn": true
+          }
+        }
+      ],
+      "note": "Set the Application Security Policy enforcement mode to Blocking and enforce the Buffer Overflow and Server Side Code Injection attack signatures before applying the policy."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266142",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "To protect against data mining, the F5 BIG-IP appliance providing content filtering must prevent SQL injection attacks launched against data storage objects, including, at a minimum, databases, database records, and database fields.",
+    "evidence_summary": {
+      "asm_policy_blocking_mode": "blocking",
+      "asm_required_signature_sets_enforced": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266142",
+      "fields": [
+        "asm_policy_blocking_mode",
+        "asm_required_signature_sets_enforced"
+      ],
+      "required": {
+        "asm_policy_blocking_mode": "== 'blocking'",
+        "asm_required_signature_sets_enforced": "== true"
+      },
+      "observed": {
+        "asm_policy_blocking_mode": "blocking",
+        "asm_required_signature_sets_enforced": true
+      },
+      "operator_summary": "asm_policy_blocking_mode == 'blocking' AND asm_required_signature_sets_enforced == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266142",
+      "FactoryDistinctionBundle.json -> V-266142",
+      "LiveControlOutcomeMatrix.json -> V-266142",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "COMPOSITE",
+      "steps": [
+        {
+          "method": "PATCH_COLLECTION",
+          "endpoint": "/mgmt/tm/asm/policies",
+          "payload": {
+            "enforcementMode": "blocking"
+          }
+        },
+        {
+          "method": "ASM_POLICY_SIGNATURE_SET_PATCH",
+          "endpoint": "/mgmt/tm/asm/policies",
+          "payload": {
+            "block": true,
+            "alarm": true,
+            "learn": true
+          }
+        }
+      ],
+      "note": "Set the Application Security Policy enforcement mode to Blocking and enforce all SQL-Injection attack signatures before applying the policy."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266146",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Generate event log records forwarded to centralized events log (Access System Logs)",
+    "evidence_summary": {
+      "access_system_logs_enabled": true,
+      "access_log_settings_level": "notice"
+    },
+    "pullback_row": {
+      "vuln_id": "V-266146",
+      "fields": [
+        "access_system_logs_enabled",
+        "access_log_settings_level"
+      ],
+      "required": {
+        "access_system_logs_enabled": "== true",
+        "access_log_settings_level": "== 'notice'"
+      },
+      "observed": {
+        "access_system_logs_enabled": true,
+        "access_log_settings_level": "notice"
+      },
+      "operator_summary": "access_system_logs_enabled == true AND access_log_settings_level == 'notice'",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266146",
+      "FactoryDistinctionBundle.json -> V-266146",
+      "LiveControlOutcomeMatrix.json -> V-266146",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "COMPOSITE",
+      "steps": [
+        {
+          "method": "APM_PROFILE_LOG_SETTINGS_ENSURE",
+          "endpoint": "/mgmt/tm/apm/profile/access",
+          "selector": {
+            "field": "scope",
+            "equals": "profile"
+          },
+          "log_setting": "/Common/default-log-setting"
+        },
+        {
+          "method": "APM_LOG_SETTING_ENSURE",
+          "endpoint": "/mgmt/tm/apm/log-setting",
+          "selector": {
+            "field": "fullPath",
+            "equals": "/Common/default-log-setting"
+          },
+          "desired_level": "notice"
+        }
+      ],
+      "note": "Enable Access System Logs in the default-log-setting, set the log items to Notice, and ensure the default-log-setting is selected on the APM Access Profile Logs tab."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266147",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance that provides intermediary services for SMTP must inspect inbound and outbound SMTP and Extended SMTP communications traffic for protocol compliance and protocol anomalies.",
+    "evidence_summary": {
+      "ltm_attached_smtp_profile_count": 0,
+      "smtp_protocol_security_enabled_count": 0
+    },
+    "pullback_row": {
+      "vuln_id": "V-266147",
+      "fields": [
+        "ltm_attached_smtp_profile_count",
+        "smtp_protocol_security_enabled_count"
+      ],
+      "required": {
+        "ltm_attached_smtp_profile_count": "== 0",
+        "smtp_protocol_security_enabled_count": "== ltm_attached_smtp_profile_count"
+      },
+      "observed": {
+        "ltm_attached_smtp_profile_count": 0,
+        "smtp_protocol_security_enabled_count": 0
+      },
+      "operator_summary": "ltm_attached_smtp_profile_count == 0 OR smtp_protocol_security_enabled_count == ltm_attached_smtp_profile_count",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266147",
+      "FactoryDistinctionBundle.json -> V-266147",
+      "LiveControlOutcomeMatrix.json -> V-266147",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/ltm/profile/smtp",
+      "payload": {
+        "security": "enabled"
+      },
+      "note": "Enable protocol security on SMTP profiles that are attached to active virtual servers.",
+      "selector": {}
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266148",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance that provides intermediary services for FTP must inspect inbound and outbound FTP communications traffic for protocol compliance and protocol anomalies.",
+    "evidence_summary": {
+      "ltm_attached_ftp_profile_count": 0,
+      "ftp_protocol_security_enabled_count": 0
+    },
+    "pullback_row": {
+      "vuln_id": "V-266148",
+      "fields": [
+        "ltm_attached_ftp_profile_count",
+        "ftp_protocol_security_enabled_count"
+      ],
+      "required": {
+        "ltm_attached_ftp_profile_count": "== 0",
+        "ftp_protocol_security_enabled_count": "== ltm_attached_ftp_profile_count"
+      },
+      "observed": {
+        "ltm_attached_ftp_profile_count": 0,
+        "ftp_protocol_security_enabled_count": 0
+      },
+      "operator_summary": "ltm_attached_ftp_profile_count == 0 OR ftp_protocol_security_enabled_count == ltm_attached_ftp_profile_count",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266148",
+      "FactoryDistinctionBundle.json -> V-266148",
+      "LiveControlOutcomeMatrix.json -> V-266148",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/ltm/profile/ftp",
+      "payload": {
+        "security": "enabled"
+      },
+      "note": "Enable protocol security on FTP profiles that are attached to active virtual servers.",
+      "selector": {}
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266156",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance providing content filtering must employ rate-based attack prevention behavior analysis.",
+    "evidence_summary": {
+      "dos_custom_profile_count": 0,
+      "dos_profiles_network_mitigate_count": 0
+    },
+    "pullback_row": {
+      "vuln_id": "V-266156",
+      "fields": [
+        "dos_custom_profile_count",
+        "dos_profiles_network_mitigate_count"
+      ],
+      "required": {
+        "dos_custom_profile_count": "== 0",
+        "dos_profiles_network_mitigate_count": "== dos_custom_profile_count"
+      },
+      "observed": {
+        "dos_custom_profile_count": 0,
+        "dos_profiles_network_mitigate_count": 0
+      },
+      "operator_summary": "dos_custom_profile_count == 0 OR dos_profiles_network_mitigate_count == dos_custom_profile_count",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266156",
+      "FactoryDistinctionBundle.json -> V-266156",
+      "LiveControlOutcomeMatrix.json -> V-266156",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "DOS_PROFILE_ENSURE",
+      "endpoint": "/mgmt/tm/security/dos/profile",
+      "note": "Ensure each non-default custom DoS profile has a managed network DoS subprofile with dynamic signatures enabled and at least one network attack vector set to mitigate.",
+      "selector": {
+        "field": "fullPath",
+        "not_equals": "/Common/dos"
+      },
+      "dos_network": {
+        "name": "stig_auto_net",
+        "dynamic_signatures": {
+          "detection": "enabled",
+          "mitigation": "medium"
+        },
+        "network_attack_vector": {
+          "name": "udp-flood",
+          "tmsh_clause": "state mitigate threshold-mode fully-automatic enforce enabled auto-threshold enabled"
+        }
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266157",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance providing content filtering must protect against or limit the effects of known and unknown types of denial-of-service (DoS) attacks by employing pattern recognition pre-processors.",
+    "evidence_summary": {
+      "dos_custom_profile_count": 0,
+      "dos_profiles_dynamic_signatures_count": 0
+    },
+    "pullback_row": {
+      "vuln_id": "V-266157",
+      "fields": [
+        "dos_custom_profile_count",
+        "dos_profiles_dynamic_signatures_count"
+      ],
+      "required": {
+        "dos_custom_profile_count": "== 0",
+        "dos_profiles_dynamic_signatures_count": "== dos_custom_profile_count"
+      },
+      "observed": {
+        "dos_custom_profile_count": 0,
+        "dos_profiles_dynamic_signatures_count": 0
+      },
+      "operator_summary": "dos_custom_profile_count == 0 OR dos_profiles_dynamic_signatures_count == dos_custom_profile_count",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266157",
+      "FactoryDistinctionBundle.json -> V-266157",
+      "LiveControlOutcomeMatrix.json -> V-266157",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "DOS_PROFILE_ENSURE",
+      "endpoint": "/mgmt/tm/security/dos/profile",
+      "note": "Ensure each non-default custom DoS profile has managed network and protocol-dns subprofiles with dynamic signatures detection enabled.",
+      "selector": {
+        "field": "fullPath",
+        "not_equals": "/Common/dos"
+      },
+      "dos_network": {
+        "name": "stig_auto_net",
+        "dynamic_signatures": {
+          "detection": "enabled",
+          "mitigation": "medium"
+        }
+      },
+      "protocol_dns": {
+        "name": "stig_auto_dns",
+        "dynamic_signatures": {
+          "detection": "enabled",
+          "mitigation": "medium"
+        }
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266158",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance must check the validity of all data inputs except those specifically identified by the organization.",
+    "evidence_summary": {
+      "asm_policy_count": 1,
+      "asm_parameter_validation_policy_count": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266158",
+      "fields": [
+        "asm_policy_count",
+        "asm_parameter_validation_policy_count"
+      ],
+      "required": {
+        "asm_policy_count": "> 0",
+        "asm_parameter_validation_policy_count": "== asm_policy_count"
+      },
+      "observed": {
+        "asm_policy_count": 1,
+        "asm_parameter_validation_policy_count": 1
+      },
+      "operator_summary": "asm_policy_count > 0 AND asm_parameter_validation_policy_count == asm_policy_count",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266158",
+      "FactoryDistinctionBundle.json -> V-266158",
+      "LiveControlOutcomeMatrix.json -> V-266158",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "ASM_POLICY_PARAMETER_PATCH",
+      "endpoint": "/mgmt/tm/asm/policies",
+      "payload": {
+        "checkMetachars": true,
+        "metacharsOnParameterValueCheck": true
+      },
+      "note": "Enable metachar validation on the wildcard parameter for each ASM security policy so parameter names and values are validated.",
+      "selector": {
+        "field": "type",
+        "equals": "security"
+      },
+      "parameter_selector": {
+        "field": "name",
+        "equals": "*"
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266159",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Enable automatic security signature updates with real-time installation",
+    "evidence_summary": {
+      "auto_update_check_enabled": true,
+      "live_update_realtime": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266159",
+      "fields": [
+        "auto_update_check_enabled",
+        "live_update_realtime"
+      ],
+      "required": {
+        "auto_update_check_enabled": "== true",
+        "live_update_realtime": "== true"
+      },
+      "observed": {
+        "auto_update_check_enabled": true,
+        "live_update_realtime": true
+      },
+      "operator_summary": "auto_update_check_enabled == true AND live_update_realtime == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266159",
+      "FactoryDistinctionBundle.json -> V-266159",
+      "LiveControlOutcomeMatrix.json -> V-266159",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "TMSH_MUTATE",
+      "note": "Set Automatic Update Check to Enabled. Configure Real-Time installation of automatically downloaded updates under Live Update.",
+      "commands": [
+        "modify sys software update auto-check enabled",
+        "modify sys software update auto-phonehome enabled"
+      ]
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266160",
+    "display_status": "blocked_external",
+    "stig_verdict": "unresolved",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance providing content filtering must detect use of network services that have not been authorized or approved by the information system security manager (ISSM) and information system security officer (ISSO), at a minimum.",
+    "evidence_summary": null,
+    "pullback_row": null,
+    "legitimacy": "6/9",
+    "dp_gates": "8/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266160",
+      "KILL SWITCH: adapter not promoted (6/9)",
+      "live disposition was: blocked-external"
+    ],
+    "remediation": {
+      "method": "COMPOSITE",
+      "steps": [
+        {
+          "method": "FIREWALL_POLICY_RULE_PATCH",
+          "endpoint": "/mgmt/tm/security/firewall/policy",
+          "selector": {},
+          "rule_selector": {},
+          "payload": {
+            "classificationPolicy": "/Common/stig_classification_policy"
+          }
+        },
+        {
+          "method": "TMSH_MUTATE",
+          "commands": [
+            "modify security log profile global-network { classification enabled }"
+          ]
+        }
+      ],
+      "note": "Attach a classification policy to scoped firewall rules and enable Classification logging with a log publisher on the global-network logging profile."
+    },
+    "explanation": "Requires organization-provided evidence not available from the appliance. Adapter not promoted (6/9).",
+    "live_validate_enabled": false
+  },
+  {
+    "vuln_id": "V-266166",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Disable On-Demand Cert Auth; use Client Cert Inspection instead",
+    "evidence_summary": {
+      "apm_on_demand_cert_auth_absent": true,
+      "apm_client_cert_inspection_configured": true
+    },
+    "pullback_row": {
+      "vuln_id": "V-266166",
+      "fields": [
+        "apm_on_demand_cert_auth_absent",
+        "apm_client_cert_inspection_configured"
+      ],
+      "required": {
+        "apm_on_demand_cert_auth_absent": "== true",
+        "apm_client_cert_inspection_configured": "== true"
+      },
+      "observed": {
+        "apm_on_demand_cert_auth_absent": true,
+        "apm_client_cert_inspection_configured": true
+      },
+      "operator_summary": "apm_on_demand_cert_auth_absent == true AND apm_client_cert_inspection_configured == true",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266166",
+      "FactoryDistinctionBundle.json -> V-266166",
+      "LiveControlOutcomeMatrix.json -> V-266166",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "APM_POLICY_ITEM_ENSURE",
+      "note": "Replace On-Demand Cert Auth with Client Cert Inspection in each selected APM access policy."
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266170",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "The F5 BIG-IP appliance must be configured to use cryptographic algorithms approved by NSA to protect NSS for remote access to a classified network.",
+    "evidence_summary": {
+      "ltm_attached_client_ssl_profile_count": 1,
+      "ltm_profile_client_ssl_strong_cipher_count": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266170",
+      "fields": [
+        "ltm_attached_client_ssl_profile_count",
+        "ltm_profile_client_ssl_strong_cipher_count"
+      ],
+      "required": {
+        "ltm_attached_client_ssl_profile_count": "== 0",
+        "ltm_profile_client_ssl_strong_cipher_count": "== ltm_attached_client_ssl_profile_count"
+      },
+      "observed": {
+        "ltm_attached_client_ssl_profile_count": 1,
+        "ltm_profile_client_ssl_strong_cipher_count": 1
+      },
+      "operator_summary": "ltm_attached_client_ssl_profile_count == 0 OR ltm_profile_client_ssl_strong_cipher_count == ltm_attached_client_ssl_profile_count",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266170",
+      "FactoryDistinctionBundle.json -> V-266170",
+      "LiveControlOutcomeMatrix.json -> V-266170",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/ltm/profile/client-ssl",
+      "payload": {
+        "ciphers": "ECDHE+AES256-GCM-SHA384:ECDHE+AES128-GCM-SHA256"
+      },
+      "tmsh_equivalent": "tmsh modify ltm profile client-ssl <name> ciphers \"ECDHE+AES256-GCM-SHA384:ECDHE+AES128-GCM-SHA256\""
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266064",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Limit concurrent management sessions",
+    "evidence_summary": {
+      "sys_httpd_max_clients": 10
+    },
+    "pullback_row": {
+      "vuln_id": "V-266064",
+      "fields": [
+        "sys_httpd_max_clients"
+      ],
+      "required": {
+        "sys_httpd_max_clients": "== org_defined_value"
+      },
+      "observed": {
+        "sys_httpd_max_clients": 10
+      },
+      "operator_summary": "sys_httpd_max_clients <= 10 OR sys_httpd_max_clients == org_defined_value",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266064",
+      "FactoryDistinctionBundle.json -> V-266064",
+      "LiveControlOutcomeMatrix.json -> V-266064",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/sys/httpd",
+      "payload": {
+        "maxClients": 10
+      },
+      "tmsh_equivalent": "tmsh modify sys httpd max-clients 10; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266075",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Generate audit records and send to redundant central syslog servers",
+    "evidence_summary": {
+      "sys_syslog_remote_server_count": 2
+    },
+    "pullback_row": {
+      "vuln_id": "V-266075",
+      "fields": [
+        "sys_syslog_remote_server_count"
+      ],
+      "required": {
+        "sys_syslog_remote_server_count": ">= 2"
+      },
+      "observed": {
+        "sys_syslog_remote_server_count": 2
+      },
+      "operator_summary": "sys_syslog_remote_server_count >= 2",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266075",
+      "FactoryDistinctionBundle.json -> V-266075",
+      "LiveControlOutcomeMatrix.json -> V-266075",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/sys/syslog",
+      "payload": {
+        "remoteServers": [
+          {
+            "name": "stig_syslog1",
+            "host": "<ip1>"
+          },
+          {
+            "name": "stig_syslog2",
+            "host": "<ip2>"
+          }
+        ]
+      },
+      "tmsh_equivalent": "tmsh modify sys syslog remote-servers add { stig_syslog1 { host <ip1> remote-port 514 } stig_syslog2 { host <ip2> remote-port 514 } }; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266076",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Configure redundant authoritative NTP time sources",
+    "evidence_summary": {
+      "sys_ntp_server_count": 2
+    },
+    "pullback_row": {
+      "vuln_id": "V-266076",
+      "fields": [
+        "sys_ntp_server_count"
+      ],
+      "required": {
+        "sys_ntp_server_count": ">= 2"
+      },
+      "observed": {
+        "sys_ntp_server_count": 2
+      },
+      "operator_summary": "sys_ntp_server_count >= 2",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266076",
+      "FactoryDistinctionBundle.json -> V-266076",
+      "LiveControlOutcomeMatrix.json -> V-266076",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/sys/ntp",
+      "payload": {
+        "servers": [
+          "<ntp_server1>",
+          "<ntp_server2>"
+        ]
+      },
+      "tmsh_equivalent": "tmsh modify sys ntp servers add { <ntp_server1> <ntp_server2> }; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266087",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Enforce minimum 15-character password length",
+    "evidence_summary": {
+      "auth_password_policy_min_length": 15
+    },
+    "pullback_row": {
+      "vuln_id": "V-266087",
+      "fields": [
+        "auth_password_policy_min_length"
+      ],
+      "required": {
+        "auth_password_policy_min_length": ">= 15"
+      },
+      "observed": {
+        "auth_password_policy_min_length": 15
+      },
+      "operator_summary": "auth_password_policy_min_length >= 15",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266087",
+      "FactoryDistinctionBundle.json -> V-266087",
+      "LiveControlOutcomeMatrix.json -> V-266087",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/auth/password-policy",
+      "payload": {
+        "minimumLength": 15,
+        "policyEnforcement": "enabled"
+      },
+      "tmsh_equivalent": "tmsh modify auth password-policy min-length 15 policy-enforcement enabled; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266088",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Require at least one uppercase character in passwords",
+    "evidence_summary": {
+      "auth_password_policy_required_uppercase": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266088",
+      "fields": [
+        "auth_password_policy_required_uppercase"
+      ],
+      "required": {
+        "auth_password_policy_required_uppercase": ">= 1"
+      },
+      "observed": {
+        "auth_password_policy_required_uppercase": 1
+      },
+      "operator_summary": "auth_password_policy_required_uppercase >= 1",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266088",
+      "FactoryDistinctionBundle.json -> V-266088",
+      "LiveControlOutcomeMatrix.json -> V-266088",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/auth/password-policy",
+      "payload": {
+        "requiredUppercase": 1
+      },
+      "tmsh_equivalent": "tmsh modify auth password-policy required-uppercase 1; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266089",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Require at least one lowercase character in passwords",
+    "evidence_summary": {
+      "auth_password_policy_required_lowercase": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266089",
+      "fields": [
+        "auth_password_policy_required_lowercase"
+      ],
+      "required": {
+        "auth_password_policy_required_lowercase": ">= 1"
+      },
+      "observed": {
+        "auth_password_policy_required_lowercase": 1
+      },
+      "operator_summary": "auth_password_policy_required_lowercase >= 1",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266089",
+      "FactoryDistinctionBundle.json -> V-266089",
+      "LiveControlOutcomeMatrix.json -> V-266089",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/auth/password-policy",
+      "payload": {
+        "requiredLowercase": 1
+      },
+      "tmsh_equivalent": "tmsh modify auth password-policy required-lowercase 1; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266090",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Require at least one numeric character in passwords",
+    "evidence_summary": {
+      "auth_password_policy_required_numeric": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266090",
+      "fields": [
+        "auth_password_policy_required_numeric"
+      ],
+      "required": {
+        "auth_password_policy_required_numeric": ">= 1"
+      },
+      "observed": {
+        "auth_password_policy_required_numeric": 1
+      },
+      "operator_summary": "auth_password_policy_required_numeric >= 1",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266090",
+      "FactoryDistinctionBundle.json -> V-266090",
+      "LiveControlOutcomeMatrix.json -> V-266090",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/auth/password-policy",
+      "payload": {
+        "requiredNumeric": 1
+      },
+      "tmsh_equivalent": "tmsh modify auth password-policy required-numeric 1; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266091",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Require at least one special character in passwords",
+    "evidence_summary": {
+      "auth_password_policy_required_special": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266091",
+      "fields": [
+        "auth_password_policy_required_special"
+      ],
+      "required": {
+        "auth_password_policy_required_special": ">= 1"
+      },
+      "observed": {
+        "auth_password_policy_required_special": 1
+      },
+      "operator_summary": "auth_password_policy_required_special >= 1",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266091",
+      "FactoryDistinctionBundle.json -> V-266091",
+      "LiveControlOutcomeMatrix.json -> V-266091",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/auth/password-policy",
+      "payload": {
+        "requiredSpecial": 1
+      },
+      "tmsh_equivalent": "tmsh modify auth password-policy required-special 1; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266092",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Enforce password change differences (at least 8 characters different)",
+    "evidence_summary": {
+      "sys_db_password_difok": 8
+    },
+    "pullback_row": {
+      "vuln_id": "V-266092",
+      "fields": [
+        "sys_db_password_difok"
+      ],
+      "required": {
+        "sys_db_password_difok": ">= 8"
+      },
+      "observed": {
+        "sys_db_password_difok": 8
+      },
+      "operator_summary": "sys_db_password_difok >= 8",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266092",
+      "FactoryDistinctionBundle.json -> V-266092",
+      "LiveControlOutcomeMatrix.json -> V-266092",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/sys/db/password.difok",
+      "payload": {
+        "value": "8"
+      },
+      "tmsh_equivalent": "tmsh modify sys db password.difok value 8; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266137",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance providing user access control intermediary services must limit the number of concurrent sessions to one or an organization-defined number for each access profile.",
+    "evidence_summary": {
+      "apm_profile_access_max_concurrent_users": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266137",
+      "fields": [
+        "apm_profile_access_max_concurrent_users"
+      ],
+      "required": {
+        "apm_profile_access_max_concurrent_users": "<= org_defined_session_limit"
+      },
+      "observed": {
+        "apm_profile_access_max_concurrent_users": 1
+      },
+      "operator_summary": "apm_profile_access_max_concurrent_users >= 1 AND apm_profile_access_max_concurrent_users <= org_defined_session_limit",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266137",
+      "FactoryDistinctionBundle.json -> V-266137",
+      "LiveControlOutcomeMatrix.json -> V-266137",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "payload": {
+        "maxConcurrentUsers": 1
+      },
+      "tmsh_equivalent": "tmsh modify apm profile access <name> max-concurrent-users <limit>"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266155",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "The F5 BIG-IP appliance must terminate all network connections associated with a communications session at the end of the session or after 15 minutes of inactivity.",
+    "evidence_summary": {
+      "apm_profile_access_inactivity_timeout": 900
+    },
+    "pullback_row": {
+      "vuln_id": "V-266155",
+      "fields": [
+        "apm_profile_access_inactivity_timeout"
+      ],
+      "required": {
+        "apm_profile_access_inactivity_timeout": "> 0"
+      },
+      "observed": {
+        "apm_profile_access_inactivity_timeout": 900
+      },
+      "operator_summary": "apm_profile_access_inactivity_timeout <= 900 AND apm_profile_access_inactivity_timeout > 0",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266155",
+      "FactoryDistinctionBundle.json -> V-266155",
+      "LiveControlOutcomeMatrix.json -> V-266155",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "payload": {
+        "inactivityTimeout": 900
+      },
+      "tmsh_equivalent": "tmsh modify apm profile access <name> inactivity-timeout 900"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266169",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "The F5 BIG-IP appliance must be configured to set a Maximum Session Timeout value of eight hours or less.",
+    "evidence_summary": {
+      "apm_profile_access_max_session_timeout": 28800
+    },
+    "pullback_row": {
+      "vuln_id": "V-266169",
+      "fields": [
+        "apm_profile_access_max_session_timeout"
+      ],
+      "required": {
+        "apm_profile_access_max_session_timeout": "> 0"
+      },
+      "observed": {
+        "apm_profile_access_max_session_timeout": 28800
+      },
+      "operator_summary": "apm_profile_access_max_session_timeout <= 28800 AND apm_profile_access_max_session_timeout > 0",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266169",
+      "FactoryDistinctionBundle.json -> V-266169",
+      "LiveControlOutcomeMatrix.json -> V-266169",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "payload": {
+        "maxSessionTimeout": 28800
+      },
+      "tmsh_equivalent": "tmsh modify apm profile access <name> max-session-timeout 28800"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266175",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "low",
+    "title": "Limit concurrent sessions per IP to 10 or organization-defined number",
+    "evidence_summary": {
+      "apm_profile_access_max_sessions_per_client_ip": 10
+    },
+    "pullback_row": {
+      "vuln_id": "V-266175",
+      "fields": [
+        "apm_profile_access_max_sessions_per_client_ip"
+      ],
+      "required": {
+        "apm_profile_access_max_sessions_per_client_ip": ">= 1"
+      },
+      "observed": {
+        "apm_profile_access_max_sessions_per_client_ip": 10
+      },
+      "operator_summary": "apm_profile_access_max_sessions_per_client_ip <= 10 AND apm_profile_access_max_sessions_per_client_ip >= 1",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266175",
+      "FactoryDistinctionBundle.json -> V-266175",
+      "LiveControlOutcomeMatrix.json -> V-266175",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/apm/profile/access",
+      "payload": {
+        "maxSessionsPerClientIp": 10
+      },
+      "tmsh_equivalent": "tmsh modify apm profile access <name> max-sessions-per-client-ip 10"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266065",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Terminate shared/group account credentials when members leave the group",
+    "evidence_summary": {
+      "auth_user_shared_accounts": 0
+    },
+    "pullback_row": {
+      "vuln_id": "V-266065",
+      "fields": [
+        "auth_user_shared_accounts"
+      ],
+      "required": {
+        "auth_user_shared_accounts": "== 0"
+      },
+      "observed": {
+        "auth_user_shared_accounts": 0
+      },
+      "operator_summary": "auth_user_shared_accounts == 0",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266065",
+      "FactoryDistinctionBundle.json -> V-266065",
+      "LiveControlOutcomeMatrix.json -> V-266065",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/auth/user",
+      "note": "Evaluate shared/group accounts from user list. Remediation requires manual user deletion.",
+      "tmsh_equivalent": "tmsh delete auth user <shared_account>; tmsh save sys config",
+      "selector": {
+        "description_contains_any": [
+          "shared",
+          "group",
+          "generic",
+          "service"
+        ]
+      }
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266066",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Configure only one local account of last resort for emergency access",
+    "evidence_summary": {
+      "auth_user_local_account_count": 1
+    },
+    "pullback_row": {
+      "vuln_id": "V-266066",
+      "fields": [
+        "auth_user_local_account_count"
+      ],
+      "required": {
+        "auth_user_local_account_count": "== 1"
+      },
+      "observed": {
+        "auth_user_local_account_count": 1
+      },
+      "operator_summary": "auth_user_local_account_count == 1",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266066",
+      "FactoryDistinctionBundle.json -> V-266066",
+      "LiveControlOutcomeMatrix.json -> V-266066",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH_COLLECTION",
+      "endpoint": "/mgmt/tm/auth/user",
+      "note": "Count local accounts; only one account of last resort should remain. Remediation requires manual user deletion.",
+      "tmsh_equivalent": "tmsh delete auth user <extra_account>; tmsh save sys config",
+      "selector": {}
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266077",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "medium",
+    "title": "Use UTC timestamps for consistent forensic analysis",
+    "evidence_summary": {
+      "sys_ntp_timezone": "UTC"
+    },
+    "pullback_row": {
+      "vuln_id": "V-266077",
+      "fields": [
+        "sys_ntp_timezone"
+      ],
+      "required": {
+        "sys_ntp_timezone": "== 'UTC'"
+      },
+      "observed": {
+        "sys_ntp_timezone": "UTC"
+      },
+      "operator_summary": "sys_ntp_timezone == 'UTC'",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266077",
+      "FactoryDistinctionBundle.json -> V-266077",
+      "LiveControlOutcomeMatrix.json -> V-266077",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/sys/ntp",
+      "payload": {
+        "timezone": "UTC"
+      },
+      "tmsh_equivalent": "tmsh modify sys ntp timezone UTC; tmsh save sys config"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  },
+  {
+    "vuln_id": "V-266085",
+    "display_status": "live_resolved",
+    "stig_verdict": "not_a_finding",
+    "severity": "high",
+    "title": "Use multifactor authentication (PKI-based) for management logins",
+    "evidence_summary": {
+      "auth_mfa_configured": "tacacs"
+    },
+    "pullback_row": {
+      "vuln_id": "V-266085",
+      "fields": [
+        "auth_mfa_configured"
+      ],
+      "required": {
+        "auth_mfa_configured": "== 'tacacs'"
+      },
+      "observed": {
+        "auth_mfa_configured": "tacacs"
+      },
+      "operator_summary": "auth_mfa_configured == 'tacacs'",
+      "verdict": "pass"
+    },
+    "legitimacy": "9/9",
+    "dp_gates": "10/10",
+    "provenance": [
+      "assertion_contracts.json -> V-266085",
+      "FactoryDistinctionBundle.json -> V-266085",
+      "LiveControlOutcomeMatrix.json -> V-266085",
+      "bridge/promote_all.py -> 9/9 legitimacy verified"
+    ],
+    "remediation": {
+      "method": "PATCH",
+      "endpoint": "/mgmt/tm/auth/source",
+      "payload": {
+        "type": "tacacs"
+      },
+      "note": "Configure PKI-based multifactor authentication for all management access.",
+      "tmsh_equivalent": "tmsh modify auth source type tacacs"
+    },
+    "explanation": null,
+    "live_validate_enabled": true
+  }
+]
+</script>
+<script>
+var bundleData = JSON.parse(document.getElementById("projection-data").textContent);
+var filterState = "all";
+var queryState = "";
+var currentVid = bundleData.length !== 0 ? bundleData[0].vuln_id : null;
+
+function tally(items) {{
+  return items.reduce(function(acc, item) {{
+    acc[item.display_status] = (acc[item.display_status] || 0) + 1;
+    return acc;
+  }}, {{}});
+}}
+
+function drawSummary() {{
+  var counts = tally(bundleData);
+  var summaryBar = document.getElementById("summaryBar");
+  var labels = [
+    "live-resolved: " + (counts.live_resolved || 0),
+    "blocked: " + (counts.blocked_external || 0),
+    "open: " + (counts.open_finding || 0),
+    "pending: " + (counts.pending_promotion || 0)
+  ];
+  summaryBar.innerHTML = labels.map(function(label) {{
+    return '<span class="pill">' + label + '</span>';
+  }}).join("");
+}}
+
+function iconData(item) {{
+  if (item.display_status === "blocked_external") {{
+    return {{ symbol: "!", className: "marker-gray" }};
+  }}
+  if (item.display_status === "pending_promotion") {{
+    return {{ symbol: ".", className: "marker-amber" }};
+  }}
+  if (item.display_status === "open_finding" || item.stig_verdict === "open") {{
+    return {{ symbol: "X", className: "marker-red" }};
+  }}
+  return {{ symbol: "+", className: "marker-green" }};
+}}
+
+function drawFilters() {{
+  var filterRow = document.getElementById("filterRow");
+  var filterDefs = [
+    {{ id: "all", label: "All" }},
+    {{ id: "not_a_finding", label: "Not a Finding" }},
+    {{ id: "open", label: "Open" }},
+    {{ id: "unresolved", label: "Unresolved" }},
+    {{ id: "blocked_external", label: "Blocked" }}
+  ];
+  filterRow.innerHTML = filterDefs.map(function(item) {{
+    var active = item.id === filterState ? " active" : "";
+    return '<button class="tab-filter' + active + '" data-filter="' + item.id + '">' + item.label + '</button>';
+  }}).join("");
+}}
+
+function visibleItems() {{
+  var lowered = queryState.toLowerCase();
+  return bundleData.filter(function(item) {{
+    var filterOk = true;
+    if (filterState === "not_a_finding") {{
+      filterOk = item.stig_verdict === "not_a_finding";
+    }}
+    if (filterState === "open") {{
+      filterOk = item.stig_verdict === "open";
+    }}
+    if (filterState === "unresolved") {{
+      filterOk = item.stig_verdict === "unresolved";
+    }}
+    if (filterState === "blocked_external") {{
+      filterOk = item.display_status === "blocked_external";
+    }}
+    var textOk = item.vuln_id.toLowerCase().includes(lowered) || String(item.title || "").toLowerCase().includes(lowered);
+    return filterOk && textOk;
+  }});
+}}
+
+function drawList() {{
+  var items = visibleItems();
+  var list = document.getElementById("sidebarList");
+  if (items.length === 0) {{
+    list.innerHTML = '<div class="muted">No controls match the current filter.</div>';
+    document.getElementById("detailPanel").innerHTML = '<div class="muted">Select a control.</div>';
+    return;
+  }}
+  if (items.every(function(item) {{ return item.vuln_id !== currentVid; }})) {{
+    currentVid = items[0].vuln_id;
+  }}
+  list.innerHTML = items.map(function(item) {{
+    var icon = iconData(item);
+    var active = item.vuln_id === currentVid ? " active" : "";
+    return '<button class="item' + active + '" data-vid="' + item.vuln_id + '"><span class="marker ' + icon.className + '">' + icon.symbol + '</span><span class="vid">' + item.vuln_id + '</span></button>';
+  }}).join("");
+  drawDetail();
+}}
+
+function stateLabel(item) {{
+  if (item.display_status === "blocked_external") {{
+    return '<span class="status-block">UNRESOLVED - BLOCKED EXTERNAL</span>';
+  }}
+  if (item.display_status === "pending_promotion") {{
+    return '<span class="status-warn">PENDING PROMOTION</span>';
+  }}
+  if (item.display_status === "open_finding") {{
+    return '<span class="status-open">OPEN FINDING</span>';
+  }}
+  if (item.stig_verdict === "open") {{
+    return '<span class="status-open">OPEN</span>';
+  }}
+  return '<span class="status-good">NOT A FINDING</span>';
+}}
+
+function objectRows(data) {{
+  return Object.keys(data).map(function(key) {{
+    return '<tr><th>' + key + '</th><td>' + JSON.stringify(data[key]) + '</td></tr>';
+  }}).join("");
+}}
+
+function pullbackRows(row) {{
+  return row.fields.map(function(name) {{
+    return '<tr><th>' + name + '</th><td>' + JSON.stringify(row.required[name]) + '</td><td>' + JSON.stringify(row.observed[name]) + '</td></tr>';
+  }}).join("");
+}}
+
+function remedyBlock(item) {{
+  if (!item.remediation) {{
+    return '';
+  }}
+  return '<div class="remedy"><h3>Remediation</h3><pre>' + JSON.stringify(item.remediation, null, 2) + '</pre></div>';
+}
+
+function validateBlock(item) {{
+  if (item.live_validate_enabled === true) {{
+    return '<button class="action" id="validateButton">Validate Live</button>';
+  }}
+  return '';
+}
+
+function drawDetail() {{
+  var item = bundleData.find(function(entry) {{
+    return entry.vuln_id === currentVid;
+  }});
+  var panel = document.getElementById("detailPanel");
+  if (!item) {{
+    panel.innerHTML = '<div class="muted">Select a control.</div>';
+    return;
+  }}
+  var detailHtml = ''
+    + '<div class="meta">'
+    + '<div><strong>' + item.vuln_id + '</strong></div>'
+    + '<div>' + String(item.title || '') + '</div>'
+    + '<div>Severity: ' + String(item.severity || '') + '</div>'
+    + '<div>Status: ' + stateLabel(item) + '</div>'
+    + '<div>Legitimacy: ' + item.legitimacy + ' | DP: ' + item.dp_gates + '</div>'
+    + '</div>';
+  if (item.evidence_summary !== null) {{
+    detailHtml += '<div class="kv"><h3>Evidence</h3><table><tbody>' + objectRows(item.evidence_summary) + '</tbody></table></div>';
+  }}
+  if (item.pullback_row !== null) {{
+    detailHtml += '<div class="kv"><h3>Pullback Row</h3><table><thead><tr><th>Field</th><th>Required</th><th>Observed</th></tr></thead><tbody>' + pullbackRows(item.pullback_row) + '</tbody></table></div>';
+  }}
+  if (item.explanation !== null) {{
+    detailHtml += '<div class="kv"><h3>Explanation</h3><div class="muted">' + item.explanation + '</div></div>';
+  }}
+  detailHtml += '<div class="prov"><h3>Provenance</h3><ol>' + item.provenance.map(function(line) {{
+    return '<li>' + line + '</li>';
+  }}).join("") + '</ol></div>';
+  detailHtml += remedyBlock(item);
+  detailHtml += validateBlock(item);
+  panel.innerHTML = detailHtml;
+  var validateButton = document.getElementById("validateButton");
+  if (validateButton) {{
+    validateButton.addEventListener("click", function() {{
+      window.alert("Validate Live is available only in the packaged standalone wrapper.");
+    }});
+  }}
+}
+
+document.getElementById("filterRow").addEventListener("click", function(evt) {{
+  var next = evt.target.getAttribute("data-filter");
+  if (next === null) {{
+    return;
+  }}
+  filterState = next;
+  drawFilters();
+  drawList();
+}});
+
+document.getElementById("searchBox").addEventListener("input", function(evt) {{
+  queryState = evt.target.value || "";
+  drawList();
+}});
+
+document.getElementById("sidebarList").addEventListener("click", function(evt) {{
+  var holder = evt.target.closest("[data-vid]");
+  if (!holder) {{
+    return;
+  }}
+  currentVid = holder.getAttribute("data-vid");
+  drawList();
+}});
+
+drawSummary();
+drawFilters();
+drawList();
+</script>
+</body>
+</html>

@@ -12,6 +12,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import shlex
 import ssl
 import urllib.error
 import urllib.request
@@ -81,6 +82,20 @@ class F5Client:
     def post(self, path: str, body: Dict[str, Any]) -> Dict[str, Any]:
         return self._request("POST", path, body)
 
+    @staticmethod
+    def _command_result(payload: Dict[str, Any], endpoint: str, command: str) -> str:
+        output = payload.get("commandResult")
+        if isinstance(output, str):
+            return output
+        # Some BIG-IP versions echo a util runstate object without commandResult
+        # when the chosen util endpoint cannot execute the command.  Report that
+        # clearly so callers know this is a transport/permission response, not a
+        # missing local deployment file.
+        raise RuntimeError(
+            f"{endpoint} did not return commandResult for {command!r}; "
+            f"payload={payload!r}"
+        )
+
     def path_exists(self, path: str) -> bool:
         try:
             self.get(path)
@@ -91,20 +106,31 @@ class F5Client:
             raise
 
     def run_bash(self, command: str) -> str:
+        util_args = "-c " + shlex.quote(command)
         result = self.post(
             "/mgmt/tm/util/bash",
             {
                 "command": "run",
-                "utilCmdArgs": f'-c "{command}"',
+                "utilCmdArgs": util_args,
             },
         )
-        output = result.get("commandResult")
-        if not isinstance(output, str):
-            raise RuntimeError(f"util/bash returned unexpected payload: {result!r}")
-        return output
+        return self._command_result(result, "util/bash", command)
 
     def run_tmsh(self, command: str) -> str:
         safe = command.strip()
         if not safe.startswith("tmsh "):
             safe = f"tmsh {safe}"
-        return self.run_bash(safe)
+        tmsh_command = safe[len("tmsh "):].strip()
+        try:
+            result = self.post(
+                "/mgmt/tm/util/tmsh",
+                {
+                    "command": "run",
+                    "utilCmdArgs": "-c " + shlex.quote(tmsh_command),
+                },
+            )
+            return self._command_result(result, "util/tmsh", tmsh_command)
+        except RuntimeError:
+            # Older or restricted BIG-IP images may not expose util/tmsh
+            # consistently.  Bash remains the compatibility fallback.
+            return self.run_bash(safe)

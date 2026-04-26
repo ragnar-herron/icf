@@ -1,0 +1,325 @@
+{
+  "ok": true,
+  "vuln_id": "V-266067",
+  "source_stig": {
+    "vuln_id": "V-266067",
+    "ruleID": "SV-266067r1024598_rule",
+    "checkid": "C-69990r1023450_chk",
+    "fixid": "F-69893r1023451_fix",
+    "title": "The F5 BIG-IP appliance must be configured to assign appropriate user roles or access levels to authenticated users.",
+    "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Remote Role Groups.\n4. Verify configured groups are assigned the appropriate role.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list auth remote-role\n\nNote: Verify configured groups are assigned the appropriate role.\n\nIf the BIG-IP appliance is not configured to assign appropriate user roles or access levels to authenticated users, this is a finding.",
+    "fixtext": "Remote Roles (e.g., RADIUS, LDAP groups)\nFrom the BIG-IP GUI:\n1. System.\n2. Users.\n3. Remote Role Groups.\n4. Select the Group Name.\n5. Modify the Properties of the group to the appropriate access level.\n6. Update.\n\nLocal Users\n1. System.\n2. Users.\n3. User List.\n4. Select the user.\n5. Modify \"Partition Access\" to the appropriate access level.\n6. Update.",
+    "description": "Successful identification and authentication must not automatically give an entity full access to a network device or security domain. \n\nAuthorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset or set of resources. Information systems use access control policies and enforcement mechanisms to implement this requirement. The F5 BIG-IP appliance must enforce organization-defined roles to control privileged access to configure the types or objects a user can manage and/or the tasks a user can perform.\n\nFor each BIG-IP user account, a different user role can be assigned to each administrative partition to which the user has access. This allows assignment of multiple user roles to each user account on the system. Users can assign a specific user role to each administrative partition to grant the user access. In this way, the BIG-IP configuration objects that the user can manage are controlled, as well as the types of actions the user can perform on those objects.\n\nSatisfies: SRG-APP-000033-NDM-000212, SRG-APP-000329-NDM-000287",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "8290cb2957f98635916e2e8b279d31a7a9d2724f77091b838b955c298b840015"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_auth_user": {
+      "source": "tmsh_auth_user",
+      "preview": "auth user admin {\n    description \"Admin User\"\n    encrypted-password $6$.RzZ5zWD$uloQrK7.e/jbcVUWCS71b5gkS4h1aRGjM.O6YikZJUJ0qvMbM8RtfAJ4uCggY/Qr0Yz9OaVe/9J9gJuzk4UBQ.\n    partition Common\n    partition-access {\n        all-partitions {\n   ... (418 more chars)",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth user"
+      },
+      "blob_sha256": "7e84b8b5a29477ec",
+      "bytes": 659
+    },
+    "tmsh_auth_remote_role": {
+      "source": "tmsh_auth_remote_role",
+      "preview": "auth remote-role {\n    description none\n    role-info {\n        stig_remote_admin {\n            attribute memberOf=CN=BIG-IP_Admins\n            console disabled\n            deny disabled\n            description none\n            line-order 1 ... (72 more chars)",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list auth remote-role all-properties"
+      },
+      "blob_sha256": "3a6a0d2a986a4a05",
+      "bytes": 313
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266067:auth_user_local_admin_count:1",
+      "carrier_coordinate": "tmsh:list auth user",
+      "measurable": "auth_user.local_admin_count",
+      "lawful_property": "<= 1",
+      "required": "<= 1",
+      "observed": "1",
+      "comparison_expression": "observed(1) satisfies required(<= 1)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_user",
+      "source_stig": {
+        "vuln_id": "V-266067",
+        "ruleID": "SV-266067r1024598_rule",
+        "checkid": "C-69990r1023450_chk",
+        "fixid": "F-69893r1023451_fix",
+        "title": "The F5 BIG-IP appliance must be configured to assign appropriate user roles or access levels to authenticated users.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Remote Role Groups.\n4. Verify configured groups are assigned the appropriate role.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list auth remote-role\n\nNote: Verify configured groups are assigned the appropriate role.\n\nIf the BIG-IP appliance is not configured to assign appropriate user roles or access levels to authenticated users, this is a finding.",
+        "fixtext": "Remote Roles (e.g., RADIUS, LDAP groups)\nFrom the BIG-IP GUI:\n1. System.\n2. Users.\n3. Remote Role Groups.\n4. Select the Group Name.\n5. Modify the Properties of the group to the appropriate access level.\n6. Update.\n\nLocal Users\n1. System.\n2. Users.\n3. User List.\n4. Select the user.\n5. Modify \"Partition Access\" to the appropriate access level.\n6. Update.",
+        "description": "Successful identification and authentication must not automatically give an entity full access to a network device or security domain. \n\nAuthorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset or set of resources. Information systems use access control policies and enforcement mechanisms to implement this requirement. The F5 BIG-IP appliance must enforce organization-defined roles to control privileged access to configure the types or objects a user can manage and/or the tasks a user can perform.\n\nFor each BIG-IP user account, a different user role can be assigned to each administrative partition to which the user has access. This allows assignment of multiple user roles to each user account on the system. Users can assign a specific user role to each administrative partition to grant the user access. In this way, the BIG-IP configuration objects that the user can manage are controlled, as well as the types of actions the user can perform on those objects.\n\nSatisfies: SRG-APP-000033-NDM-000212, SRG-APP-000329-NDM-000287",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "8290cb2957f98635916e2e8b279d31a7a9d2724f77091b838b955c298b840015"
+      },
+      "vuln_id": "V-266067"
+    },
+    {
+      "pullback_id": "V-266067:auth_remote_role_role_info_mappings_present:2",
+      "carrier_coordinate": "tmsh:list auth remote-role all-properties",
+      "measurable": "auth_remote_role.role_info_mappings_present",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "true",
+      "comparison_expression": "observed(true) satisfies required(true)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_auth_remote_role",
+      "source_stig": {
+        "vuln_id": "V-266067",
+        "ruleID": "SV-266067r1024598_rule",
+        "checkid": "C-69990r1023450_chk",
+        "fixid": "F-69893r1023451_fix",
+        "title": "The F5 BIG-IP appliance must be configured to assign appropriate user roles or access levels to authenticated users.",
+        "checktext": "From the BIG-IP GUI:\n1. System.\n2. Users.\n3. Remote Role Groups.\n4. Verify configured groups are assigned the appropriate role.\n\nFrom the BIG-IP console, type the following command:\n\ntmsh list auth remote-role\n\nNote: Verify configured groups are assigned the appropriate role.\n\nIf the BIG-IP appliance is not configured to assign appropriate user roles or access levels to authenticated users, this is a finding.",
+        "fixtext": "Remote Roles (e.g., RADIUS, LDAP groups)\nFrom the BIG-IP GUI:\n1. System.\n2. Users.\n3. Remote Role Groups.\n4. Select the Group Name.\n5. Modify the Properties of the group to the appropriate access level.\n6. Update.\n\nLocal Users\n1. System.\n2. Users.\n3. User List.\n4. Select the user.\n5. Modify \"Partition Access\" to the appropriate access level.\n6. Update.",
+        "description": "Successful identification and authentication must not automatically give an entity full access to a network device or security domain. \n\nAuthorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset or set of resources. Information systems use access control policies and enforcement mechanisms to implement this requirement. The F5 BIG-IP appliance must enforce organization-defined roles to control privileged access to configure the types or objects a user can manage and/or the tasks a user can perform.\n\nFor each BIG-IP user account, a different user role can be assigned to each administrative partition to which the user has access. This allows assignment of multiple user roles to each user account on the system. Users can assign a specific user role to each administrative partition to grant the user access. In this way, the BIG-IP configuration objects that the user can manage are controlled, as well as the types of actions the user can perform on those objects.\n\nSatisfies: SRG-APP-000033-NDM-000212, SRG-APP-000329-NDM-000287",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "8290cb2957f98635916e2e8b279d31a7a9d2724f77091b838b955c298b840015"
+      },
+      "vuln_id": "V-266067"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266067)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266067)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266067)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 2,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266067:auth_user_local_admin_count:1",
+          "shared_key": "auth_user.local_admin_count",
+          "left_id": "observed[auth_user.local_admin_count] = 1",
+          "right_id": "required[auth_user.local_admin_count] <= 1",
+          "observed_value": "1",
+          "required_value": "<= 1",
+          "comparison_expression": "observed(1) satisfies required(<= 1)",
+          "cardinality": "ok",
+          "source": "tmsh:list auth user"
+        },
+        {
+          "pullback_id": "V-266067:auth_remote_role_role_info_mappings_present:2",
+          "shared_key": "auth_remote_role.role_info_mappings_present",
+          "left_id": "observed[auth_remote_role.role_info_mappings_present] = true",
+          "right_id": "required[auth_remote_role.role_info_mappings_present] true",
+          "observed_value": "true",
+          "required_value": "true",
+          "comparison_expression": "observed(true) satisfies required(true)",
+          "cardinality": "ok",
+          "source": "tmsh:list auth remote-role all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266067:auth_user_local_admin_count:1",
+      "shared_key": "auth_user.local_admin_count",
+      "left_id": "observed[auth_user.local_admin_count] = 1",
+      "right_id": "required[auth_user.local_admin_count] <= 1",
+      "observed_value": "1",
+      "required_value": "<= 1",
+      "source": "tmsh:list auth user",
+      "comparison_expression": "observed(1) satisfies required(<= 1)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266067:auth_remote_role_role_info_mappings_present:2",
+      "shared_key": "auth_remote_role.role_info_mappings_present",
+      "left_id": "observed[auth_remote_role.role_info_mappings_present] = true",
+      "right_id": "required[auth_remote_role.role_info_mappings_present] true",
+      "observed_value": "true",
+      "required_value": "true",
+      "source": "tmsh:list auth remote-role all-properties",
+      "comparison_expression": "observed(true) satisfies required(true)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266067",
+      "requirement": "The F5 BIG-IP appliance must be configured to assign appropriate user roles or access levels to authenticated users.",
+      "status": "NOT_A_FINDING",
+      "why": "Role assignment: least-privilege requires no extra local admins beyond the emergency account AND remote-role mappings must exist.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 2,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266067 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266067",
+        "detail": "Collected 2 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list auth user",
+          "tmsh:list auth remote-role all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266067",
+        "source_a": "observed appliance evidence (V-266067)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266067)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266067)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 2,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266067:auth_user_local_admin_count:1",
+            "shared_key": "auth_user.local_admin_count",
+            "left_id": "observed[auth_user.local_admin_count] = 1",
+            "right_id": "required[auth_user.local_admin_count] <= 1",
+            "observed_value": "1",
+            "required_value": "<= 1",
+            "comparison_expression": "observed(1) satisfies required(<= 1)",
+            "cardinality": "ok",
+            "source": "tmsh:list auth user"
+          },
+          {
+            "pullback_id": "V-266067:auth_remote_role_role_info_mappings_present:2",
+            "shared_key": "auth_remote_role.role_info_mappings_present",
+            "left_id": "observed[auth_remote_role.role_info_mappings_present] = true",
+            "right_id": "required[auth_remote_role.role_info_mappings_present] true",
+            "observed_value": "true",
+            "required_value": "true",
+            "comparison_expression": "observed(true) satisfies required(true)",
+            "cardinality": "ok",
+            "source": "tmsh:list auth remote-role all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_user.local_admin_count @ tmsh:list auth user",
+        "pullback_id": "V-266067:auth_user_local_admin_count:1",
+        "required": "<= 1",
+        "observed": "1",
+        "source": "tmsh:list auth user",
+        "comparison_expression": "observed(1) satisfies required(<= 1)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - auth_remote_role.role_info_mappings_present @ tmsh:list auth remote-role all-properties",
+        "pullback_id": "V-266067:auth_remote_role_role_info_mappings_present:2",
+        "required": "true",
+        "observed": "true",
+        "source": "tmsh:list auth remote-role all-properties",
+        "comparison_expression": "observed(true) satisfies required(true)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Role assignment: least-privilege requires no extra local admins beyond the emergency account AND remote-role mappings must exist.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Role assignment: least-privilege requires no extra local admins beyond the emergency account AND remote-role mappings must exist.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266067"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266067/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266067/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

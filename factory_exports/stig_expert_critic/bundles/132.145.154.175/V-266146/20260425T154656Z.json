@@ -1,0 +1,479 @@
+{
+  "ok": true,
+  "vuln_id": "V-266146",
+  "source_stig": {
+    "vuln_id": "V-266146",
+    "ruleID": "SV-266146r1024841_rule",
+    "checkid": "C-70070r1023684_chk",
+    "fixid": "F-69973r1024840_fix",
+    "title": "The F5 BIG-IP appliance must generate event log records that can be forwarded to the centralized events log.",
+    "checktext": "APM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Verify \"Enable Access System Logs\" is checked.\n7. On the \"Access System Logs\" tab, verify all items are set to \"Notice\".\n\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Verify \"default-log-setting\" is in the \"Selected\" column.\n\nIf the BIG-IP appliance is not configured to generate log records, this is a finding.",
+    "fixtext": "Note: Performing this Fix modifies the \"default-log-setting\" log profile, but users can use a different log profile for the Access Profile. However, this requires using the APM Module.\n\nAPM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Check \"Enable Access System Logs\".\n7. On the \"Access System Logs\" tab, set all items are to \"Notice\".\n8. Click \"OK\".\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Move \"default-log-setting\" to the \"Selected\" column.\n7. Click \"Update\".",
+    "description": "Without generating audit records that log usage of objects by subjects and other objects, it would be difficult to establish, correlate, and investigate the events relating to an incident, or identify those responsible for one. The device logs internal users associated with denied outgoing communications traffic posing a threat to external information systems.\n\nAudit records can be generated from various components within the information system (e.g., module or policy filter). Security objects are data objects which are controlled by security policy and bound to security attributes.\n\nSatisfies: SRG-NET-000492-ALG-000027, SRG-NET-000494-ALG-000029, SRG-NET-000495-ALG-000030, SRG-NET-000496-ALG-000031, SRG-NET-000497-ALG-000032, SRG-NET-000498-ALG-000033, SRG-NET-000499-ALG-000034, SRG-NET-000500-ALG-000035, SRG-NET-000501-ALG-000036, SRG-NET-000502-ALG-000037, SRG-NET-000503-ALG-000038, SRG-NET-000505-ALG-000039, SRG-NET-000513-ALG-000026, SRG-NET-000074-ALG-000043, SRG-NET-000075-ALG-000044, SRG-NET-000076-ALG-000045, SRG-NET-000077-ALG-000046, SRG-NET-000078-ALG-000047, SRG-NET-000079-ALG-000048, SRG-NET-000249-ALG-000146, SRG-NET-000383-ALG-000135, SRG-NET-000385-ALG-000138, SRG-NET-000392-ALG-000141, SRG-NET-000392-ALG-000142, SRG-NET-000392-ALG-000143, SRG-NET-000392-ALG-000147, SRG-NET-000392-ALG-000148, SRG-NET-000392-ALG-000149, SRG-NET-000370-ALG-000125",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "380f92a8930f463785509a783e095825a08904ff4ccc905c1cce674934b17c5d"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_apm_log_setting": {
+      "source": "tmsh_apm_log_setting",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm log-setting all-properties"
+      },
+      "blob_sha256": "0bf6b6fc4b86188b",
+      "bytes": 2506
+    },
+    "tmsh_apm_profile_access": {
+      "source": "tmsh_apm_profile_access",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm profile access all-properties"
+      },
+      "blob_sha256": "fbce69c889c04c18",
+      "bytes": 4743
+    },
+    "tmsh_sys_syslog": {
+      "source": "tmsh_sys_syslog",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list sys syslog all-properties"
+      },
+      "blob_sha256": "76dafda6245e70eb",
+      "bytes": 825
+    },
+    "tmsh_apm_policy_access_policy": {
+      "source": "tmsh_apm_policy_access_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm policy access-policy all-properties"
+      },
+      "blob_sha256": "655e6d9da7eac748",
+      "bytes": 1788
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266146:apm_log_setting_default_log_setting_enabled:1",
+      "carrier_coordinate": "tmsh:list apm log-setting all-properties",
+      "measurable": "apm_log_setting.default_log_setting.enabled",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "true",
+      "comparison_expression": "observed(true) satisfies required(true)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_log_setting",
+      "source_stig": {
+        "vuln_id": "V-266146",
+        "ruleID": "SV-266146r1024841_rule",
+        "checkid": "C-70070r1023684_chk",
+        "fixid": "F-69973r1024840_fix",
+        "title": "The F5 BIG-IP appliance must generate event log records that can be forwarded to the centralized events log.",
+        "checktext": "APM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Verify \"Enable Access System Logs\" is checked.\n7. On the \"Access System Logs\" tab, verify all items are set to \"Notice\".\n\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Verify \"default-log-setting\" is in the \"Selected\" column.\n\nIf the BIG-IP appliance is not configured to generate log records, this is a finding.",
+        "fixtext": "Note: Performing this Fix modifies the \"default-log-setting\" log profile, but users can use a different log profile for the Access Profile. However, this requires using the APM Module.\n\nAPM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Check \"Enable Access System Logs\".\n7. On the \"Access System Logs\" tab, set all items are to \"Notice\".\n8. Click \"OK\".\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Move \"default-log-setting\" to the \"Selected\" column.\n7. Click \"Update\".",
+        "description": "Without generating audit records that log usage of objects by subjects and other objects, it would be difficult to establish, correlate, and investigate the events relating to an incident, or identify those responsible for one. The device logs internal users associated with denied outgoing communications traffic posing a threat to external information systems.\n\nAudit records can be generated from various components within the information system (e.g., module or policy filter). Security objects are data objects which are controlled by security policy and bound to security attributes.\n\nSatisfies: SRG-NET-000492-ALG-000027, SRG-NET-000494-ALG-000029, SRG-NET-000495-ALG-000030, SRG-NET-000496-ALG-000031, SRG-NET-000497-ALG-000032, SRG-NET-000498-ALG-000033, SRG-NET-000499-ALG-000034, SRG-NET-000500-ALG-000035, SRG-NET-000501-ALG-000036, SRG-NET-000502-ALG-000037, SRG-NET-000503-ALG-000038, SRG-NET-000505-ALG-000039, SRG-NET-000513-ALG-000026, SRG-NET-000074-ALG-000043, SRG-NET-000075-ALG-000044, SRG-NET-000076-ALG-000045, SRG-NET-000077-ALG-000046, SRG-NET-000078-ALG-000047, SRG-NET-000079-ALG-000048, SRG-NET-000249-ALG-000146, SRG-NET-000383-ALG-000135, SRG-NET-000385-ALG-000138, SRG-NET-000392-ALG-000141, SRG-NET-000392-ALG-000142, SRG-NET-000392-ALG-000143, SRG-NET-000392-ALG-000147, SRG-NET-000392-ALG-000148, SRG-NET-000392-ALG-000149, SRG-NET-000370-ALG-000125",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "380f92a8930f463785509a783e095825a08904ff4ccc905c1cce674934b17c5d"
+      },
+      "vuln_id": "V-266146"
+    },
+    {
+      "pullback_id": "V-266146:apm_log_setting_default_log_setting_access_control_level:2",
+      "carrier_coordinate": "tmsh:list apm log-setting all-properties",
+      "measurable": "apm_log_setting.default_log_setting.access_control_level",
+      "lawful_property": "notice",
+      "required": "notice",
+      "observed": "notice",
+      "comparison_expression": "observed(notice) satisfies required(notice)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_log_setting",
+      "source_stig": {
+        "vuln_id": "V-266146",
+        "ruleID": "SV-266146r1024841_rule",
+        "checkid": "C-70070r1023684_chk",
+        "fixid": "F-69973r1024840_fix",
+        "title": "The F5 BIG-IP appliance must generate event log records that can be forwarded to the centralized events log.",
+        "checktext": "APM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Verify \"Enable Access System Logs\" is checked.\n7. On the \"Access System Logs\" tab, verify all items are set to \"Notice\".\n\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Verify \"default-log-setting\" is in the \"Selected\" column.\n\nIf the BIG-IP appliance is not configured to generate log records, this is a finding.",
+        "fixtext": "Note: Performing this Fix modifies the \"default-log-setting\" log profile, but users can use a different log profile for the Access Profile. However, this requires using the APM Module.\n\nAPM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Check \"Enable Access System Logs\".\n7. On the \"Access System Logs\" tab, set all items are to \"Notice\".\n8. Click \"OK\".\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Move \"default-log-setting\" to the \"Selected\" column.\n7. Click \"Update\".",
+        "description": "Without generating audit records that log usage of objects by subjects and other objects, it would be difficult to establish, correlate, and investigate the events relating to an incident, or identify those responsible for one. The device logs internal users associated with denied outgoing communications traffic posing a threat to external information systems.\n\nAudit records can be generated from various components within the information system (e.g., module or policy filter). Security objects are data objects which are controlled by security policy and bound to security attributes.\n\nSatisfies: SRG-NET-000492-ALG-000027, SRG-NET-000494-ALG-000029, SRG-NET-000495-ALG-000030, SRG-NET-000496-ALG-000031, SRG-NET-000497-ALG-000032, SRG-NET-000498-ALG-000033, SRG-NET-000499-ALG-000034, SRG-NET-000500-ALG-000035, SRG-NET-000501-ALG-000036, SRG-NET-000502-ALG-000037, SRG-NET-000503-ALG-000038, SRG-NET-000505-ALG-000039, SRG-NET-000513-ALG-000026, SRG-NET-000074-ALG-000043, SRG-NET-000075-ALG-000044, SRG-NET-000076-ALG-000045, SRG-NET-000077-ALG-000046, SRG-NET-000078-ALG-000047, SRG-NET-000079-ALG-000048, SRG-NET-000249-ALG-000146, SRG-NET-000383-ALG-000135, SRG-NET-000385-ALG-000138, SRG-NET-000392-ALG-000141, SRG-NET-000392-ALG-000142, SRG-NET-000392-ALG-000143, SRG-NET-000392-ALG-000147, SRG-NET-000392-ALG-000148, SRG-NET-000392-ALG-000149, SRG-NET-000370-ALG-000125",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "380f92a8930f463785509a783e095825a08904ff4ccc905c1cce674934b17c5d"
+      },
+      "vuln_id": "V-266146"
+    },
+    {
+      "pullback_id": "V-266146:apm_profile_access_default_log_setting_attached:3",
+      "carrier_coordinate": "tmsh:list apm profile access all-properties",
+      "measurable": "apm_profile_access.default_log_setting_attached",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "true",
+      "comparison_expression": "observed(true) satisfies required(true)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_profile_access",
+      "source_stig": {
+        "vuln_id": "V-266146",
+        "ruleID": "SV-266146r1024841_rule",
+        "checkid": "C-70070r1023684_chk",
+        "fixid": "F-69973r1024840_fix",
+        "title": "The F5 BIG-IP appliance must generate event log records that can be forwarded to the centralized events log.",
+        "checktext": "APM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Verify \"Enable Access System Logs\" is checked.\n7. On the \"Access System Logs\" tab, verify all items are set to \"Notice\".\n\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Verify \"default-log-setting\" is in the \"Selected\" column.\n\nIf the BIG-IP appliance is not configured to generate log records, this is a finding.",
+        "fixtext": "Note: Performing this Fix modifies the \"default-log-setting\" log profile, but users can use a different log profile for the Access Profile. However, this requires using the APM Module.\n\nAPM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Check \"Enable Access System Logs\".\n7. On the \"Access System Logs\" tab, set all items are to \"Notice\".\n8. Click \"OK\".\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Move \"default-log-setting\" to the \"Selected\" column.\n7. Click \"Update\".",
+        "description": "Without generating audit records that log usage of objects by subjects and other objects, it would be difficult to establish, correlate, and investigate the events relating to an incident, or identify those responsible for one. The device logs internal users associated with denied outgoing communications traffic posing a threat to external information systems.\n\nAudit records can be generated from various components within the information system (e.g., module or policy filter). Security objects are data objects which are controlled by security policy and bound to security attributes.\n\nSatisfies: SRG-NET-000492-ALG-000027, SRG-NET-000494-ALG-000029, SRG-NET-000495-ALG-000030, SRG-NET-000496-ALG-000031, SRG-NET-000497-ALG-000032, SRG-NET-000498-ALG-000033, SRG-NET-000499-ALG-000034, SRG-NET-000500-ALG-000035, SRG-NET-000501-ALG-000036, SRG-NET-000502-ALG-000037, SRG-NET-000503-ALG-000038, SRG-NET-000505-ALG-000039, SRG-NET-000513-ALG-000026, SRG-NET-000074-ALG-000043, SRG-NET-000075-ALG-000044, SRG-NET-000076-ALG-000045, SRG-NET-000077-ALG-000046, SRG-NET-000078-ALG-000047, SRG-NET-000079-ALG-000048, SRG-NET-000249-ALG-000146, SRG-NET-000383-ALG-000135, SRG-NET-000385-ALG-000138, SRG-NET-000392-ALG-000141, SRG-NET-000392-ALG-000142, SRG-NET-000392-ALG-000143, SRG-NET-000392-ALG-000147, SRG-NET-000392-ALG-000148, SRG-NET-000392-ALG-000149, SRG-NET-000370-ALG-000125",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "380f92a8930f463785509a783e095825a08904ff4ccc905c1cce674934b17c5d"
+      },
+      "vuln_id": "V-266146"
+    },
+    {
+      "pullback_id": "V-266146:sys_syslog_remote_host_configured:4",
+      "carrier_coordinate": "tmsh:list sys syslog all-properties",
+      "measurable": "sys_syslog.remote_host_configured",
+      "lawful_property": "host 10.0.0.*",
+      "required": "host 10.0.0.*",
+      "observed": "present",
+      "comparison_expression": "observed(present) satisfies required(host 10.0.0.*)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_sys_syslog",
+      "source_stig": {
+        "vuln_id": "V-266146",
+        "ruleID": "SV-266146r1024841_rule",
+        "checkid": "C-70070r1023684_chk",
+        "fixid": "F-69973r1024840_fix",
+        "title": "The F5 BIG-IP appliance must generate event log records that can be forwarded to the centralized events log.",
+        "checktext": "APM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Verify \"Enable Access System Logs\" is checked.\n7. On the \"Access System Logs\" tab, verify all items are set to \"Notice\".\n\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Verify \"default-log-setting\" is in the \"Selected\" column.\n\nIf the BIG-IP appliance is not configured to generate log records, this is a finding.",
+        "fixtext": "Note: Performing this Fix modifies the \"default-log-setting\" log profile, but users can use a different log profile for the Access Profile. However, this requires using the APM Module.\n\nAPM Default Log Profile:\nFrom the BIG-IP GUI:\n1. Access.\n2. Overview.\n3. Event Logs.\n4. Settings.\n5. Check the box for the \"default-log-setting\" and click \"Edit\".\n6. Check \"Enable Access System Logs\".\n7. On the \"Access System Logs\" tab, set all items are to \"Notice\".\n8. Click \"OK\".\n\nAccess Profile Log Setting:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles (Per-Session Policies).\n4. Click the Name of the Access Profile.\n5. Logs tab.\n6. Move \"default-log-setting\" to the \"Selected\" column.\n7. Click \"Update\".",
+        "description": "Without generating audit records that log usage of objects by subjects and other objects, it would be difficult to establish, correlate, and investigate the events relating to an incident, or identify those responsible for one. The device logs internal users associated with denied outgoing communications traffic posing a threat to external information systems.\n\nAudit records can be generated from various components within the information system (e.g., module or policy filter). Security objects are data objects which are controlled by security policy and bound to security attributes.\n\nSatisfies: SRG-NET-000492-ALG-000027, SRG-NET-000494-ALG-000029, SRG-NET-000495-ALG-000030, SRG-NET-000496-ALG-000031, SRG-NET-000497-ALG-000032, SRG-NET-000498-ALG-000033, SRG-NET-000499-ALG-000034, SRG-NET-000500-ALG-000035, SRG-NET-000501-ALG-000036, SRG-NET-000502-ALG-000037, SRG-NET-000503-ALG-000038, SRG-NET-000505-ALG-000039, SRG-NET-000513-ALG-000026, SRG-NET-000074-ALG-000043, SRG-NET-000075-ALG-000044, SRG-NET-000076-ALG-000045, SRG-NET-000077-ALG-000046, SRG-NET-000078-ALG-000047, SRG-NET-000079-ALG-000048, SRG-NET-000249-ALG-000146, SRG-NET-000383-ALG-000135, SRG-NET-000385-ALG-000138, SRG-NET-000392-ALG-000141, SRG-NET-000392-ALG-000142, SRG-NET-000392-ALG-000143, SRG-NET-000392-ALG-000147, SRG-NET-000392-ALG-000148, SRG-NET-000392-ALG-000149, SRG-NET-000370-ALG-000125",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "380f92a8930f463785509a783e095825a08904ff4ccc905c1cce674934b17c5d"
+      },
+      "vuln_id": "V-266146"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266146)",
+      "source_a_count": 4,
+      "source_b": "STIG-required predicates (V-266146)",
+      "source_b_count": 4,
+      "codomain": "shared measurables (V-266146)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 4,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266146:apm_log_setting_default_log_setting_enabled:1",
+          "shared_key": "apm_log_setting.default_log_setting.enabled",
+          "left_id": "observed[apm_log_setting.default_log_setting.enabled] = true",
+          "right_id": "required[apm_log_setting.default_log_setting.enabled] true",
+          "observed_value": "true",
+          "required_value": "true",
+          "comparison_expression": "observed(true) satisfies required(true)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm log-setting all-properties"
+        },
+        {
+          "pullback_id": "V-266146:apm_log_setting_default_log_setting_access_control_level:2",
+          "shared_key": "apm_log_setting.default_log_setting.access_control_level",
+          "left_id": "observed[apm_log_setting.default_log_setting.access_control_level] = notice",
+          "right_id": "required[apm_log_setting.default_log_setting.access_control_level] notice",
+          "observed_value": "notice",
+          "required_value": "notice",
+          "comparison_expression": "observed(notice) satisfies required(notice)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm log-setting all-properties"
+        },
+        {
+          "pullback_id": "V-266146:apm_profile_access_default_log_setting_attached:3",
+          "shared_key": "apm_profile_access.default_log_setting_attached",
+          "left_id": "observed[apm_profile_access.default_log_setting_attached] = true",
+          "right_id": "required[apm_profile_access.default_log_setting_attached] true",
+          "observed_value": "true",
+          "required_value": "true",
+          "comparison_expression": "observed(true) satisfies required(true)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm profile access all-properties"
+        },
+        {
+          "pullback_id": "V-266146:sys_syslog_remote_host_configured:4",
+          "shared_key": "sys_syslog.remote_host_configured",
+          "left_id": "observed[sys_syslog.remote_host_configured] = present",
+          "right_id": "required[sys_syslog.remote_host_configured] host 10.0.0.*",
+          "observed_value": "present",
+          "required_value": "host 10.0.0.*",
+          "comparison_expression": "observed(present) satisfies required(host 10.0.0.*)",
+          "cardinality": "ok",
+          "source": "tmsh:list sys syslog all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266146:apm_log_setting_default_log_setting_enabled:1",
+      "shared_key": "apm_log_setting.default_log_setting.enabled",
+      "left_id": "observed[apm_log_setting.default_log_setting.enabled] = true",
+      "right_id": "required[apm_log_setting.default_log_setting.enabled] true",
+      "observed_value": "true",
+      "required_value": "true",
+      "source": "tmsh:list apm log-setting all-properties",
+      "comparison_expression": "observed(true) satisfies required(true)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266146:apm_log_setting_default_log_setting_access_control_level:2",
+      "shared_key": "apm_log_setting.default_log_setting.access_control_level",
+      "left_id": "observed[apm_log_setting.default_log_setting.access_control_level] = notice",
+      "right_id": "required[apm_log_setting.default_log_setting.access_control_level] notice",
+      "observed_value": "notice",
+      "required_value": "notice",
+      "source": "tmsh:list apm log-setting all-properties",
+      "comparison_expression": "observed(notice) satisfies required(notice)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266146:apm_profile_access_default_log_setting_attached:3",
+      "shared_key": "apm_profile_access.default_log_setting_attached",
+      "left_id": "observed[apm_profile_access.default_log_setting_attached] = true",
+      "right_id": "required[apm_profile_access.default_log_setting_attached] true",
+      "observed_value": "true",
+      "required_value": "true",
+      "source": "tmsh:list apm profile access all-properties",
+      "comparison_expression": "observed(true) satisfies required(true)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266146:sys_syslog_remote_host_configured:4",
+      "shared_key": "sys_syslog.remote_host_configured",
+      "left_id": "observed[sys_syslog.remote_host_configured] = present",
+      "right_id": "required[sys_syslog.remote_host_configured] host 10.0.0.*",
+      "observed_value": "present",
+      "required_value": "host 10.0.0.*",
+      "source": "tmsh:list sys syslog all-properties",
+      "comparison_expression": "observed(present) satisfies required(host 10.0.0.*)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266146",
+      "requirement": "The F5 BIG-IP appliance must generate event log records that can be forwarded to the centralized events log.",
+      "status": "NOT_A_FINDING",
+      "why": "APM default-log-setting must be enabled at notice, attached to access profiles, and syslog must define remote servers.",
+      "tmsh_remediation_command": "[Manual] Review APM access profile / policy and apply DoD-approved controls.",
+      "rest_remediation_command": "[Manual] PATCH APM objects via Policy Editor or iControl-REST.",
+      "evidence_keys": [
+        "tmsh_apm_profile_access",
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_log_setting"
+      ],
+      "comparison_summary": {
+        "total": 4,
+        "pass": 4,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266146 - apm_access evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266146",
+        "detail": "Collected 3 source snapshot(s) producing 4 measurement(s).",
+        "endpoints": [
+          "tmsh:list apm log-setting all-properties",
+          "tmsh:list apm profile access all-properties",
+          "tmsh:list sys syslog all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266146",
+        "source_a": "observed appliance evidence (V-266146)",
+        "source_a_count": 4,
+        "source_b": "STIG-required predicates (V-266146)",
+        "source_b_count": 4,
+        "codomain": "shared measurables (V-266146)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 4,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266146:apm_log_setting_default_log_setting_enabled:1",
+            "shared_key": "apm_log_setting.default_log_setting.enabled",
+            "left_id": "observed[apm_log_setting.default_log_setting.enabled] = true",
+            "right_id": "required[apm_log_setting.default_log_setting.enabled] true",
+            "observed_value": "true",
+            "required_value": "true",
+            "comparison_expression": "observed(true) satisfies required(true)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm log-setting all-properties"
+          },
+          {
+            "pullback_id": "V-266146:apm_log_setting_default_log_setting_access_control_level:2",
+            "shared_key": "apm_log_setting.default_log_setting.access_control_level",
+            "left_id": "observed[apm_log_setting.default_log_setting.access_control_level] = notice",
+            "right_id": "required[apm_log_setting.default_log_setting.access_control_level] notice",
+            "observed_value": "notice",
+            "required_value": "notice",
+            "comparison_expression": "observed(notice) satisfies required(notice)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm log-setting all-properties"
+          },
+          {
+            "pullback_id": "V-266146:apm_profile_access_default_log_setting_attached:3",
+            "shared_key": "apm_profile_access.default_log_setting_attached",
+            "left_id": "observed[apm_profile_access.default_log_setting_attached] = true",
+            "right_id": "required[apm_profile_access.default_log_setting_attached] true",
+            "observed_value": "true",
+            "required_value": "true",
+            "comparison_expression": "observed(true) satisfies required(true)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm profile access all-properties"
+          },
+          {
+            "pullback_id": "V-266146:sys_syslog_remote_host_configured:4",
+            "shared_key": "sys_syslog.remote_host_configured",
+            "left_id": "observed[sys_syslog.remote_host_configured] = present",
+            "right_id": "required[sys_syslog.remote_host_configured] host 10.0.0.*",
+            "observed_value": "present",
+            "required_value": "host 10.0.0.*",
+            "comparison_expression": "observed(present) satisfies required(host 10.0.0.*)",
+            "cardinality": "ok",
+            "source": "tmsh:list sys syslog all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_log_setting.default_log_setting.enabled @ tmsh:list apm log-setting all-properties",
+        "pullback_id": "V-266146:apm_log_setting_default_log_setting_enabled:1",
+        "required": "true",
+        "observed": "true",
+        "source": "tmsh:list apm log-setting all-properties",
+        "comparison_expression": "observed(true) satisfies required(true)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_log_setting.default_log_setting.access_control_level @ tmsh:list apm log-setting all-properties",
+        "pullback_id": "V-266146:apm_log_setting_default_log_setting_access_control_level:2",
+        "required": "notice",
+        "observed": "notice",
+        "source": "tmsh:list apm log-setting all-properties",
+        "comparison_expression": "observed(notice) satisfies required(notice)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_profile_access.default_log_setting_attached @ tmsh:list apm profile access all-properties",
+        "pullback_id": "V-266146:apm_profile_access_default_log_setting_attached:3",
+        "required": "true",
+        "observed": "true",
+        "source": "tmsh:list apm profile access all-properties",
+        "comparison_expression": "observed(true) satisfies required(true)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_syslog.remote_host_configured @ tmsh:list sys syslog all-properties",
+        "pullback_id": "V-266146:sys_syslog_remote_host_configured:4",
+        "required": "host 10.0.0.*",
+        "observed": "present",
+        "source": "tmsh:list sys syslog all-properties",
+        "comparison_expression": "observed(present) satisfies required(host 10.0.0.*)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 4,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 4
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "APM default-log-setting must be enabled at notice, attached to access profiles, and syslog must define remote servers.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "APM default-log-setting must be enabled at notice, attached to access profiles, and syslog must define remote servers.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266146"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266146/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266146/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

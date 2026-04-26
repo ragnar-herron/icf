@@ -1,0 +1,180 @@
+ltm virtual stig_disallowed_test {
+    address-status yes
+    app-cloud-security-services none
+    app-service none
+    auth none
+    auto-discovery disabled
+    auto-lasthop default
+    bwc-policy none
+    clone-pools none
+    cmp-enabled yes
+    connection-limit 0
+    creation-time 2026-04-04:17:18:04
+    description none
+    destination 10.0.0.99:any
+    disabled
+    ephemeral-auth-access-config none
+    eviction-protected disabled
+    fallback-persistence none
+    flow-eviction-policy none
+    fw-enforced-policy none
+    fw-staged-policy none
+    gtm-score 0
+    ip-intelligence-policy none
+    ip-protocol tcp
+    last-hop-pool none
+    last-modified-time 2026-04-24:18:12:47
+    mask 255.255.255.255
+    metadata none
+    mirror disabled
+    mobile-app-tunnel disabled
+    nat64 disabled
+    parent-name none
+    partition Common
+    per-flow-request-access-policy none
+    persist none
+    policies none
+    pool none
+    profiles {
+        tcp {
+            context all
+        }
+    }
+    rate-class none
+    rate-limit disabled
+    rate-limit-dst-mask 0
+    rate-limit-mode object
+    rate-limit-src-mask 0
+    related-rules none
+    rules none
+    security-log-profiles none
+    security-nat-policy {
+        policy none
+        use-device-policy no
+        use-route-domain-policy no
+    }
+    serverssl-use-sni disabled
+    service-down-immediate-action none
+    service-policy none
+    source 0.0.0.0/0
+    source-address-translation {
+        pool none
+        type none
+    }
+    source-port preserve
+    syn-cookie-status not-activated
+    throughput-capacity infinite
+    traffic-classes none
+    traffic-matching-criteria none
+    translate-address enabled
+    translate-port disabled
+    transparent-nexthop none
+    urldb-feed-policy none
+    vlans none
+    vlans-disabled
+    vs-index 55
+}
+ltm virtual stig_test_vs {
+    address-status yes
+    app-cloud-security-services none
+    app-service none
+    auth none
+    auto-discovery disabled
+    auto-lasthop default
+    bwc-policy none
+    clone-pools none
+    cmp-enabled yes
+    connection-limit 0
+    creation-time 2026-03-26:13:37:08
+    description none
+    destination 10.0.0.100:https
+    enabled
+    ephemeral-auth-access-config none
+    eviction-protected disabled
+    fallback-persistence none
+    flow-eviction-policy none
+    fw-enforced-policy stig_compliance_policy
+    fw-staged-policy none
+    gtm-score 0
+    ip-intelligence-policy none
+    ip-protocol tcp
+    last-hop-pool none
+    last-modified-time 2026-04-03:18:38:51
+    mask 255.255.255.255
+    metadata none
+    mirror disabled
+    mobile-app-tunnel disabled
+    nat64 disabled
+    parent-name none
+    partition Common
+    per-flow-request-access-policy none
+    persist none
+    policies {
+        asm_auto_l7_policy__stig_test_vs { }
+    }
+    pool none
+    profiles {
+        ASM_stig_baseline_policy {
+            context all
+        }
+        clientssl {
+            context clientside
+        }
+        http {
+            context all
+        }
+        ppp {
+            context all
+        }
+        stig_access_policy {
+            context all
+        }
+        stig_connectivity {
+            context clientside
+        }
+        stig_protocol_inspection {
+            context all
+        }
+        tcp {
+            context all
+        }
+        websecurity {
+            context all
+        }
+    }
+    rate-class none
+    rate-limit disabled
+    rate-limit-dst-mask 0
+    rate-limit-mode object
+    rate-limit-src-mask 0
+    related-rules none
+    rules none
+    security-log-profiles {
+        "Log illegal requests"
+    }
+    security-nat-policy {
+        policy none
+        use-device-policy no
+        use-route-domain-policy no
+    }
+    serverssl-use-sni disabled
+    service-down-immediate-action none
+    service-policy none
+    source 10.0.0.0/24
+    source-address-translation {
+        pool none
+        type automap
+    }
+    source-port preserve
+    syn-cookie-status not-activated
+    throughput-capacity infinite
+    traffic-classes none
+    traffic-matching-criteria none
+    translate-address enabled
+    translate-port enabled
+    transparent-nexthop none
+    urldb-feed-policy none
+    vlans none
+    vlans-disabled
+    vs-index 19
+}

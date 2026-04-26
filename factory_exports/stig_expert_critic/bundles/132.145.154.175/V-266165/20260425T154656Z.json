@@ -1,0 +1,264 @@
+{
+  "ok": true,
+  "vuln_id": "V-266165",
+  "source_stig": {
+    "vuln_id": "V-266165",
+    "ruleID": "SV-266165r1024396_rule",
+    "checkid": "C-70089r1023741_chk",
+    "fixid": "F-69992r1023742_fix",
+    "title": "The F5 BIG-IP appliance must configure certificate path validation to ensure revoked user credentials are prohibited from establishing an allowed session.",
+    "checktext": "If the BIG-IP appliance does not provide intermediary services for TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this is not applicable.\n\nAccess Policy:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Verify an \"OCSP Auth\" object is configured in the Access Profile for \"User\" type or a CRLDP object is configured.\n\nIf the BIG-IP appliance is not configured to use OCSP or CRLDP to ensure revoked user credentials are prohibited from establishing an allowed session, this is a finding.",
+    "fixtext": "Access Policy:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Add an \"OCSP Auth\" with certificate type of \"User\" and/or a \"CRLDP Auth\" object in the Access Profile.\nNote: To create an OCSP Responder, go to Access >> Authentication >> OCSP Responder.\nNote: To create a CRLDP Server object, go to Access >> Authentication >> CRLDP.\n6. Add an \"OCSP Auth\" object in the Access Profile and select an OCSP Responder.\n7. Click \"Update\".",
+    "description": "A certificate's certification path is the path from the end entity certificate to a trusted root certification authority (CA). Certification path validation is necessary for a relying party to make an informed decision regarding acceptance of an end entity certificate.\n\nCertification path validation includes checks such as certificate issuer trust, time validity and revocation status for each certificate in the certification path. Revocation status information for CA and subject certificates in a certification path is commonly provided via certificate revocation lists (CRLs) or online certificate status protocol (OCSP) responses.",
+    "severity": "high",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "4411e8dc3ae81168cfe00d0b4081e68b3851fb8c96e70d35d87af6950e91195b"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "not-applicable",
+  "evidence": {
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    },
+    "tmsh_apm_profile_access": {
+      "source": "tmsh_apm_profile_access",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm profile access all-properties"
+      },
+      "blob_sha256": "fbce69c889c04c18",
+      "bytes": 4743
+    },
+    "tmsh_apm_policy_access_policy": {
+      "source": "tmsh_apm_policy_access_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm policy access-policy all-properties"
+      },
+      "blob_sha256": "655e6d9da7eac748",
+      "bytes": 1788
+    },
+    "tmsh_apm_log_setting": {
+      "source": "tmsh_apm_log_setting",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm log-setting all-properties"
+      },
+      "blob_sha256": "0bf6b6fc4b86188b",
+      "bytes": 2506
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266165:sys_provision_module:1",
+      "carrier_coordinate": "rest:/mgmt/tm/sys/provision",
+      "measurable": "sys_provision.module",
+      "lawful_property": "provisioned (module=APM)",
+      "required": "provisioned (module=APM)",
+      "observed": "provisioned",
+      "comparison_expression": "observed(provisioned) satisfies required(provisioned (module=APM))",
+      "match": false,
+      "comparison_confidence": 0.0,
+      "pullback_unmatched": true,
+      "reviewer_action": "external_evidence_required",
+      "source_key": "sys_provision",
+      "source_stig": {
+        "vuln_id": "V-266165",
+        "ruleID": "SV-266165r1024396_rule",
+        "checkid": "C-70089r1023741_chk",
+        "fixid": "F-69992r1023742_fix",
+        "title": "The F5 BIG-IP appliance must configure certificate path validation to ensure revoked user credentials are prohibited from establishing an allowed session.",
+        "checktext": "If the BIG-IP appliance does not provide intermediary services for TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this is not applicable.\n\nAccess Policy:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Verify an \"OCSP Auth\" object is configured in the Access Profile for \"User\" type or a CRLDP object is configured.\n\nIf the BIG-IP appliance is not configured to use OCSP or CRLDP to ensure revoked user credentials are prohibited from establishing an allowed session, this is a finding.",
+        "fixtext": "Access Policy:\nFrom the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Add an \"OCSP Auth\" with certificate type of \"User\" and/or a \"CRLDP Auth\" object in the Access Profile.\nNote: To create an OCSP Responder, go to Access >> Authentication >> OCSP Responder.\nNote: To create a CRLDP Server object, go to Access >> Authentication >> CRLDP.\n6. Add an \"OCSP Auth\" object in the Access Profile and select an OCSP Responder.\n7. Click \"Update\".",
+        "description": "A certificate's certification path is the path from the end entity certificate to a trusted root certification authority (CA). Certification path validation is necessary for a relying party to make an informed decision regarding acceptance of an end entity certificate.\n\nCertification path validation includes checks such as certificate issuer trust, time validity and revocation status for each certificate in the certification path. Revocation status information for CA and subject certificates in a certification path is commonly provided via certificate revocation lists (CRLs) or online certificate status protocol (OCSP) responses.",
+        "severity": "high",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "4411e8dc3ae81168cfe00d0b4081e68b3851fb8c96e70d35d87af6950e91195b"
+      },
+      "vuln_id": "V-266165",
+      "note": "Conditional N/A: control only applies when the required module is provisioned."
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266165)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266165)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266165)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 0,
+      "mismatch_count": 0,
+      "unresolved_count": 1,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266165:sys_provision_module:1",
+          "shared_key": "sys_provision.module",
+          "left_id": "observed[sys_provision.module] = provisioned",
+          "right_id": "required[sys_provision.module] provisioned (module=APM)",
+          "observed_value": "provisioned",
+          "required_value": "provisioned (module=APM)",
+          "comparison_expression": "observed(provisioned) satisfies required(provisioned (module=APM))",
+          "cardinality": "unresolved",
+          "source": "rest:/mgmt/tm/sys/provision"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "warning",
+      "aspect": "unresolved",
+      "finding": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+    },
+    {
+      "record_type": "unmatched_right",
+      "pullback_id": "V-266165:sys_provision_module:1",
+      "shared_key": "sys_provision.module",
+      "left_id": "observed[sys_provision.module] = provisioned",
+      "right_id": "required[sys_provision.module] provisioned (module=APM)",
+      "observed_value": "provisioned",
+      "required_value": "provisioned (module=APM)",
+      "source": "rest:/mgmt/tm/sys/provision",
+      "comparison_expression": "observed(provisioned) satisfies required(provisioned (module=APM))"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266165",
+      "requirement": "The F5 BIG-IP appliance must configure certificate path validation to ensure revoked user credentials are prohibited from establishing an allowed session.",
+      "status": "NOT_A_FINDING",
+      "why": "If the BIG-IP appliance does not provide intermediary services for TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this is not applicable.",
+      "tmsh_remediation_command": "[Manual] Review APM access profile / policy and apply DoD-approved controls.",
+      "rest_remediation_command": "[Manual] PATCH APM objects via Policy Editor or iControl-REST.",
+      "evidence_keys": [
+        "tmsh_apm_profile_access",
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_log_setting"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 0,
+        "fail": 0,
+        "unresolved": 1
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266165 - apm_access evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266165",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "rest:/mgmt/tm/sys/provision"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266165",
+        "source_a": "observed appliance evidence (V-266165)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266165)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266165)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 0,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 1,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266165:sys_provision_module:1",
+            "shared_key": "sys_provision.module",
+            "left_id": "observed[sys_provision.module] = provisioned",
+            "right_id": "required[sys_provision.module] provisioned (module=APM)",
+            "observed_value": "provisioned",
+            "required_value": "provisioned (module=APM)",
+            "comparison_expression": "observed(provisioned) satisfies required(provisioned (module=APM))",
+            "cardinality": "unresolved",
+            "source": "rest:/mgmt/tm/sys/provision"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": [
+          "sys_provision.module"
+        ]
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - unresolved",
+        "severity": "warning",
+        "aspect": "unresolved",
+        "detail": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - sys_provision.module @ rest:/mgmt/tm/sys/provision",
+        "pullback_id": "V-266165:sys_provision_module:1",
+        "required": "provisioned (module=APM)",
+        "observed": "provisioned",
+        "source": "rest:/mgmt/tm/sys/provision",
+        "comparison_expression": "observed(provisioned) satisfies required(provisioned (module=APM))",
+        "verdict": "UNRESOLVED",
+        "is_unmatched": true
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 0,
+        "fail_count": 0,
+        "unresolved_count": 1,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "If the BIG-IP appliance does not provide intermediary services for TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this is not applicable.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "If the BIG-IP appliance does not provide intermediary services for TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this ",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "If the BIG-IP appliance does not provide intermediary services for TLS, or application protocols that use TLS (e.g., DNSSEC or HTTPS), this is not applicable.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266165"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266165/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266165/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

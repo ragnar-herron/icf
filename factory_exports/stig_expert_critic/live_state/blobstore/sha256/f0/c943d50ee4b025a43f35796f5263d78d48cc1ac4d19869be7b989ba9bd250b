@@ -1,0 +1,3 @@
+BASH_COMMAND_RESULT_UNAVAILABLE
+command=df -h
+error=util/bash did not return commandResult for 'df -h'; payload={'kind': 'tm:util:bash:runstate'}

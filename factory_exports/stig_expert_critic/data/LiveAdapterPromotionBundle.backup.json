@@ -1,0 +1,102 @@
+{
+  "record_type": "LiveAdapterPromotionBundle",
+  "generated_at": "2026-04-24T20:51:52Z",
+  "adapter_family_id": "backup",
+  "controls_covered": [
+    "V-266096"
+  ],
+  "capture_refs": [
+    {
+      "kind": "local_backup_evidence",
+      "path": "factory_exports/stig_expert_critic/data/BackupLocalEvidence.json",
+      "status": "present"
+    },
+    {
+      "kind": "external_backup_policy",
+      "path": "factory_exports/stig_expert_critic/data/ExternalEvidencePackage.backup_policy.json",
+      "status": "blocked_external"
+    },
+    {
+      "kind": "combined_measurable",
+      "path": "factory_exports/stig_expert_critic/data/BackupCombinedMeasurable.json",
+      "status": "incomplete"
+    }
+  ],
+  "normalizer_version": "factory_exports/stig_expert_critic/backup_external_evidence.py@sha256:b73ae9090e2854340268ea75e54ea9417045461b69f9181cdc919491b29712eb",
+  "fixture_pack_refs": [
+    {
+      "vuln_id": "V-266096",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266096::good_minimal",
+        "fx::V-266096::bad_canonical",
+        "fx::V-266096::bad_representation_variant",
+        "fx::V-266096::boundary_value",
+        "fx::V-266096::disabled_state",
+        "fx::V-266096::absent_state",
+        "fx::V-266096::malformed_state",
+        "fx::V-266096::noisy_evidence",
+        "fx::V-266096::out_of_scope_variant"
+      ]
+    }
+  ],
+  "replay_fidelity": 1.0,
+  "distinction_integrity": true,
+  "atomic_integrity": true,
+  "known_bad_detects": true,
+  "known_good_survives": false,
+  "live_break_detects": false,
+  "live_fix_restores": false,
+  "device_clean": false,
+  "export_equivalence": false,
+  "promotion_decision": "EXTERNAL_EVIDENCE_REQUIRED",
+  "boundary_class": "non_promotable_without_org_input",
+  "details": {
+    "family_total_controls": 1,
+    "family_supported_controls": 0,
+    "family_unsupported_controls": 1,
+    "combined_measurable": {
+      "record_type": "BackupCombinedMeasurable",
+      "local_backup_exists": true,
+      "schedule_verified": false,
+      "off_device_verified": false,
+      "retention_verified": false,
+      "external_evidence_present": true,
+      "external_evidence_valid": false,
+      "local_evidence_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\BackupLocalEvidence.json",
+      "external_evidence_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\ExternalEvidencePackage.backup_policy.json",
+      "blocking_reason": "backup external evidence package is incomplete or malformed"
+    },
+    "break_fix_details": "Backup promotion now depends on combined local plus external evidence rather than appliance-only parsing."
+  },
+  "replay_results": [
+    {
+      "vuln_id": "V-266096",
+      "known_good_total": 1,
+      "known_bad_total": 4,
+      "unresolved_total": 0,
+      "failed_fixtures": [
+        "fx::V-266096::good_minimal"
+      ]
+    }
+  ],
+  "hard_gates": {
+    "LA-HG1 Replay fidelity": true,
+    "LA-HG2 Distinction integrity": true,
+    "LA-HG3 Atomic integrity": true,
+    "LA-HG4 Known bad detects": true,
+    "LA-HG5 Known good survives": false,
+    "LA-HG6 Live baseline": true,
+    "LA-HG7 Live break detects": false,
+    "LA-HG8 Live fix proves": false,
+    "LA-HG9 Device clean": false,
+    "LA-HG10 Export equivalence": false
+  },
+  "missing_gates": [
+    "LA-HG5 Known good survives",
+    "LA-HG7 Live break detects",
+    "LA-HG8 Live fix proves",
+    "LA-HG9 Device clean",
+    "LA-HG10 Export equivalence"
+  ]
+}

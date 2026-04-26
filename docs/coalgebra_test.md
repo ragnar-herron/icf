@@ -1,3 +1,8 @@
+STATUS: EVIDENCE SOURCE
+CANONICAL INTERPRETATION IN docs/canonical/CANONICAL_GATE_SUITE.md
+
+---
+
 # Coalgebra Production Test - STIG Expert Critic
 
 This checklist is now self-reporting. The source of truth is:

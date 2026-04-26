@@ -1,0 +1,138 @@
+{
+  "ok": true,
+  "vuln_id": "V-266154",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:55:24.539727Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "apm_profile_policy_results": [
+      {
+        "profile": "/Common/stig_access_policy",
+        "policy": "/Common/stig_access_policy",
+        "apm_revocation_cache_configured": true,
+        "witnesses": [
+          "/Common/stig_access_policy_act_ocsp_auth"
+        ],
+        "supporting_objects": [
+          "/Common/stig_ocsp_validator"
+        ]
+      }
+    ],
+    "apm_revocation_cache_configured": true
+  },
+  "evidence": {
+    "apm_policy_bundle": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/apm/policy/access-policy"
+      },
+      "preview": "[\n  {\n    \"profile\": {\n      \"kind\": \"tm:apm:profile:access:accessstate\",\n      \"name\": \"stig_access_policy\",\n      \"partition\": \"Common\",\n      \"fullPath\": \"/Common/stig_access_policy\",\n      \"generation\": 3933,\n      \"selfLink\": \"https://localhost/mgmt/tm/apm/profile/access/~Common~stig_access_policy?ver=17.5.1.3\",\n      \"acceptLanguages\": [\n        \"en\"\n      ],\n      \"accessPolicy\": \"/Common/stig_access_policy\",\n      \"accessPolicyReference\": {\n        \"link\": \"https://localhost/mgmt/tm/apm/policy/access-policy/~Common~stig_access_policy?ver=17.5.1.3\"\n      },\n      \"accessPolicyTimeout\": 300,\n      \"cpcCheckInterval\": 90,\n      \"cpcInspectionEnabled\": \"true\",\n      \"cpcLogLevel\": \"info\",\n      \"customizationGroup\": \"/Common/stig_access_policy_logout\",\n      \"customizationGroupReferenc",
+      "blob_sha256": "",
+      "bytes": 11142
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "/Common/stig_access_policy::required_policy_group_1:46d598e0",
+      "measurable": "/Common/stig_access_policy::required_policy_group_1",
+      "required": "present",
+      "observed": [
+        "/Common/stig_access_policy_act_ocsp_auth"
+      ],
+      "evidence_source": "rest:/mgmt/tm/apm/policy/access-policy",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "/Common/stig_access_policy::apm_revocation_cache_configured:7893c644",
+      "measurable": "/Common/stig_access_policy::apm_revocation_cache_configured",
+      "required": "== true",
+      "observed": [
+        "/Common/stig_ocsp_validator"
+      ],
+      "evidence_source": "rest:/mgmt/tm/apm/aaa/ocsp",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266154",
+      "status": "NOT_A_FINDING",
+      "requirement": "Selected APM access policy graphs were evaluated against the factory-required policy-item signatures.",
+      "why": "Selected APM access policy graphs were evaluated against the factory-required policy-item signatures.",
+      "tmsh_remediation_command": "",
+      "rest_remediation_command": ""
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "/Common/stig_access_policy::required_policy_group_1 present AND /Common/stig_access_policy::apm_revocation_cache_configured == true",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "/Common/stig_access_policy::required_policy_group_1:46d598e0",
+            "measurable": "/Common/stig_access_policy::required_policy_group_1",
+            "required": "present",
+            "observed": [
+              "/Common/stig_access_policy_act_ocsp_auth"
+            ],
+            "evidence_source": "rest:/mgmt/tm/apm/policy/access-policy",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "/Common/stig_access_policy::apm_revocation_cache_configured:7893c644",
+            "measurable": "/Common/stig_access_policy::apm_revocation_cache_configured",
+            "required": "== true",
+            "observed": [
+              "/Common/stig_ocsp_validator"
+            ],
+            "evidence_source": "rest:/mgmt/tm/apm/aaa/ocsp",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266154",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

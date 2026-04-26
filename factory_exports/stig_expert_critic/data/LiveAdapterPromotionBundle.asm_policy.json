@@ -1,0 +1,252 @@
+{
+  "record_type": "LiveAdapterPromotionBundle",
+  "generated_at": "2026-04-24T20:51:52Z",
+  "adapter_family_id": "asm_policy",
+  "controls_covered": [
+    "V-266138",
+    "V-266140",
+    "V-266141",
+    "V-266142",
+    "V-266149",
+    "V-266158"
+  ],
+  "capture_refs": [
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266138.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266140.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266141.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266142.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266149.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266158.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266138.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266140.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266141.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266142.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266149.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266158.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266149",
+      "status": "open"
+    }
+  ],
+  "normalizer_version": "factory_exports/stig_expert_critic/live_family_evaluators.py@sha256:20cce06ec5379245edf715b33947f2c20a375c6577e3fad7e9bccc8f5dda206e | evaluators:asm_policy",
+  "fixture_pack_refs": [
+    {
+      "vuln_id": "V-266138",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266138::good_minimal",
+        "fx::V-266138::bad_canonical",
+        "fx::V-266138::bad_representation_variant",
+        "fx::V-266138::boundary_value",
+        "fx::V-266138::disabled_state",
+        "fx::V-266138::absent_state",
+        "fx::V-266138::malformed_state",
+        "fx::V-266138::noisy_evidence",
+        "fx::V-266138::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266140",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266140::good_minimal",
+        "fx::V-266140::bad_canonical",
+        "fx::V-266140::bad_representation_variant",
+        "fx::V-266140::boundary_value",
+        "fx::V-266140::disabled_state",
+        "fx::V-266140::absent_state",
+        "fx::V-266140::malformed_state",
+        "fx::V-266140::noisy_evidence",
+        "fx::V-266140::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266141",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266141::good_minimal",
+        "fx::V-266141::bad_canonical",
+        "fx::V-266141::bad_representation_variant",
+        "fx::V-266141::boundary_value",
+        "fx::V-266141::disabled_state",
+        "fx::V-266141::absent_state",
+        "fx::V-266141::malformed_state",
+        "fx::V-266141::noisy_evidence",
+        "fx::V-266141::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266142",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266142::good_minimal",
+        "fx::V-266142::bad_canonical",
+        "fx::V-266142::bad_representation_variant",
+        "fx::V-266142::boundary_value",
+        "fx::V-266142::disabled_state",
+        "fx::V-266142::absent_state",
+        "fx::V-266142::malformed_state",
+        "fx::V-266142::noisy_evidence",
+        "fx::V-266142::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266149",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266149::good_minimal",
+        "fx::V-266149::bad_canonical",
+        "fx::V-266149::bad_representation_variant",
+        "fx::V-266149::boundary_value",
+        "fx::V-266149::disabled_state",
+        "fx::V-266149::absent_state",
+        "fx::V-266149::malformed_state",
+        "fx::V-266149::noisy_evidence",
+        "fx::V-266149::out_of_scope_variant"
+      ]
+    },
+    {
+      "vuln_id": "V-266158",
+      "fixture_count": 9,
+      "fixture_ids": [
+        "fx::V-266158::good_minimal",
+        "fx::V-266158::bad_canonical",
+        "fx::V-266158::bad_representation_variant",
+        "fx::V-266158::boundary_value",
+        "fx::V-266158::disabled_state",
+        "fx::V-266158::absent_state",
+        "fx::V-266158::malformed_state",
+        "fx::V-266158::noisy_evidence",
+        "fx::V-266158::out_of_scope_variant"
+      ]
+    }
+  ],
+  "replay_fidelity": 1.0,
+  "distinction_integrity": true,
+  "atomic_integrity": true,
+  "known_bad_detects": true,
+  "known_good_survives": true,
+  "live_break_detects": true,
+  "live_fix_restores": true,
+  "device_clean": true,
+  "export_equivalence": true,
+  "promotion_decision": "PROMOTED",
+  "details": {
+    "family_total_controls": 6,
+    "family_supported_controls": 6,
+    "family_unsupported_controls": 0,
+    "session_capture_count": 6,
+    "unsupported_controls_present": false,
+    "break_fix_details": "Break/fix executed by disabling alarm/block on the ASM HTTP protocol compliance failed violation and restoring both settings.",
+    "replay_fixture_counts": {
+      "controls": 6,
+      "fixtures": 54
+    }
+  },
+  "replay_results": [
+    {
+      "vuln_id": "V-266138",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266140",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266141",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266142",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266149",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    },
+    {
+      "vuln_id": "V-266158",
+      "known_good_total": 3,
+      "known_bad_total": 2,
+      "unresolved_total": 4,
+      "failed_fixtures": []
+    }
+  ],
+  "hard_gates": {
+    "LA-HG1 Replay fidelity": true,
+    "LA-HG2 Distinction integrity": true,
+    "LA-HG3 Atomic integrity": true,
+    "LA-HG4 Known bad detects": true,
+    "LA-HG5 Known good survives": true,
+    "LA-HG6 Live baseline": true,
+    "LA-HG7 Live break detects": true,
+    "LA-HG8 Live fix proves": true,
+    "LA-HG9 Device clean": true,
+    "LA-HG10 Export equivalence": true
+  },
+  "missing_gates": []
+}

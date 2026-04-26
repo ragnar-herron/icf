@@ -1,0 +1,207 @@
+{
+  "ok": true,
+  "vuln_id": "V-266068",
+  "status": "not_a_finding",
+  "requested_host": "132.145.154.175",
+  "provenance": {
+    "bundle_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions",
+    "bundle_timestamp": "2026-04-24T20:57:20.865281Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate",
+    "bundle_source": "standalone_web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validation response collected from the currently selected appliance."
+  },
+  "evidence_summary": {
+    "sys_daemon_log_tmm_os_log_level": "informational",
+    "sys_daemon_log_tmm_ssl_log_level": "informational",
+    "sys_daemon_log_mcpd_audit": "enabled",
+    "sys_daemon_log_mcpd_log_level": "notice",
+    "sys_db_log_ssl_level": "informational"
+  },
+  "evidence": {
+    "daemon_log_tmm": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/daemon-log-settings/tmm"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:daemon-log-settings:tmm:tmmstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/daemon-log-settings/tmm?ver=17.5.1.3\",\n  \"arpLogLevel\": \"warning\",\n  \"httpCompressionLogLevel\": \"error\",\n  \"httpLogLevel\": \"error\",\n  \"ipLogLevel\": \"warning\",\n  \"iruleLogLevel\": \"informational\",\n  \"layer4LogLevel\": \"notice\",\n  \"netLogLevel\": \"warning\",\n  \"osLogLevel\": \"informational\",\n  \"pvaLogLevel\": \"informational\",\n  \"sslLogLevel\": \"informational\"\n}",
+      "blob_sha256": "",
+      "bytes": 454
+    },
+    "daemon_log_mcpd": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/daemon-log-settings/mcpd"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:daemon-log-settings:mcpd:mcpdstate\",\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/daemon-log-settings/mcpd?ver=17.5.1.3\",\n  \"audit\": \"enabled\",\n  \"logLevel\": \"notice\"\n}",
+      "blob_sha256": "",
+      "bytes": 188
+    },
+    "db_log_ssl_level": {
+      "source_detail": {
+        "kind": "rest",
+        "command": null,
+        "path": "/mgmt/tm/sys/db/log.ssl.level"
+      },
+      "preview": "{\n  \"kind\": \"tm:sys:db:dbstate\",\n  \"name\": \"log.ssl.level\",\n  \"fullPath\": \"log.ssl.level\",\n  \"generation\": 1984,\n  \"selfLink\": \"https://localhost/mgmt/tm/sys/db/log.ssl.level?ver=17.5.1.3\",\n  \"defaultValue\": \"Warning\",\n  \"scfConfig\": \"false\",\n  \"value\": \"Informational\",\n  \"valueRange\": \"Alert Critical Debug Emergency Error Informational Notice Warning\"\n}",
+      "blob_sha256": "",
+      "bytes": 356
+    }
+  },
+  "comparison_rows": [
+    {
+      "pullback_id": "sys_daemon_log_tmm_os_log_level:04915a01",
+      "measurable": "sys_daemon_log_tmm_os_log_level",
+      "required": "== 'informational'",
+      "observed": "informational",
+      "evidence_source": "rest:/mgmt/tm/sys/daemon-log-settings/tmm",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "sys_daemon_log_tmm_ssl_log_level:ae8dc7ca",
+      "measurable": "sys_daemon_log_tmm_ssl_log_level",
+      "required": "== 'informational'",
+      "observed": "informational",
+      "evidence_source": "rest:/mgmt/tm/sys/daemon-log-settings/tmm",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "sys_daemon_log_mcpd_audit:b847a586",
+      "measurable": "sys_daemon_log_mcpd_audit",
+      "required": "== 'enabled'",
+      "observed": "enabled",
+      "evidence_source": "rest:/mgmt/tm/sys/daemon-log-settings/mcpd",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "sys_daemon_log_mcpd_log_level:f0566a95",
+      "measurable": "sys_daemon_log_mcpd_log_level",
+      "required": "== 'notice'",
+      "observed": "notice",
+      "evidence_source": "rest:/mgmt/tm/sys/daemon-log-settings/mcpd",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    },
+    {
+      "pullback_id": "sys_db_log_ssl_level:388b3567",
+      "measurable": "sys_db_log_ssl_level",
+      "required": "== 'informational'",
+      "observed": "informational",
+      "evidence_source": "rest:/mgmt/tm/sys/db/log.ssl.level",
+      "reviewer_action": "",
+      "match": true,
+      "comparison_confidence": 1,
+      "pullback_unmatched": false
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266068",
+      "status": "NOT_A_FINDING",
+      "requirement": "Privileged function audit logging settings were evaluated from TMM, MCPD, and log.ssl.level live settings.",
+      "why": "Privileged function audit logging settings were evaluated from TMM, MCPD, and log.ssl.level live settings.",
+      "tmsh_remediation_command": "tmsh modify sys daemon-log-settings tmm os-log-level informational; tmsh modify sys daemon-log-settings tmm ssl-log-level informational; tmsh modify sys daemon-log-settings mcpd audit enabled; tmsh modify sys daemon-log-settings mcpd log-level notice; tmsh modify sys db log.ssl.level value informational; tmsh save sys config",
+      "rest_remediation_command": ""
+    },
+    "proof_steps": [
+      {
+        "step": "evidence_summary",
+        "pass_count": 5,
+        "fail_count": 0,
+        "unresolved_count": 0
+      },
+      {
+        "step": "criteria",
+        "naf_expression": "sys_daemon_log_tmm_os_log_level == 'informational' AND sys_daemon_log_tmm_ssl_log_level == 'informational' AND sys_daemon_log_mcpd_audit == 'enabled' AND sys_daemon_log_mcpd_log_level == 'notice' AND sys_db_log_ssl_level == 'informational'",
+        "naf_result": true,
+        "open_expression": "",
+        "open_result": false
+      },
+      {
+        "step": "pullback_diagram",
+        "fiber_pairs": [
+          {
+            "pullback_id": "sys_daemon_log_tmm_os_log_level:04915a01",
+            "measurable": "sys_daemon_log_tmm_os_log_level",
+            "required": "== 'informational'",
+            "observed": "informational",
+            "evidence_source": "rest:/mgmt/tm/sys/daemon-log-settings/tmm",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "sys_daemon_log_tmm_ssl_log_level:ae8dc7ca",
+            "measurable": "sys_daemon_log_tmm_ssl_log_level",
+            "required": "== 'informational'",
+            "observed": "informational",
+            "evidence_source": "rest:/mgmt/tm/sys/daemon-log-settings/tmm",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "sys_daemon_log_mcpd_audit:b847a586",
+            "measurable": "sys_daemon_log_mcpd_audit",
+            "required": "== 'enabled'",
+            "observed": "enabled",
+            "evidence_source": "rest:/mgmt/tm/sys/daemon-log-settings/mcpd",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "sys_daemon_log_mcpd_log_level:f0566a95",
+            "measurable": "sys_daemon_log_mcpd_log_level",
+            "required": "== 'notice'",
+            "observed": "notice",
+            "evidence_source": "rest:/mgmt/tm/sys/daemon-log-settings/mcpd",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          },
+          {
+            "pullback_id": "sys_db_log_ssl_level:388b3567",
+            "measurable": "sys_db_log_ssl_level",
+            "required": "== 'informational'",
+            "observed": "informational",
+            "evidence_source": "rest:/mgmt/tm/sys/db/log.ssl.level",
+            "reviewer_action": "",
+            "match": true,
+            "comparison_confidence": 1,
+            "pullback_unmatched": false
+          }
+        ]
+      }
+    ]
+  },
+  "bundle_metadata": {
+    "vuln_id": "V-266068",
+    "operation": "validate",
+    "bundle_source": "standalone_web_app"
+  },
+  "artifact_bundle": {
+    "output_dir": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\sessions"
+  }
+}

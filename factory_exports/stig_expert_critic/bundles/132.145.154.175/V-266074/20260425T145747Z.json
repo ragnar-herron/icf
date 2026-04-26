@@ -1,0 +1,245 @@
+{
+  "ok": true,
+  "vuln_id": "V-266074",
+  "source_stig": {
+    "vuln_id": "V-266074",
+    "ruleID": "SV-266074r1024605_rule",
+    "checkid": "C-69997r1023471_chk",
+    "fixid": "F-69900r1023472_fix",
+    "title": "The F5 BIG-IP appliance must manage local audit storage capacity in accordance with organization-defined audit record storage requirements.",
+    "checktext": "Verify the site configures the local audit record storage capacity using any of the following log-related elements in accordance with the site's System Security Plan:\n- Log rotation frequency.\n- Age at which log files become eligible for removal.\n- The number of archive copies that the system retains.\n- The message count for alertd log check.\n\nIf the site does not manage log storage capacity in compliance with the SSP or if the process is not documented, this is a finding.",
+    "fixtext": "To manage audit record storage capacity, configure the following log-related elements on the BIG-IP system in accordance with the site's System Security Plan:\n- Change the log rotation frequency.\n- Change the age at which log files become eligible for removal.\n- Change the number of archive copies that the system retains.\n- Change the message count for alertd log check.",
+    "description": "To ensure network devices have a sufficient storage capacity in which to write the audit logs, they need to be able to allocate audit record storage capacity. The task of allocating audit record storage capacity is usually performed during initial device setup if it is modifiable. \n\nThe value for the organization-defined audit record storage requirement will depend on the amount of storage available on the network device, the anticipated volume of logs, the frequency of transfer from the network device to centralized log servers, and other factors.",
+    "severity": "low",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "5634793313b05aac5255b08f2419cb8b0ee48b1b39d7453c7cd1a010b54be81b"
+  },
+  "status": "UNKNOWN",
+  "disposition": "blocked-external",
+  "evidence": {
+    "external_evidence_packages": {
+      "source": "external_evidence_packages",
+      "source_detail": {
+        "kind": "repo-json",
+        "path": "data/ExternalEvidencePackages.json"
+      },
+      "blob_sha256": "ba51fca997b400cd",
+      "bytes": 3589
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266074:external_evidence_package:1",
+      "carrier_coordinate": "repo-json:data/ExternalEvidencePackages.json",
+      "measurable": "external_evidence_package",
+      "lawful_property": "package_id == audit_storage_policy_gap (disposition=blocked-external)",
+      "required": "package_id == audit_storage_policy_gap (disposition=blocked-external)",
+      "observed": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+      "comparison_expression": "observed(Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.) satisfies required(package_id == audit_storage_policy_gap (disposition=blocked-external))",
+      "match": false,
+      "comparison_confidence": 0.0,
+      "pullback_unmatched": true,
+      "reviewer_action": "external_evidence_required",
+      "source_key": "external_evidence_packages",
+      "source_stig": {
+        "vuln_id": "V-266074",
+        "ruleID": "SV-266074r1024605_rule",
+        "checkid": "C-69997r1023471_chk",
+        "fixid": "F-69900r1023472_fix",
+        "title": "The F5 BIG-IP appliance must manage local audit storage capacity in accordance with organization-defined audit record storage requirements.",
+        "checktext": "Verify the site configures the local audit record storage capacity using any of the following log-related elements in accordance with the site's System Security Plan:\n- Log rotation frequency.\n- Age at which log files become eligible for removal.\n- The number of archive copies that the system retains.\n- The message count for alertd log check.\n\nIf the site does not manage log storage capacity in compliance with the SSP or if the process is not documented, this is a finding.",
+        "fixtext": "To manage audit record storage capacity, configure the following log-related elements on the BIG-IP system in accordance with the site's System Security Plan:\n- Change the log rotation frequency.\n- Change the age at which log files become eligible for removal.\n- Change the number of archive copies that the system retains.\n- Change the message count for alertd log check.",
+        "description": "To ensure network devices have a sufficient storage capacity in which to write the audit logs, they need to be able to allocate audit record storage capacity. The task of allocating audit record storage capacity is usually performed during initial device setup if it is modifiable. \n\nThe value for the organization-defined audit record storage requirement will depend on the amount of storage available on the network device, the anticipated volume of logs, the frequency of transfer from the network device to centralized log servers, and other factors.",
+        "severity": "low",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "5634793313b05aac5255b08f2419cb8b0ee48b1b39d7453c7cd1a010b54be81b"
+      },
+      "vuln_id": "V-266074"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266074)",
+      "source_a_count": 1,
+      "source_b": "STIG-required predicates (V-266074)",
+      "source_b_count": 1,
+      "codomain": "shared measurables (V-266074)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 0,
+      "mismatch_count": 0,
+      "unresolved_count": 1,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266074:external_evidence_package:1",
+          "shared_key": "external_evidence_package",
+          "left_id": "observed[external_evidence_package] = Local log-storage capacity is observable on the appliance, b ... (151 more chars)",
+          "right_id": "required[external_evidence_package] package_id == audit_storage_policy_gap (disposition=blocked- ... (9 more chars)",
+          "observed_value": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+          "required_value": "package_id == audit_storage_policy_gap (disposition=blocked-external)",
+          "comparison_expression": "observed(Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.) satisfies required(package_id == audit_storage_policy_gap (disposition=blocked-external))",
+          "cardinality": "unresolved",
+          "source": "repo-json:data/ExternalEvidencePackages.json"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "warning",
+      "aspect": "unresolved",
+      "finding": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+    },
+    {
+      "record_type": "unmatched_right",
+      "pullback_id": "V-266074:external_evidence_package:1",
+      "shared_key": "external_evidence_package",
+      "left_id": "observed[external_evidence_package] = Local log-storage capacity is observable on the appliance, b ... (151 more chars)",
+      "right_id": "required[external_evidence_package] package_id == audit_storage_policy_gap (disposition=blocked- ... (9 more chars)",
+      "observed_value": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+      "required_value": "package_id == audit_storage_policy_gap (disposition=blocked-external)",
+      "source": "repo-json:data/ExternalEvidencePackages.json",
+      "comparison_expression": "observed(Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.) satisfies required(package_id == audit_storage_policy_gap (disposition=blocked-external))"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266074",
+      "requirement": "The F5 BIG-IP appliance must manage local audit storage capacity in accordance with organization-defined audit record storage requirements.",
+      "status": "UNKNOWN",
+      "why": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 1,
+        "pass": 0,
+        "fail": 0,
+        "unresolved": 1
+      }
+    },
+    "violations": [
+      "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266074 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266074",
+        "detail": "Collected 1 source snapshot(s) producing 1 measurement(s).",
+        "endpoints": [
+          "repo-json:data/ExternalEvidencePackages.json"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266074",
+        "source_a": "observed appliance evidence (V-266074)",
+        "source_a_count": 1,
+        "source_b": "STIG-required predicates (V-266074)",
+        "source_b_count": 1,
+        "codomain": "shared measurables (V-266074)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 0,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 1,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266074:external_evidence_package:1",
+            "shared_key": "external_evidence_package",
+            "left_id": "observed[external_evidence_package] = Local log-storage capacity is observable on the appliance, b ... (151 more chars)",
+            "right_id": "required[external_evidence_package] package_id == audit_storage_policy_gap (disposition=blocked- ... (9 more chars)",
+            "observed_value": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+            "required_value": "package_id == audit_storage_policy_gap (disposition=blocked-external)",
+            "comparison_expression": "observed(Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.) satisfies required(package_id == audit_storage_policy_gap (disposition=blocked-external))",
+            "cardinality": "unresolved",
+            "source": "repo-json:data/ExternalEvidencePackages.json"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": [
+          "external_evidence_package"
+        ]
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - unresolved",
+        "severity": "warning",
+        "aspect": "unresolved",
+        "detail": "1 measurement(s) cannot be closed by on-appliance evidence alone; external attestation is required."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - external_evidence_package @ repo-json:data/ExternalEvidencePackages.json",
+        "pullback_id": "V-266074:external_evidence_package:1",
+        "required": "package_id == audit_storage_policy_gap (disposition=blocked-external)",
+        "observed": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+        "source": "repo-json:data/ExternalEvidencePackages.json",
+        "comparison_expression": "observed(Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.) satisfies required(package_id == audit_storage_policy_gap (disposition=blocked-external))",
+        "verdict": "UNRESOLVED",
+        "is_unmatched": true
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 0,
+        "fail_count": 0,
+        "unresolved_count": 1,
+        "total_comparisons": 1
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+        "status": "UNKNOWN",
+        "naf_expression": "observed == required",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "Local log-storage capacity is observable on the appliance, but the STIG requires comparison against organization-defined retention and storage requirements from the SSP, which were not provided as live evidence.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266074"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266074/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266074/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

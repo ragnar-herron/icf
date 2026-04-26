@@ -1,3 +1,8 @@
+STATUS: EVIDENCE SOURCE
+CANONICAL INTERPRETATION IN docs/canonical/CANONICAL_BACKLOG.md
+
+---
+
 
 
 ## 1. Separate the three layers

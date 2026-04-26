@@ -1,0 +1,12 @@
+MY PRODUCTS & PLANSSubscriptionsProduct UsageTrialsRegistration KeysResourcesDownloads
+LicensingActivate F5 product registration key
+IhealthVerify the proper operation of your BIG-IP system
+F5 UniversityGet up to speed with free self-paced courses
+DevcentralJoin the community of 300,000+ technical peers
+F5 CertificationAdvance your career with F5 Certification
+Product ManualsProduct Manuals and Release notes
+**Manual Chapter**:   Step-up authentication configuration basics
+## Applies To:
+Show  Versions
+### BIG-IP APMStep-up authentication configuration basicsYou need to create these configuration objects and settings to implement step-up authentication. Access profile The primary use for step-up authentication is to protect resources in a portal access or web access management (reverse proxy) configuration. You can use step-up authentication with all access profile types. Per-session policy A per-session policy, also known as an access policy, can include authentication or not. The policy can be as simple as Start-Allow, or it can be very complex. Per-request policy A policy that runs for each request throughout a session. It must include a call to the step-up authentication subroutine, and can include logic that determines when to call the step-up authentication subroutine. Unless the gating criteria for the step-up authentication subroutine is set to blank, or to a variable that gets populated automatically, the per-request policy must contain an agent to populate the gating criteria. Per-request policy subroutine  Part of a per-request policy in which you configure a type of authentication to use for step-up authentication.  Per-request policy subroutine gating criteria setting A setting that is blank or contains a perflow variable that specifies a distinct value that represents a reason to run step-up authentication.[Contact Support](https://www.google.com/url?sa=E&q=https%3A%2F%2Fwww.f5.com%2Fcompany%2Fcontact%2Fregional-offices%23product-support)Have a Question?[Support and Sales  >](https://www.google.com/url?sa=E&q=https%3A%2F%2Fwww.f5.com%2Fcompany%2Fcontact%2Fregional-offices%23product-support)Follow UsAbout F5EducationF5 SitesSupport Tasks
+©2023 F5, Inc. All rights reserved.

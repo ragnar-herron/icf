@@ -1,0 +1,86 @@
+sys snmp {
+    agent-addresses { tcp6:161 udp6:161 }
+    agent-trap enabled
+    allowed-addresses { 127.0.0.0/8 }
+    auth-trap disabled
+    bigip-traps enabled
+    communities {
+        comm-public {
+            access ro
+            community-name public
+            description none
+            ipv6 disabled
+            oid-subset none
+            source default
+        }
+    }
+    description none
+    disk-monitors {
+        root {
+            description none
+            minspace 2000
+            minspace-type size
+            path /
+        }
+        var {
+            description none
+            minspace 10000
+            minspace-type size
+            path /var
+        }
+    }
+    include none
+    l2forward-vlan
+    load-max1 12
+    load-max5 12
+    load-max15 12
+    process-monitors {
+        bigd {
+            description none
+            max-processes infinity
+            min-processes 1
+            process bigd
+        }
+        chmand {
+            description none
+            max-processes 1
+            min-processes 1
+            process chmand
+        }
+        httpd {
+            description none
+            max-processes infinity
+            min-processes 1
+            process httpd
+        }
+        mcpd {
+            description none
+            max-processes 1
+            min-processes 1
+            process mcpd
+        }
+        sod {
+            description none
+            max-processes 1
+            min-processes 1
+            process sod
+        }
+        tmm {
+            description none
+            max-processes infinity
+            min-processes 1
+            process tmm
+        }
+    }
+    snmpv1 enable
+    snmpv2c enable
+    sys-contact "Customer Name <admin@customer.com>"
+    sys-location "Network Closet 1"
+    sys-services 78
+    trap-community public
+    trap-source none
+    traps none
+    users none
+    v1-traps none
+    v2-traps none
+}

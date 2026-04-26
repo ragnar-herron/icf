@@ -1,0 +1,10 @@
+{
+  "control": "V-266096",
+  "evidence_type": "backup_policy",
+  "schedule_verified": true,
+  "off_device_verified": true,
+  "retention_verified": true,
+  "source": "backup_system|ticket|doc",
+  "timestamp": "2026-04-24T00:00:00Z",
+  "verifier": "name_or_team"
+}

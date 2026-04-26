@@ -1,3 +1,8 @@
+STATUS: EVIDENCE SOURCE
+CANONICAL INTERPRETATION IN docs/canonical/CANONICAL_GATE_SUITE.md
+
+---
+
 # STIG Expert Critic — Unified Design Review Checklist (executed)
 
 This is the **single formal design review checklist** that integrates:

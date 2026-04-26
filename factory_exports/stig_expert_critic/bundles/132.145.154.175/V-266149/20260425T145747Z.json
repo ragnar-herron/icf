@@ -1,0 +1,389 @@
+{
+  "ok": true,
+  "vuln_id": "V-266149",
+  "source_stig": {
+    "vuln_id": "V-266149",
+    "ruleID": "SV-266149r1024844_rule",
+    "checkid": "C-70073r1024842_chk",
+    "fixid": "F-69976r1024843_fix",
+    "title": "The F5 BIG-IP appliance that provides intermediary services for HTTP must inspect inbound and outbound HTTP traffic for protocol compliance and protocol anomalies.",
+    "checktext": "If the BIG-IP appliance does not provide intermediary/proxy services for HTTP communications traffic, this is not applicable.\n\nApplication Security Policy:\nFrom the BIG-IP GUI:\n1. Security.\n2. Application Security.\n3. Policy Building.\n4. Learning and Blocking Settings.\n5. Verify the correct policy is selected from the drop-down in the upper left.\n6. Expand \"HTTP protocol compliance failed\".\n7. Verify the proper inspection criteria are selected.\n\nHTTP Virtual Server:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the HTTP Virtual Server.\n5. Security >> Policies tab.\n6. Verify the correct policy is selected for \"Application Security Policy\".\n\nIf the BIG-IP appliance is not configured to inspect inbound and outbound HTTP communications traffic for protocol compliance and protocol anomalies, this is a finding.",
+    "fixtext": "Application Security Policy:\nFrom the BIG-IP GUI:\n1. Security.\n2. Application Security.\n3. Policy Building.\n4. Learning and Blocking Settings.\n5. Select the correct policy from the drop-down in the upper left.\n6. Expand \"HTTP protocol compliance failed\".\n7. Select the proper inspection criteria.\n8. Click \"Save\".\n9. Click \"Apply Policy\".\n\nHTTP Virtual Server:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the HTTP virtual server.\n5. Security >> Policies tab.\n6. Set \"Application Security Policy\" to \"Enabled\".\n7. Select the correct policy from the drop-down.\n8. Click \"Update\".\n\nRefer to vendor documentation for more information.",
+    "description": "Application protocol anomaly detection examines application layer protocols such as HTTP to identify attacks based on observed deviations in the normal RFC behavior of a protocol or service. This type of monitoring allows for the detection of known and unknown exploits which exploit weaknesses of commonly used protocols.\n\nSince protocol anomaly analysis examines the application payload for patterns or anomalies, an HTTP proxy must be included in the ALG. This ALG will be configured to inspect inbound and outbound HTTP communications traffic to detect protocol anomalies such as malformed message and command insertion attacks.\n\nAll inbound and outbound traffic, including HTTPS, must be inspected. However, the intention of this policy is not to mandate HTTPS inspection by the ALG. Typically, HTTPS traffic is inspected either at the source, destination and/or is directed for inspection by organizationally-defined network termination point.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "f40962ad0338c57d33ebeb45a39e0ff126dc7505c113edb81ea2fa2b3eadf1fd"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_asm_policy": {
+      "source": "tmsh_asm_policy",
+      "preview": "asm policy stig_baseline_policy {\n    active\n    app-service none\n    blocking-mode enabled\n    description \"STIG baseline ASM policy for compliance\"\n    encoding utf-8\n    parent-policy none\n    partition Common\n    policy-builder enabled\n ... (123 more chars)",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list asm policy all-properties"
+      },
+      "blob_sha256": "5e8f51c054548458",
+      "bytes": 364
+    },
+    "tmsh_ltm_virtual": {
+      "source": "tmsh_ltm_virtual",
+      "preview": "ltm virtual stig_disallowed_test {\n    address-status yes\n    app-cloud-security-services none\n    app-service none\n    auth none\n    auto-discovery disabled\n    auto-lasthop default\n    bwc-policy none\n    clone-pools none\n    cmp-enabled  ... (3977 more chars)",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list ltm virtual all-properties"
+      },
+      "blob_sha256": "e8a6ff3b5a9eb261",
+      "bytes": 4218
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266149:asm_policy_active:1",
+      "carrier_coordinate": "tmsh:list asm policy all-properties",
+      "measurable": "asm_policy.active",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "active",
+      "comparison_expression": "observed(active) satisfies required(true)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_asm_policy",
+      "source_stig": {
+        "vuln_id": "V-266149",
+        "ruleID": "SV-266149r1024844_rule",
+        "checkid": "C-70073r1024842_chk",
+        "fixid": "F-69976r1024843_fix",
+        "title": "The F5 BIG-IP appliance that provides intermediary services for HTTP must inspect inbound and outbound HTTP traffic for protocol compliance and protocol anomalies.",
+        "checktext": "If the BIG-IP appliance does not provide intermediary/proxy services for HTTP communications traffic, this is not applicable.\n\nApplication Security Policy:\nFrom the BIG-IP GUI:\n1. Security.\n2. Application Security.\n3. Policy Building.\n4. Learning and Blocking Settings.\n5. Verify the correct policy is selected from the drop-down in the upper left.\n6. Expand \"HTTP protocol compliance failed\".\n7. Verify the proper inspection criteria are selected.\n\nHTTP Virtual Server:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the HTTP Virtual Server.\n5. Security >> Policies tab.\n6. Verify the correct policy is selected for \"Application Security Policy\".\n\nIf the BIG-IP appliance is not configured to inspect inbound and outbound HTTP communications traffic for protocol compliance and protocol anomalies, this is a finding.",
+        "fixtext": "Application Security Policy:\nFrom the BIG-IP GUI:\n1. Security.\n2. Application Security.\n3. Policy Building.\n4. Learning and Blocking Settings.\n5. Select the correct policy from the drop-down in the upper left.\n6. Expand \"HTTP protocol compliance failed\".\n7. Select the proper inspection criteria.\n8. Click \"Save\".\n9. Click \"Apply Policy\".\n\nHTTP Virtual Server:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the HTTP virtual server.\n5. Security >> Policies tab.\n6. Set \"Application Security Policy\" to \"Enabled\".\n7. Select the correct policy from the drop-down.\n8. Click \"Update\".\n\nRefer to vendor documentation for more information.",
+        "description": "Application protocol anomaly detection examines application layer protocols such as HTTP to identify attacks based on observed deviations in the normal RFC behavior of a protocol or service. This type of monitoring allows for the detection of known and unknown exploits which exploit weaknesses of commonly used protocols.\n\nSince protocol anomaly analysis examines the application payload for patterns or anomalies, an HTTP proxy must be included in the ALG. This ALG will be configured to inspect inbound and outbound HTTP communications traffic to detect protocol anomalies such as malformed message and command insertion attacks.\n\nAll inbound and outbound traffic, including HTTPS, must be inspected. However, the intention of this policy is not to mandate HTTPS inspection by the ALG. Typically, HTTPS traffic is inspected either at the source, destination and/or is directed for inspection by organizationally-defined network termination point.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "f40962ad0338c57d33ebeb45a39e0ff126dc7505c113edb81ea2fa2b3eadf1fd"
+      },
+      "vuln_id": "V-266149"
+    },
+    {
+      "pullback_id": "V-266149:asm_policy_blocking_mode:2",
+      "carrier_coordinate": "tmsh:list asm policy all-properties",
+      "measurable": "asm_policy.blocking_mode",
+      "lawful_property": "enabled",
+      "required": "enabled",
+      "observed": "enabled",
+      "comparison_expression": "observed(enabled) satisfies required(enabled)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_asm_policy",
+      "source_stig": {
+        "vuln_id": "V-266149",
+        "ruleID": "SV-266149r1024844_rule",
+        "checkid": "C-70073r1024842_chk",
+        "fixid": "F-69976r1024843_fix",
+        "title": "The F5 BIG-IP appliance that provides intermediary services for HTTP must inspect inbound and outbound HTTP traffic for protocol compliance and protocol anomalies.",
+        "checktext": "If the BIG-IP appliance does not provide intermediary/proxy services for HTTP communications traffic, this is not applicable.\n\nApplication Security Policy:\nFrom the BIG-IP GUI:\n1. Security.\n2. Application Security.\n3. Policy Building.\n4. Learning and Blocking Settings.\n5. Verify the correct policy is selected from the drop-down in the upper left.\n6. Expand \"HTTP protocol compliance failed\".\n7. Verify the proper inspection criteria are selected.\n\nHTTP Virtual Server:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the HTTP Virtual Server.\n5. Security >> Policies tab.\n6. Verify the correct policy is selected for \"Application Security Policy\".\n\nIf the BIG-IP appliance is not configured to inspect inbound and outbound HTTP communications traffic for protocol compliance and protocol anomalies, this is a finding.",
+        "fixtext": "Application Security Policy:\nFrom the BIG-IP GUI:\n1. Security.\n2. Application Security.\n3. Policy Building.\n4. Learning and Blocking Settings.\n5. Select the correct policy from the drop-down in the upper left.\n6. Expand \"HTTP protocol compliance failed\".\n7. Select the proper inspection criteria.\n8. Click \"Save\".\n9. Click \"Apply Policy\".\n\nHTTP Virtual Server:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the HTTP virtual server.\n5. Security >> Policies tab.\n6. Set \"Application Security Policy\" to \"Enabled\".\n7. Select the correct policy from the drop-down.\n8. Click \"Update\".\n\nRefer to vendor documentation for more information.",
+        "description": "Application protocol anomaly detection examines application layer protocols such as HTTP to identify attacks based on observed deviations in the normal RFC behavior of a protocol or service. This type of monitoring allows for the detection of known and unknown exploits which exploit weaknesses of commonly used protocols.\n\nSince protocol anomaly analysis examines the application payload for patterns or anomalies, an HTTP proxy must be included in the ALG. This ALG will be configured to inspect inbound and outbound HTTP communications traffic to detect protocol anomalies such as malformed message and command insertion attacks.\n\nAll inbound and outbound traffic, including HTTPS, must be inspected. However, the intention of this policy is not to mandate HTTPS inspection by the ALG. Typically, HTTPS traffic is inspected either at the source, destination and/or is directed for inspection by organizationally-defined network termination point.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "f40962ad0338c57d33ebeb45a39e0ff126dc7505c113edb81ea2fa2b3eadf1fd"
+      },
+      "vuln_id": "V-266149"
+    },
+    {
+      "pullback_id": "V-266149:ltm_virtual_stig_test_vs_attached_asm_policy:3",
+      "carrier_coordinate": "tmsh:list ltm virtual all-properties",
+      "measurable": "ltm_virtual.stig_test_vs.attached_asm_policy",
+      "lawful_property": "present",
+      "required": "present",
+      "observed": "present",
+      "comparison_expression": "observed(present) satisfies required(present)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_ltm_virtual",
+      "source_stig": {
+        "vuln_id": "V-266149",
+        "ruleID": "SV-266149r1024844_rule",
+        "checkid": "C-70073r1024842_chk",
+        "fixid": "F-69976r1024843_fix",
+        "title": "The F5 BIG-IP appliance that provides intermediary services for HTTP must inspect inbound and outbound HTTP traffic for protocol compliance and protocol anomalies.",
+        "checktext": "If the BIG-IP appliance does not provide intermediary/proxy services for HTTP communications traffic, this is not applicable.\n\nApplication Security Policy:\nFrom the BIG-IP GUI:\n1. Security.\n2. Application Security.\n3. Policy Building.\n4. Learning and Blocking Settings.\n5. Verify the correct policy is selected from the drop-down in the upper left.\n6. Expand \"HTTP protocol compliance failed\".\n7. Verify the proper inspection criteria are selected.\n\nHTTP Virtual Server:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the HTTP Virtual Server.\n5. Security >> Policies tab.\n6. Verify the correct policy is selected for \"Application Security Policy\".\n\nIf the BIG-IP appliance is not configured to inspect inbound and outbound HTTP communications traffic for protocol compliance and protocol anomalies, this is a finding.",
+        "fixtext": "Application Security Policy:\nFrom the BIG-IP GUI:\n1. Security.\n2. Application Security.\n3. Policy Building.\n4. Learning and Blocking Settings.\n5. Select the correct policy from the drop-down in the upper left.\n6. Expand \"HTTP protocol compliance failed\".\n7. Select the proper inspection criteria.\n8. Click \"Save\".\n9. Click \"Apply Policy\".\n\nHTTP Virtual Server:\nFrom the BIG-IP GUI:\n1. Local Traffic.\n2. Virtual Servers.\n3. Virtual Server List.\n4. Click the name of the HTTP virtual server.\n5. Security >> Policies tab.\n6. Set \"Application Security Policy\" to \"Enabled\".\n7. Select the correct policy from the drop-down.\n8. Click \"Update\".\n\nRefer to vendor documentation for more information.",
+        "description": "Application protocol anomaly detection examines application layer protocols such as HTTP to identify attacks based on observed deviations in the normal RFC behavior of a protocol or service. This type of monitoring allows for the detection of known and unknown exploits which exploit weaknesses of commonly used protocols.\n\nSince protocol anomaly analysis examines the application payload for patterns or anomalies, an HTTP proxy must be included in the ALG. This ALG will be configured to inspect inbound and outbound HTTP communications traffic to detect protocol anomalies such as malformed message and command insertion attacks.\n\nAll inbound and outbound traffic, including HTTPS, must be inspected. However, the intention of this policy is not to mandate HTTPS inspection by the ALG. Typically, HTTPS traffic is inspected either at the source, destination and/or is directed for inspection by organizationally-defined network termination point.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "f40962ad0338c57d33ebeb45a39e0ff126dc7505c113edb81ea2fa2b3eadf1fd"
+      },
+      "vuln_id": "V-266149"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266149)",
+      "source_a_count": 3,
+      "source_b": "STIG-required predicates (V-266149)",
+      "source_b_count": 3,
+      "codomain": "shared measurables (V-266149)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 3,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266149:asm_policy_active:1",
+          "shared_key": "asm_policy.active",
+          "left_id": "observed[asm_policy.active] = active",
+          "right_id": "required[asm_policy.active] true",
+          "observed_value": "active",
+          "required_value": "true",
+          "comparison_expression": "observed(active) satisfies required(true)",
+          "cardinality": "ok",
+          "source": "tmsh:list asm policy all-properties"
+        },
+        {
+          "pullback_id": "V-266149:asm_policy_blocking_mode:2",
+          "shared_key": "asm_policy.blocking_mode",
+          "left_id": "observed[asm_policy.blocking_mode] = enabled",
+          "right_id": "required[asm_policy.blocking_mode] enabled",
+          "observed_value": "enabled",
+          "required_value": "enabled",
+          "comparison_expression": "observed(enabled) satisfies required(enabled)",
+          "cardinality": "ok",
+          "source": "tmsh:list asm policy all-properties"
+        },
+        {
+          "pullback_id": "V-266149:ltm_virtual_stig_test_vs_attached_asm_policy:3",
+          "shared_key": "ltm_virtual.stig_test_vs.attached_asm_policy",
+          "left_id": "observed[ltm_virtual.stig_test_vs.attached_asm_policy] = present",
+          "right_id": "required[ltm_virtual.stig_test_vs.attached_asm_policy] present",
+          "observed_value": "present",
+          "required_value": "present",
+          "comparison_expression": "observed(present) satisfies required(present)",
+          "cardinality": "ok",
+          "source": "tmsh:list ltm virtual all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266149:asm_policy_active:1",
+      "shared_key": "asm_policy.active",
+      "left_id": "observed[asm_policy.active] = active",
+      "right_id": "required[asm_policy.active] true",
+      "observed_value": "active",
+      "required_value": "true",
+      "source": "tmsh:list asm policy all-properties",
+      "comparison_expression": "observed(active) satisfies required(true)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266149:asm_policy_blocking_mode:2",
+      "shared_key": "asm_policy.blocking_mode",
+      "left_id": "observed[asm_policy.blocking_mode] = enabled",
+      "right_id": "required[asm_policy.blocking_mode] enabled",
+      "observed_value": "enabled",
+      "required_value": "enabled",
+      "source": "tmsh:list asm policy all-properties",
+      "comparison_expression": "observed(enabled) satisfies required(enabled)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266149:ltm_virtual_stig_test_vs_attached_asm_policy:3",
+      "shared_key": "ltm_virtual.stig_test_vs.attached_asm_policy",
+      "left_id": "observed[ltm_virtual.stig_test_vs.attached_asm_policy] = present",
+      "right_id": "required[ltm_virtual.stig_test_vs.attached_asm_policy] present",
+      "observed_value": "present",
+      "required_value": "present",
+      "source": "tmsh:list ltm virtual all-properties",
+      "comparison_expression": "observed(present) satisfies required(present)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266149",
+      "requirement": "The F5 BIG-IP appliance that provides intermediary services for HTTP must inspect inbound and outbound HTTP traffic for protocol compliance and protocol anomalies.",
+      "status": "NOT_A_FINDING",
+      "why": "ASM: an active blocking policy must be attached to the STIG test virtual.",
+      "tmsh_remediation_command": "[Manual] Attach an active, enforced ASM policy to the STIG-scoped virtual server.",
+      "rest_remediation_command": "[Manual] PATCH /mgmt/tm/asm/policies/<id> {\"active\":true,\"enforcementMode\":\"blocking\"}",
+      "evidence_keys": [
+        "tmsh_asm_policy",
+        "tmsh_ltm_virtual"
+      ],
+      "comparison_summary": {
+        "total": 3,
+        "pass": 3,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266149 - asm_policy evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266149",
+        "detail": "Collected 2 source snapshot(s) producing 3 measurement(s).",
+        "endpoints": [
+          "tmsh:list asm policy all-properties",
+          "tmsh:list ltm virtual all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266149",
+        "source_a": "observed appliance evidence (V-266149)",
+        "source_a_count": 3,
+        "source_b": "STIG-required predicates (V-266149)",
+        "source_b_count": 3,
+        "codomain": "shared measurables (V-266149)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 3,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266149:asm_policy_active:1",
+            "shared_key": "asm_policy.active",
+            "left_id": "observed[asm_policy.active] = active",
+            "right_id": "required[asm_policy.active] true",
+            "observed_value": "active",
+            "required_value": "true",
+            "comparison_expression": "observed(active) satisfies required(true)",
+            "cardinality": "ok",
+            "source": "tmsh:list asm policy all-properties"
+          },
+          {
+            "pullback_id": "V-266149:asm_policy_blocking_mode:2",
+            "shared_key": "asm_policy.blocking_mode",
+            "left_id": "observed[asm_policy.blocking_mode] = enabled",
+            "right_id": "required[asm_policy.blocking_mode] enabled",
+            "observed_value": "enabled",
+            "required_value": "enabled",
+            "comparison_expression": "observed(enabled) satisfies required(enabled)",
+            "cardinality": "ok",
+            "source": "tmsh:list asm policy all-properties"
+          },
+          {
+            "pullback_id": "V-266149:ltm_virtual_stig_test_vs_attached_asm_policy:3",
+            "shared_key": "ltm_virtual.stig_test_vs.attached_asm_policy",
+            "left_id": "observed[ltm_virtual.stig_test_vs.attached_asm_policy] = present",
+            "right_id": "required[ltm_virtual.stig_test_vs.attached_asm_policy] present",
+            "observed_value": "present",
+            "required_value": "present",
+            "comparison_expression": "observed(present) satisfies required(present)",
+            "cardinality": "ok",
+            "source": "tmsh:list ltm virtual all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - asm_policy.active @ tmsh:list asm policy all-properties",
+        "pullback_id": "V-266149:asm_policy_active:1",
+        "required": "true",
+        "observed": "active",
+        "source": "tmsh:list asm policy all-properties",
+        "comparison_expression": "observed(active) satisfies required(true)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - asm_policy.blocking_mode @ tmsh:list asm policy all-properties",
+        "pullback_id": "V-266149:asm_policy_blocking_mode:2",
+        "required": "enabled",
+        "observed": "enabled",
+        "source": "tmsh:list asm policy all-properties",
+        "comparison_expression": "observed(enabled) satisfies required(enabled)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - ltm_virtual.stig_test_vs.attached_asm_policy @ tmsh:list ltm virtual all-properties",
+        "pullback_id": "V-266149:ltm_virtual_stig_test_vs_attached_asm_policy:3",
+        "required": "present",
+        "observed": "present",
+        "source": "tmsh:list ltm virtual all-properties",
+        "comparison_expression": "observed(present) satisfies required(present)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 3,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 3
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "ASM: an active blocking policy must be attached to the STIG test virtual.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "If the BIG-IP appliance does not provide intermediary/proxy services for HTTP communications traffic, this is not applicable.",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "ASM: an active blocking policy must be attached to the STIG test virtual.",
+  "ctx_timestamp": "2026-04-25T14:57:47Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266149"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266149/20260425T145747Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266149/20260425T145747Z.json",
+    "bundle_timestamp": "2026-04-25T14:57:47Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

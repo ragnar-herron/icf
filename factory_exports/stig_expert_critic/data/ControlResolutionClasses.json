@@ -1,0 +1,85 @@
+{
+  "record_type": "ControlResolutionClasses",
+  "controls": [
+    {
+      "vuln_id": "V-266064",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266065",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266066",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266067",
+      "resolution_class": "external_evidence_required",
+      "note": "Appropriate roles and partition access are organization-defined and require external authorization evidence."
+    },
+    {
+      "vuln_id": "V-266068",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266074",
+      "resolution_class": "external_evidence_required",
+      "note": "Audit storage thresholds are defined by the SSP and require external retention/storage policy evidence."
+    },
+    {
+      "vuln_id": "V-266078",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266079",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266080",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266083",
+      "resolution_class": "manual_attestation_required",
+      "note": "Approved certificate policy and approved service provider status require attested issuer approval evidence."
+    },
+    {
+      "vuln_id": "V-266085",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266092",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266093",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266094",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266167",
+      "resolution_class": "direct_control_support",
+      "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+    },
+    {
+      "vuln_id": "V-266174",
+      "resolution_class": "redesign_required",
+      "note": "Always On VPN semantics do not fit the current family model cleanly and should be redesigned rather than promoted under manual_or_generic."
+    }
+  ]
+}

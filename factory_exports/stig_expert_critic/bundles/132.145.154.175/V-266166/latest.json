@@ -1,0 +1,324 @@
+{
+  "ok": true,
+  "vuln_id": "V-266166",
+  "source_stig": {
+    "vuln_id": "V-266166",
+    "ruleID": "SV-266166r1024851_rule",
+    "checkid": "C-70090r1024849_chk",
+    "fixid": "F-69993r1024850_fix",
+    "title": "The F5 BIG-IP appliance must not use the On-demand Cert Auth VPE agent as part of the APM Policy Profiles.",
+    "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Verify the On-Demand Cert Auth agent is not configured in any part of the profile.\n\nIf the On-Demand Cert Auth agent is used in any Access Policy Profile, this is a finding.",
+    "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Remove any \"On-Demand Cert Auth\" agents in the profile.\n6. Add a \"Client Cert Inspection\" object in place of the previous \"On Demand Cert Auth\" agent.\n7. Click \"Apply Access Policy\".",
+    "description": "By requiring mutual authentication before any communication, it becomes significantly challenging for attackers to impersonate a client or server and exploit vulnerabilities. Furthermore, the encryption of all data transmitted between the client and server ensures that even if an attacker intercepts the data, it remains unintelligible without the correct keys.\n\nTo ensure the use of the mTLS for session authentication, do not use the On-Demand Cert Auth VPE agent. Typically, when a client makes an HTTPS request, an SSL handshake request occurs at the start of an SSL session. However, if On-Demand is configured, the client SSL profile skips the initial SSL handshake, an On-Demand Cert Auth action can re-negotiate the SSL connection from an access policy by sending a certificate request to the user. This prompts a certificate screen to open. Setting ODCA to \"require\" the client cert means the client cannot get any farther in the APM VPE without providing a valid certificate. \"Request\" would ask the client for a certificate, but the client could still continue if they did not provide one. Thus, the Client Certificate must be set to \"require\" in the client SSL profile since just removing ODCA from the VPE alone will result in the client never getting prompted for a certificate.\n\nWithin the Virtual Policy Editor (VPE) of the relevant Access Profile, do not use the On-Demand Cert Auth VPE agent. Configure only the Client Certification Inspection VPE Agent. This adjustment directs the BIG-IP to scrutinize the Client Certificate during the mTLS handshake process and extract the certificate's details into APM session variables.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "457e5de89ef93cde0ef4a7182cead413ca3de65d081949f369ed5dd69c5b0e51"
+  },
+  "status": "NOT_A_FINDING",
+  "disposition": "pass",
+  "evidence": {
+    "tmsh_apm_profile_access": {
+      "source": "tmsh_apm_profile_access",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm profile access all-properties"
+      },
+      "blob_sha256": "fbce69c889c04c18",
+      "bytes": 4743
+    },
+    "tmsh_apm_policy_access_policy": {
+      "source": "tmsh_apm_policy_access_policy",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm policy access-policy all-properties"
+      },
+      "blob_sha256": "655e6d9da7eac748",
+      "bytes": 1788
+    },
+    "tmsh_apm_log_setting": {
+      "source": "tmsh_apm_log_setting",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm log-setting all-properties"
+      },
+      "blob_sha256": "0bf6b6fc4b86188b",
+      "bytes": 2506
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266166:apm_profile_access_restrict_to_single_client_ip:1",
+      "carrier_coordinate": "tmsh:list apm profile access all-properties",
+      "measurable": "apm_profile_access.restrict_to_single_client_ip",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "true",
+      "comparison_expression": "observed(true) satisfies required(true)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_profile_access",
+      "source_stig": {
+        "vuln_id": "V-266166",
+        "ruleID": "SV-266166r1024851_rule",
+        "checkid": "C-70090r1024849_chk",
+        "fixid": "F-69993r1024850_fix",
+        "title": "The F5 BIG-IP appliance must not use the On-demand Cert Auth VPE agent as part of the APM Policy Profiles.",
+        "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Verify the On-Demand Cert Auth agent is not configured in any part of the profile.\n\nIf the On-Demand Cert Auth agent is used in any Access Policy Profile, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Remove any \"On-Demand Cert Auth\" agents in the profile.\n6. Add a \"Client Cert Inspection\" object in place of the previous \"On Demand Cert Auth\" agent.\n7. Click \"Apply Access Policy\".",
+        "description": "By requiring mutual authentication before any communication, it becomes significantly challenging for attackers to impersonate a client or server and exploit vulnerabilities. Furthermore, the encryption of all data transmitted between the client and server ensures that even if an attacker intercepts the data, it remains unintelligible without the correct keys.\n\nTo ensure the use of the mTLS for session authentication, do not use the On-Demand Cert Auth VPE agent. Typically, when a client makes an HTTPS request, an SSL handshake request occurs at the start of an SSL session. However, if On-Demand is configured, the client SSL profile skips the initial SSL handshake, an On-Demand Cert Auth action can re-negotiate the SSL connection from an access policy by sending a certificate request to the user. This prompts a certificate screen to open. Setting ODCA to \"require\" the client cert means the client cannot get any farther in the APM VPE without providing a valid certificate. \"Request\" would ask the client for a certificate, but the client could still continue if they did not provide one. Thus, the Client Certificate must be set to \"require\" in the client SSL profile since just removing ODCA from the VPE alone will result in the client never getting prompted for a certificate.\n\nWithin the Virtual Policy Editor (VPE) of the relevant Access Profile, do not use the On-Demand Cert Auth VPE agent. Configure only the Client Certification Inspection VPE Agent. This adjustment directs the BIG-IP to scrutinize the Client Certificate during the mTLS handshake process and extract the certificate's details into APM session variables.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "457e5de89ef93cde0ef4a7182cead413ca3de65d081949f369ed5dd69c5b0e51"
+      },
+      "vuln_id": "V-266166"
+    },
+    {
+      "pullback_id": "V-266166:apm_profile_access_max_concurrent_users:2",
+      "carrier_coordinate": "tmsh:list apm profile access all-properties",
+      "measurable": "apm_profile_access.max_concurrent_users",
+      "lawful_property": "== 1",
+      "required": "== 1",
+      "observed": "1",
+      "comparison_expression": "observed(1) satisfies required(== 1)",
+      "match": true,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "accept",
+      "source_key": "tmsh_apm_profile_access",
+      "source_stig": {
+        "vuln_id": "V-266166",
+        "ruleID": "SV-266166r1024851_rule",
+        "checkid": "C-70090r1024849_chk",
+        "fixid": "F-69993r1024850_fix",
+        "title": "The F5 BIG-IP appliance must not use the On-demand Cert Auth VPE agent as part of the APM Policy Profiles.",
+        "checktext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Verify the On-Demand Cert Auth agent is not configured in any part of the profile.\n\nIf the On-Demand Cert Auth agent is used in any Access Policy Profile, this is a finding.",
+        "fixtext": "From the BIG-IP GUI:\n1. Access.\n2. Profiles/Policies.\n3. Access Profiles.\n4. Click \"Edit\" under \"Per-Session Policy\" for the Access Profile.\n5. Remove any \"On-Demand Cert Auth\" agents in the profile.\n6. Add a \"Client Cert Inspection\" object in place of the previous \"On Demand Cert Auth\" agent.\n7. Click \"Apply Access Policy\".",
+        "description": "By requiring mutual authentication before any communication, it becomes significantly challenging for attackers to impersonate a client or server and exploit vulnerabilities. Furthermore, the encryption of all data transmitted between the client and server ensures that even if an attacker intercepts the data, it remains unintelligible without the correct keys.\n\nTo ensure the use of the mTLS for session authentication, do not use the On-Demand Cert Auth VPE agent. Typically, when a client makes an HTTPS request, an SSL handshake request occurs at the start of an SSL session. However, if On-Demand is configured, the client SSL profile skips the initial SSL handshake, an On-Demand Cert Auth action can re-negotiate the SSL connection from an access policy by sending a certificate request to the user. This prompts a certificate screen to open. Setting ODCA to \"require\" the client cert means the client cannot get any farther in the APM VPE without providing a valid certificate. \"Request\" would ask the client for a certificate, but the client could still continue if they did not provide one. Thus, the Client Certificate must be set to \"require\" in the client SSL profile since just removing ODCA from the VPE alone will result in the client never getting prompted for a certificate.\n\nWithin the Virtual Policy Editor (VPE) of the relevant Access Profile, do not use the On-Demand Cert Auth VPE agent. Configure only the Client Certification Inspection VPE Agent. This adjustment directs the BIG-IP to scrutinize the Client Certificate during the mTLS handshake process and extract the certificate's details into APM session variables.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "457e5de89ef93cde0ef4a7182cead413ca3de65d081949f369ed5dd69c5b0e51"
+      },
+      "vuln_id": "V-266166"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266166)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266166)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266166)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 2,
+      "mismatch_count": 0,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266166:apm_profile_access_restrict_to_single_client_ip:1",
+          "shared_key": "apm_profile_access.restrict_to_single_client_ip",
+          "left_id": "observed[apm_profile_access.restrict_to_single_client_ip] = true",
+          "right_id": "required[apm_profile_access.restrict_to_single_client_ip] true",
+          "observed_value": "true",
+          "required_value": "true",
+          "comparison_expression": "observed(true) satisfies required(true)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm profile access all-properties"
+        },
+        {
+          "pullback_id": "V-266166:apm_profile_access_max_concurrent_users:2",
+          "shared_key": "apm_profile_access.max_concurrent_users",
+          "left_id": "observed[apm_profile_access.max_concurrent_users] = 1",
+          "right_id": "required[apm_profile_access.max_concurrent_users] == 1",
+          "observed_value": "1",
+          "required_value": "== 1",
+          "comparison_expression": "observed(1) satisfies required(== 1)",
+          "cardinality": "ok",
+          "source": "tmsh:list apm profile access all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "info",
+      "aspect": "confirmation",
+      "finding": "Every measured predicate is satisfied by observed appliance evidence."
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266166:apm_profile_access_restrict_to_single_client_ip:1",
+      "shared_key": "apm_profile_access.restrict_to_single_client_ip",
+      "left_id": "observed[apm_profile_access.restrict_to_single_client_ip] = true",
+      "right_id": "required[apm_profile_access.restrict_to_single_client_ip] true",
+      "observed_value": "true",
+      "required_value": "true",
+      "source": "tmsh:list apm profile access all-properties",
+      "comparison_expression": "observed(true) satisfies required(true)"
+    },
+    {
+      "record_type": "match",
+      "pullback_id": "V-266166:apm_profile_access_max_concurrent_users:2",
+      "shared_key": "apm_profile_access.max_concurrent_users",
+      "left_id": "observed[apm_profile_access.max_concurrent_users] = 1",
+      "right_id": "required[apm_profile_access.max_concurrent_users] == 1",
+      "observed_value": "1",
+      "required_value": "== 1",
+      "source": "tmsh:list apm profile access all-properties",
+      "comparison_expression": "observed(1) satisfies required(== 1)"
+    }
+  ],
+  "adjudication": {
+    "compliant": true,
+    "human_review_row": {
+      "vuln_id": "V-266166",
+      "requirement": "The F5 BIG-IP appliance must not use the On-demand Cert Auth VPE agent as part of the APM Policy Profiles.",
+      "status": "NOT_A_FINDING",
+      "why": "APM access-profile baseline: restrict-to-single-client-ip=true AND max-concurrent-users=1.",
+      "tmsh_remediation_command": "[Manual] Review APM access profile / policy and apply DoD-approved controls.",
+      "rest_remediation_command": "[Manual] PATCH APM objects via Policy Editor or iControl-REST.",
+      "evidence_keys": [
+        "tmsh_apm_profile_access",
+        "tmsh_apm_policy_access_policy",
+        "tmsh_apm_log_setting"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 2,
+        "fail": 0,
+        "unresolved": 0
+      }
+    },
+    "violations": [],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266166 - apm_access evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266166",
+        "detail": "Collected 1 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "tmsh:list apm profile access all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266166",
+        "source_a": "observed appliance evidence (V-266166)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266166)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266166)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 2,
+        "unmatched_left": 0,
+        "unmatched_right": 0,
+        "mismatch_count": 0,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266166:apm_profile_access_restrict_to_single_client_ip:1",
+            "shared_key": "apm_profile_access.restrict_to_single_client_ip",
+            "left_id": "observed[apm_profile_access.restrict_to_single_client_ip] = true",
+            "right_id": "required[apm_profile_access.restrict_to_single_client_ip] true",
+            "observed_value": "true",
+            "required_value": "true",
+            "comparison_expression": "observed(true) satisfies required(true)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm profile access all-properties"
+          },
+          {
+            "pullback_id": "V-266166:apm_profile_access_max_concurrent_users:2",
+            "shared_key": "apm_profile_access.max_concurrent_users",
+            "left_id": "observed[apm_profile_access.max_concurrent_users] = 1",
+            "right_id": "required[apm_profile_access.max_concurrent_users] == 1",
+            "observed_value": "1",
+            "required_value": "== 1",
+            "comparison_expression": "observed(1) satisfies required(== 1)",
+            "cardinality": "ok",
+            "source": "tmsh:list apm profile access all-properties"
+          }
+        ],
+        "missing_items": [],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - confirmation",
+        "severity": "info",
+        "aspect": "confirmation",
+        "detail": "Every measured predicate is satisfied by observed appliance evidence."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_profile_access.restrict_to_single_client_ip @ tmsh:list apm profile access all-properties",
+        "pullback_id": "V-266166:apm_profile_access_restrict_to_single_client_ip:1",
+        "required": "true",
+        "observed": "true",
+        "source": "tmsh:list apm profile access all-properties",
+        "comparison_expression": "observed(true) satisfies required(true)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_profile_access.max_concurrent_users @ tmsh:list apm profile access all-properties",
+        "pullback_id": "V-266166:apm_profile_access_max_concurrent_users:2",
+        "required": "== 1",
+        "observed": "1",
+        "source": "tmsh:list apm profile access all-properties",
+        "comparison_expression": "observed(1) satisfies required(== 1)",
+        "verdict": "PASS",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 2,
+        "fail_count": 0,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "APM access-profile baseline: restrict-to-single-client-ip=true AND max-concurrent-users=1.",
+        "status": "NOT_A_FINDING",
+        "naf_expression": "observed == required",
+        "naf_result": true,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": false
+      }
+    ]
+  },
+  "rationale": "APM access-profile baseline: restrict-to-single-client-ip=true AND max-concurrent-users=1.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266166"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266166/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266166/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

@@ -154,29 +154,44 @@ def _get_disabled_value(field_name: str, current_value: Any, contract: dict) -> 
     """Return a disabled/zero value that should fail the criteria."""
     info = _analyze_field_criteria(field_name, contract)
     ops = info["operators"]
+    thresholds = info["thresholds"]
 
     if isinstance(current_value, bool):
-        return False
+        for op, thr in zip(ops, thresholds):
+            if op == "==" and str(thr).lower() == "false":
+                return True
+            if op == "==" and str(thr).lower() == "true":
+                return False
+        return not current_value
     if isinstance(current_value, int):
-        for op in ops:
-            if op == ">=":
-                return -1
-            if op == "<=":
-                return 99999
-        return 0
+        for op, thr in zip(ops, thresholds):
+            if isinstance(thr, int):
+                if op == ">=":
+                    return -1
+                if op == "<=":
+                    return 99999
+                if op == "==" and thr == 0:
+                    return 99
+                if op == "==":
+                    return thr + 77
+        return -1
     if isinstance(current_value, str):
-        return "disabled"
-    return None
+        return "DISABLED_INVALID"
+    return "__DISABLED__"
 
 
 def _get_malformed_value(current_value: Any) -> Any:
+    if isinstance(current_value, bool):
+        return {"__corrupted": True}
     if isinstance(current_value, str) and len(current_value) > 2:
         return current_value[:len(current_value) // 2] + "\x00CORRUPT"
     if isinstance(current_value, int):
-        return "NaN"
-    if isinstance(current_value, bool):
-        return "MALFORMED"
-    return "\x00"
+        return {"__corrupted": current_value}
+    return {"__corrupted": True}
+
+
+def _has_or_clause(contract: dict) -> bool:
+    return " OR " in contract["criteria"]["not_a_finding"]
 
 
 def generate_fixtures(
@@ -189,20 +204,22 @@ def generate_fixtures(
     Returns list of (fixture_class, evidence_dict, expected_verdict).
     """
     fields = _get_critical_fields(contract)
+    is_or = _has_or_clause(contract)
+    flip_fields = fields if is_or else fields[:1]
     fixtures: list[tuple[str, dict, str]] = []
 
     # 1. good_minimal: real evidence, expect pass
     fixtures.append(("good_minimal", dict(real_evidence), "pass"))
 
-    # 2. bad_canonical: flip critical field
+    # 2. bad_canonical: flip critical fields (all for OR, first for AND)
     bad = dict(real_evidence)
-    for f in fields[:1]:
+    for f in flip_fields:
         bad[f] = _get_fail_value(f, real_evidence.get(f), contract)
     fixtures.append(("bad_canonical", bad, "fail"))
 
     # 3. bad_representation: alternate encoding of bad value
     bad_rep = dict(real_evidence)
-    for f in fields[:1]:
+    for f in flip_fields:
         orig = real_evidence.get(f)
         fail_val = _get_fail_value(f, orig, contract)
         if isinstance(orig, bool):
@@ -219,7 +236,7 @@ def generate_fixtures(
         bv[f] = _get_boundary_value(f, real_evidence.get(f), contract)
     fixtures.append(("boundary_value", bv, "pass"))
 
-    # 5. disabled_state
+    # 5. disabled_state: all fields set to disabled values
     dis = dict(real_evidence)
     for f in fields:
         dis[f] = _get_disabled_value(f, real_evidence.get(f), contract)

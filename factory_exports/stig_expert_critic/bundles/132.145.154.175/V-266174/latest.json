@@ -1,0 +1,328 @@
+{
+  "ok": true,
+  "vuln_id": "V-266174",
+  "source_stig": {
+    "vuln_id": "V-266174",
+    "ruleID": "SV-266174r1024406_rule",
+    "checkid": "C-70098r1023768_chk",
+    "fixid": "F-70001r1023769_fix",
+    "title": "The VPN Gateway must use Always On VPN connections for remote computing.",
+    "checktext": "Verify at least one of these methods is configured.\n\nAlways Connected Mode:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Click \"BIG-IP Edge Client\" on the left.\n8. Verify \"Enable Always connected mode\" is enabled.\n\nMachine Tunnels:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Verify \"Machine Tunnel Service\" is checked.\n\nIf the BIG-IP VPN Gateway is not configured to use an Always On VPN connection for remote computing, this is a finding.",
+    "fixtext": "Configure at least one of these methods.\nAlways Connected Mode:\n\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Click \"BIG-IP Edge Client\" on the left.\n8. Check the box next to \"Enable Always connected mode\".\nNote: Always connected mode requires at least one host be listed in the Server list of the Connectivity Profile. Edit the Connectivity Profile to add an entry, if necessary.\n9. Click \"Download\" to save the settings and download the installer.\n\nMachine Tunnels:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Check \"Machine Tunnel Service\".\n8. Optionally, click \"Machine Tunnel Service\" on the left and check \"Enable NLA for Machine Tunnel\".\nNote: To configure DNS Suffixes for NLA, edit the Connectivity Profile >> Win/Mac Edge Client > Location DNS List.\n9. Click \"Download\" to save the settings and download the installer.",
+    "description": "Allowing remote users to manually toggle a VPN connection can create critical security risks. With Always On VPN, if a secured connection to the gateway is lost, hybrid-working users will simply be disconnected from the internet until the issue is solved.\n\n\"Always On\" is a term that describes a VPN connection that is secure and always on after the initial connection is established. An Always On VPN deployment establishes a VPN connection with the client without the need for user interaction (e.g., user credentials). The remote client must not be able to access the Internet without first established a VPN session with a DOD site.\n\nNote that device compliance checks are still required prior to connecting to DOD resources. Although out of scope for this requirement, the connection process must ensure that remote devices meet security standards before accessing DOD resources. Devices that fail to meet compliance requirements can be denied access, reducing the risk of compromised endpoints.",
+    "severity": "medium",
+    "source_json": "docs/disa_stigs.json",
+    "source_sha256": "62af1c9b42def38331bb253e94555f6ba6f634f4c04818ef13c8b1dfcef22654"
+  },
+  "status": "OPEN",
+  "disposition": "fail",
+  "evidence": {
+    "apm_resource_network_access": {
+      "source": "apm_resource_network_access",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource"
+      },
+      "blob_sha256": "1f57180e34344bd0",
+      "bytes": 2616
+    },
+    "tmsh_apm_profile_connectivity": {
+      "source": "tmsh_apm_profile_connectivity",
+      "source_detail": {
+        "kind": "tmsh",
+        "command": "list apm profile connectivity all-properties"
+      },
+      "blob_sha256": "4a4bc36c0b7893a9",
+      "bytes": 7720
+    },
+    "sys_provision": {
+      "source": "sys_provision",
+      "source_detail": {
+        "kind": "rest",
+        "path": "/mgmt/tm/sys/provision"
+      },
+      "blob_sha256": "77eabeac45baac4b",
+      "bytes": 4639
+    }
+  },
+  "comparison_df": [
+    {
+      "pullback_id": "V-266174:apm_resource_network_access_auto_launch:1",
+      "carrier_coordinate": "rest:/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource",
+      "measurable": "apm_resource_network_access.auto_launch",
+      "lawful_property": "true",
+      "required": "true",
+      "observed": "false",
+      "comparison_expression": "observed(false) satisfies required(true)",
+      "match": false,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "remediate_or_document_exception",
+      "source_key": "apm_resource_network_access",
+      "source_stig": {
+        "vuln_id": "V-266174",
+        "ruleID": "SV-266174r1024406_rule",
+        "checkid": "C-70098r1023768_chk",
+        "fixid": "F-70001r1023769_fix",
+        "title": "The VPN Gateway must use Always On VPN connections for remote computing.",
+        "checktext": "Verify at least one of these methods is configured.\n\nAlways Connected Mode:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Click \"BIG-IP Edge Client\" on the left.\n8. Verify \"Enable Always connected mode\" is enabled.\n\nMachine Tunnels:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Verify \"Machine Tunnel Service\" is checked.\n\nIf the BIG-IP VPN Gateway is not configured to use an Always On VPN connection for remote computing, this is a finding.",
+        "fixtext": "Configure at least one of these methods.\nAlways Connected Mode:\n\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Click \"BIG-IP Edge Client\" on the left.\n8. Check the box next to \"Enable Always connected mode\".\nNote: Always connected mode requires at least one host be listed in the Server list of the Connectivity Profile. Edit the Connectivity Profile to add an entry, if necessary.\n9. Click \"Download\" to save the settings and download the installer.\n\nMachine Tunnels:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Check \"Machine Tunnel Service\".\n8. Optionally, click \"Machine Tunnel Service\" on the left and check \"Enable NLA for Machine Tunnel\".\nNote: To configure DNS Suffixes for NLA, edit the Connectivity Profile >> Win/Mac Edge Client > Location DNS List.\n9. Click \"Download\" to save the settings and download the installer.",
+        "description": "Allowing remote users to manually toggle a VPN connection can create critical security risks. With Always On VPN, if a secured connection to the gateway is lost, hybrid-working users will simply be disconnected from the internet until the issue is solved.\n\n\"Always On\" is a term that describes a VPN connection that is secure and always on after the initial connection is established. An Always On VPN deployment establishes a VPN connection with the client without the need for user interaction (e.g., user credentials). The remote client must not be able to access the Internet without first established a VPN session with a DOD site.\n\nNote that device compliance checks are still required prior to connecting to DOD resources. Although out of scope for this requirement, the connection process must ensure that remote devices meet security standards before accessing DOD resources. Devices that fail to meet compliance requirements can be denied access, reducing the risk of compromised endpoints.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "62af1c9b42def38331bb253e94555f6ba6f634f4c04818ef13c8b1dfcef22654"
+      },
+      "vuln_id": "V-266174"
+    },
+    {
+      "pullback_id": "V-266174:apm_profile_connectivity_machine_tunnel:2",
+      "carrier_coordinate": "tmsh:list apm profile connectivity all-properties",
+      "measurable": "apm_profile_connectivity.machine_tunnel",
+      "lawful_property": "always-connected OR machine tunnel",
+      "required": "always-connected OR machine tunnel",
+      "observed": "absent",
+      "comparison_expression": "observed(absent) satisfies required(always-connected OR machine tunnel)",
+      "match": false,
+      "comparison_confidence": 1.0,
+      "pullback_unmatched": false,
+      "reviewer_action": "remediate_or_document_exception",
+      "source_key": "tmsh_apm_profile_connectivity",
+      "source_stig": {
+        "vuln_id": "V-266174",
+        "ruleID": "SV-266174r1024406_rule",
+        "checkid": "C-70098r1023768_chk",
+        "fixid": "F-70001r1023769_fix",
+        "title": "The VPN Gateway must use Always On VPN connections for remote computing.",
+        "checktext": "Verify at least one of these methods is configured.\n\nAlways Connected Mode:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Click \"BIG-IP Edge Client\" on the left.\n8. Verify \"Enable Always connected mode\" is enabled.\n\nMachine Tunnels:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Verify \"Machine Tunnel Service\" is checked.\n\nIf the BIG-IP VPN Gateway is not configured to use an Always On VPN connection for remote computing, this is a finding.",
+        "fixtext": "Configure at least one of these methods.\nAlways Connected Mode:\n\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Click \"BIG-IP Edge Client\" on the left.\n8. Check the box next to \"Enable Always connected mode\".\nNote: Always connected mode requires at least one host be listed in the Server list of the Connectivity Profile. Edit the Connectivity Profile to add an entry, if necessary.\n9. Click \"Download\" to save the settings and download the installer.\n\nMachine Tunnels:\nFrom the BIG-IP GUI:\n1. Access.\n2. Connectivity/VPN.\n3. Connectivity.\n4. Profiles.\n5. Click the name of the profile.\n6. At the bottom, click Customize Package >> Windows.\n7. Check \"Machine Tunnel Service\".\n8. Optionally, click \"Machine Tunnel Service\" on the left and check \"Enable NLA for Machine Tunnel\".\nNote: To configure DNS Suffixes for NLA, edit the Connectivity Profile >> Win/Mac Edge Client > Location DNS List.\n9. Click \"Download\" to save the settings and download the installer.",
+        "description": "Allowing remote users to manually toggle a VPN connection can create critical security risks. With Always On VPN, if a secured connection to the gateway is lost, hybrid-working users will simply be disconnected from the internet until the issue is solved.\n\n\"Always On\" is a term that describes a VPN connection that is secure and always on after the initial connection is established. An Always On VPN deployment establishes a VPN connection with the client without the need for user interaction (e.g., user credentials). The remote client must not be able to access the Internet without first established a VPN session with a DOD site.\n\nNote that device compliance checks are still required prior to connecting to DOD resources. Although out of scope for this requirement, the connection process must ensure that remote devices meet security standards before accessing DOD resources. Devices that fail to meet compliance requirements can be denied access, reducing the risk of compromised endpoints.",
+        "severity": "medium",
+        "source_json": "docs/disa_stigs.json",
+        "source_sha256": "62af1c9b42def38331bb253e94555f6ba6f634f4c04818ef13c8b1dfcef22654"
+      },
+      "vuln_id": "V-266174"
+    }
+  ],
+  "pullback_df": [
+    {
+      "record_type": "diagram",
+      "source_a": "observed appliance evidence (V-266174)",
+      "source_a_count": 2,
+      "source_b": "STIG-required predicates (V-266174)",
+      "source_b_count": 2,
+      "codomain": "shared measurables (V-266174)",
+      "map_a": "appliance snapshot -> measurable value",
+      "map_b": "STIG predicate -> measurable constraint",
+      "match_rule": "observed value satisfies required predicate on the shared measurable",
+      "match_count": 0,
+      "mismatch_count": 2,
+      "unresolved_count": 0,
+      "fiber_pairs": [
+        {
+          "pullback_id": "V-266174:apm_resource_network_access_auto_launch:1",
+          "shared_key": "apm_resource_network_access.auto_launch",
+          "left_id": "observed[apm_resource_network_access.auto_launch] = false",
+          "right_id": "required[apm_resource_network_access.auto_launch] true",
+          "observed_value": "false",
+          "required_value": "true",
+          "comparison_expression": "observed(false) satisfies required(true)",
+          "cardinality": "mismatch",
+          "source": "rest:/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource"
+        },
+        {
+          "pullback_id": "V-266174:apm_profile_connectivity_machine_tunnel:2",
+          "shared_key": "apm_profile_connectivity.machine_tunnel",
+          "left_id": "observed[apm_profile_connectivity.machine_tunnel] = absent",
+          "right_id": "required[apm_profile_connectivity.machine_tunnel] always-connected OR machine tunnel",
+          "observed_value": "absent",
+          "required_value": "always-connected OR machine tunnel",
+          "comparison_expression": "observed(absent) satisfies required(always-connected OR machine tunnel)",
+          "cardinality": "mismatch",
+          "source": "tmsh:list apm profile connectivity all-properties"
+        }
+      ]
+    },
+    {
+      "record_type": "criticism",
+      "severity": "error",
+      "aspect": "mismatch",
+      "finding": "2 measurement(s) observed on the appliance do not satisfy the STIG predicate; see the truth table for exact values."
+    },
+    {
+      "record_type": "mismatch",
+      "pullback_id": "V-266174:apm_resource_network_access_auto_launch:1",
+      "shared_key": "apm_resource_network_access.auto_launch",
+      "left_id": "observed[apm_resource_network_access.auto_launch] = false",
+      "right_id": "required[apm_resource_network_access.auto_launch] true",
+      "observed_value": "false",
+      "required_value": "true",
+      "source": "rest:/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource",
+      "comparison_expression": "observed(false) satisfies required(true)"
+    },
+    {
+      "record_type": "mismatch",
+      "pullback_id": "V-266174:apm_profile_connectivity_machine_tunnel:2",
+      "shared_key": "apm_profile_connectivity.machine_tunnel",
+      "left_id": "observed[apm_profile_connectivity.machine_tunnel] = absent",
+      "right_id": "required[apm_profile_connectivity.machine_tunnel] always-connected OR machine tunnel",
+      "observed_value": "absent",
+      "required_value": "always-connected OR machine tunnel",
+      "source": "tmsh:list apm profile connectivity all-properties",
+      "comparison_expression": "observed(absent) satisfies required(always-connected OR machine tunnel)"
+    }
+  ],
+  "adjudication": {
+    "compliant": false,
+    "human_review_row": {
+      "vuln_id": "V-266174",
+      "requirement": "The VPN Gateway must use Always On VPN connections for remote computing.",
+      "status": "OPEN",
+      "why": "Always-on VPN posture: passes if the network-access resource auto-launches OR the connectivity profile defines a machine tunnel.",
+      "tmsh_remediation_command": "NA",
+      "rest_remediation_command": "NA",
+      "evidence_keys": [
+        "sys_provision"
+      ],
+      "comparison_summary": {
+        "total": 2,
+        "pass": 0,
+        "fail": 2,
+        "unresolved": 0
+      }
+    },
+    "violations": [
+      "Always-on VPN posture: passes if the network-access resource auto-launches OR the connectivity profile defines a machine tunnel."
+    ],
+    "proof_steps": [
+      {
+        "step": "recipe",
+        "title": "V-266174 - manual_or_generic evaluation recipe",
+        "detail": "Capture live evidence -> emit one measurement per STIG predicate -> pull back observed vs required on the shared measurable -> compare -> judge."
+      },
+      {
+        "step": "observe",
+        "title": "Observe appliance state for V-266174",
+        "detail": "Collected 2 source snapshot(s) producing 2 measurement(s).",
+        "endpoints": [
+          "rest:/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource",
+          "tmsh:list apm profile connectivity all-properties"
+        ]
+      },
+      {
+        "step": "pullback_diagram",
+        "title": "STIG alignment diagram - V-266174",
+        "source_a": "observed appliance evidence (V-266174)",
+        "source_a_count": 2,
+        "source_b": "STIG-required predicates (V-266174)",
+        "source_b_count": 2,
+        "codomain": "shared measurables (V-266174)",
+        "map_a": "appliance snapshot -> measurable value",
+        "map_b": "STIG predicate -> measurable constraint",
+        "match_rule": "observed value satisfies required predicate on the shared measurable",
+        "match_count": 0,
+        "unmatched_left": 0,
+        "unmatched_right": 2,
+        "mismatch_count": 2,
+        "unresolved_count": 0,
+        "fiber_pairs": [
+          {
+            "pullback_id": "V-266174:apm_resource_network_access_auto_launch:1",
+            "shared_key": "apm_resource_network_access.auto_launch",
+            "left_id": "observed[apm_resource_network_access.auto_launch] = false",
+            "right_id": "required[apm_resource_network_access.auto_launch] true",
+            "observed_value": "false",
+            "required_value": "true",
+            "comparison_expression": "observed(false) satisfies required(true)",
+            "cardinality": "mismatch",
+            "source": "rest:/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource"
+          },
+          {
+            "pullback_id": "V-266174:apm_profile_connectivity_machine_tunnel:2",
+            "shared_key": "apm_profile_connectivity.machine_tunnel",
+            "left_id": "observed[apm_profile_connectivity.machine_tunnel] = absent",
+            "right_id": "required[apm_profile_connectivity.machine_tunnel] always-connected OR machine tunnel",
+            "observed_value": "absent",
+            "required_value": "always-connected OR machine tunnel",
+            "comparison_expression": "observed(absent) satisfies required(always-connected OR machine tunnel)",
+            "cardinality": "mismatch",
+            "source": "tmsh:list apm profile connectivity all-properties"
+          }
+        ],
+        "missing_items": [
+          "apm_resource_network_access.auto_launch",
+          "apm_profile_connectivity.machine_tunnel"
+        ],
+        "waste_items": []
+      },
+      {
+        "step": "pullback_criticism",
+        "title": "Criticism - mismatch",
+        "severity": "error",
+        "aspect": "mismatch",
+        "detail": "2 measurement(s) observed on the appliance do not satisfy the STIG predicate; see the truth table for exact values."
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_resource_network_access.auto_launch @ rest:/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource",
+        "pullback_id": "V-266174:apm_resource_network_access_auto_launch:1",
+        "required": "true",
+        "observed": "false",
+        "source": "rest:/mgmt/tm/apm/resource/network-access/~Common~stig_vpn_resource",
+        "comparison_expression": "observed(false) satisfies required(true)",
+        "verdict": "FAIL",
+        "is_unmatched": false
+      },
+      {
+        "step": "compare",
+        "title": "Compare - apm_profile_connectivity.machine_tunnel @ tmsh:list apm profile connectivity all-properties",
+        "pullback_id": "V-266174:apm_profile_connectivity_machine_tunnel:2",
+        "required": "always-connected OR machine tunnel",
+        "observed": "absent",
+        "source": "tmsh:list apm profile connectivity all-properties",
+        "comparison_expression": "observed(absent) satisfies required(always-connected OR machine tunnel)",
+        "verdict": "FAIL",
+        "is_unmatched": false
+      },
+      {
+        "step": "evidence_summary",
+        "title": "Evidence tally",
+        "pass_count": 0,
+        "fail_count": 2,
+        "unresolved_count": 0,
+        "total_comparisons": 2
+      },
+      {
+        "step": "criteria",
+        "title": "Judgment",
+        "detail": "Always-on VPN posture: passes if the network-access resource auto-launches OR the connectivity profile defines a machine tunnel.",
+        "status": "OPEN",
+        "naf_expression": "observed == required",
+        "naf_result": false,
+        "open_expression": "pullback mismatch OR unresolved expectation",
+        "open_result": true
+      }
+    ]
+  },
+  "rationale": "Always-on VPN posture: passes if the network-access resource auto-launches OR the connectivity profile defines a machine tunnel.",
+  "ctx_timestamp": "2026-04-25T15:46:56Z",
+  "bundle_metadata": {
+    "operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "vuln_id": "V-266174"
+  },
+  "requested_host": "132.145.154.175",
+  "bundle_dir": "bundles/132.145.154.175/V-266174/20260425T154656Z.json",
+  "provenance": {
+    "bundle_dir": "bundles/132.145.154.175/V-266174/20260425T154656Z.json",
+    "bundle_timestamp": "2026-04-25T15:46:56Z",
+    "bundle_host_ip": "132.145.154.175",
+    "bundle_host_hostname": "132.145.154.175",
+    "bundle_operation": "validate_all",
+    "bundle_source": "web_app",
+    "bundle_is_synthetic": false,
+    "host_match": true,
+    "selection_note": "Live validate_all against 132.145.154.175."
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "adapter_family_id": "ntp",
+  "controls_covered": [
+    "V-266076",
+    "V-266077",
+    "V-266086"
+  ],
+  "broken_measurable": "sys_ntp_server_count",
+  "distinction_integrity": true,
+  "live_break_detects": true,
+  "live_fix_restores": true,
+  "device_clean": true,
+  "capture_refs": [
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266076.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266077.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "session_validation",
+      "path": "factory_exports/stig_expert_critic/sessions/132.145.154.175__V-266086.json",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266076",
+      "status": "open"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266077",
+      "status": "not_a_finding"
+    },
+    {
+      "kind": "break_validation",
+      "vuln_id": "V-266086",
+      "status": "not_a_finding"
+    }
+  ],
+  "details": "Break/fix executed by reducing NTP server count from 2 to 1 and restoring to 2, with compliant include directives established for authenticated NTP baseline."
+}

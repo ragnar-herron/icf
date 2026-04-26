@@ -1,0 +1,437 @@
+{
+  "record_type": "ClientDeliveryBundle",
+  "generated_at": "2026-04-24T20:57:59Z",
+  "client_delivery_status": "DELIVERABLE_SUPPORTED_ONLY",
+  "portfolio_status": "PARTIAL",
+  "portfolio_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\LiveAdapterPromotionPortfolio.json",
+  "live_adapter_promotion_portfolio": {
+    "record_type": "LiveAdapterPromotionPortfolio",
+    "generated_at": "2026-04-24T19:25:30Z",
+    "status": "PARTIAL",
+    "families_total": 11,
+    "families_promoted": 10,
+    "families_blocked": 1,
+    "family_bundles": [
+      {
+        "adapter_family_id": "apm_access",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.apm_access.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "afm_firewall",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.afm_firewall.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "asm_policy",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.asm_policy.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "password_policy",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.password_policy.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "ltm_virtual_ssl",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.ltm_virtual_ssl.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "ntp",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.ntp.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "ltm_virtual_services",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.ltm_virtual_services.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "banner",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.banner.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "logging",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.logging.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "sshd",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.sshd.json",
+        "promotion_decision": "PROMOTED",
+        "missing_gates": []
+      },
+      {
+        "adapter_family_id": "backup",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.backup.json",
+        "promotion_decision": "BLOCKED",
+        "missing_gates": [
+          "LA-HG5 Known good survives",
+          "LA-HG7 Live break detects",
+          "LA-HG8 Live fix proves",
+          "LA-HG9 Device clean",
+          "LA-HG10 Export equivalence"
+        ]
+      }
+    ],
+    "blocking_families": [
+      {
+        "adapter_family_id": "backup",
+        "bundle_path": "factory_exports/stig_expert_critic/data/LiveAdapterPromotionBundle.backup.json",
+        "missing_gates": [
+          "LA-HG5 Known good survives",
+          "LA-HG7 Live break detects",
+          "LA-HG8 Live fix proves",
+          "LA-HG9 Device clean",
+          "LA-HG10 Export equivalence"
+        ]
+      }
+    ],
+    "classified_nonfamily_controls": [
+      {
+        "vuln_id": "V-266064",
+        "title": "The F5 BIG-IP appliance must be configured to limit the number of concurrent sessions to the Configuration Utility to 10 or an organization-defined number.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266065",
+        "title": "The F5 BIG-IP appliance must terminate shared/group account credentials when members leave the group.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266066",
+        "title": "The F5 BIG-IP appliance must be configured with only one local account to be used as the account of last resort in the event the authentication server is unavailable.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266067",
+        "title": "The F5 BIG-IP appliance must be configured to assign appropriate user roles or access levels to authenticated users.",
+        "live_supported": false,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "external_evidence_required",
+        "resolution_detail": {
+          "resolution_class": "external_evidence_required",
+          "note": "Appropriate roles and partition access are organization-defined and require external authorization evidence."
+        },
+        "evaluator_key": null
+      },
+      {
+        "vuln_id": "V-266068",
+        "title": "The F5 BIG-IP appliance must be configured to audit the execution of privileged functions such as accounts additions and changes.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266074",
+        "title": "The F5 BIG-IP appliance must manage local audit storage capacity in accordance with organization-defined audit record storage requirements.",
+        "live_supported": false,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "external_evidence_required",
+        "resolution_detail": {
+          "resolution_class": "external_evidence_required",
+          "note": "Audit storage thresholds are defined by the SSP and require external retention/storage policy evidence."
+        },
+        "evaluator_key": null
+      },
+      {
+        "vuln_id": "V-266078",
+        "title": "The F5 BIG-IP appliance must be configured to prevent the installation of patches, service packs, or application components without verification the software component has been digitally signed using a certificate that is recognized and approved by the organization.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266079",
+        "title": "The F5 BIG-IP appliance must be configured to use at least two authentication servers to authenticate administrative users.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266080",
+        "title": "The F5 BIG-IP appliance must be running an operating system release that is currently supported by the vendor.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266083",
+        "title": "The F5 BIG-IP appliance must obtain its public key certificates from an appropriate certificate policy through an approved service provider.",
+        "live_supported": false,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "manual_attestation_required",
+        "resolution_detail": {
+          "resolution_class": "manual_attestation_required",
+          "note": "Approved certificate policy and approved service provider status require attested issuer approval evidence."
+        },
+        "evaluator_key": null
+      },
+      {
+        "vuln_id": "V-266085",
+        "title": "The F5 BIG-IP appliance must be configured to use multifactor authentication (MFA) for interactive logins.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266092",
+        "title": "The F5 BIG-IP appliance must require that when a password is changed, the characters are changed in at least eight of the positions within the password.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266093",
+        "title": "The F5 BIG-IP appliance must prohibit the use of cached authenticators after eight hours or less.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266094",
+        "title": "The F5 BIG-IP appliance must be configured to use DOD approved OCSP responders or CRLs to validate certificates used for PKI-based authentication.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266167",
+        "title": "The F5 BIG-IP appliance must be configured to restrict a consistent inbound IP for the entire management session.",
+        "live_supported": true,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "direct_control_support",
+        "resolution_detail": {
+          "resolution_class": "direct_control_support",
+          "note": "Promoted standalone control support exists, but this is not a coherent adapter family and should not remain in manual_or_generic."
+        },
+        "evaluator_key": "manual_or_generic"
+      },
+      {
+        "vuln_id": "V-266174",
+        "title": "The VPN Gateway must use Always On VPN connections for remote computing.",
+        "live_supported": false,
+        "handler_family": "manual_or_generic",
+        "resolution_class": "redesign_required",
+        "resolution_detail": {
+          "resolution_class": "redesign_required",
+          "note": "Always On VPN semantics do not fit the current family model cleanly and should be redesigned rather than promoted under manual_or_generic."
+        },
+        "evaluator_key": null
+      }
+    ],
+    "classification_summary": {
+      "direct_control_support": 12,
+      "external_evidence_required": 2,
+      "manual_attestation_required": 1,
+      "redesign_required": 1
+    },
+    "client_delivery_status": "DELIVERABLE_SUPPORTED_ONLY"
+  },
+  "promoted_families": [
+    "apm_access",
+    "afm_firewall",
+    "asm_policy",
+    "password_policy",
+    "ltm_virtual_ssl",
+    "ntp",
+    "ltm_virtual_services",
+    "banner",
+    "logging",
+    "sshd"
+  ],
+  "blocked_families": [
+    "backup"
+  ],
+  "backup_combined_measurable_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\BackupCombinedMeasurable.json",
+  "backup_combined_measurable": {
+    "record_type": "BackupCombinedMeasurable",
+    "local_backup_exists": true,
+    "schedule_verified": false,
+    "off_device_verified": false,
+    "retention_verified": false,
+    "external_evidence_present": true,
+    "external_evidence_valid": false,
+    "local_evidence_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\BackupLocalEvidence.json",
+    "external_evidence_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\ExternalEvidencePackage.backup_policy.json",
+    "blocking_reason": "backup external evidence package is incomplete or malformed"
+  },
+  "limitation_statement": [
+    "backup requires external evidence for schedule, off-device target, and retention before promotion.",
+    "manual_or_generic remains unresolved and is redesign-last rather than promotion-first."
+  ],
+  "live_regression_proof": {
+    "status": "PASS",
+    "host": "132.145.154.175",
+    "release_scope": "supported_only",
+    "shipped_controls": 62,
+    "statuses": {
+      "not_a_finding": 58,
+      "not_applicable": 3,
+      "open": 1
+    },
+    "proof_source": "verify_live_supported_regression semantics"
+  },
+  "export_projection_proof": {
+    "status": "PASS",
+    "passed_gates": 12,
+    "total_gates": 12,
+    "gates": [
+      {
+        "gate_id": "EP-1",
+        "passed": true,
+        "detail": "no independent judgment tokens found"
+      },
+      {
+        "gate_id": "EP-2",
+        "passed": true,
+        "detail": "no DSL tokens found"
+      },
+      {
+        "gate_id": "EP-3",
+        "passed": true,
+        "detail": "unresolved preserved 7/7"
+      },
+      {
+        "gate_id": "EP-4",
+        "passed": true,
+        "detail": "resolution appears only for promoted controls"
+      },
+      {
+        "gate_id": "EP-5",
+        "passed": true,
+        "detail": "projection equivalence 67/67"
+      },
+      {
+        "gate_id": "EP-6",
+        "passed": true,
+        "detail": "scope count consistency holds"
+      },
+      {
+        "gate_id": "EP-7",
+        "passed": true,
+        "detail": "provenance preserved"
+      },
+      {
+        "gate_id": "EP-8",
+        "passed": true,
+        "detail": "validate button gated on packaged projection field"
+      },
+      {
+        "gate_id": "EP-9",
+        "passed": true,
+        "detail": "no local verdict variables found"
+      },
+      {
+        "gate_id": "EP-10",
+        "passed": true,
+        "detail": "no evaluation functions found"
+      },
+      {
+        "gate_id": "EP-11",
+        "passed": true,
+        "detail": "projected unresolved semantics preserved"
+      },
+      {
+        "gate_id": "EP-12",
+        "passed": true,
+        "detail": "state isolation logic present"
+      }
+    ],
+    "projection_equivalence_rate": 1.0,
+    "unresolved_preservation_rate": 1.0,
+    "scope_fidelity_rate": 1.0,
+    "role_drift_incidents": 0,
+    "frontend_truth_invention_incidents": 0
+  },
+  "client_deliverability_gate_record_path": "C:\\work\\dev\\github\\icf_gpt\\factory_exports\\stig_expert_critic\\data\\ClientDeliverabilityGateRecord.json",
+  "client_deliverability_gate_record": {
+    "record_kind": "ClientDeliverabilityGateRecord",
+    "release_scope": "supported_only",
+    "selected_controls": 67,
+    "shipped_controls": 62,
+    "supported_controls": 62,
+    "unsupported_controls": 5,
+    "unsupported_shipped_controls": 0,
+    "status": "DELIVERABLE",
+    "requirements": {
+      "standalone_runtime_boundary": true,
+      "csv_runtime_configuration": true,
+      "live_connect_query_smoke_required": true,
+      "supported_only_release": true
+    },
+    "next_action": "Expand supported families or ship supported-only scope explicitly."
+  }
+}
